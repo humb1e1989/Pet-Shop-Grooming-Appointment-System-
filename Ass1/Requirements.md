@@ -5,7 +5,7 @@
 > General instruction: 在这项任务中，你必须对分配给你的项目模块进行软件***需求分析***。你需要用***Scrum框架***中使用的格式，即***PBI***。在你提交的报告中包括***5个***预先准备好的PBIs。
 > <br> ***A cover page*** is included and follow the  ***PBI template*** provided in the assignment package   
 > <br> ***评分标准评分标准和权重是基于以下因素。***
-> |marking criteria|description|
+> |**Marking Criteria**|**Description**|
 > |:-|:-|
 > |Report quality ***(20%)***|报告应该有***良好的表述（well presented）***。报告中使用的语言必须是***清楚和简明（clear and concise）***。在适当的时候，使用***图像或图画***来帮助理解。|
 > |PBI specification ***(25%)*** |报告中提出的需求规范必须充分显示你对***需求的理解（understanding of requirements）***。它必须***同时写在需求范围内，以避免明显的遗漏。（written within the requirements scope at the same time to avoid obvious omissions.）***|
