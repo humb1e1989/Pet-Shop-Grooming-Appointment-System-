@@ -18,3 +18,4 @@ Please nota that: The format is **PDF** format and ***more than 5*** PBI won't b
 > 2.PBI必须要***easy to implement***（就是让实现起来不会很复杂 e.g 比如说一个PBI可能写很多天 这个就不需要了）<br>
 > 3.需要考虑到***商业价值***（）<br>
 > 4.需要考虑到***技术因素***（）<br>
+> 5.结合fb
