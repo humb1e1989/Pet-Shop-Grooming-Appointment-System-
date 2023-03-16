@@ -13,7 +13,7 @@
 > |PBI story <br> ***(10%)*** |PBI故事必须以***用户故事（User Story format）*** 的格式编写。它应该是 ***从用户的角度（User's perspective）*** 来写，并***易于理解（easy to understand）***。|
 > |Acceptance criteria <br> ***(25%)***|验收标准必须以***用户故事（User Story format）**** 的格式来写。它应该是 它应该从***用户的角度（User Story format）*** 来写，有***逻辑性（Logical）***，并且***容易理解（easy to understand）***。它应该 ***涵盖需求的所有方面（cover all aspects of the requirements）***。|
 Please nota that: The format is **PDF** format and ***more than 5*** PBI won't be marked, ***less than 5*** PBI will be deducted.  
-> 补充说明：四个维度
+> 补充说明：四个维度 <br>
 > 1.PBI必须要***easy to understand***（就是让人读得懂）<br>
 > 2.PBI必须要***easy to implement***（就是让实现起来不会很复杂 e.g 比如说一个PBI可能写很多天 这个就不需要了）<br>
 > 3.需要考虑到***商业价值***（）<br>
