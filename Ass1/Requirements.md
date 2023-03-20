@@ -19,4 +19,42 @@ Please nota that: The format is **PDF** format and ***more than 5*** PBI won't b
 > 3.需要考虑到***商业价值***（）<br>
 > 4.需要考虑到***技术因素***（）<br>
 > 5.结合fb
+
+Here are some samples：
+>Examples of PBIs for Feature i above: -
+
+          i.      As a customer, I want a list of delivered products that are ready for collection, so that I know which products are available for collection.
+
+          ii.      As a customer, I want to see the details of a product from the list of delivered products, so that I know where to collects it.
+
+          iii.      As a customer, I want the list of delivered products to be searchable, so that it will be easy to see when the list is too long.
+
+          iv.      As a customer, I want a photo of the delivered product to be displayed on the list, so that I can locate the delivery easily.
+          
+          And more:
+          Product Backlog Item
+
+PBI #	
+Title	Add new superhero<br>
+
+Creation Date	4 Feb 2023	Status	New	Sprint	<br>
+Priority	2	Effort		Business Value	<br>
+
+Story
+> As the website administrator I want to add new superhero so that the (logged in) website visitors can view all superheroes feature on the website. <br>
+
+
+Description <br>
+> 1.Superheroes cannot have duplicate name.<br>
+> 2.It has properties such as name, power, image, and description.<br>
+> 3.The power is measure from 1 to 10, where 1 is the weakest and 10 is the strongest.<br>
+
+
+Acceptance Criteria <br>
+> 1.Given that I am a valid administrator, when I select the “Add New” button in the Maintain Superhero page, then the Add New Superhero page will be display.<br>
+> 2.Given that I am at the Add New Superhero page, when I fill in all the required fields on the page and click the “Confirm” button on the page, then a new record of Superhero will be added to the system and the system will redirect me back to Maintain Superhero page.<br>
+> 3.Given that I am at the Add New Superhero page, when I did not fill in all the required fields on the page and click the “Confirm” button on the page, then the system will display “Required field is empty, please fill in correct information.” and let me fill in the required field.<br>
+> 4.Given that I am at the Add New Superhero page, when I click the “Cancel” button, then the system will redirect me back to Maintain Superhero page.<br>
+
+
    
