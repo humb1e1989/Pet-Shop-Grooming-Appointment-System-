@@ -31,8 +31,7 @@ Here are some samples：
 
           iv.      As a customer, I want a photo of the delivered product to be displayed on the list, so that I can locate the delivery easily.
           
-          And more:
-          Product Backlog Item
+          
 
 PBI #	
 Title	Add new superhero<br>
