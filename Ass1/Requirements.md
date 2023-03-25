@@ -54,6 +54,8 @@ Acceptance Criteria <br>
 > 2.Given that I am at the Add New Superhero page, when I fill in all the required fields on the page and click the “Confirm” button on the page, then a new record of Superhero will be added to the system and the system will redirect me back to Maintain Superhero page.<br>
 > 3.Given that I am at the Add New Superhero page, when I did not fill in all the required fields on the page and click the “Confirm” button on the page, then the system will display “Required field is empty, please fill in correct information.” and let me fill in the required field.<br>
 > 4.Given that I am at the Add New Superhero page, when I click the “Cancel” button, then the system will redirect me back to Maintain Superhero page.<br>
+> 
+> **You should considerate the corner case such as the stirng is too long.**
 
 
    
