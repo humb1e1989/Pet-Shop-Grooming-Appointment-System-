@@ -11,18 +11,22 @@ import javax.persistence.Id;
 public class Pet {
 
     @Id
-    // @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int pid;
 
-    private int userId;
+    @Column(nullable = false)
+    private int uId;
 
+    @Column(columnDefinition = "varchar(10)", nullable = false)
     private String size;
 
+    @Column(columnDefinition = "varchar(50)", nullable = false)
     private String type;
 
+    @Column(columnDefinition = "varchar(50)", nullable = false)
     private String name;
 
-    @Column(name = "image_url")
+    @Column(name = "image_url", nullable = true)
     private String imageURL;
 
 
