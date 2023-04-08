@@ -25,7 +25,7 @@ public class User {
     private String password;
     
     @Column(columnDefinition = "tinyint", nullable = false)
-    private byte type;
+    private byte type;  // type 0: customer; type 1: manager
 
     @Column(columnDefinition = "DATETIME DEFAULT CURRENT_TIMESTAMP", nullable = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
@@ -42,6 +42,97 @@ public class User {
 
     @Column(columnDefinition = "varchar(100)", nullable = true)
     private String email;
+
+
+    public User() {
+    }
+
+    
+    public User(int uid, String username, String password, byte type, Date registrationTime, String imageURL,
+            String gender, String phoneNumber, String email) {
+        this.uid = uid;
+        this.username = username;
+        this.password = password;
+        this.type = type;
+        this.registrationTime = registrationTime;
+        this.imageURL = imageURL;
+        this.gender = gender;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+    }
+
+
+    public int getUid() {
+        return uid;
+    }
+
+    public void setUid(int uid) {
+        this.uid = uid;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public byte getType() {
+        return type;
+    }
+
+    public void setType(byte type) {
+        this.type = type;
+    }
+
+    public Date getRegistrationTime() {
+        return registrationTime;
+    }
+
+    public void setRegistrationTime(Date registrationTime) {
+        this.registrationTime = registrationTime;
+    }
+
+    public String getImageURL() {
+        return imageURL;
+    }
+
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     
 }

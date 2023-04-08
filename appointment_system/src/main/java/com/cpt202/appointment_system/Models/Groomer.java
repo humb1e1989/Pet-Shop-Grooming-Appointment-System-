@@ -39,4 +39,58 @@ public class Groomer {
     // @Column(columnDefinition = " ", nullable = false)
     // private String description;
     
+
+    public int getGid() {
+        return gid;
+    }
+
+    public void setGid(int gid) {
+        this.gid = gid;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getImageURL() {
+        return imageURL;
+    }
+
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
+    }
+
+    public byte getRank() {
+        return rank;
+    }
+
+    public void setRank(byte rank) {
+        this.rank = rank;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+
+
+
+    
+    
 }
