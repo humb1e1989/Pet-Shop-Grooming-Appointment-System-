@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 
 @Entity
@@ -13,9 +15,6 @@ public class Pet {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int pid;
-
-    @Column(nullable = false)
-    private int uId;
 
     @Column(columnDefinition = "varchar(10)", nullable = false)
     private String size;
@@ -26,9 +25,12 @@ public class Pet {
     @Column(columnDefinition = "varchar(50)", nullable = false)
     private String name;
 
+    @ManyToOne
+    @JoinColumn(name = "uid", referencedColumnName = "uid", nullable = false)
+    private User user;
+
     @Column(name = "image_url", nullable = true)
     private String imageURL;
-
 
     
 }

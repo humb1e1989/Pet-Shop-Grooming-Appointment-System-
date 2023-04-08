@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -35,11 +37,13 @@ public class Appointment {
     @Column(columnDefinition = "varchar(50)", nullable = false)
     private String serviceType;
 
-    @Column(nullable = false)
-    private int gId;
+    @ManyToOne
+    @JoinColumn(name = "gid", referencedColumnName = "gid", nullable = false)
+    private Groomer groomer;
 
-    @Column(nullable = false)
-    private int uId;
+    @ManyToOne
+    @JoinColumn(name = "uid", referencedColumnName = "uid", nullable = false)
+    private User user;
 
     @Column(columnDefinition = "DATETIME DEFAULT CURRENT_TIMESTAMP", nullable = true)
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")

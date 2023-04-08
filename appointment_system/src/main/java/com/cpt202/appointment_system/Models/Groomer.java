@@ -24,6 +24,8 @@ public class Groomer {
     @Column(name = "image_url", nullable = false)
     private String imageURL;
 
+    // name it "ranking" in MySQL to avoid possible error 
+    // since rank() is a buil-in function in MySQL 
     @Column(name = "ranking", columnDefinition = "tinyint", nullable = false)
     private byte rank;
 
@@ -31,7 +33,6 @@ public class Groomer {
     private String phoneNumber;
 
 
-    
     // I think "description" is a reasonable attribute but not a basic one.
     // Besides, I am not familiar with storing large text in MySQL for a moment. 
 
