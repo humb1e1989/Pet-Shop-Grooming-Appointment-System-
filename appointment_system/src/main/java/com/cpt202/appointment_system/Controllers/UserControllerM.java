@@ -16,7 +16,7 @@ import com.cpt202.appointment_system.Repositories.UserRepo;
 import com.cpt202.appointment_system.Services.UserServiceM;
 
 
-@RestController
+@RestController // a RESTfull API
 @RequestMapping("/mc")
 public class UserControllerM {
 
