@@ -35,5 +35,10 @@ public class UserControllerM {
     //     return userService.viewOneCustomer(user);
     // }
 
+    // just a test demo
+    // @GetMapping("/customer/list")
+    // public Result<?> getCustomerByName(@RequestParam User user){
+    //     return userService.searchCustomerByName(user);
+    // }
     
 }

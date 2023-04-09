@@ -55,5 +55,16 @@ public class UserServiceM {
 
     // }
     
+    // just a test demo
+    public Result<?> listAllAppointment(){
+        byte typeCustomer = 0;
+        List<User> appointmentList = userRepo.findByType(typeCustomer);
+        if (! appointmentList.isEmpty()) {
+            return Result.success(appointmentList, "Successfully List All Customers!");
+        }
+    
+        return Result.error("-1", "No Registered Customers.");
+        
+    }
 
 }
