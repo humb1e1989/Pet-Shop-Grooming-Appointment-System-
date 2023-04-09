@@ -52,6 +52,7 @@ public class UserController {
 
 
     //Customer Part
+    
     // Customer can view all of history appointments - Demo may have error now
     @GetMapping("/customer/appointmentList")
     public List<Appointment> getUserAppointment_c(@RequestParam User user){
