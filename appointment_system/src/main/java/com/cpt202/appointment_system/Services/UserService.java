@@ -26,7 +26,7 @@ public class UserService {
     @Autowired
     private PetRepo petRepo;
 
-    public Result<?> listAllCustomers(){
+    public Result<?> listAllCustomers_M(){
         byte typeCustomer = 0;
         List<User> userList = userRepo.findByType(typeCustomer);
 
@@ -38,7 +38,7 @@ public class UserService {
         
     }
 
-    public Result<?> searchCustomerByName(User user){
+    public Result<?> searchCustomerByName_M(User user){
         List<User> userList = userRepo.findByUsernameContaining(user.getUsername());
 
         if(! userList.isEmpty()){
@@ -51,7 +51,7 @@ public class UserService {
 
     // I think it might have a better way to do it.
     // However, right now I do not know how to join many tables using Jpa. 
-    public Result<?> viewOneCustomer(User u){
+    public Result<?> viewOneCustomer_M(User u){
         User user = userRepo.findByUid(u.getUid());
         
         if (user != null) {

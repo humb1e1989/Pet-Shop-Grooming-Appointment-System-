@@ -22,17 +22,17 @@ public class UserControllerM {
 
     @GetMapping("/customer-management")  
     public Result<?> getAllCustomers(){
-        return userService.listAllCustomers();
+        return userService.listAllCustomers_M();
     }
 
     @GetMapping("customer-management/search")
     public Result<?> getCustomerByName(@RequestParam User user){
-        return userService.searchCustomerByName(user);
+        return userService.searchCustomerByName_M(user);
     }
 
     @GetMapping("customer-management/customer")
     public Result<?> viewCustomer(@RequestParam User user){
-        return userService.viewOneCustomer(user);
+        return userService.viewOneCustomer_M(user);
     }
 
     
