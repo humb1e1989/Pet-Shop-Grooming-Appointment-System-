@@ -38,7 +38,8 @@ public class UserControllerM {
     //     return userService.viewOneCustomer(user);
     // }
 
-    @GetMapping("/customer-management/list")
+    // Manager can view all of appointments
+    @GetMapping("/appointment-management")
     public List<User> getAllAppointment(){
         return userService.getAppointmentList();
     }

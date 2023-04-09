@@ -32,6 +32,21 @@ public class Pet {
     @Column(name = "image_url", nullable = true)
     private String imageURL;
 
+
+    public Pet() {
+    }
+    
+
+    public Pet(int pid, String size, String type, String name, User user, String imageURL) {
+        this.pid = pid;
+        this.size = size;
+        this.type = type;
+        this.name = name;
+        this.user = user;
+        this.imageURL = imageURL;
+    }
+
+
     public int getPid() {
         return pid;
     }

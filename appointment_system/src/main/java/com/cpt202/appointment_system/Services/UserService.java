@@ -13,7 +13,7 @@ import com.cpt202.appointment_system.Models.User;
 import com.cpt202.appointment_system.Repositories.UserRepo;
 
 @Service
-public class UserServiceM {
+public class UserService {
 
     @Autowired
     private UserRepo userRepo;

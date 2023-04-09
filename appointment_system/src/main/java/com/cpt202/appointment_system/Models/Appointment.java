@@ -48,6 +48,10 @@ public class Appointment {
     @Column(columnDefinition = "DATETIME DEFAULT CURRENT_TIMESTAMP", nullable = true)
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date cancelTime;
+    
+
+    public Appointment() {
+    }
 
     
     // generate the constructor of appointment
@@ -63,6 +67,7 @@ public class Appointment {
         this.user = user;
         this.cancelTime = cancelTime;
     }
+
 
     public int getAid() {
         return aid;
