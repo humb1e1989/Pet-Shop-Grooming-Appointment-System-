@@ -1,17 +1,15 @@
 package com.cpt202.appointment_system.Services;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.cpt202.appointment_system.Common.Result;
 import com.cpt202.appointment_system.Models.Appointment;
 import com.cpt202.appointment_system.Models.Pet;
 import com.cpt202.appointment_system.Models.User;
+import com.cpt202.appointment_system.Models.UserTool;
 import com.cpt202.appointment_system.Repositories.AppointmentRepo;
 import com.cpt202.appointment_system.Repositories.PetRepo;
 import com.cpt202.appointment_system.Repositories.UserRepo;
@@ -50,17 +48,17 @@ public class UserServiceM {
         return Result.error("-1","No Matching Customers Found.");
     }
 
-    // Personal perspective (Yuzhen Chen): 
-    // 
-    public Result<?> viewOneCustomer(@RequestParam User user){
-        User u = userRepo.findByUid(user.getUid());
+
+    // I think it might have a better way to do it.
+    // However, right now I do not know how to join many tables using Jpa. 
+    public Result<?> viewOneCustomer(User u){
+        User user = userRepo.findByUid(u.getUid());
         
-        if (u != null) {
-            List<Appointment> appointmentList = appointmentRepo.findByUser(user)  ;
-            List<Pet> petList = petRepo.findByUser(user);
-            u.setAppointmentList(appointmentList);
-            u.setPetList(petList);
-            return Result.success(u, "");
+        if (user != null) {
+            List<Appointment> al = appointmentRepo.findByUser(user);
+            List<Pet> pl = petRepo.findByUser(user);
+            UserTool ut = new UserTool(user, al, pl);
+            return Result.success(ut, "");
         }
 
         return Result.error("-1", "Customer Doesn't Exist");

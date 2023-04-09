@@ -30,10 +30,10 @@ public class UserControllerM {
         return userService.searchCustomerByName(user);
     }
 
-    // @GetMapping("customer-management/customer")
-    // public Result<?> viewCustomer(@RequestParam User user){
-    //     return userService.viewOneCustomer(user);
-    // }
+    @GetMapping("customer-management/customer")
+    public Result<?> viewCustomer(@RequestParam User user){
+        return userService.viewOneCustomer(user);
+    }
 
     
 }
