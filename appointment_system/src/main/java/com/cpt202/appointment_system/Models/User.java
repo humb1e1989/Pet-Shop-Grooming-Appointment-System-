@@ -1,6 +1,7 @@
 package com.cpt202.appointment_system.Models;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,7 +19,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int uid;
 
-    @Column(columnDefinition = "varchar(50)", nullable = false)
+    @Column(columnDefinition = "varchar(50)", nullable = false, unique = true)
     private String username;
 
     @Column(columnDefinition = "varchar(15)", nullable = false)
@@ -43,13 +44,16 @@ public class User {
     @Column(columnDefinition = "varchar(100)", nullable = true)
     private String email;
 
+    private List<Appointment> appointmentList;
+
+    private List<Pet> petList;
+
 
     public User() {
     }
 
-    
     public User(int uid, String username, String password, byte type, Date registrationTime, String imageURL,
-            String gender, String phoneNumber, String email) {
+            String gender, String phoneNumber, String email, List<Appointment> appointmentList, List<Pet> petList) {
         this.uid = uid;
         this.username = username;
         this.password = password;
@@ -59,6 +63,8 @@ public class User {
         this.gender = gender;
         this.phoneNumber = phoneNumber;
         this.email = email;
+        this.appointmentList = appointmentList;
+        this.petList = petList;
     }
 
 
@@ -133,6 +139,25 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public List<Appointment> getAppointmentList() {
+        return appointmentList;
+    }
+
+    public void setAppointmentList(List<Appointment> appointmentList) {
+        this.appointmentList = appointmentList;
+    }
+
+    public List<Pet> getPetList() {
+        return petList;
+    }
+
+    public void setPetList(List<Pet> petList) {
+        this.petList = petList;
+    }
+
+
+
 
     
 }
