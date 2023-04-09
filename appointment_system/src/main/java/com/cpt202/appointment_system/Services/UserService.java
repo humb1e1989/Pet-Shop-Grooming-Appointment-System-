@@ -67,12 +67,11 @@ public class UserService {
     }
     
     // just a test demo
-
-
+    // YYY
     public List<Appointment> getAppointmentList_M(){
         return appointmentRepo.findAll();
     }
-
+    // YYY
     public List<Appointment> getAppointmentList_C(@RequestParam User user){
         return appointmentRepo.findByFirstnameIs(user.getUsername());
 
