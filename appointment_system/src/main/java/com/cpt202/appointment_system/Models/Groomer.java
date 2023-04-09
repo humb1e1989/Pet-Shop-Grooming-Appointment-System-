@@ -58,7 +58,6 @@ public class Groomer {
         return gid;
     }
 
-
     public void setGid(int gid) {
         this.gid = gid;
     }
