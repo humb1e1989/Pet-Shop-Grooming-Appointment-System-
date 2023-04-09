@@ -4,18 +4,15 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.cpt202.appointment_system.Common.Result;
 import com.cpt202.appointment_system.Models.Appointment;
 import com.cpt202.appointment_system.Models.Pet;
 import com.cpt202.appointment_system.Models.User;
-<<<<<<< HEAD
 import com.cpt202.appointment_system.Models.UserTool;
 import com.cpt202.appointment_system.Repositories.AppointmentRepo;
 import com.cpt202.appointment_system.Repositories.PetRepo;
-=======
-import com.cpt202.appointment_system.Repositories.AppointmentRepo;
->>>>>>> a7d40deda916c94fd3cc9bb227f0b6eafde1f5c5
 import com.cpt202.appointment_system.Repositories.UserRepo;
 
 @Service
@@ -23,7 +20,6 @@ public class UserService {
 
     @Autowired
     private UserRepo userRepo;
-    private AppointmentRepo appointmentRepo;
 
     @Autowired
     private AppointmentRepo appointmentRepo;
@@ -70,16 +66,14 @@ public class UserService {
 
     }
     
-<<<<<<< HEAD
-=======
     // just a test demo
 
 
-    public List<Appointment> getAppointmentList_m(){
+    public List<Appointment> getAppointmentList_M(){
         return appointmentRepo.findAll();
     }
 
-    public List<Appointment> getAppointmentList_c(@RequestParam User user){
+    public List<Appointment> getAppointmentList_C(@RequestParam User user){
         return appointmentRepo.findByFirstnameIs(user.getUsername());
 
         // List<Appointment> appointmentList = userRepo.findByFirstnameIs(user.getUsername());
@@ -89,6 +83,5 @@ public class UserService {
 
         // return Result.error("-1","No Matching Customers Found.");
     }
->>>>>>> a7d40deda916c94fd3cc9bb227f0b6eafde1f5c5
 
 }
