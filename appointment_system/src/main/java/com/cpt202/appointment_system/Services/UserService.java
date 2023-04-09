@@ -59,14 +59,14 @@ public class UserService {
     // just a test demo
 
 
-    public List<User> getAppointmentList_m(){
+    public List<Appointment> getAppointmentList_m(){
         return userRepo.findAll();
     }
 
     public List<Appointment> getAppointmentList_c(@RequestParam User user){
         return userRepo.findByFirstnameIs(user.getUsername());
 
-        // List<Appointment> appointmentList = userRepo.findByUsernameContaining(user.getUsername());
+        // List<Appointment> appointmentList = userRepo.findByFirstnameIs(user.getUsername());
         // if(! appointmentList.isEmpty()){
         //     return Result.success(appointmentList, "Find Matching Customer!");
         // }

@@ -42,7 +42,7 @@ public class UserController {
 
     // Manager can view all of appointments
     @GetMapping("/manager/appointmentList")
-    public List<User> getAllAppointment(){
+    public List<Appointment> getAllAppointment(){
         return userService.getAppointmentList_m();
     }
     
