@@ -41,7 +41,7 @@ public class UserControllerM {
     // just a test demo
     @GetMapping("/customer/list")
     public List<User> getAllAppointment(){
-        return UserServiceM.getAppointmentList();
+        return userService.getAppointmentList();
     }
     
 }
