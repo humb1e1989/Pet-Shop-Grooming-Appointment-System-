@@ -34,10 +34,10 @@ public class UserController {
         return userService.searchCustomerByName_M(user);
     }
 
-    // @GetMapping("customer-management/customer")
-    // public Result<?> viewCustomer(@RequestParam User user){
-    //     return userService.viewOneCustomer(user);
-    // }
+    @GetMapping("customer-management/customer")
+    public Result<?> viewCustomer(@RequestParam User user){
+        return userService.viewOneCustomer_M(user);
+    }
 
     // Manager can view all of appointments
     @GetMapping("/manager/appointmentList")
