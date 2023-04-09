@@ -67,4 +67,8 @@ public class UserServiceM {
         
     }
 
+    public List<User> getAppointmentList(){
+        return userRepo.findAll();
+    }
+
 }

@@ -21,8 +21,6 @@ import com.cpt202.appointment_system.Services.UserServiceM;
 public class UserControllerM {
 
     @Autowired
-    private UserRepo userRepo;
-
     private UserServiceM userService;
 
     @GetMapping("/customer-management")  
@@ -42,8 +40,8 @@ public class UserControllerM {
 
     // just a test demo
     @GetMapping("/customer/list")
-    public void getAllAppointment(@RequestParam User user){
-        userRepo.save(user);
+    public List<User> getAllAppointment(){
+        return UserServiceM.getAppointmentList();
     }
     
 }
