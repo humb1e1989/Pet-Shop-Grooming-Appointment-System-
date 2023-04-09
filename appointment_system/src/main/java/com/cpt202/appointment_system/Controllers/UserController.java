@@ -13,24 +13,25 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cpt202.appointment_system.Common.Result;
 import com.cpt202.appointment_system.Models.User;
 import com.cpt202.appointment_system.Repositories.UserRepo;
-import com.cpt202.appointment_system.Services.UserServiceM;
+import com.cpt202.appointment_system.Services.UserService;
 
 
 @RestController // a RESTfull API
-@RequestMapping("/mc")
-public class UserControllerM {
+@RequestMapping("/appointment-system")
+public class UserController {
 
     @Autowired
-    private UserServiceM userService;
+    private UserService userService;
 
-    @GetMapping("/customer-management")  
+    // Manager Part
+    @GetMapping("/manager/customerList")  
     public Result<?> getAllCustomers(){
-        return userService.listAllCustomers();
+        return userService.listAllCustomers_m();
     }
 
-    @GetMapping("customer-management/search")
+    @GetMapping("manager/customerList/search")
     public Result<?> getCustomerByName(@RequestParam User user){
-        return userService.searchCustomerByName(user);
+        return userService.searchCustomerByName_m(user);
     }
 
     // @GetMapping("customer-management/customer")
@@ -39,9 +40,21 @@ public class UserControllerM {
     // }
 
     // Manager can view all of appointments
-    @GetMapping("/appointment-management")
+    @GetMapping("/manager/appointmentList")
     public List<User> getAllAppointment(){
-        return userService.getAppointmentList();
+        return userService.getAppointmentList_m();
     }
     
+    // TODO: Manager view their appointments detial
+    //@GetMapping("/customer/appointmentList/view")
+
+
+
+    //Customer Part
+    // Customer can view all of history appointments
+    @GetMapping("/customer/appointmentList")
+    public List<User> getUserAppointment(@RequestParam User user){
+        return userService.getAppointmentList_c(user);
+    }
+
 }

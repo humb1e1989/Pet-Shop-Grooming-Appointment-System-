@@ -18,7 +18,7 @@ public class UserService {
     @Autowired
     private UserRepo userRepo;
 
-    public Result<?> listAllCustomers(){
+    public Result<?> listAllCustomers_m(){
         byte typeCustomer = 0;
         List<User> userList = userRepo.findByType(typeCustomer);
         if (! userList.isEmpty()) {
@@ -29,7 +29,7 @@ public class UserService {
         
     }
 
-    public Result<?> searchCustomerByName(@RequestParam User user){
+    public Result<?> searchCustomerByName_m(@RequestParam User user){
         List<User> userList = userRepo.findByUsernameContaining(user.getUsername());
         if(! userList.isEmpty()){
             return Result.success(userList, "Find Matching Customer!");
@@ -56,19 +56,14 @@ public class UserService {
     // }
     
     // just a test demo
-    public Result<?> listAllAppointment(){
-        byte typeCustomer = 0;
-        List<User> appointmentList = userRepo.findByType(typeCustomer);
-        if (! appointmentList.isEmpty()) {
-            return Result.success(appointmentList, "Successfully List All Customers!");
-        }
-    
-        return Result.error("-1", "No Registered Customers.");
-        
+
+
+    public List<User> getAppointmentList_m(){
+        return userRepo.findAll();
     }
 
-    public List<User> getAppointmentList(){
-        return userRepo.findAll();
+    public List<User> getAppointmentList_c(@RequestParam User user){
+        return userRepo.findByUsernameContaining(user.getUsername());
     }
 
 }
