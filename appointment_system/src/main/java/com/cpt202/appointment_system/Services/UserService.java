@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.cpt202.appointment_system.Common.Result;
 import com.cpt202.appointment_system.Models.Appointment;
 import com.cpt202.appointment_system.Models.User;
+import com.cpt202.appointment_system.Repositories.AppointmentRepo;
 import com.cpt202.appointment_system.Repositories.UserRepo;
 
 @Service
@@ -18,6 +19,7 @@ public class UserService {
 
     @Autowired
     private UserRepo userRepo;
+    private AppointmentRepo appointmentRepo;
 
     public Result<?> listAllCustomers_m(){
         byte typeCustomer = 0;
@@ -60,11 +62,11 @@ public class UserService {
 
 
     public List<Appointment> getAppointmentList_m(){
-        return userRepo.findAll();
+        return appointmentRepo.findAll();
     }
 
     public List<Appointment> getAppointmentList_c(@RequestParam User user){
-        return userRepo.findByFirstnameIs(user.getUsername());
+        return appointmentRepo.findByFirstnameIs(user.getUsername());
 
         // List<Appointment> appointmentList = userRepo.findByFirstnameIs(user.getUsername());
         // if(! appointmentList.isEmpty()){
