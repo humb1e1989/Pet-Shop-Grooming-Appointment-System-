@@ -7,7 +7,7 @@ import com.cpt202.appointment_system.Models.Groomer;
 import com.cpt202.appointment_system.Repositories.GroomerRepo;
 
 @Service
-public class GroomerServiceM {
+public class GroomerService {
 
     @Autowired
     private GroomerRepo groomerRepo;

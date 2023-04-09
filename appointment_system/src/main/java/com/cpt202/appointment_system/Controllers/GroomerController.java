@@ -3,12 +3,12 @@ package com.cpt202.appointment_system.Controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cpt202.appointment_system.Services.GroomerServiceM;
+import com.cpt202.appointment_system.Services.GroomerService;
 
 @RestController
-public class GroomerControllerM {
+public class GroomerController {
 
     @Autowired
-    private GroomerServiceM groomerService;
+    private GroomerService groomerService;
     
 }

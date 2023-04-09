@@ -11,14 +11,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cpt202.appointment_system.Common.Result;
 import com.cpt202.appointment_system.Models.User;
-import com.cpt202.appointment_system.Services.UserServiceM;
+import com.cpt202.appointment_system.Services.UserService;
 
 
 @RestController
 @RequestMapping("/mc")
 public class UserControllerM {
 
-    private UserServiceM userService;
+    private UserService userService;
 
     @GetMapping("/customer-management")  
     public Result<?> getAllCustomers(){
