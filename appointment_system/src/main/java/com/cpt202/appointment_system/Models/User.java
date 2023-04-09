@@ -1,6 +1,7 @@
 package com.cpt202.appointment_system.Models;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,7 +19,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int uid;
 
-    @Column(columnDefinition = "varchar(50)", nullable = false)
+    @Column(columnDefinition = "varchar(50)", nullable = false, unique = true)
     private String username;
 
     @Column(columnDefinition = "varchar(15)", nullable = false)
@@ -47,7 +48,7 @@ public class User {
     public User() {
     }
 
-    
+
     public User(int uid, String username, String password, byte type, Date registrationTime, String imageURL,
             String gender, String phoneNumber, String email) {
         this.uid = uid;
@@ -66,73 +67,95 @@ public class User {
         return uid;
     }
 
+
     public void setUid(int uid) {
         this.uid = uid;
     }
+
 
     public String getUsername() {
         return username;
     }
 
+
     public void setUsername(String username) {
         this.username = username;
     }
+
 
     public String getPassword() {
         return password;
     }
 
+
     public void setPassword(String password) {
         this.password = password;
     }
+
 
     public byte getType() {
         return type;
     }
 
+
     public void setType(byte type) {
         this.type = type;
     }
+
 
     public Date getRegistrationTime() {
         return registrationTime;
     }
 
+
     public void setRegistrationTime(Date registrationTime) {
         this.registrationTime = registrationTime;
     }
+
 
     public String getImageURL() {
         return imageURL;
     }
 
+
     public void setImageURL(String imageURL) {
         this.imageURL = imageURL;
     }
+
 
     public String getGender() {
         return gender;
     }
 
+
     public void setGender(String gender) {
         this.gender = gender;
     }
+
 
     public String getPhoneNumber() {
         return phoneNumber;
     }
 
+
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
+
 
     public String getEmail() {
         return email;
     }
 
+
     public void setEmail(String email) {
         this.email = email;
     }
+
+    
+
+ 
+
 
     
 }

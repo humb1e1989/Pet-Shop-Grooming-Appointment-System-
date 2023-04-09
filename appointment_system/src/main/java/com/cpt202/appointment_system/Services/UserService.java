@@ -1,17 +1,21 @@
 package com.cpt202.appointment_system.Services;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.cpt202.appointment_system.Common.Result;
 import com.cpt202.appointment_system.Models.Appointment;
+import com.cpt202.appointment_system.Models.Pet;
 import com.cpt202.appointment_system.Models.User;
+<<<<<<< HEAD
+import com.cpt202.appointment_system.Models.UserTool;
 import com.cpt202.appointment_system.Repositories.AppointmentRepo;
+import com.cpt202.appointment_system.Repositories.PetRepo;
+=======
+import com.cpt202.appointment_system.Repositories.AppointmentRepo;
+>>>>>>> a7d40deda916c94fd3cc9bb227f0b6eafde1f5c5
 import com.cpt202.appointment_system.Repositories.UserRepo;
 
 @Service
@@ -21,9 +25,16 @@ public class UserService {
     private UserRepo userRepo;
     private AppointmentRepo appointmentRepo;
 
-    public Result<?> listAllCustomers_m(){
+    @Autowired
+    private AppointmentRepo appointmentRepo;
+
+    @Autowired
+    private PetRepo petRepo;
+
+    public Result<?> listAllCustomers_M(){
         byte typeCustomer = 0;
         List<User> userList = userRepo.findByType(typeCustomer);
+
         if (! userList.isEmpty()) {
             return Result.success(userList, "Successfully List All Customers!");
         }
@@ -32,32 +43,35 @@ public class UserService {
         
     }
 
-    public Result<?> searchCustomerByName_m(@RequestParam User user){
+    public Result<?> searchCustomerByName_M(User user){
         List<User> userList = userRepo.findByUsernameContaining(user.getUsername());
+
         if(! userList.isEmpty()){
-            return Result.success(userList, "Find Matching Customer!");
+            return Result.success(userList, "Find Matching Customers!");
         }
 
         return Result.error("-1","No Matching Customers Found.");
     }
 
 
-    // public Result<?> viewOneCustomer(@RequestParam User user){
-    //     User u = userRepo.findByUid(user.getUid());
-    //     if (u != null) {
-    //         Appointment appointment =    ;
-    //         Pet pet =    ;
-    //         List<?> list = new ArrayList<>();
-    //         list.add(u);
-    //         list.add(appointment);
-    //         list.add(pet);
-    //         return Result.success(list, "");
-    //     }
+    // I think it might have a better way to do it.
+    // However, right now I do not know how to join many tables using Jpa. 
+    public Result<?> viewOneCustomer_M(User u){
+        User user = userRepo.findByUid(u.getUid());
+        
+        if (user != null) {
+            List<Appointment> al = appointmentRepo.findByUser(user);
+            List<Pet> pl = petRepo.findByUser(user);
+            UserTool ut = new UserTool(user, al, pl);
+            return Result.success(ut, "");
+        }
 
-    //     return Result.error("-1", "Customer doesn't exist");
+        return Result.error("-1", "Customer Doesn't Exist");
 
-    // }
+    }
     
+<<<<<<< HEAD
+=======
     // just a test demo
 
 
@@ -75,5 +89,6 @@ public class UserService {
 
         // return Result.error("-1","No Matching Customers Found.");
     }
+>>>>>>> a7d40deda916c94fd3cc9bb227f0b6eafde1f5c5
 
 }
