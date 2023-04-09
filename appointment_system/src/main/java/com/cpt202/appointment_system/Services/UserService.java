@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.cpt202.appointment_system.Common.Result;
+import com.cpt202.appointment_system.Models.Appointment;
 import com.cpt202.appointment_system.Models.User;
 import com.cpt202.appointment_system.Repositories.UserRepo;
 
@@ -62,8 +63,15 @@ public class UserService {
         return userRepo.findAll();
     }
 
-    public List<User> getAppointmentList_c(@RequestParam User user){
-        return userRepo.findByUsernameContaining(user.getUsername());
+    public List<Appointment> getAppointmentList_c(@RequestParam User user){
+        return userRepo.findByFirstnameIs(user.getUsername());
+
+        // List<Appointment> appointmentList = userRepo.findByUsernameContaining(user.getUsername());
+        // if(! appointmentList.isEmpty()){
+        //     return Result.success(appointmentList, "Find Matching Customer!");
+        // }
+
+        // return Result.error("-1","No Matching Customers Found.");
     }
 
 }

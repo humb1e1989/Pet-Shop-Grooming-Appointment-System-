@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cpt202.appointment_system.Common.Result;
+import com.cpt202.appointment_system.Models.Appointment;
 import com.cpt202.appointment_system.Models.User;
 import com.cpt202.appointment_system.Repositories.UserRepo;
 import com.cpt202.appointment_system.Services.UserService;
@@ -53,7 +54,7 @@ public class UserController {
     //Customer Part
     // Customer can view all of history appointments
     @GetMapping("/customer/appointmentList")
-    public List<User> getUserAppointment(@RequestParam User user){
+    public List<Appointment> getUserAppointment_c(@RequestParam User user){
         return userService.getAppointmentList_c(user);
     }
 
