@@ -1,7 +1,7 @@
 package com.cpt202.appointment_system.Models;
 
 import java.util.Date;
-import java.util.List;
+
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
