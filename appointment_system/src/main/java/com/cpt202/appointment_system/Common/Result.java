@@ -40,7 +40,7 @@ public class Result<T> {
     public static Result success() {
         Result result = new Result<>();
         result.setCode("0");
-        result.setMsg("success");
+        result.setMsg("Success!");
         return result;
     }
 

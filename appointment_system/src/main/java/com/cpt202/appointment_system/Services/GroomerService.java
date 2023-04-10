@@ -30,7 +30,7 @@ public class GroomerService {
 
 
     //CYZ
-    // later must improve:
+    // later can improve:
     // groomer's info should also contain other things
     // (appointment records...)
     public Result<?> viewOneGroomer(Groomer g){
@@ -47,7 +47,7 @@ public class GroomerService {
 
 
     //CYZ
-    public Result<?> searchGroomer(Groomer g){
+    public Result<?> searchGroomerByFullID(Groomer g){
 
         Groomer groomer = groomerRepo.findByGid(g.getGid());
 
@@ -61,11 +61,17 @@ public class GroomerService {
 
 
     // CYZ
-    // later must improve: 
-    // check fields of this new groomer to avoid the same as existing ones
-    // (no same phoneNumber...)
-    public void addGroomer(Groomer g){
-        groomerRepo.save(g);
+    public Result<?> addGroomer(Groomer g){
+
+        Groomer groomer = groomerRepo.findByPhoneNumber(g.getPhoneNumber());
+
+        if (groomer == null){
+            groomerRepo.save(g);
+            return Result.success();
+        }
+
+        return Result.error("-2", "Phone Number Exists.");
+        
     }
 
 

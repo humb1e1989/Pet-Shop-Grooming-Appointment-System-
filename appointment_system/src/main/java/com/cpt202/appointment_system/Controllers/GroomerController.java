@@ -31,13 +31,13 @@ public class GroomerController {
     }
 
     @GetMapping("manager/groomerList/search")
-    public Result<?> searchGroomer_M(@RequestParam Groomer groomer){
-        return groomerService.searchGroomer(groomer);
+    public Result<?> searchGroomerById_M(@RequestParam Groomer groomer){
+        return groomerService.searchGroomerByFullID(groomer);
     }
 
     @PostMapping("manager/groomerList/add")
-    public void addGroomer_M(@RequestBody Groomer groomer){
-        groomerService.addGroomer(groomer);
+    public Result<?> addGroomer_M(@RequestBody Groomer groomer){
+        return groomerService.addGroomer(groomer);
     }
 
     @PostMapping("manager/groomerList/edit")
