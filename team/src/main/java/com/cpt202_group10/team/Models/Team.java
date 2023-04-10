@@ -7,6 +7,7 @@ public class Team
     
 
     public Team() {
+        // Default constructor required for calls to DataSnapshot.getValue(Team.class)
     }
 
     public Team(String name, int memberCount) {
