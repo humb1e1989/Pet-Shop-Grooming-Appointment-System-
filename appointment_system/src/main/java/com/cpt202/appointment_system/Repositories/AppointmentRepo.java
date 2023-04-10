@@ -13,5 +13,6 @@ public interface AppointmentRepo extends JpaRepository<Appointment, Integer>{
     
     // return the appointment list with a specific username
     public List<Appointment> findByUsernameIs(String username);
+    public Appointment findByAid(int aid);
     
 }
