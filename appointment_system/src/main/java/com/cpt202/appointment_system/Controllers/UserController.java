@@ -34,7 +34,7 @@ public class UserController {
         return userService.searchCustomerByName_M(user);
     }
 
-    @GetMapping("customer-management/customer")
+    @GetMapping("manager/customerList/view")
     public Result<?> viewCustomer(@RequestParam User user){
         return userService.viewOneCustomer_M(user);
     }

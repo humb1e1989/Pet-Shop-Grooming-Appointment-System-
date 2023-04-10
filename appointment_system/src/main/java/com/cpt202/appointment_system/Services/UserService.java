@@ -27,6 +27,7 @@ public class UserService {
     @Autowired
     private PetRepo petRepo;
 
+    //CYZ
     public Result<?> listAllCustomers_M(){
         byte typeCustomer = 0;
         List<User> userList = userRepo.findByType(typeCustomer);
@@ -39,6 +40,25 @@ public class UserService {
         
     }
 
+    //CYZ
+    // I think it might have a better way to do it.
+    // However, right now I do not know how to join many tables using Jpa. 
+    public Result<?> viewOneCustomer_M(User u){
+        User user = userRepo.findByUid(u.getUid());
+        
+        if (user != null) {
+            List<Appointment> al = appointmentRepo.findByUser(user);
+            List<Pet> pl = petRepo.findByUser(user);
+            UserTool ut = new UserTool(user, al, pl);
+            return Result.success(ut, "Find All Info About This Customer!");
+        }
+
+        return Result.error("-1", "Customer Doesn't Exist.");
+
+    }
+
+    
+    //CYZ
     public Result<?> searchCustomerByName_M(User user){
         List<User> userList = userRepo.findByUsernameContaining(user.getUsername());
 
@@ -50,21 +70,6 @@ public class UserService {
     }
 
 
-    // I think it might have a better way to do it.
-    // However, right now I do not know how to join many tables using Jpa. 
-    public Result<?> viewOneCustomer_M(User u){
-        User user = userRepo.findByUid(u.getUid());
-        
-        if (user != null) {
-            List<Appointment> al = appointmentRepo.findByUser(user);
-            List<Pet> pl = petRepo.findByUser(user);
-            UserTool ut = new UserTool(user, al, pl);
-            return Result.success(ut, "");
-        }
-
-        return Result.error("-1", "Customer Doesn't Exist");
-
-    }
     
     // just a test demo
     // YYY

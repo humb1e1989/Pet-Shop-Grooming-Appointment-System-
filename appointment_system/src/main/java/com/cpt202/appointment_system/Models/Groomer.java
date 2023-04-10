@@ -32,13 +32,27 @@ public class Groomer {
     @Column(columnDefinition = "varchar(11)", nullable = false)
     private String phoneNumber;
 
-
+    
     // I think "description" is a reasonable attribute but not a basic one.
     // Besides, I am not familiar with storing large text in MySQL for a moment. 
 
     // @Column(columnDefinition = " ", nullable = false)
     // private String description;
     
+
+    public Groomer() {
+    }
+
+    
+    public Groomer(int gid, String name, String gender, String imageURL, byte rank, String phoneNumber) {
+        this.gid = gid;
+        this.name = name;
+        this.gender = gender;
+        this.imageURL = imageURL;
+        this.rank = rank;
+        this.phoneNumber = phoneNumber;
+    }
+
 
     public int getGid() {
         return gid;
