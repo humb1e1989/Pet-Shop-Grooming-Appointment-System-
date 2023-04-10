@@ -1,0 +1,169 @@
+2023-04-10 20:38:30.462 [main] INFO  c.c.a.AppointmentSystemApplication
+                -Starting AppointmentSystemApplication using Java 16.0.2 on AirRaid1 with PID 7188 (C:\Users\86138\VSCodeProjects\Pet-Shop-Grooming-Appointment-System-\appointment_system\target\classes started by 86138 in C:\Users\86138\VSCodeProjects\Pet-Shop-Grooming-Appointment-System-)
+2023-04-10 20:38:30.471 [main] INFO  c.c.a.AppointmentSystemApplication
+                -No active profile set, falling back to 1 default profile: "default"
+2023-04-10 20:38:31.646 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate
+                -Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-04-10 20:38:31.822 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate
+                -Finished Spring Data repository scanning in 146 ms. Found 4 JPA repository interfaces.
+2023-04-10 20:38:32.729 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer
+                -Tomcat initialized with port(s): 8080 (http)
+2023-04-10 20:38:32.751 [main] INFO  o.a.coyote.http11.Http11NioProtocol
+                -Initializing ProtocolHandler ["http-nio-8080"]
+2023-04-10 20:38:32.753 [main] INFO  o.a.catalina.core.StandardService
+                -Starting service [Tomcat]
+2023-04-10 20:38:32.754 [main] INFO  o.a.catalina.core.StandardEngine
+                -Starting Servlet engine: [Apache Tomcat/9.0.73]
+2023-04-10 20:38:32.930 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]
+                -Initializing Spring embedded WebApplicationContext
+2023-04-10 20:38:32.930 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext
+                -Root WebApplicationContext: initialization completed in 2374 ms
+2023-04-10 20:38:33.221 [main] INFO  o.h.jpa.internal.util.LogHelper
+                -HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-04-10 20:38:33.315 [main] INFO  org.hibernate.Version
+                -HHH000412: Hibernate ORM core version 5.6.15.Final
+2023-04-10 20:38:33.562 [main] INFO  o.h.annotations.common.Version
+                -HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-04-10 20:38:33.689 [main] INFO  com.zaxxer.hikari.HikariDataSource
+                -HikariPool-1 - Starting...
+2023-04-10 20:38:34.057 [main] INFO  com.zaxxer.hikari.HikariDataSource
+                -HikariPool-1 - Start completed.
+2023-04-10 20:38:34.077 [main] INFO  org.hibernate.dialect.Dialect
+                -HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2023-04-10 20:38:35.119 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator
+                -HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-04-10 20:38:35.134 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean
+                -Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-04-10 20:38:35.807 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext
+                -Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'userController': Unsatisfied dependency expressed through field 'userService'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'userService': Unsatisfied dependency expressed through field 'appointmentRepo'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'appointmentRepo' defined in com.cpt202.appointment_system.Repositories.AppointmentRepo defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Invocation of init method failed; nested exception is org.springframework.data.repository.query.QueryCreationException: Could not create query for public abstract java.util.List com.cpt202.appointment_system.Repositories.AppointmentRepo.findByUsernameIs(java.lang.String); Reason: Failed to create query for method public abstract java.util.List com.cpt202.appointment_system.Repositories.AppointmentRepo.findByUsernameIs(java.lang.String)! No property 'username' found for type 'Appointment'; nested exception is java.lang.IllegalArgumentException: Failed to create query for method public abstract java.util.List com.cpt202.appointment_system.Repositories.AppointmentRepo.findByUsernameIs(java.lang.String)! No property 'username' found for type 'Appointment'
+2023-04-10 20:38:35.818 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean
+                -Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-04-10 20:38:35.822 [main] INFO  com.zaxxer.hikari.HikariDataSource
+                -HikariPool-1 - Shutdown initiated...
+2023-04-10 20:38:35.847 [main] INFO  com.zaxxer.hikari.HikariDataSource
+                -HikariPool-1 - Shutdown completed.
+2023-04-10 20:38:35.852 [main] INFO  o.a.catalina.core.StandardService
+                -Stopping service [Tomcat]
+2023-04-10 20:38:35.874 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLoggingListener
+                -
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2023-04-10 20:38:35.918 [main] ERROR o.s.boot.SpringApplication
+                -Application run failed
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'userController': Unsatisfied dependency expressed through field 'userService'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'userService': Unsatisfied dependency expressed through field 'appointmentRepo'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'appointmentRepo' defined in com.cpt202.appointment_system.Repositories.AppointmentRepo defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Invocation of init method failed; nested exception is org.springframework.data.repository.query.QueryCreationException: Could not create query for public abstract java.util.List com.cpt202.appointment_system.Repositories.AppointmentRepo.findByUsernameIs(java.lang.String); Reason: Failed to create query for method public abstract java.util.List com.cpt202.appointment_system.Repositories.AppointmentRepo.findByUsernameIs(java.lang.String)! No property 'username' found for type 'Appointment'; nested exception is java.lang.IllegalArgumentException: Failed to create query for method public abstract java.util.List com.cpt202.appointment_system.Repositories.AppointmentRepo.findByUsernameIs(java.lang.String)! No property 'username' found for type 'Appointment'
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:660)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:640)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:119)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:399)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1431)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:619)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:955)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:920)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:147)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:731)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:408)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:307)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1303)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1292)
+	at com.cpt202.appointment_system.AppointmentSystemApplication.main(AppointmentSystemApplication.java:10)
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'userService': Unsatisfied dependency expressed through field 'appointmentRepo'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'appointmentRepo' defined in com.cpt202.appointment_system.Repositories.AppointmentRepo defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Invocation of init method failed; nested exception is org.springframework.data.repository.query.QueryCreationException: Could not create query for public abstract java.util.List com.cpt202.appointment_system.Repositories.AppointmentRepo.findByUsernameIs(java.lang.String); Reason: Failed to create query for method public abstract java.util.List com.cpt202.appointment_system.Repositories.AppointmentRepo.findByUsernameIs(java.lang.String)! No property 'username' found for type 'Appointment'; nested exception is java.lang.IllegalArgumentException: Failed to create query for method public abstract java.util.List com.cpt202.appointment_system.Repositories.AppointmentRepo.findByUsernameIs(java.lang.String)! No property 'username' found for type 'Appointment'
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:660)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:640)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:119)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:399)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1431)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:619)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1391)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1311)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:657)
+	... 20 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'appointmentRepo' defined in com.cpt202.appointment_system.Repositories.AppointmentRepo defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Invocation of init method failed; nested exception is org.springframework.data.repository.query.QueryCreationException: Could not create query for public abstract java.util.List com.cpt202.appointment_system.Repositories.AppointmentRepo.findByUsernameIs(java.lang.String); Reason: Failed to create query for method public abstract java.util.List com.cpt202.appointment_system.Repositories.AppointmentRepo.findByUsernameIs(java.lang.String)! No property 'username' found for type 'Appointment'; nested exception is java.lang.IllegalArgumentException: Failed to create query for method public abstract java.util.List com.cpt202.appointment_system.Repositories.AppointmentRepo.findByUsernameIs(java.lang.String)! No property 'username' found for type 'Appointment'
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1804)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1391)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1311)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:657)
+	... 34 common frames omitted
+Caused by: org.springframework.data.repository.query.QueryCreationException: Could not create query for public abstract java.util.List com.cpt202.appointment_system.Repositories.AppointmentRepo.findByUsernameIs(java.lang.String); Reason: Failed to create query for method public abstract java.util.List com.cpt202.appointment_system.Repositories.AppointmentRepo.findByUsernameIs(java.lang.String)! No property 'username' found for type 'Appointment'; nested exception is java.lang.IllegalArgumentException: Failed to create query for method public abstract java.util.List com.cpt202.appointment_system.Repositories.AppointmentRepo.findByUsernameIs(java.lang.String)! No property 'username' found for type 'Appointment'
+	at org.springframework.data.repository.query.QueryCreationException.create(QueryCreationException.java:101)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lookupQuery(QueryExecutorMethodInterceptor.java:107)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lambda$mapMethodsToQuery$1(QueryExecutorMethodInterceptor.java:95)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+	at java.base/java.util.Iterator.forEachRemaining(Iterator.java:133)
+	at java.base/java.util.Collections$UnmodifiableCollection$1.forEachRemaining(Collections.java:1056)
+	at java.base/java.util.Spliterators$IteratorSpliterator.forEachRemaining(Spliterators.java:1801)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:484)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:474)
+	at java.base/java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:913)
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+	at java.base/java.util.stream.ReferencePipeline.collect(ReferencePipeline.java:682)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.mapMethodsToQuery(QueryExecutorMethodInterceptor.java:97)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lambda$new$0(QueryExecutorMethodInterceptor.java:87)
+	at java.base/java.util.Optional.map(Optional.java:260)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.<init>(QueryExecutorMethodInterceptor.java:87)
+	at org.springframework.data.repository.core.support.RepositoryFactorySupport.getRepository(RepositoryFactorySupport.java:365)
+	at org.springframework.data.repository.core.support.RepositoryFactoryBeanSupport.lambda$afterPropertiesSet$5(RepositoryFactoryBeanSupport.java:323)
+	at org.springframework.data.util.Lazy.getNullable(Lazy.java:231)
+	at org.springframework.data.util.Lazy.get(Lazy.java:115)
+	at org.springframework.data.repository.core.support.RepositoryFactoryBeanSupport.afterPropertiesSet(RepositoryFactoryBeanSupport.java:329)
+	at org.springframework.data.jpa.repository.support.JpaRepositoryFactoryBean.afterPropertiesSet(JpaRepositoryFactoryBean.java:144)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1863)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1800)
+	... 44 common frames omitted
+Caused by: java.lang.IllegalArgumentException: Failed to create query for method public abstract java.util.List com.cpt202.appointment_system.Repositories.AppointmentRepo.findByUsernameIs(java.lang.String)! No property 'username' found for type 'Appointment'
+	at org.springframework.data.jpa.repository.query.PartTreeJpaQuery.<init>(PartTreeJpaQuery.java:96)
+	at org.springframework.data.jpa.repository.query.JpaQueryLookupStrategy$CreateQueryLookupStrategy.resolveQuery(JpaQueryLookupStrategy.java:119)
+	at org.springframework.data.jpa.repository.query.JpaQueryLookupStrategy$CreateIfNotFoundQueryLookupStrategy.resolveQuery(JpaQueryLookupStrategy.java:259)
+	at org.springframework.data.jpa.repository.query.JpaQueryLookupStrategy$AbstractQueryLookupStrategy.resolveQuery(JpaQueryLookupStrategy.java:93)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lookupQuery(QueryExecutorMethodInterceptor.java:103)
+	... 66 common frames omitted
+Caused by: org.springframework.data.mapping.PropertyReferenceException: No property 'username' found for type 'Appointment'
+	at org.springframework.data.mapping.PropertyPath.<init>(PropertyPath.java:91)
+	at org.springframework.data.mapping.PropertyPath.create(PropertyPath.java:438)
+	at org.springframework.data.mapping.PropertyPath.create(PropertyPath.java:414)
+	at org.springframework.data.mapping.PropertyPath.lambda$from$0(PropertyPath.java:367)
+	at java.base/java.util.concurrent.ConcurrentMap.computeIfAbsent(ConcurrentMap.java:330)
+	at org.springframework.data.mapping.PropertyPath.from(PropertyPath.java:349)
+	at org.springframework.data.mapping.PropertyPath.from(PropertyPath.java:332)
+	at org.springframework.data.repository.query.parser.Part.<init>(Part.java:81)
+	at org.springframework.data.repository.query.parser.PartTree$OrPart.lambda$new$0(PartTree.java:250)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+	at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:179)
+	at java.base/java.util.Spliterators$ArraySpliterator.forEachRemaining(Spliterators.java:948)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:484)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:474)
+	at java.base/java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:913)
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+	at java.base/java.util.stream.ReferencePipeline.collect(ReferencePipeline.java:682)
+	at org.springframework.data.repository.query.parser.PartTree$OrPart.<init>(PartTree.java:251)
+	at org.springframework.data.repository.query.parser.PartTree$Predicate.lambda$new$0(PartTree.java:384)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+	at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:179)
+	at java.base/java.util.Spliterators$ArraySpliterator.forEachRemaining(Spliterators.java:948)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:484)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:474)
+	at java.base/java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:913)
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+	at java.base/java.util.stream.ReferencePipeline.collect(ReferencePipeline.java:682)
+	at org.springframework.data.repository.query.parser.PartTree$Predicate.<init>(PartTree.java:385)
+	at org.springframework.data.repository.query.parser.PartTree.<init>(PartTree.java:96)
+	at org.springframework.data.jpa.repository.query.PartTreeJpaQuery.<init>(PartTreeJpaQuery.java:89)
+	... 70 common frames omitted
