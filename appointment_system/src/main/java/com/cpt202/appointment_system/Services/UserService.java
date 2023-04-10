@@ -78,7 +78,7 @@ public class UserService {
     }
     // YYY
     public List<Appointment> getAppointmentList_C(@RequestParam User user){
-        return appointmentRepo.findByFirstnameIs(user.getUsername());
+        return appointmentRepo.findByUsernameIs(user.getUsername());
 
         // List<Appointment> appointmentList = userRepo.findByFirstnameIs(user.getUsername());
         // if(! appointmentList.isEmpty()){
@@ -86,6 +86,11 @@ public class UserService {
         // }
 
         // return Result.error("-1","No Matching Customers Found.");
+    }
+
+    // YYY
+    public Appointment getAppointmentDetail_C(@RequestParam Appointment appointment){
+        return appointmentRepo.findByAid(appointment.getAid());
     }
 
 }
