@@ -29,21 +29,6 @@ public class AppointmentService {
   @Autowired
   private GroomerRepo groRepo;
 
-// <<<<<<< HEAD
-//   // WJT Manger Part
-//   // Fiter Fuction
-//   public List<User> getAppointmentBy_CName(@RequestParam Appointment appointment) {
-//     return userRepo.findByUsernameContaining(appointment.getUser().getUsername());
-//   }
-
-//   public List<Appointment> getAppointmentBy_Service(@RequestParam Appointment appointment) {
-//     return appointmentRepo.findByserviceType(appointment.getServiceType());
-//   }
-
-//   public List<Groomer> getAppointmentBy_GrommerName(@RequestParam Appointment appointment) {
-//     return groRepo.findByNameContaining(appointment.getGroomer().getName());
-//   }
-// =======
     //WJT Manger Part
     //Fiter Fuction
     public List<Appointment> getAppointmentBy_CName(@RequestParam Appointment appointment)
@@ -67,7 +52,5 @@ public class AppointmentService {
       Groomer findGroomer = groList.get(0);
       return appointmentRepo.findByGroomer(findGroomer);
 		}
->>>>>>> 4075a43fe6f4af14809fb9aee068d24e16249360
-
   // WJT Fiter Time
 }
