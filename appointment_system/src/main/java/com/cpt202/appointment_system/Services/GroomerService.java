@@ -21,7 +21,7 @@ public class GroomerService {
         List<Groomer> groomerList = groomerRepo.findAll();
 
         if (!groomerList.isEmpty()) {
-            return Result.success(groomerList, "Successfully List All Grommers!");
+            return Result.success(groomerList, "Successfully Return All Grommers!");
         }
     
         return Result.error("-1", "No Groomers.");
@@ -47,7 +47,7 @@ public class GroomerService {
 
 
     //CYZ
-    public Result<?> searchGroomerByFullID(int gid){
+    public Result<?> searchGroomerByFullID_M(int gid){
 
         Groomer groomer = groomerRepo.findByGid(gid);
 
@@ -61,7 +61,9 @@ public class GroomerService {
 
 
     // CYZ
-    public Result<?> addGroomer(Groomer g){
+    // further improve: imageURL and phoneNumber cannot be duplicate
+    // select * from groomer where phone_number = ... or image_url = ... 
+    public Result<?> addGroomer_M(Groomer g){
 
         Groomer groomer = groomerRepo.findByPhoneNumber(g.getPhoneNumber());
 
@@ -77,9 +79,9 @@ public class GroomerService {
 
     // CYZ
     // later must improve:
-    // 1. certain fields cannot be duplicate (no same phoneNumber...)
-    // 2. dynamically update fields 
-    public void editGroomer(Groomer g){
+    // 1. phoneNumber or imageURL cannot be duplicate 
+    // 2. how to implement dynamically update fields???
+    public void editGroomer_M(Groomer g){
         
         // when save() is used to update, the PK of updated object must be set already
         // otherwise, save() will be used as "add"

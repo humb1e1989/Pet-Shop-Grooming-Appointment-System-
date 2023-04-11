@@ -17,30 +17,30 @@ public class Groomer {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(columnDefinition = "int(7)")
     private int gid;
-
+    
+    // need
     @Column(columnDefinition = "varchar(50)", nullable = false)
     private String name;
 
     @Column(columnDefinition = "varchar(20)", nullable = false)
     private String gender;
 
+    // need
     @Column(name = "image_url", nullable = false)
     private String imageURL;
 
     // name it "ranking" in MySQL to avoid possible error 
     // since rank() is a buil-in function in MySQL 
+    // need
     @Column(name = "ranking", columnDefinition = "tinyint", nullable = false)
     private byte rank;
 
     @Column(columnDefinition = "varchar(11)", nullable = false)
     private String phoneNumber;
 
-    
-    // I think "description" is a reasonable attribute but not a basic one.
-    // Besides, I am not familiar with storing large text in MySQL for a moment. 
-
-    // @Column(columnDefinition = " ", nullable = false)
-    // private String description;
+    // need
+    @Column(nullable = false)
+    private String description;
     
 
     public Groomer() {

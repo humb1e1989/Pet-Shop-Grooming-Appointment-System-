@@ -32,18 +32,32 @@ public class GroomerController {
 
     @GetMapping("/manager/groomerList/search")
     public Result<?> searchGroomerById_M(@RequestParam int gid){
-        return groomerService.searchGroomerByFullID(gid);
+        return groomerService.searchGroomerByFullID_M(gid);
     }
 
     @PostMapping("/manager/groomerList/add")
     public Result<?> addGroomer_M(@RequestBody Groomer groomer){
-        return groomerService.addGroomer(groomer);
+        return groomerService.addGroomer_M(groomer);
     }
 
     @PostMapping("/manager/groomerList/edit")
     public void editGrommer_M(@RequestBody Groomer groomer){
-        groomerService.editGroomer(groomer);
+        groomerService.editGroomer_M(groomer);
     }
+
+
+    // Customer part
+    // getAllGroomers_C is just for test, it'll be further modified.
+    @GetMapping("/") 
+    public Result<?> getAllGroomers_C(){
+        return groomerService.listAllGroomers();
+    }
+
+    @GetMapping("/view-groomer")
+    public Result<?> viewGroomer_C(@RequestParam int gid){
+        return groomerService.viewOneGroomer(gid);
+    }
+
 
     
 
