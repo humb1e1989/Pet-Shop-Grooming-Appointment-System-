@@ -30,32 +30,32 @@ public class UserController {
     }
 
     @GetMapping("/manager/customerList/search")
-    public Result<?> getCustomerByName(@RequestParam User user){
-        return userService.searchCustomerByName_M(user);
+    public Result<?> getCustomerByName(@RequestParam String username){
+        return userService.searchCustomerByName_M(username);
     }
 
     @GetMapping("/manager/customerList/view")
-    public Result<?> viewCustomer(@RequestParam User user){
-        return userService.viewOneCustomer_M(user);
+    public Result<?> viewCustomer(@RequestParam int uid){
+        return userService.viewOneCustomer_M(uid);
     }
 
     // Manager can view all of appointments
-    @GetMapping("/manager/appointmentList")
-    public List<Appointment> getAllAppointment(){
-        return userService.getAppointmentList_M();
-    }
+    // @GetMapping("/manager/appointmentList")
+    // public List<Appointment> getAllAppointment(){
+    //     return userService.getAppointmentList_M();
+    // }
     
     // TODO: Manager view their appointments detial
     //@GetMapping("/customer/appointmentList/view")
 
 
-
+    
     //Customer Part
 
     // Customer can view all of history appointments - Demo may have error now
-    @GetMapping("/customer/appointmentList")
-    public List<Appointment> getUserAppointment_C(@RequestParam User user){
-        return userService.getAppointmentList_C(user);
-    }
+    // @GetMapping("/customer/appointmentList")
+    // public List<Appointment> getUserAppointment_C(@RequestParam User user){
+    //     return userService.getAppointmentList_C(user);
+    // }
 
 }

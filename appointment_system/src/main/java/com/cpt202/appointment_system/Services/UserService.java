@@ -43,8 +43,8 @@ public class UserService {
     //CYZ
     // I think it might have a better way to do it.
     // However, right now I do not know how to join many tables using Jpa. 
-    public Result<?> viewOneCustomer_M(User u){
-        User user = userRepo.findByUid(u.getUid());
+    public Result<?> viewOneCustomer_M(int uid){
+        User user = userRepo.findByUid(uid);
         
         if (user != null) {
             List<Appointment> al = appointmentRepo.findByUser(user);
@@ -59,8 +59,8 @@ public class UserService {
 
     
     //CYZ
-    public Result<?> searchCustomerByName_M(User user){
-        List<User> userList = userRepo.findByUsernameContaining(user.getUsername());
+    public Result<?> searchCustomerByName_M(String username){
+        List<User> userList = userRepo.findByUsernameContaining(username);
 
         if(! userList.isEmpty()){
             return Result.success(userList, "Find Matching Customers!");
@@ -73,12 +73,12 @@ public class UserService {
     
     // just a test demo
     // YYY
-    public List<Appointment> getAppointmentList_M(){
-        return appointmentRepo.findAll();
-    }
+    // public List<Appointment> getAppointmentList_M(){
+    //     return appointmentRepo.findAll();
+    // }
     // YYY
-    public List<Appointment> getAppointmentList_C(@RequestParam User user){
-        return appointmentRepo.findByUsernameIs(user.getUsername());
+    // public List<Appointment> getAppointmentList_C(@RequestParam User user){
+    //     return appointmentRepo.findByUsernameIs(user.getUsername());
 
         // List<Appointment> appointmentList = userRepo.findByFirstnameIs(user.getUsername());
         // if(! appointmentList.isEmpty()){
@@ -86,7 +86,7 @@ public class UserService {
         // }
 
         // return Result.error("-1","No Matching Customers Found.");
-    }
+    // }
 
     // YYY
     public Appointment getAppointmentDetail_C(@RequestParam Appointment appointment){
