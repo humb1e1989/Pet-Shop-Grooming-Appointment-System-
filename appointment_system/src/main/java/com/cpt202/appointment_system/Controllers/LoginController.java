@@ -2,14 +2,19 @@ package com.cpt202.appointment_system.Controllers;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.cpt202.appointment_system.Common.Result;
 import com.cpt202.appointment_system.Models.User;
 import com.cpt202.appointment_system.Repositories.UserRepo;
+import com.cpt202.appointment_system.Services.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
+
 import java.util.Optional;
 
 @RestController
@@ -17,36 +22,23 @@ import java.util.Optional;
 public class LoginController {
 
     @Autowired
-    private UserRepo userRepository;
+    private LoginService loginService;
 
     @PostMapping("/register")
-    public ResponseEntity<String> registerUser(@RequestBody User user) {
-        if (userRepository.existsByUsername(user.getUsername()) || userRepository.existsByEmail(user.getEmail())) {
-            return new ResponseEntity<>("Username or email already exists.", HttpStatus.BAD_REQUEST);
-        } // the test if the username and the email havr already be registered before.
-        else{
-            userRepository.save(user);
-        return new ResponseEntity<>("User registered successfully.", HttpStatus.OK);
-        }
+    public ResponseEntity register(User user){
+        return loginService.registerUser(user);
     }
 
-    @PostMapping("/login")
-    public ResponseEntity<String> loginUser(@RequestBody User user, HttpSession session) {
-        Optional<User> dbUser = userRepository.findByUsername(user.getUsername());
-        if (dbUser.isPresent() && dbUser.get().getPassword().equals(user.getPassword())) {
-            session.setAttribute("userId", dbUser.get().getUid());
-            return new ResponseEntity<>("User logged in successfully.", HttpStatus.OK);
-        }
-
-        return new ResponseEntity<>("Invalid username or password.", HttpStatus.BAD_REQUEST);
+    @GetMapping("/login")  
+    public ResponseEntity login(User user, HttpSession session ){
+        return loginService.loginUser(user,session);
     }
 
-    @GetMapping("/logout")
-    public ResponseEntity<String> logoutUser(HttpSession session) {
-        session.invalidate();
-        return new ResponseEntity<>("User logged out successfully.", HttpStatus.OK);
+    @GetMapping("/logout")  
+    public ResponseEntity logout(User user, HttpSession session){
+        return loginService.logoutUser(session);
     }
-  
 
-    
+
+
 }

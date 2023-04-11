@@ -42,10 +42,10 @@ public class UserService {
 
     // CYZ
     // I think it might have a better way to do it.
-    // However, right now I do not know how to join many tables using Jpa. 
-    public Result<?> viewOneCustomer_M(int uid){
+    // However, right now I do not know how to join many tables using Jpa.
+    public Result<?> viewOneCustomer_M(int uid) {
         User user = userRepo.findByUid(uid);
-        
+
         if (user != null) {
             List<Appointment> al = appointmentRepo.findByUser(user);
             List<Pet> pl = petRepo.findByUser(user);
@@ -57,9 +57,8 @@ public class UserService {
 
     }
 
-    
-    //CYZ
-    public Result<?> searchCustomerByName_M(String username){
+    // CYZ
+    public Result<?> searchCustomerByName_M(String username) {
         List<User> userList = userRepo.findByUsernameContaining(username);
 
         if (!userList.isEmpty()) {
@@ -69,6 +68,4 @@ public class UserService {
         return Result.error("-1", "No Matching Customers Found.");
     }
 
-
 }
-

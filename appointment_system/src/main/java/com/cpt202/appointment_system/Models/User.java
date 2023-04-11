@@ -49,6 +49,10 @@ public class User {
     @Column(columnDefinition = "varchar(100)", nullable = true)
     private String email;
 
+    @Column(nullable = false)
+    private int failedLoginAttempts = 0;
+    
+
 
     public User() {
     }
