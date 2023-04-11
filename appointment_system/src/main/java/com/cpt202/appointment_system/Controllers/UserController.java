@@ -41,7 +41,7 @@ public class UserController {
 
     // Manager can view customer detail
     @GetMapping("/manager/customerList/view")
-    public Result<?> viewCustomer(@RequestParam int uid){
+    public Result<?> viewCustomer(@RequestParam Integer uid){
         return userService.viewOneCustomer_M(uid);
     }
 

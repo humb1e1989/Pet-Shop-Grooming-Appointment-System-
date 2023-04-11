@@ -50,10 +50,10 @@ public class AppointmentController {
     }
 
     // YYY - Manager view their appointments detail
-    @GetMapping("/manager/appointmentList/view")
-    public Result<?> viewAppointment_M(@RequestParam User user) {
-        return appointmentService.getAppointmentDetail_M(user);
-    }
+    // @GetMapping("/manager/appointmentList/view")
+    // public Result<?> viewAppointment_M(@RequestParam User user) {
+    //     return appointmentService.getAppointmentDetail_M(user);
+    // }
 
     /*
      * Customer Part
@@ -61,10 +61,10 @@ public class AppointmentController {
      */
 
     // YYY - Customer can view all of history appointments (only his appointment)
-    @GetMapping("/customer/appointmentList")
-    public Result<?> getUserAppointment_C(@RequestParam User user) {
-        return appointmentService.getAppointmentList_C(user);
-    }
+    // @GetMapping("/customer/appointmentList")
+    // public Result<?> getUserAppointment_C(@RequestParam User user) {
+    //     return appointmentService.getAppointmentList_C(user);
+    // }
 
     // Customer can view appointments detail (only their own appointment detail)
     @GetMapping("/customer/appointmentList/view")

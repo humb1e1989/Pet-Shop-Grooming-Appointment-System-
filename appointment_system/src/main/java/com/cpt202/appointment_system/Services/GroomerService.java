@@ -33,7 +33,7 @@ public class GroomerService {
     // later can improve:
     // groomer's info should also contain other things
     // (appointment records...)
-    public Result<?> viewOneGroomer(int gid){
+    public Result<?> viewOneGroomer(Integer gid){
 
         Groomer groomer = groomerRepo.findByGid(gid);
 
@@ -47,7 +47,7 @@ public class GroomerService {
 
 
     //CYZ
-    public Result<?> searchGroomerByFullID_M(int gid){
+    public Result<?> searchGroomerByFullID_M(Integer gid){
 
         Groomer groomer = groomerRepo.findByGid(gid);
 

@@ -19,19 +19,21 @@ public class GroomerController {
     @Autowired
     private GroomerService groomerService;
 
+    
     // Manager Part
     @GetMapping("/manager/grommerList")  
     public Result<?> getAllGroomers_M(){
         return groomerService.listAllGroomers();
+        
     }
 
     @GetMapping("/manager/groomerList/view")
-    public Result<?> viewGroomer_M(@RequestParam int gid){
+    public Result<?> viewGroomer_M(@RequestParam Integer gid){
         return groomerService.viewOneGroomer(gid);
     }
 
     @GetMapping("/manager/groomerList/search")
-    public Result<?> searchGroomerById_M(@RequestParam int gid){
+    public Result<?> searchGroomerById_M(@RequestParam Integer gid){
         return groomerService.searchGroomerByFullID_M(gid);
     }
 
@@ -54,7 +56,7 @@ public class GroomerController {
     }
 
     @GetMapping("/view-groomer")
-    public Result<?> viewGroomer_C(@RequestParam int gid){
+    public Result<?> viewGroomer_C(@RequestParam Integer gid){
         return groomerService.viewOneGroomer(gid);
     }
 

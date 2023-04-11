@@ -29,7 +29,7 @@ public class UserService {
 
     // CYZ
     public Result<?> listAllCustomers_M() {
-        byte typeCustomer = 0;
+        Integer typeCustomer = 0;
         List<User> userList = userRepo.findByType(typeCustomer);
 
         if (!userList.isEmpty()) {
@@ -43,7 +43,7 @@ public class UserService {
     // CYZ
     // I think it might have a better way to do it.
     // However, right now I do not know how to join many tables using Jpa.
-    public Result<?> viewOneCustomer_M(int uid) {
+    public Result<?> viewOneCustomer_M(Integer uid) {
         User user = userRepo.findByUid(uid);
 
         if (user != null) {
