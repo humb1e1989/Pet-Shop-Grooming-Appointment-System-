@@ -23,7 +23,7 @@ public class LoginController {
     public ResponseEntity<String> registerUser(@RequestBody User user) {
         if (userRepository.existsByUsername(user.getUsername()) || userRepository.existsByEmail(user.getEmail())) {
             return new ResponseEntity<>("Username or email already exists.", HttpStatus.BAD_REQUEST);
-        }
+        } // the test if the username and the email havr already be registered before.
         else{
             userRepository.save(user);
         return new ResponseEntity<>("User registered successfully.", HttpStatus.OK);
@@ -46,4 +46,7 @@ public class LoginController {
         session.invalidate();
         return new ResponseEntity<>("User logged out successfully.", HttpStatus.OK);
     }
+  
+
+    
 }
