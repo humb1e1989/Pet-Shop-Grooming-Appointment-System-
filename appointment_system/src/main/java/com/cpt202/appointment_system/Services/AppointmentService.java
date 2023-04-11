@@ -17,17 +17,17 @@ import com.cpt202.appointment_system.Repositories.UserRepo;
 @Service
 public class AppointmentService {
 
-    @Autowired
-    private UserRepo userRepo;
+  @Autowired
+  private UserRepo userRepo;
 
-    @Autowired
-    private AppointmentRepo appointmentRepo;
+  @Autowired
+  private AppointmentRepo appointmentRepo;
 
-    @Autowired
-    private PetRepo petRepo;
+  @Autowired
+  private PetRepo petRepo;
 
-    @Autowired
-    private GroomerRepo groRepo;
+  @Autowired
+  private GroomerRepo groRepo;
 
     //WJT Manger Part
     //Fiter Fuction
@@ -52,6 +52,5 @@ public class AppointmentService {
       Groomer findGroomer = groList.get(0);
       return appointmentRepo.findByGroomer(findGroomer);
 		}
-
-    //WJT Fiter Time
+  // WJT Fiter Time
 }
