@@ -93,4 +93,9 @@ public class UserService {
         return appointmentRepo.findByAid(appointment.getAid());
     }
 
+    ///ZYH
+    public Appointment viewAppointmentDetail_M(@RequestParam Appointment appointment){
+        return appointmentRepo.findByAid(appointment.getAid());
+    }
+
 }

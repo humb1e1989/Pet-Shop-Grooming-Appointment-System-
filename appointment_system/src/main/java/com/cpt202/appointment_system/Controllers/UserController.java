@@ -45,11 +45,10 @@ public class UserController {
         return userService.getAppointmentList_M();
     }
     
-    // ZYH
-    //TODO: Manager view their appointments detail
+    // Manager view their appointments detail
     @GetMapping("/customer/appointmentList/view")
     public Appointment viewAppointment(@RequestParam Appointment appointment){
-        return null;
+        return userService.viewAppointmentDetail_M(appointment);
     }
 
 
