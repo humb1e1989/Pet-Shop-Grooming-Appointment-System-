@@ -15,7 +15,7 @@ public interface AppointmentRepo extends JpaRepository<Appointment, Integer> {
     // return the appointment list with a specific username
     // public List<Appointment> findByUidIs(int uid);
 
-    public Appointment findByAid(int aid);
+    public Appointment findByAid(Integer aid);
 
     // WJT
     public List<Appointment> findByserviceType(String servicetype);
