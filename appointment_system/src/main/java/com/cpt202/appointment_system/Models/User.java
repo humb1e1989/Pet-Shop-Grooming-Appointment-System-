@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import org.yaml.snakeyaml.events.Event.ID;
 
 import lombok.Data;
 
@@ -63,6 +64,26 @@ public class User {
         this.gender = gender;
         this.phoneNumber = phoneNumber;
         this.email = email;
+    }
+
+
+    public String getPassword() {
+        return password;
+    }
+
+
+    public String getUsername() {
+        return username;
+    }
+
+
+    public String getEmail() {
+        return email;
+    }
+
+
+    public int getId() {
+        return uid;
     }
 
 

@@ -23,43 +23,56 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    // Manager Part
+    /* Manager Part
+        This is a part to fullfill all the functions of manager.
+    */ 
+
+    // Manager can view all of customers
     @GetMapping("/manager/customerList")  
     public Result<?> getAllCustomers(){
         return userService.listAllCustomers_M();
     }
 
+    // Manager can search customer by name
     @GetMapping("/manager/customerList/search")
-    public Result<?> getCustomerByName(@RequestParam User user){
-        return userService.searchCustomerByName_M(user);
+    public Result<?> getCustomerByName(@RequestParam String username){
+        return userService.searchCustomerByName_M(username);
     }
 
+    // Manager can view customer detail
     @GetMapping("/manager/customerList/view")
-    public Result<?> viewCustomer(@RequestParam User user){
-        return userService.viewOneCustomer_M(user);
+    public Result<?> viewCustomer(@RequestParam int uid){
+        return userService.viewOneCustomer_M(uid);
     }
 
     // Manager can view all of appointments
     @GetMapping("/manager/appointmentList")
-    public List<Appointment> getAllAppointment(){
+    public Result<?> getAllAppointment(){
         return userService.getAppointmentList_M();
     }
     
-    // ZYH
-    //TODO: Manager view their appointments detail
+
+    // Manager view their appointments detail
     @GetMapping("/customer/appointmentList/view")
-    public Appointment viewAppointment(@RequestParam Appointment appointment){
-        return null;
+    public Result<?> viewAppointment(@RequestParam Appointment appointment){
+        return userService.getAppointmentDetail_M(appointment);
     }
 
 
 
-    //Customer Part
+    /* Customer Part 
+     * This is a part to fullfill all the functions of customer.
+     */
 
-    // Customer can view all of history appointments - Demo may have error now
+    // Customer can view all of history appointments (only his appointment)
     @GetMapping("/customer/appointmentList")
     public List<Appointment> getUserAppointment_C(@RequestParam User user){
         return userService.getAppointmentList_C(user);
     }
 
+    // Customer can view appointments detail (only their own appointment detail)
+    @GetMapping("/customer/appointmentList/view")
+    public Result<?> viewAppointment_C(@RequestParam Appointment appointment, User user){
+        return userService.getAppointmentDetail_C(appointment, user);
+    }
 }

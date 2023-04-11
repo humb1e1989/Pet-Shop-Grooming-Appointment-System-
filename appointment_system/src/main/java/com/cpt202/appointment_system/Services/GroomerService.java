@@ -24,7 +24,7 @@ public class GroomerService {
             return Result.success(groomerList, "Successfully List All Grommers!");
         }
     
-        return Result.error("-1", "No Groomers");
+        return Result.error("-1", "No Groomers.");
         
     }
 
@@ -33,9 +33,9 @@ public class GroomerService {
     // later can improve:
     // groomer's info should also contain other things
     // (appointment records...)
-    public Result<?> viewOneGroomer(Groomer g){
+    public Result<?> viewOneGroomer(int gid){
 
-        Groomer groomer = groomerRepo.findByGid(g.getGid());
+        Groomer groomer = groomerRepo.findByGid(gid);
 
         if (groomer != null) {
             return Result.success(groomer, "Find All Info About This Groomer!");
@@ -47,9 +47,9 @@ public class GroomerService {
 
 
     //CYZ
-    public Result<?> searchGroomerByFullID(Groomer g){
+    public Result<?> searchGroomerByFullID(int gid){
 
-        Groomer groomer = groomerRepo.findByGid(g.getGid());
+        Groomer groomer = groomerRepo.findByGid(gid);
 
         if (groomer != null) {
             return Result.success(groomer, "Find Matching Groomer!");
