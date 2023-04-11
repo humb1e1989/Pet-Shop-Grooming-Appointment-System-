@@ -21,18 +21,18 @@ public class AppointmentController {
     private AppointmentService appointmentService;
 
     @GetMapping("/manager/appointmentList/search/customername")
-    public List<Appointment> getAppointmentByName(@RequestParam String username){
-        return appointmentService.getAppointmentBy_CName(username);
+    public List<Appointment> getAppointmentByName(@RequestParam String customerName){
+        return appointmentService.getAppointmentBy_CName(customerName);
     }
 
     @GetMapping("/manager/appointmentList/search/service")
-    public List<Appointment> getAppointmentByService(@RequestParam String servicetype){
-        return appointmentService.getAppointmentBy_Service(servicetype);
+    public List<Appointment> getAppointmentByService(@RequestParam String service){
+        return appointmentService.getAppointmentBy_Service(service);
     }
 
     @GetMapping("/manager/appointmentList/search/grommer")
-    public List<Appointment> getAppointmentByGrommer(@RequestParam String groomername){
-        return appointmentService.getAppointmentBy_GrommerName(groomername);
+    public List<Appointment> getAppointmentByGrommer(@RequestParam String groomerName){
+        return appointmentService.getAppointmentBy_GroomerName(groomerName);
     }
 
    
