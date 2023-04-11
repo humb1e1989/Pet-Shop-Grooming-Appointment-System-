@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.criteria.CriteriaBuilder.In;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.yaml.snakeyaml.events.Event.ID;
@@ -21,7 +22,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int uid;
+    private Integer uid;
 
     @Column(columnDefinition = "varchar(50)", nullable = false, unique = true)
     private String username;
@@ -30,7 +31,7 @@ public class User {
     private String password;
     
     @Column(columnDefinition = "tinyint", nullable = false)
-    private byte type;  // type 0: customer; type 1: manager
+    private Integer type;  // type 0: customer; type 1: manager
 
     @Column(columnDefinition = "DATETIME DEFAULT CURRENT_TIMESTAMP", nullable = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
@@ -53,7 +54,7 @@ public class User {
     }
 
 
-    public User(int uid, String username, String password, byte type, Date registrationTime, String imageURL,
+    public User(int uid, String username, String password, Integer type, Date registrationTime, String imageURL,
             String gender, String phoneNumber, String email) {
         this.uid = uid;
         this.username = username;
@@ -64,26 +65,6 @@ public class User {
         this.gender = gender;
         this.phoneNumber = phoneNumber;
         this.email = email;
-    }
-
-
-    public String getPassword() {
-        return password;
-    }
-
-
-    public String getUsername() {
-        return username;
-    }
-
-
-    public String getEmail() {
-        return email;
-    }
-
-
-    public int getId() {
-        return uid;
     }
 
 

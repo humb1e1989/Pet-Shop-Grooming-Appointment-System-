@@ -20,7 +20,7 @@ public class Appointment {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int aid;
+    private Integer aid;
 
     @Column(columnDefinition = "DATETIME DEFAULT CURRENT_TIMESTAMP", nullable = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
@@ -31,7 +31,7 @@ public class Appointment {
     private Date startTime;
 
     @Column(columnDefinition = "tinyint", nullable = false)
-    private byte status;
+    private Integer status;
 
     @Column(columnDefinition = "varchar(50)", nullable = false)
     private String serviceType;

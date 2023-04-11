@@ -34,7 +34,7 @@ public class LoginController {
     public ResponseEntity<String> loginUser(@RequestBody User user, HttpSession session) {
         Optional<User> dbUser = userRepository.findByUsername(user.getUsername());
         if (dbUser.isPresent() && dbUser.get().getPassword().equals(user.getPassword())) {
-            session.setAttribute("userId", dbUser.get().getId());
+            session.setAttribute("userId", dbUser.get().getUid());
             return new ResponseEntity<>("User logged in successfully.", HttpStatus.OK);
         }
 

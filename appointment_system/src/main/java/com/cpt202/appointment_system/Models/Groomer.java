@@ -18,7 +18,7 @@ public class Groomer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(columnDefinition = "int(7)")
-    private int gid;
+    private Integer gid;
     
     // need
     @Column(columnDefinition = "varchar(50)", nullable = false)
