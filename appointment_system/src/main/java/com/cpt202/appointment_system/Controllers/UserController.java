@@ -59,7 +59,6 @@ public class UserController {
     }
 
 
-
     /* Customer Part 
      * This is a part to fullfill all the functions of customer.
      */
