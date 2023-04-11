@@ -8,10 +8,8 @@ import com.cpt202.appointment_system.Repositories.UserRepo;
 // I think LoginService can be a part of Userservice
 @Service
 public class LoginService {
-    
+
     @Autowired
     private UserRepo userRepo;
-    
 
-    
 }
