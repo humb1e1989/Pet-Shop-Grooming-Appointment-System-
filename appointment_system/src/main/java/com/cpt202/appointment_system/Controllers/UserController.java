@@ -35,14 +35,14 @@ public class UserController {
 
     // Manager can search customer by name
     @GetMapping("/manager/customerList/search")
-    public Result<?> getCustomerByName(@RequestParam User user){
-        return userService.searchCustomerByName_M(user);
+    public Result<?> getCustomerByName(@RequestParam String username){
+        return userService.searchCustomerByName_M(username);
     }
 
     // Manager can view customer detail
     @GetMapping("/manager/customerList/view")
-    public Result<?> viewCustomer(@RequestParam User user){
-        return userService.viewOneCustomer_M(user);
+    public Result<?> viewCustomer(@RequestParam int uid){
+        return userService.viewOneCustomer_M(uid);
     }
 
     // Manager can view all of appointments
