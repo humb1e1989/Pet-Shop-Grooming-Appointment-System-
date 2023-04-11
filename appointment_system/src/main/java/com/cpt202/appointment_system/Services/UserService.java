@@ -10,7 +10,7 @@ import com.cpt202.appointment_system.Common.Result;
 import com.cpt202.appointment_system.Models.Appointment;
 import com.cpt202.appointment_system.Models.Pet;
 import com.cpt202.appointment_system.Models.User;
-import com.cpt202.appointment_system.Models.UserTool;
+import com.cpt202.appointment_system.Common.UserTool;
 import com.cpt202.appointment_system.Repositories.AppointmentRepo;
 import com.cpt202.appointment_system.Repositories.PetRepo;
 import com.cpt202.appointment_system.Repositories.UserRepo;

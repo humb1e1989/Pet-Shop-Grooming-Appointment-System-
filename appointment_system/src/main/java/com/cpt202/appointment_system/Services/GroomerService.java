@@ -61,8 +61,6 @@ public class GroomerService {
 
 
     // CYZ
-    // further improve: imageURL and phoneNumber cannot be duplicate
-    // select * from groomer where phone_number = ... or image_url = ... 
     public Result<?> addGroomer_M(Groomer g){
 
         Groomer groomer = groomerRepo.findByPhoneNumber(g.getPhoneNumber());
@@ -78,17 +76,36 @@ public class GroomerService {
 
 
     // CYZ
-    // later must improve:
-    // 1. phoneNumber or imageURL cannot be duplicate 
-    // 2. how to implement dynamically update fields???
-    public void editGroomer_M(Groomer g){
-        
-        // when save() is used to update, the PK of updated object must be set already
-        // otherwise, save() will be used as "add"
-        groomerRepo.save(g);
+    // it might have a more efficient way to implement dynamically update
+    public Result<?> editGroomer_M(Groomer g){
+
+
+        return null;
 
     }
 
+    
+    // Note:
+    // save() will update every field of the specific record in the table, 
+    // even if some fields are null, 
+    // which means save will simply override the all existing fields in the table 
+
+    // public Result<?> editGroomer_M_helpless(Groomer g){
+
+    //     if (g.getPhoneNumber() != null){
+    //         if (groomerRepo.findByPhoneNumber(g.getPhoneNumber()) != null){
+    //             groomerRepo.save(g);
+    //             return Result.success();
+    //         }
+
+    //         return Result.error("-2", "Phone Number Exists.");
+
+    //     }
+
+    //     groomerRepo.save(g);
+    //     return Result.success();
+        
+    // }
 
 
 }

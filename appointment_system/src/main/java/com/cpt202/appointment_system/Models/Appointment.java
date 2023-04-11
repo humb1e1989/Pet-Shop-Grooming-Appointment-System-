@@ -19,7 +19,7 @@ import lombok.Data;
 public class Appointment {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int aid;
 
     @Column(columnDefinition = "DATETIME DEFAULT CURRENT_TIMESTAMP", nullable = false)
@@ -29,10 +29,6 @@ public class Appointment {
     @Column(columnDefinition = "DATETIME", nullable = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date startTime;
-
-    @Column(columnDefinition = "DATETIME", nullable = true)
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date finishTime;
 
     @Column(columnDefinition = "tinyint", nullable = false)
     private byte status;
@@ -48,7 +44,11 @@ public class Appointment {
     @JoinColumn(name = "uid", referencedColumnName = "uid", nullable = false)
     private User user;
 
-    @Column(columnDefinition = "DATETIME DEFAULT CURRENT_TIMESTAMP", nullable = true)
+    @Column(columnDefinition = "DATETIME", nullable = true)
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date finishTime;
+    
+    @Column(columnDefinition = "DATETIME", nullable = true)
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date cancelTime;
 

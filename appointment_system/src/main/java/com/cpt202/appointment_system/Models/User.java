@@ -20,7 +20,7 @@ import lombok.Data;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int uid;
 
     @Column(columnDefinition = "varchar(50)", nullable = false, unique = true)

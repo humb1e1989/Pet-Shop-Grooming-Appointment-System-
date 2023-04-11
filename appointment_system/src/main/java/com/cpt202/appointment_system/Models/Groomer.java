@@ -12,9 +12,9 @@ import lombok.Data;
 @Data
 @Entity
 public class Groomer {
-
+    
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(columnDefinition = "int(7)")
     private int gid;
     
