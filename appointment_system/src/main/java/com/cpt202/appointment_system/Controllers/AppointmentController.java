@@ -43,13 +43,13 @@ public class AppointmentController {
         return appointmentService.getAppointmentBy_GroomerName(groomerName);
     }
 
-    // Manager can view all of appointments
+    // YYY - Manager can view all of appointments
     @GetMapping("/manager/appointmentList")
     public Result<?> getAllAppointment_M() {
         return appointmentService.getAppointmentList_M();
     }
 
-    // Manager view their appointments detail
+    // YYY - Manager view their appointments detail
     @GetMapping("/manager/appointmentList/view")
     public Result<?> viewAppointment_M(@RequestParam User user) {
         return appointmentService.getAppointmentDetail_M(user);
@@ -60,9 +60,9 @@ public class AppointmentController {
      * This is a part to fullfill all the functions of customer.
      */
 
-    // Customer can view all of history appointments (only his appointment)
+    // YYY - Customer can view all of history appointments (only his appointment)
     @GetMapping("/customer/appointmentList")
-    public List<Appointment> getUserAppointment_C(@RequestParam User user) {
+    public Result<?> getUserAppointment_C(@RequestParam User user) {
         return appointmentService.getAppointmentList_C(user);
     }
 

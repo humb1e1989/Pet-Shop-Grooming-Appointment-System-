@@ -56,18 +56,12 @@ public class AppointmentService {
 		return appointmentRepo.findByGroomer(findGroomer);
 	}
 
-	// just a test demo
-	// YYY
-	// public List<Appointment> getAppointmentList_M() {
-	// return appointmentRepo.findAll();
-	// }
-
 	// YYY
 	public Result<?> getAppointmentList_C(@RequestParam User user) {
 		// return appointmentRepo.findByUser(user);
 		// return appointmentRepo.findByUsernameIs(user.getUsername());
 
-		List<Appointment> appointmentList = appointmentRepo.findByUsernameIs(user.getUsername());
+		List<Appointment> appointmentList = appointmentRepo.findByUidIs(user.getId());
 		if (!appointmentList.isEmpty()) {
 			return Result.success(appointmentList, "Find Matching Customer!");
 		}
@@ -85,7 +79,7 @@ public class AppointmentService {
 
 	/* ZYH */
 	// TODO : para name to be uniformed
-	// Manager can view all appointments
+	// YYY - Manager can view all appointments
 	public Result<?> getAppointmentList_M() {
 		List<Appointment> appointmentList = appointmentRepo.findAll();
 		if (!appointmentList.isEmpty()) {
