@@ -67,12 +67,12 @@ public class User {
     }
 
 
-    public Object getPassword() {
+    public String getPassword() {
         return password;
     }
 
 
-    public Object getUsername() {
+    public String getUsername() {
         return username;
     }
 
@@ -82,7 +82,7 @@ public class User {
     }
 
 
-    public Object getId() {
+    public int getId() {
         return uid;
     }
 
