@@ -78,9 +78,42 @@ public class GroomerService {
     // CYZ
     // it might have a more efficient way to implement dynamically update
     public Result<?> editGroomer_M(Groomer g){
+        
+        Groomer groomer = groomerRepo.findByGid(g.getGid());
 
+        if (g.getName() == null){
+            g.setName(groomer.getName());
+        }
 
-        return null;
+        if (g.getGender() == null){
+            g.setGender(groomer.getGender());
+        }
+
+        if (g.getImageURL() == null){
+            g.setImageURL(groomer.getImageURL());
+        }
+
+        if (g.getRank() == null){
+            g.setRank(groomer.getRank());
+        }
+
+        if (g.getDescription() == null){
+            g.setDescription(groomer.getDescription());
+        }
+
+        if (g.getPhoneNumber() == null) {
+            g.setPhoneNumber(groomer.getPhoneNumber());
+        }
+        else{
+            if (groomerRepo.findByPhoneNumber(g.getPhoneNumber()) == null){
+                groomerRepo.save(g);
+                return Result.success();
+            }
+            return Result.error("-2", "Phone Number Exists.");
+        }
+
+        groomerRepo.save(g);
+        return Result.success();
 
     }
 
@@ -93,10 +126,10 @@ public class GroomerService {
     // public Result<?> editGroomer_M_helpless(Groomer g){
 
     //     if (g.getPhoneNumber() != null){
-    //         if (groomerRepo.findByPhoneNumber(g.getPhoneNumber()) != null){
-    //             groomerRepo.save(g);
-    //             return Result.success();
-    //         }
+            // if (groomerRepo.findByPhoneNumber(g.getPhoneNumber()) == null){
+            //     groomerRepo.save(g);
+            //     return Result.success();
+            // }
 
     //         return Result.error("-2", "Phone Number Exists.");
 
