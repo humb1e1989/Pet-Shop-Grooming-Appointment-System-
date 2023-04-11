@@ -45,33 +45,5 @@ public class UserController {
         return userService.viewOneCustomer_M(uid);
     }
 
-    // Manager can view all of appointments
-    @GetMapping("/manager/appointmentList")
-    public Result<?> getAllAppointment(){
-        return userService.getAppointmentList_M();
-    }
-    
-
-    // Manager view their appointments detail
-    @GetMapping("/manager/appointmentList/view")
-    public Result<?> viewAppointment(@RequestParam int aid){
-        return userService.getAppointmentDetail_M(aid);
-    }
-
-
-    /* Customer Part 
-     * This is a part to fullfill all the functions of customer.
-     */
-
-    // Customer can view all of history appointments (only his appointment)
-    @GetMapping("/customer/appointmentList")
-    public List<Appointment> getUserAppointment_C(@RequestParam User user){
-        return userService.getAppointmentList_C(user);
-    }
-
-    // Customer can view appointments detail (only their own appointment detail)
-    @GetMapping("/customer/appointmentList/view")
-    public Result<?> viewAppointment_C(@RequestParam int aid){
-        return userService.getAppointmentDetail_C(aid);
-    }
+ 
 }

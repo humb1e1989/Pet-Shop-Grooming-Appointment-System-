@@ -11,11 +11,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cpt202.appointment_system.Common.Result;
 import com.cpt202.appointment_system.Models.Appointment;
+import com.cpt202.appointment_system.Models.User;
 import com.cpt202.appointment_system.Services.AppointmentService;
 
 @RestController
 @RequestMapping("/appointment-system")
 public class AppointmentController {
+
     //WJT Manger Part
     @Autowired
     private AppointmentService appointmentService;
@@ -35,7 +37,36 @@ public class AppointmentController {
         return appointmentService.getAppointmentBy_GroomerName(groomerName);
     }
 
-   
+   // Manager can view all of appointments
+    @GetMapping("/manager/appointmentList")
+    public Result<?> getAllAppointment(){
+        return appointmentService.getAppointmentList_M();
+    }
     
+
+    // Manager view their appointments detail
+    @GetMapping("/manager/appointmentList/view")
+    public Result<?> viewAppointment(@RequestParam int aid){
+        return appointmentService.getAppointmentDetail_M(aid);
+    }
+
+
+    /* Customer Part 
+     * This is a part to fullfill all the functions of customer.
+     */
+
+    // Customer can view all of history appointments (only his appointment)
+    @GetMapping("/customer/appointmentList")
+    public List<Appointment> getUserAppointment_C(@RequestParam User user){
+        return appointmentService.getAppointmentList_C(user);
+    }
+
+    // Customer can view appointments detail (only their own appointment detail)
+    @GetMapping("/customer/appointmentList/view")
+    public Result<?> viewAppointment_C(@RequestParam int aid){
+        return appointmentService.getAppointmentDetail_C(aid);
+    }
+
+   
     
 }
