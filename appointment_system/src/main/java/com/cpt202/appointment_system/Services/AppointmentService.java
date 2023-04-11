@@ -61,7 +61,7 @@ public class AppointmentService {
 		// return appointmentRepo.findByUser(user);
 		// return appointmentRepo.findByUsernameIs(user.getUsername());
 
-		List<Appointment> appointmentList = appointmentRepo.findByUidIs(user.getId());
+		List<Appointment> appointmentList = appointmentRepo.findByUidIs(user.getUid());
 		if (!appointmentList.isEmpty()) {
 			return Result.success(appointmentList, "Find Matching Customer!");
 		}
@@ -71,7 +71,7 @@ public class AppointmentService {
 
 	// YYY (modified by ZYH)
 	public Result<?> getAppointmentDetail_C(@RequestParam User user) {
-		Appointment appointment1 = appointmentRepo.findByAid(user.getId());
+		Appointment appointment1 = appointmentRepo.findByAid(user.getUid());
 		if (appointment1 != null)
 			return Result.success(appointment1, "Find Matching Appointment!");
 		return Result.error("-1", "No Matching Appointment Found.");
@@ -90,7 +90,7 @@ public class AppointmentService {
 
 	// Manager can view all appointments' details
 	public Result<?> getAppointmentDetail_M(@RequestParam User user) {
-		Appointment appointment1 = appointmentRepo.findByAid(user.getId());
+		Appointment appointment1 = appointmentRepo.findByAid(user.getUid());
 		if (appointment1 != null) {
 			return Result.success(appointment1, "Find Matching Appointment!");
 		}
