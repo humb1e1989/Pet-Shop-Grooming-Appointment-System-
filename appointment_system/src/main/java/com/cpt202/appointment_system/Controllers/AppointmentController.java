@@ -32,7 +32,7 @@ public class AppointmentController {
 
     @GetMapping("/manager/appointmentList/search/grommer")
     public List<Appointment> getAppointmentByGrommer(@RequestParam String groomerName){
-        return appointmentService.getAppointmentBy_GrommerName(groomerName);
+        return appointmentService.getAppointmentBy_GroomerName(groomerName);
     }
 
    

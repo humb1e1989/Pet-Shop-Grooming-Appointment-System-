@@ -46,7 +46,7 @@ public class AppointmentService {
 			return appointmentRepo.findByserviceType(servicetype);
 		}
 
-    public List<Appointment> getAppointmentBy_GrommerName(@RequestParam String grommername)
+    public List<Appointment> getAppointmentBy_GroomerName(@RequestParam String grommername)
 		{
 			List<Groomer> groList= groRepo.findByNameContaining(grommername);
       Groomer findGroomer = groList.get(0);
