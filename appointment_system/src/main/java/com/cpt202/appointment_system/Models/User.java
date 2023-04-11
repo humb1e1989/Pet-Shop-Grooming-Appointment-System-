@@ -50,7 +50,7 @@ public class User {
     private String email;
 
     @Column(nullable = false)
-    private int failedLoginAttempts = 0;
+    private Integer failedLoginAttempts = 0;
     
 
 
@@ -58,8 +58,8 @@ public class User {
     }
 
 
-    public User(int uid, String username, String password, Integer type, Date registrationTime, String imageURL,
-            String gender, String phoneNumber, String email) {
+    public User(Integer uid, String username, String password, Integer type, Date registrationTime, String imageURL,
+            String gender, String phoneNumber, String email, Integer failedLoginAttempts) {
         this.uid = uid;
         this.username = username;
         this.password = password;
@@ -69,7 +69,11 @@ public class User {
         this.gender = gender;
         this.phoneNumber = phoneNumber;
         this.email = email;
+        this.failedLoginAttempts = failedLoginAttempts;
     }
+
+
+
 
 
       
