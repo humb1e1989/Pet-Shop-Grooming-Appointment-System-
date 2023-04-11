@@ -90,10 +90,10 @@ public class UserService {
     }
 
     // YYY (modified by ZYH)
-    public Result<?> getAppointmentDetail_C(@RequestParam int aid) {
+    public Result<?> getAppointmentDetail_C(int aid) {
         Appointment appointment1 =  appointmentRepo.findByAid(aid);
         if(appointment1 != null) return Result.success(appointment1, "Find Matching Appointment!");
-        else return Result.error("-1", "No Matching Appointment Found.");
+        return Result.error("-1", "No Matching Appointment Found.");
     }
 
     /* ZYH */
@@ -117,10 +117,10 @@ public class UserService {
     }
 
     // Customer can view only his appointments' details
-    public Result<?> getAppointmentDetail_C(@RequestParam int aid, User user) {
-        Appointment appointment1 = appointmentRepo.findByAid(aid);
-        if(appointment1 != null) return Result.success(appointment1, "Find Matching Appointment!");
-        return Result.error("-1", "No Matching Appointment Found.");
-    }
+    // public Result<?> getAppointmentDetail_C(@RequestParam int aid, User user) {
+    //     Appointment appointment1 = appointmentRepo.findByAid(aid);
+    //     if(appointment1 != null) return Result.success(appointment1, "Find Matching Appointment!");
+    //     return Result.error("-1", "No Matching Appointment Found.");
+    // }
 }
 
