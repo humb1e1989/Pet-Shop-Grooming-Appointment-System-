@@ -33,12 +33,26 @@ public class LoginController {
     @PostMapping("/login")
     public ResponseEntity<String> loginUser(@RequestBody User user, HttpSession session) {
         Optional<User> dbUser = userRepository.findByUsername(user.getUsername());
-        if (dbUser.isPresent() && dbUser.get().getPassword().equals(user.getPassword())) {
-            session.setAttribute("userId", dbUser.get().getId());
-            return new ResponseEntity<>("User logged in successfully.", HttpStatus.OK);
-        }
-
-        return new ResponseEntity<>("Invalid username or password.", HttpStatus.BAD_REQUEST);
+        if (dbUser.isPresent()){
+            if(dbUser.get().getPassword().equals(user.getPassword())){
+                dbUser.get().setFailedLoginAttempts(0);
+                userRepository.save(dbUser.get());
+                session.setAttribute("userId", dbUser.get().getId());
+                return new ResponseEntity<>("User logged in successfully.", HttpStatus.OK);
+            } // successful logging in
+            else{
+                int failedAttempts = dbUser.get().getFailedLoginAttempts();
+                if (failedAttempts >= 3) {
+                    // Trigger password retrieval process
+                    return new ResponseEntity<>("You have entered the wrong password 3 times. Please retrieve your password.", HttpStatus.BAD_REQUEST);
+                } else {
+                    dbUser.get().setFailedLoginAttempts(failedAttempts + 1);
+                    userRepository.save(dbUser.get());
+                    return new ResponseEntity<>("Invalid username or password.", HttpStatus.BAD_REQUEST);
+                }
+            }
+        } return new ResponseEntity<>("Invalid username or password.", HttpStatus.BAD_REQUEST);
+        
     }
 
     @GetMapping("/logout")
@@ -46,7 +60,5 @@ public class LoginController {
         session.invalidate();
         return new ResponseEntity<>("User logged out successfully.", HttpStatus.OK);
     }
-  
-
     
 }

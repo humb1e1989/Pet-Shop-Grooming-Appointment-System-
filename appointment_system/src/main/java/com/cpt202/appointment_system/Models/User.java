@@ -48,6 +48,10 @@ public class User {
     @Column(columnDefinition = "varchar(100)", nullable = true)
     private String email;
 
+    @Column(nullable = false)
+    private int failedLoginAttempts = 0;
+    
+
 
     public User() {
     }
@@ -85,7 +89,13 @@ public class User {
     public int getId() {
         return uid;
     }
+      // Getters
+      public int getFailedLoginAttempts() {
+        return failedLoginAttempts;
+    }
+    // Setters
+    public void setFailedLoginAttempts(int failedLoginAttempts) {
+        this.failedLoginAttempts = failedLoginAttempts;
+    }
 
-
-      
 }
