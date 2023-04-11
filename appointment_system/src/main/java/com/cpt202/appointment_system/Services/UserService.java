@@ -116,7 +116,7 @@ public class UserService {
         return Result.error("-1", "No Matching Appointment Found.");
     }
 
-    // Customer can view only his appointments' details
+    // // Customer can view only his appointments' details
     // public Result<?> getAppointmentDetail_C(@RequestParam int aid, User user) {
     //     Appointment appointment1 = appointmentRepo.findByAid(aid);
     //     if(appointment1 != null) return Result.success(appointment1, "Find Matching Appointment!");
