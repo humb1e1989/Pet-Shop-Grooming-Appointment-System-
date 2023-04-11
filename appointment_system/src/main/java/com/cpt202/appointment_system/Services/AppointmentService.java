@@ -31,24 +31,24 @@ public class AppointmentService {
 
     //WJT Manger Part
     //Fiter Fuction
-    public List<Appointment> getAppointmentBy_CName(@RequestParam Appointment appointment)
+    public List<Appointment> getAppointmentBy_CName(@RequestParam String username)
 		{
 			
-      List<User> userList = userRepo.findByUsernameContaining(appointment.getUser().getUsername());
+      List<User> userList = userRepo.findByUsernameContaining(username);
       User findUser = userList.get(0);
       return appointmentRepo.findByUser(findUser);
       // userRepo.findByUsernameContaining(appointment.getUser().getUsername());
 
 		}
 
-    public List<Appointment> getAppointmentBy_Service(@RequestParam Appointment appointment)
+    public List<Appointment> getAppointmentBy_Service(@RequestParam String servicetype)
 		{
-			return appointmentRepo.findByserviceType(appointment.getServiceType());
+			return appointmentRepo.findByserviceType(servicetype);
 		}
 
-    public List<Appointment> getAppointmentBy_GrommerName(@RequestParam Appointment appointment)
+    public List<Appointment> getAppointmentBy_GrommerName(@RequestParam String grommername)
 		{
-			List<Groomer> groList= groRepo.findByNameContaining(appointment.getGroomer().getName());
+			List<Groomer> groList= groRepo.findByNameContaining(grommername);
       Groomer findGroomer = groList.get(0);
       return appointmentRepo.findByGroomer(findGroomer);
 		}
