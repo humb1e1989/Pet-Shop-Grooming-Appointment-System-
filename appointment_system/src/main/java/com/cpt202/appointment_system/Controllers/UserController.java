@@ -53,7 +53,7 @@ public class UserController {
     
 
     // Manager view their appointments detail
-    @GetMapping("/customer/appointmentList/view")
+    @GetMapping("/manager/appointmentList/view")
     public Result<?> viewAppointment(@RequestParam int aid){
         return userService.getAppointmentDetail_M(aid);
     }
@@ -72,7 +72,7 @@ public class UserController {
 
     // Customer can view appointments detail (only their own appointment detail)
     @GetMapping("/customer/appointmentList/view")
-    public Result<?> viewAppointment_C(@RequestParam int aid, User user){
-        return userService.getAppointmentDetail_C(aid, user);
+    public Result<?> viewAppointment_C(@RequestParam int aid){
+        return userService.getAppointmentDetail_C(aid);
     }
 }
