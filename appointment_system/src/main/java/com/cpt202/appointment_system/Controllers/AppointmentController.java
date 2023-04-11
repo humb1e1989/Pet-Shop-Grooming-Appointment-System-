@@ -18,6 +18,10 @@ import com.cpt202.appointment_system.Services.AppointmentService;
 @RequestMapping("/appointment-system")
 public class AppointmentController {
 
+    /* Manager Part 
+     * This is a part to fullfill all the functions of managers.
+     */
+
     //WJT Manger Part
     @Autowired
     private AppointmentService appointmentService;
@@ -37,17 +41,16 @@ public class AppointmentController {
         return appointmentService.getAppointmentBy_GroomerName(groomerName);
     }
 
-   // Manager can view all of appointments
+    // Manager can view all of appointments
     @GetMapping("/manager/appointmentList")
-    public Result<?> getAllAppointment(){
+    public Result<?> getAllAppointment_M(){
         return appointmentService.getAppointmentList_M();
     }
     
-
     // Manager view their appointments detail
     @GetMapping("/manager/appointmentList/view")
-    public Result<?> viewAppointment(@RequestParam int aid){
-        return appointmentService.getAppointmentDetail_M(aid);
+    public Result<?> viewAppointment_M(@RequestParam User user){
+        return appointmentService.getAppointmentDetail_M(user);
     }
 
 
@@ -63,8 +66,8 @@ public class AppointmentController {
 
     // Customer can view appointments detail (only their own appointment detail)
     @GetMapping("/customer/appointmentList/view")
-    public Result<?> viewAppointment_C(@RequestParam int aid){
-        return appointmentService.getAppointmentDetail_C(aid);
+    public Result<?> viewAppointment_C(@RequestParam User user){
+        return appointmentService.getAppointmentDetail_C(user);
     }
 
    

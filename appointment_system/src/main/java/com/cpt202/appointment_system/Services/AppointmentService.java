@@ -76,8 +76,8 @@ public class AppointmentService {
     }
 
     // YYY (modified by ZYH)
-    public Result<?> getAppointmentDetail_C(int aid) {
-        Appointment appointment1 =  appointmentRepo.findByAid(aid);
+    public Result<?> getAppointmentDetail_C(@RequestParam User user) {
+        Appointment appointment1 =  appointmentRepo.findByAid(user.getId());
         if(appointment1 != null) return Result.success(appointment1, "Find Matching Appointment!");
         return Result.error("-1", "No Matching Appointment Found.");
     }
@@ -94,8 +94,8 @@ public class AppointmentService {
     }
 
     // Manager can view all appointments' details
-    public Result<?> getAppointmentDetail_M(@RequestParam int aid) {
-        Appointment appointment1 = appointmentRepo.findByAid(aid);
+    public Result<?> getAppointmentDetail_M(@RequestParam User user) {
+        Appointment appointment1 = appointmentRepo.findByAid(user.getId());
         if (appointment1 != null) {
             return Result.success(appointment1, "Find Matching Appointment!");
         }
