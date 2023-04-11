@@ -27,25 +27,25 @@ public class UserService {
     @Autowired
     private PetRepo petRepo;
 
-    //CYZ
-    public Result<?> listAllCustomers_M(){
+    // CYZ
+    public Result<?> listAllCustomers_M() {
         byte typeCustomer = 0;
         List<User> userList = userRepo.findByType(typeCustomer);
 
-        if (! userList.isEmpty()) {
+        if (!userList.isEmpty()) {
             return Result.success(userList, "Successfully List All Customers!");
         }
-    
+
         return Result.error("-1", "No Registered Customers.");
-        
+
     }
 
-    //CYZ
+    // CYZ
     // I think it might have a better way to do it.
-    // However, right now I do not know how to join many tables using Jpa. 
-    public Result<?> viewOneCustomer_M(User u){
+    // However, right now I do not know how to join many tables using Jpa.
+    public Result<?> viewOneCustomer_M(User u) {
         User user = userRepo.findByUid(u.getUid());
-        
+
         if (user != null) {
             List<Appointment> al = appointmentRepo.findByUser(user);
             List<Pet> pl = petRepo.findByUser(user);
@@ -57,45 +57,65 @@ public class UserService {
 
     }
 
-    
-    //CYZ
-    public Result<?> searchCustomerByName_M(User user){
+    // CYZ
+    public Result<?> searchCustomerByName_M(User user) {
         List<User> userList = userRepo.findByUsernameContaining(user.getUsername());
 
-        if(! userList.isEmpty()){
+        if (!userList.isEmpty()) {
             return Result.success(userList, "Find Matching Customers!");
         }
 
-        return Result.error("-1","No Matching Customers Found.");
+        return Result.error("-1", "No Matching Customers Found.");
     }
 
+    // // just a test demo
+    // // YYY
+    // public List<Appointment> getAppointmentList_M() {
+    //     return appointmentRepo.findAll();
+    // }
 
-    
-    // just a test demo
     // YYY
-    public List<Appointment> getAppointmentList_M(){
-        return appointmentRepo.findAll();
-    }
-    // YYY
-    public List<Appointment> getAppointmentList_C(@RequestParam User user){
-        return appointmentRepo.findByUsernameIs(user.getUsername());
+    public List<Appointment> getAppointmentList_C(@RequestParam User user) {
+        return appointmentRepo.findByUser(user);
+        // return appointmentRepo.findByUsernameIs(user.getUsername());
 
-        // List<Appointment> appointmentList = userRepo.findByFirstnameIs(user.getUsername());
+        // List<Appointment> appointmentList =
+        // userRepo.findByFirstnameIs(user.getUsername());
         // if(! appointmentList.isEmpty()){
-        //     return Result.success(appointmentList, "Find Matching Customer!");
+        // return Result.success(appointmentList, "Find Matching Customer!");
         // }
 
         // return Result.error("-1","No Matching Customers Found.");
     }
 
-    // YYY
-    public Appointment getAppointmentDetail_C(@RequestParam Appointment appointment){
-        return appointmentRepo.findByAid(appointment.getAid());
+    // // YYY
+    // public Appointment getAppointmentDetail_C(@RequestParam Appointment appointment) {
+    //     return appointmentRepo.findByAid(appointment.getAid());
+    // }
+
+    /* ZYH */
+    // Manager can view all appointments
+    public Result<?> getAppointmentList_M() {
+        List<Appointment> appointmentList = appointmentRepo.findAll();
+        if (!appointmentList.isEmpty()) {
+            return Result.success(appointmentList, "Find Matching Appointment!");
+        }
+        return Result.error("-1", "No Matching Appointment Found.");
     }
 
-    ///ZYH
-    public Appointment viewAppointmentDetail_M(@RequestParam Appointment appointment){
-        return appointmentRepo.findByAid(appointment.getAid());
+    // Manager can view all appointments' details
+    public Result<?> getAppointmentDetail_M(@RequestParam Appointment appointment) {
+        Appointment appointment1 = appointmentRepo.findByAid(appointment.getAid());
+        if (appointment1 != null) {
+            return Result.success(appointment1, "Find Matching Appointment!");
+        }
+        return Result.error("-1", "No Matching Appointment Found.");
     }
 
+    // Customer can view only his appointments' details
+    public Result<?> getAppointmentDetail_C(@RequestParam Appointment appointment, User user) {
+        List<Appointment> appointment1 = appointmentRepo.findByUser(user);
+        if(appointment1 != null) return Result.success(appointment1, "Find Matching Appointment!");
+        return Result.error("-1", "No Matching Appointment Found.");
+    }
 }
