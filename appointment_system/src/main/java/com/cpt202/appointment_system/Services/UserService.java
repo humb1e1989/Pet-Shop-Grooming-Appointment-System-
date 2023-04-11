@@ -88,24 +88,27 @@ public class UserService {
         // return Result.error("-1","No Matching Customers Found.");
     }
 
-    // // YYY
-    // public Appointment getAppointmentDetail_C(@RequestParam Appointment appointment) {
-    //     return appointmentRepo.findByAid(appointment.getAid());
-    // }
+    // YYY (modified by ZYH)
+    public Result<?> getAppointmentDetail_C(@RequestParam int aid) {
+        Appointment appointment1 =  appointmentRepo.findByAid(aid);
+        if(appointment1 != null) return Result.success(appointment1, "Find Matching Appointment!");
+        else return Result.error("-1", "No Matching Appointment Found.");
+    }
 
     /* ZYH */
+    // TODO : para name to be uniformed
     // Manager can view all appointments
     public Result<?> getAppointmentList_M() {
         List<Appointment> appointmentList = appointmentRepo.findAll();
         if (!appointmentList.isEmpty()) {
-            return Result.success(appointmentList, "Find Matching Appointment!");
+            return Result.success(appointmentList, "Find Matching Appointments!");
         }
         return Result.error("-1", "No Matching Appointment Found.");
     }
 
     // Manager can view all appointments' details
-    public Result<?> getAppointmentDetail_M(@RequestParam Appointment appointment) {
-        Appointment appointment1 = appointmentRepo.findByAid(appointment.getAid());
+    public Result<?> getAppointmentDetail_M(@RequestParam int aid) {
+        Appointment appointment1 = appointmentRepo.findByAid(aid);
         if (appointment1 != null) {
             return Result.success(appointment1, "Find Matching Appointment!");
         }
@@ -113,8 +116,8 @@ public class UserService {
     }
 
     // Customer can view only his appointments' details
-    public Result<?> getAppointmentDetail_C(@RequestParam Appointment appointment, User user) {
-        List<Appointment> appointment1 = appointmentRepo.findByUser(user);
+    public Result<?> getAppointmentDetail_C(@RequestParam int aid, User user) {
+        Appointment appointment1 = appointmentRepo.findByAid(aid);
         if(appointment1 != null) return Result.success(appointment1, "Find Matching Appointment!");
         return Result.error("-1", "No Matching Appointment Found.");
     }
