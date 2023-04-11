@@ -29,12 +29,12 @@ public class UserController {
         return userService.listAllCustomers_M();
     }
 
-    @GetMapping("manager/customerList/search")
+    @GetMapping("/manager/customerList/search")
     public Result<?> getCustomerByName(@RequestParam User user){
         return userService.searchCustomerByName_M(user);
     }
 
-    @GetMapping("manager/customerList/view")
+    @GetMapping("/manager/customerList/view")
     public Result<?> viewCustomer(@RequestParam User user){
         return userService.viewOneCustomer_M(user);
     }

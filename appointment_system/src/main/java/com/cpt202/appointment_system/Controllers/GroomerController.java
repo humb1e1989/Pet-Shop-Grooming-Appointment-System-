@@ -25,22 +25,22 @@ public class GroomerController {
         return groomerService.listAllGroomers();
     }
 
-    @GetMapping("manager/groomerList/view")
+    @GetMapping("/manager/groomerList/view")
     public Result<?> viewGroomer_M(@RequestParam Groomer groomer){
         return groomerService.viewOneGroomer(groomer);
     }
 
-    @GetMapping("manager/groomerList/search")
+    @GetMapping("/manager/groomerList/search")
     public Result<?> searchGroomerById_M(@RequestParam Groomer groomer){
         return groomerService.searchGroomerByFullID(groomer);
     }
 
-    @PostMapping("manager/groomerList/add")
+    @PostMapping("/manager/groomerList/add")
     public Result<?> addGroomer_M(@RequestBody Groomer groomer){
         return groomerService.addGroomer(groomer);
     }
 
-    @PostMapping("manager/groomerList/edit")
+    @PostMapping("/manager/groomerList/edit")
     public void editGrommer_M(@RequestBody Groomer groomer){
         groomerService.editGroomer(groomer);
     }

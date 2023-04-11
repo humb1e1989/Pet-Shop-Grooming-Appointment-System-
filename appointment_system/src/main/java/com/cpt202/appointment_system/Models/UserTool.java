@@ -2,6 +2,9 @@ package com.cpt202.appointment_system.Models;
 
 import java.util.List;
 
+import lombok.Data;
+
+@Data
 public class UserTool {
 
     private User user;
@@ -18,25 +21,6 @@ public class UserTool {
         this.petList = petList;
     }
 
-
-    public User getUser() {
-        return user;
-    }
-    public void setUser(User user) {
-        this.user = user;
-    }
-    public List<Appointment> getAppointmentList() {
-        return appointmentList;
-    }
-    public void setAppointmentList(List<Appointment> appointmentList) {
-        this.appointmentList = appointmentList;
-    }
-    public List<Pet> getPetList() {
-        return petList;
-    }
-    public void setPetList(List<Pet> petList) {
-        this.petList = petList;
-    }
-
+    
     
 }
