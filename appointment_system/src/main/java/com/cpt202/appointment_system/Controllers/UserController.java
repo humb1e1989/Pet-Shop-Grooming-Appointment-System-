@@ -52,7 +52,7 @@ public class UserController {
     }
     
 
-    // Manager view their appointments detail
+    Manager view their appointments detail
     @GetMapping("/customer/appointmentList/view")
     public Result<?> viewAppointment(@RequestParam Appointment appointment){
         return userService.getAppointmentDetail_M(appointment);
