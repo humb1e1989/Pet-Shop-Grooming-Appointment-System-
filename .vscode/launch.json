@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-AppointmentSystemApplication<appointment_system>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.cpt202.appointment_system.AppointmentSystemApplication",
+            "projectName": "appointment_system",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
