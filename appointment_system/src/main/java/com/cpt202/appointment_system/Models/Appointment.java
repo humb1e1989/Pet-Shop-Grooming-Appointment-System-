@@ -12,6 +12,8 @@ import javax.persistence.ManyToOne;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import lombok.Data;
 
 @Data
@@ -19,7 +21,7 @@ import lombok.Data;
 public class Appointment {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer aid;
 
     @Column(columnDefinition = "DATETIME DEFAULT CURRENT_TIMESTAMP", nullable = false)

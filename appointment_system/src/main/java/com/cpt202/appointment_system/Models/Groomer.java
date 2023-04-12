@@ -16,7 +16,7 @@ import lombok.Data;
 public class Groomer {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(columnDefinition = "int(7)")
     private Integer gid;
     
