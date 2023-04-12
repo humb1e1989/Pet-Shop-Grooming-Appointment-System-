@@ -1,6 +1,10 @@
-package com.cpt202.appointment_system.Models;
+package com.cpt202.appointment_system.Common;
 
 import java.util.List;
+
+import com.cpt202.appointment_system.Models.Appointment;
+import com.cpt202.appointment_system.Models.Pet;
+import com.cpt202.appointment_system.Models.User;
 
 import lombok.Data;
 

@@ -15,8 +15,8 @@ import lombok.Data;
 public class Pet {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int pid;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer pid;
 
     @Column(columnDefinition = "varchar(10)", nullable = false)
     private String size;

@@ -8,8 +8,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.criteria.CriteriaBuilder.In;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import org.yaml.snakeyaml.events.Event.ID;
 
 import lombok.Data;
 
@@ -19,8 +21,8 @@ import lombok.Data;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int uid;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer uid;
 
     @Column(columnDefinition = "varchar(50)", nullable = false, unique = true)
     private String username;
@@ -29,7 +31,7 @@ public class User {
     private String password;
     
     @Column(columnDefinition = "tinyint", nullable = false)
-    private byte type;  // type 0: customer; type 1: manager
+    private Integer type;  // type 0: customer; type 1: manager
 
     @Column(columnDefinition = "DATETIME DEFAULT CURRENT_TIMESTAMP", nullable = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
@@ -47,13 +49,17 @@ public class User {
     @Column(columnDefinition = "varchar(100)", nullable = true)
     private String email;
 
+    @Column(nullable = false)
+    private Integer failedLoginAttempts = 0;
+    
+
 
     public User() {
     }
 
 
-    public User(int uid, String username, String password, byte type, Date registrationTime, String imageURL,
-            String gender, String phoneNumber, String email) {
+    public User(Integer uid, String username, String password, Integer type, Date registrationTime, String imageURL,
+            String gender, String phoneNumber, String email, Integer failedLoginAttempts) {
         this.uid = uid;
         this.username = username;
         this.password = password;
@@ -63,7 +69,11 @@ public class User {
         this.gender = gender;
         this.phoneNumber = phoneNumber;
         this.email = email;
+        this.failedLoginAttempts = failedLoginAttempts;
     }
+
+
+
 
 
       
