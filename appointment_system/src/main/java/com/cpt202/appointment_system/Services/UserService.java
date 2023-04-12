@@ -3,15 +3,18 @@ package com.cpt202.appointment_system.Services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mapping.AccessOptions.GetOptions;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.cpt202.appointment_system.Common.Result;
 import com.cpt202.appointment_system.Models.Appointment;
+import com.cpt202.appointment_system.Models.Groomer;
 import com.cpt202.appointment_system.Models.Pet;
 import com.cpt202.appointment_system.Models.User;
 import com.cpt202.appointment_system.Common.UserTool;
 import com.cpt202.appointment_system.Repositories.AppointmentRepo;
+import com.cpt202.appointment_system.Repositories.GroomerRepo;
 import com.cpt202.appointment_system.Repositories.PetRepo;
 import com.cpt202.appointment_system.Repositories.UserRepo;
 
@@ -26,6 +29,9 @@ public class UserService {
 
     @Autowired
     private PetRepo petRepo;
+
+    @Autowired
+    private GroomerRepo groomerRepo;
 
     // CYZ
     public Result<?> listAllCustomers_M() {
@@ -68,10 +74,19 @@ public class UserService {
         return Result.error("-1", "No Matching Customers Found.");
     }
 
-    // Customer can view only his appointments' details
+    //TODO: Number
+    // ZYH PBI NO.i Customer can view only his appointments' details
     public Result<?> getAppointmentDetail_C(@RequestParam Appointment appointment, User user) {
         List<Appointment> appointment1 = appointmentRepo.findByUser(user);
         if(appointment1 != null) return Result.success(appointment1, "Find Matching Appointment!");
         return Result.error("-1", "No Matching Appointment Found.");
+    }
+
+    //TODO : Number 
+    // ZYH PBI NO.ii Customer can search a groomer by name
+    public Result<?> searchGroomerByName_C(String name) {
+        List<Groomer> groomerList = groomerRepo.findByNameContaining(name);
+        if(!groomerList.isEmpty()) return Result.success(groomerList, "Find Matching Groomer!");
+        return Result.error("-1", "No Matching Groomer Found.");
     }
 }

@@ -66,10 +66,17 @@ public class AppointmentController {
     //     return appointmentService.getAppointmentList_C(user);
     // }
 
-    // Customer can view appointments detail (only their own appointment detail)
+    // TODO : Number the PBI
+    // ZYH PBI NO.i Customer can view appointments detail (only their own appointment detail)
     @GetMapping("/customer/appointmentList/view")
     public Result<?> viewAppointment_C(@RequestParam User user) {
         return appointmentService.getAppointmentDetail_C(user);
+    }
+
+    //ZYH PBI NO.i Customer can search appointment by user name
+    @GetMapping("/customer/appointmentList/search")
+    public Result<?> getAppointmentByName_C(@RequestParam String username){
+        return appointmentService.getAppointmentListByUserName_C(username);
     }
 
     // Customer can make appointment

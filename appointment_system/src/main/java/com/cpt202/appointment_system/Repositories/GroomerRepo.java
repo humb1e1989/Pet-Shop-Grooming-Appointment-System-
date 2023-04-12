@@ -9,6 +9,7 @@ public interface GroomerRepo extends JpaRepository<Groomer, Integer>{
 
     public Groomer findByGid(Integer gid);
     
+    // groomer can be searched by name
     public List<Groomer> findByNameContaining(String name);
 
     public Groomer findByPhoneNumber(String phoneNumber);

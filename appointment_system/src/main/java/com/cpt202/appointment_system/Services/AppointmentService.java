@@ -69,6 +69,10 @@ public class AppointmentService {
 	// 	return Result.error("-1", "No Matching Customers Found.");
 	// }
 
+	/*
+	 * Customer Part
+	 */
+
 	// YYY (modified by ZYH)
 	public Result<?> getAppointmentDetail_C(@RequestParam User user) {
 		Appointment appointment1 = appointmentRepo.findByAid(user.getUid());
@@ -88,23 +92,15 @@ public class AppointmentService {
 		return Result.error("-1", "No Matching Appointment Found.");
 	}
 
-	// Manager can view all appointments' details
+	// ZYH : Customer can search appointment by user name
+	public Result<?> getAppointmentListByUserName_C(@RequestParam String username) {
+		List<Appointment> appointmentList = appointmentRepo.findByUserUsernameContaining(username);
+		if (!appointmentList.isEmpty()) {
+			return Result.success(appointmentList, "Find Matching Appointment!");
+		}
+		return Result.error("-1", "No Matching Appointment Found.");
+	}
 
-	// public Result<?> getAppointmentDetail_M(@RequestParam User user) {
-	// 	Appointment appointment1 = appointmentRepo.findByAid(user.getUid());
-	// 	if (appointment1 != null) {
-	// 		return Result.success(appointment1, "Find Matching Appointment!");
-	// 	}
-	// 	return Result.error("-1", "No Matching Appointment Found.");
-	// }
-
-	// Customer can view only his appointments' details
-	// public Result<?> getAppointmentDetail_C(@RequestParam int aid, User user) {
-	// Appointment appointment1 = appointmentRepo.findByAid(aid);
-	// if(appointment1 != null) return Result.success(appointment1, "Find Matching
-	// Appointment!");
-	// return Result.error("-1", "No Matching Appointment Found.");
-	// }
 
 	//Bowen li's modification
 	// Customer can make appointment when fill in all feilds 

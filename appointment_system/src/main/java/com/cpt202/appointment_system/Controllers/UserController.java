@@ -45,5 +45,14 @@ public class UserController {
         return userService.viewOneCustomer_M(uid);
     }
 
- 
+    /* Customer Part
+        This is a part to fullfill all the functions of customer.
+     */
+
+     //TODO : Number
+     // ZYH PBI NO.i Customer can search a groomer by name
+    @GetMapping("/customer/groomerList/search")
+    public Result<?> getGroomerByName(@RequestParam String username){
+        return userService.searchGroomerByName_C(username);
+    }
 }
