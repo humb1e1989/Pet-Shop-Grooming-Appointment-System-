@@ -54,9 +54,9 @@ public class User {
     
 
 
-    public User() {
+    public User(int uid) {
+        this.uid=uid;
     }
-
 
     public User(Integer uid, String username, String password, Integer type, Date registrationTime, String imageURL,
             String gender, String phoneNumber, String email, Integer failedLoginAttempts) {

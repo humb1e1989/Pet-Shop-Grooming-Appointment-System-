@@ -106,4 +106,27 @@ public class AppointmentService {
 	// return Result.error("-1", "No Matching Appointment Found.");
 	// }
 
+	//Bowen li's modification
+	// Customer can make appointment when fill in all feilds 
+    public Result<?>makeAppointment_C(Appointment appointment) {
+        
+        
+
+		if(appointment .getServiceType()=="washing"){
+		  appointment.setTotalprice(50*(1+0.1*appointment.getGroomer().getRank()));
+		}
+  
+		if(appointment.getServiceType()=="haircut"){
+		  appointment.setTotalprice(60*(1+0.1*appointment.getGroomer().getRank()));
+		}
+		if(appointment.getServiceType()=="drying"){
+		  appointment.setTotalprice(40*(1+0.1*appointment.getGroomer().getRank()));
+		}
+
+		
+		appointmentRepo.save(appointment);
+		return Result.success();
+        
+	}
+
 }

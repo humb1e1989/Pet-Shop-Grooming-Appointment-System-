@@ -24,10 +24,12 @@ public class Appointment {
 
     @Column(columnDefinition = "DATETIME DEFAULT CURRENT_TIMESTAMP", nullable = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd HH:mm:ss")//bowen li's modification
     private Date createTime;
 
     @Column(columnDefinition = "DATETIME", nullable = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd HH:mm:ss")//bowen li's modification
     private Date startTime;
 
     @Column(columnDefinition = "tinyint", nullable = false)
@@ -46,10 +48,20 @@ public class Appointment {
 
     @Column(columnDefinition = "DATETIME", nullable = true)
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd HH:mm:ss")//bowen li's modification
     private Date finishTime;
     
     @Column(columnDefinition = "DATETIME", nullable = true)
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd HH:mm:ss")//bowen li's modification
     private Date cancelTime;
+
+    //bowen li's modification
+    @Column(columnDefinition = "Double", nullable = true)
+    private Double totalprice;
+    
+    public Appointment(){
+        
+    }
 
 }

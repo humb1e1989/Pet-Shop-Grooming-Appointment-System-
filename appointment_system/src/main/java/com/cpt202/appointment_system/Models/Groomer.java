@@ -45,8 +45,10 @@ public class Groomer {
     private String description;
     
 
-    public Groomer() {
+    public Groomer(int gid) {
+        this.gid=gid;
     }
+
 
     
     public Groomer(int gid, String name, String gender, String imageURL, Integer rank, String phoneNumber) {

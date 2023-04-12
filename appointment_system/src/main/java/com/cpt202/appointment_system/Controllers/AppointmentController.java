@@ -72,4 +72,10 @@ public class AppointmentController {
         return appointmentService.getAppointmentDetail_C(user);
     }
 
+    // Customer can make appointment
+    @PostMapping("/customer/makeappointment")
+    public Result<?> makeappointment_C(@RequestBody Appointment appointment){
+        return appointmentService.makeAppointment_C(appointment);
+    }
+
 }
