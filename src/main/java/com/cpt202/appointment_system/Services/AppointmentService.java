@@ -114,7 +114,6 @@ public class AppointmentService {
 
 		if(appointment .getServiceType()=="washing"){
 		  appointment.setTotalprice(50*(1+0.1*appointment.getGroomer().getRank()));
-		  
 		}
   
 		if(appointment.getServiceType()=="haircut"){
