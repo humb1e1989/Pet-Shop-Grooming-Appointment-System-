@@ -126,7 +126,7 @@ public class AppointmentService {
 		
 		appointmentRepo.save(appointment);
 		return Result.success();
-
+        
 	}
 
 }
