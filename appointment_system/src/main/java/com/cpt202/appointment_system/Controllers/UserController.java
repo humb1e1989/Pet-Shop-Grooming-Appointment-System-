@@ -33,7 +33,7 @@ public class UserController {
         return userService.listAllCustomers_M();
     }
 
-    // Manager can search customer by name
+    // No.i: Manager can search customer by name
     @GetMapping("/manager/customerList/search")
     public Result<?> getCustomerByName(@RequestParam String username){
         return userService.searchCustomerByName_M(username);
