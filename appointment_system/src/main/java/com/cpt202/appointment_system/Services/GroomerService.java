@@ -109,7 +109,7 @@ public class GroomerService {
                 groomerRepo.save(g);
                 return Result.success();
             }
-            return Result.error("-2", "Phone Number Exists.");
+            return Result.error("-2", "Phone Number Exists or Remains the Same.");
         }
 
         groomerRepo.save(g);
