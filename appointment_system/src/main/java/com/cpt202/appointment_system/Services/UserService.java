@@ -74,7 +74,7 @@ public class UserService {
         return Result.error("-1", "No Matching Customers Found.");
     }
 
-    //TODO: Number
+    
     // ZYH PBI NO.i Customer can view only his appointments' details
     public Result<?> getAppointmentDetail_C(@RequestParam Appointment appointment, User user) {
         List<Appointment> appointment1 = appointmentRepo.findByUser(user);
@@ -82,11 +82,22 @@ public class UserService {
         return Result.error("-1", "No Matching Appointment Found.");
     }
 
-    //TODO : Number 
+    
     // ZYH PBI NO.ii Customer can search a groomer by name
     public Result<?> searchGroomerByName_C(String name) {
         List<Groomer> groomerList = groomerRepo.findByNameContaining(name);
         if(!groomerList.isEmpty()) return Result.success(groomerList, "Find Matching Groomer!");
         return Result.error("-1", "No Matching Groomer Found.");
     }
+
+
+    // ZYH PBI NO.iii Customer can view all his pets
+    public Result<?> listAllPets_C(Integer uid) {
+        User user = userRepo.findByUid(uid);
+        List<Pet> petList = petRepo.findByUser(user);
+        if(!petList.isEmpty()) return Result.success(petList, "Find Matching Pet!");
+        return Result.error("-1", "No Matching Pet Found.");
+    }
+
+
 }
