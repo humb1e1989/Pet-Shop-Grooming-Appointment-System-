@@ -72,7 +72,7 @@ public class AppointmentService {
 		// return appointmentRepo.findByUser(user);
 		// return appointmentRepo.findByUsernameIs(user.getUsername());
 
-		List<Appointment> appointmentList = appointmentRepo.findByUidIs(user.getUid());
+		List<Appointment> appointmentList = userRepo.findByUidIs(user.getUid());
 		if (!appointmentList.isEmpty()) {
 			return Result.success(appointmentList, "Find Matching Customer!");
 		}

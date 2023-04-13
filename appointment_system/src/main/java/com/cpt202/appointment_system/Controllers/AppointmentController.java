@@ -55,15 +55,15 @@ public class AppointmentController {
         return appointmentService.getAppointmentDetail_M(appointment);
     }
 
-    /*
-     * Customer Part
-     * This is a part to fullfill all the functions of customer.
-     */
+    // /*
+    //  * Customer Part
+    //  * This is a part to fullfill all the functions of customer.
+    //  */
 
     // YYY PBI NO.3 - Customer can view all of history appointments (only his
     // appointment)
     @GetMapping("/customer/appointmentList")
-    public Result<?> getUserAppointment_C(@RequestParam User user) {
+    public Result<?> getAllAppointmentList_C(@RequestParam User user) {
         return appointmentService.getAppointmentBy_Uid(user);
     }
 
