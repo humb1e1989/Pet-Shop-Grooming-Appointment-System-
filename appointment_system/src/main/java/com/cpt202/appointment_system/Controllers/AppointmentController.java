@@ -49,31 +49,31 @@ public class AppointmentController {
         return appointmentService.getAppointmentList_M();
     }
 
-    // // YYY PBI NO.2 - Manager view the appointment detail
-    // @GetMapping("/manager/appointmentList/view")
-    // public Result<?> viewAppointment_M(@RequestParam Appointment appointment) {
-    //     return appointmentService.getAppointmentDetail_M(appointment);
-    // }
+    // YYY PBI NO.2 - Manager view the appointment detail
+    @GetMapping("/manager/appointmentList/view")
+    public Result<?> viewAppointment_M(@RequestParam Appointment appointment) {
+        return appointmentService.getAppointmentDetail_M(appointment);
+    }
 
     // /*
     //  * Customer Part
     //  * This is a part to fullfill all the functions of customer.
     //  */
 
-    // // YYY PBI NO.3 - Customer can view all of history appointments (only his
-    // // appointment)
-    // @GetMapping("/customer/appointmentList")
-    // public Result<?> getUserAppointment_C(@RequestParam User user) {
-    //     return appointmentService.getAppointmentBy_Uid(user);
-    // }
+    // YYY PBI NO.3 - Customer can view all of history appointments (only his
+    // appointment)
+    @GetMapping("/customer/appointmentList")
+    public Result<?> getAllAppointmentList_C(@RequestParam User user) {
+        return appointmentService.getAppointmentBy_Uid(user);
+    }
 
-    // // TODO : Number the PBI
-    // // ZYH PBI NO.i Customer can view appointments detail (only their own
-    // // appointment detail)
-    // @GetMapping("/customer/appointmentList/view")
-    // public Result<?> viewAppointment_C(@RequestParam User user) {
-    //     return appointmentService.getAppointmentDetail_C(user);
-    // }
+    // TODO : Number the PBI
+    // ZYH PBI NO.i Customer can view appointments detail (only their own
+    // appointment detail)
+    @GetMapping("/customer/appointmentList/view")
+    public Result<?> viewAppointment_C(@RequestParam User user) {
+        return appointmentService.getAppointmentDetail_C(user);
+    }
 
     // ZYH PBI NO.i Customer can search appointment by user name
     @GetMapping("/customer/appointmentList/search")
