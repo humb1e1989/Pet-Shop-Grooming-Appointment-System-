@@ -128,4 +128,14 @@ public class AppointmentService {
 
 	}
 
+
+	// ZYH PBI NO.i : Customer can cancel appointment
+	public Result<?> cancelAppointment_C(@RequestParam int aid) {
+		Appointment appointment = appointmentRepo.findByAid(aid);
+		if (appointment != null) {
+			appointmentRepo.delete(appointment);
+			return Result.success();
+		}
+		return Result.error("-1", "No Matching Appointment Found.");
+	}
 }

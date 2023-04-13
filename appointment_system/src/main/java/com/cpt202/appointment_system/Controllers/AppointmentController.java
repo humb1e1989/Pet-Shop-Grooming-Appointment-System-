@@ -82,6 +82,12 @@ public class AppointmentController {
         return appointmentService.getAppointmentListByUserName_C(username);
     }
 
+    //ZYH PBI NO.ii Customer can cancel appointment
+    @PostMapping("/customer/cancelappointment")
+    public Result<?> cancelappointment_C(@RequestBody int aid) {
+        return appointmentService.cancelAppointment_C(aid);
+    }
+
     // Customer can make appointment
     @PostMapping("/customer/makeappointment")
     public Result<?> makeappointment_C(@RequestBody Appointment appointment) {
