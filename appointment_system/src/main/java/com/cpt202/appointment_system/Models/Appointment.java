@@ -43,6 +43,10 @@ public class Appointment {
     @JoinColumn(name = "uid", referencedColumnName = "uid", nullable = false)
     private User user;
 
+    @ManyToOne//bowenli's modification
+    @JoinColumn(name = "pid", referencedColumnName = "pid", nullable = false)
+    private Pet pet;
+
     @Column(columnDefinition = "DATETIME", nullable = true)
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd HH:mm:ss")//bowen li's modification
