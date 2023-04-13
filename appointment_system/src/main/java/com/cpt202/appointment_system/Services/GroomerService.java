@@ -74,8 +74,11 @@ public class GroomerService {
 
     // CYZ
     // it might have a more efficient way to implement dynamically update
-    public Result<?> editGroomer_M(Groomer g) {
-
+    // save() will update every field of the specific record in the table, 
+    // even if some fields are null, 
+    // which means save() will simply override the all existing fields in the table 
+    public Result<?> editGroomer_M(Groomer g){
+        
         Groomer groomer = groomerRepo.findByGid(g.getGid());
 
         if (g.getName() == null) {
@@ -113,18 +116,6 @@ public class GroomerService {
 
     }
 
-    // Note:
-    // save() will update every field of the specific record in the table,
-    // even if some fields are null,
-    // which means save will simply override the all existing fields in the table
-
-    // public Result<?> editGroomer_M_helpless(Groomer g){
-
-    // if (g.getPhoneNumber() != null){
-    // if (groomerRepo.findByPhoneNumber(g.getPhoneNumber()) == null){
-    // groomerRepo.save(g);
-    // return Result.success();
-    // }
 
     // return Result.error("-2", "Phone Number Exists.");
 
