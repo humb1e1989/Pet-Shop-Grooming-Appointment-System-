@@ -55,4 +55,10 @@ public class UserController {
     public Result<?> getGroomerByName(@RequestParam String username){
         return userService.searchGroomerByName_C(username);
     }
+
+    // ZYH PBI NO.ii Customer can view all his pets
+    @GetMapping("/customer/petList")
+    public Result<?> getAllPets(@RequestParam Integer uid){
+        return userService.listAllPets_C(uid);
+    }
 }
