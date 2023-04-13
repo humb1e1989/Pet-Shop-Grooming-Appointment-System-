@@ -45,6 +45,10 @@ public class Groomer {
     private String description;
     
 
+    public Groomer() {
+    }
+
+
     public Groomer(int gid) {
         this.gid=gid;
     }

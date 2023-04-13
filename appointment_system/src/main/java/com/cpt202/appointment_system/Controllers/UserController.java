@@ -3,6 +3,7 @@ package com.cpt202.appointment_system.Controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,7 +19,7 @@ import com.cpt202.appointment_system.Services.PetService;
 import com.cpt202.appointment_system.Services.UserService;
 
 
-@RestController // a RESTfull API
+@Controller 
 @RequestMapping("/appointment-system")
 public class UserController {
 

@@ -1,5 +1,3 @@
-<!-- Front end and Back end coonection -->
-<!-- SQZ And WJT -->
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 	<head>
@@ -279,23 +277,23 @@
 
 		<hr >
         		<!-- 新增人员信息 -->
-		<div th:action="@{/manager/groomerList/add}" method="POST" id="div2" style="display: none;"align=center th:object="${groomer}">
+		
+	<form th:action="@{/manger/groomerList/add}" th:object="${groomer}">
+		<div id="div2" style="display: none;"align=center>
 			<fieldset id="field2" style="width:600px;border-radius: 20px;"align=center>
 				<legend>Add New Pet</legend>
 				<input type="hidden" name="id" id="uid"/><br>
-				ID：<input type="text" name="id" id="id" th:field="*{gid}"/>&nbsp
-				Name：<input type="text" name="name" id="name"  th:field="*{name}"/>&nbsp
-				Gender：
-				<select id="sex" required="required" th:field="*{gender}">
-					<option value ="Male" selected="selected">Dog</option>
-					<option value ="Female" >Cat</option>
-				</select><br><br>
-				Rank：<input type="text" name="rank" id="rank"  th:field="*{rank}"/>&nbsp
+				ID：<input type="text" th:field="*{phoneNumber}" name="id" id="id" />&nbsp
+				Name：<input type="text" th:field="*{name}" name="name" id="name"  />&nbsp
+				Gender：<input type="text" th:field="*{gender}" name="gender" id="gender"/>&nbsp
+				<br><br>
+				Rank：<input type="text"  th:field="*{rank}" name="rank" id="rank" />&nbsp
 				<!-- 籍贯：<input type="text" name="area" id="area" value="弗吉尼亚州汉普顿" /><br> -->
 				<button type="button">Submit</button>
-			
 			</fieldset>
 		</div><br><br>
+	</form>
+
 		<!-- 更新人员信息 -->
 		<div id="div3" style="display: none;" name="div3"  align=center>
 			<fieldset id="field3" style="width:600px;border-radius: 20px;"align=center>

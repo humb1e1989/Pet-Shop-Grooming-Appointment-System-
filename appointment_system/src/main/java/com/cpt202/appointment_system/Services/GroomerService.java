@@ -17,15 +17,17 @@ public class GroomerService {
     private GroomerRepo groomerRepo;
 
     // CYZ
-    public Result<?> listAllGroomers() {
+    public List<Groomer> listAllGroomers() {
 
         List<Groomer> groomerList = groomerRepo.findAll();
 
         if (!groomerList.isEmpty()) {
-            return Result.success(groomerList, "Successfully Return All Grommers!");
+            return groomerList;
+            //return Result.success(groomerList, "Successfully Return All Grommers!");
         }
 
-        return Result.error("-1", "No Groomers.");
+        return groomerList;
+        //return Result.error("-1", "No Groomers.");
 
     }
 
@@ -59,16 +61,13 @@ public class GroomerService {
     }
 
     // CYZ
-    public Result<?> addGroomer_M(Groomer g) {
+    public void addGroomer_M(Groomer g) {
 
         Groomer groomer = groomerRepo.findByPhoneNumber(g.getPhoneNumber());
 
         if (groomer == null) {
             groomerRepo.save(g);
-            return Result.success();
         }
-
-        return Result.error("-2", "Phone Number Exists.");
 
     }
 

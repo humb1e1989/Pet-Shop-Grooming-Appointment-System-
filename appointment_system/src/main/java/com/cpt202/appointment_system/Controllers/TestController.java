@@ -17,27 +17,24 @@ import com.cpt202.appointment_system.Models.Groomer;
 import com.cpt202.appointment_system.Services.GroomerService;
 
 @Controller
-
 public class TestController {
 //SQZ And WJT
 //Try to connect front end and back end
-@Autowired
-private GroomerService groomerService;
+    @Autowired
+    private GroomerService groomerService;
     // Manager Part
     @GetMapping("/manager/groomerList")  
-    public String getAllGroomers_M(Model model, Model model1){
+    public String getAllGroomers(Model model){
         model.addAttribute("groomerList", groomerService.listAllGroomers());
-        model1.addAttribute("groomer", new Groomer(0, null, null, null, null, null));
+        model.addAttribute("groomer", new Groomer(2, null, null, null, null, null));
         return "allGroomers";
         
     }
 
- 
-
-    @PostMapping("/manager/groomerList/add")
+    @GetMapping("/manager/groomerList/add")
     public String addGroomer_M(@ModelAttribute("groomer") Groomer groomer){
-        groomerService.addGroomer_M(groomer);
-        return "allGrommers";
+        //groomerService.addGroomer_M(groomer);
+        return "home";
     }
 
     
