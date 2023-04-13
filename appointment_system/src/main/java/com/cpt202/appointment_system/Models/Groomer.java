@@ -28,7 +28,7 @@ public class Groomer {
     private String gender;
 
     // need
-    @Column(name = "image_url", nullable = false)
+    @Column(name = "image_url", nullable = true)
     private String imageURL;
 
     // name it "ranking" in MySQL to avoid possible error 
@@ -37,13 +37,17 @@ public class Groomer {
     @Column(name = "ranking", columnDefinition = "tinyint", nullable = false)
     private Integer rank;
 
-    @Column(columnDefinition = "varchar(11)", nullable = false)
+    @Column(columnDefinition = "varchar(11)", nullable = true)
     private String phoneNumber;
 
     // need
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String description;
     
+
+    public Groomer() {
+    }
+
 
     public Groomer(int gid) {
         this.gid=gid;

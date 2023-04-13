@@ -3,6 +3,7 @@ package com.cpt202.appointment_system.Controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,7 +16,7 @@ import com.cpt202.appointment_system.Models.Appointment;
 import com.cpt202.appointment_system.Models.User;
 import com.cpt202.appointment_system.Services.AppointmentService;
 
-@RestController
+@Controller
 @RequestMapping("/appointment-system")
 public class AppointmentController {
 
@@ -55,15 +56,15 @@ public class AppointmentController {
         return appointmentService.getAppointmentDetail_M(appointment);
     }
 
-    /*
-     * Customer Part
-     * This is a part to fullfill all the functions of customer.
-     */
+    // /*
+    //  * Customer Part
+    //  * This is a part to fullfill all the functions of customer.
+    //  */
 
     // YYY PBI NO.3 - Customer can view all of history appointments (only his
     // appointment)
     @GetMapping("/customer/appointmentList")
-    public Result<?> getUserAppointment_C(@RequestParam User user) {
+    public Result<?> getAllAppointmentList_C(@RequestParam User user) {
         return appointmentService.getAppointmentBy_Uid(user);
     }
 
@@ -75,16 +76,29 @@ public class AppointmentController {
         return appointmentService.getAppointmentDetail_C(user);
     }
 
+
     // ZYH PBI NO.i Customer can search appointment by user name
     @GetMapping("/customer/appointmentList/search")
     public Result<?> getAppointmentByName_C(@RequestParam String username) {
         return appointmentService.getAppointmentListByUserName_C(username);
     }
 
+    //ZYH PBI NO.ii Customer can cancel appointment
+    @PostMapping("/customer/cancelappointment")
+    public Result<?> cancelappointment_C(@RequestBody int aid) {
+        return appointmentService.cancelAppointment_C(aid);
+    }
+
     // Customer can make appointment
     @PostMapping("/customer/makeappointment")
     public Result<?> makeappointment_C(@RequestBody Appointment appointment) {
         return appointmentService.makeAppointment_C(appointment);
+    }
+
+    // Customer can modify appointment
+    @PostMapping("/customer/modifyappointment")
+    public Result<?> modifyappointment_C(@RequestBody Appointment appointment) {
+        return appointmentService.modifyAppointment_C(appointment);
     }
 
 }

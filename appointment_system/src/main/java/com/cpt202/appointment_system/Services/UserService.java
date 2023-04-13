@@ -74,7 +74,7 @@ public class UserService {
         return Result.error("-1", "No Matching Customers Found.");
     }
 
-    //TODO: Number
+    
     // ZYH PBI NO.i Customer can view only his appointments' details
     public Result<?> getAppointmentDetail_C(@RequestParam Appointment appointment, User user) {
         List<Appointment> appointment1 = appointmentRepo.findByUser(user);
@@ -82,11 +82,48 @@ public class UserService {
         return Result.error("-1", "No Matching Appointment Found.");
     }
 
-    //TODO : Number 
+    
     // ZYH PBI NO.ii Customer can search a groomer by name
     public Result<?> searchGroomerByName_C(String name) {
         List<Groomer> groomerList = groomerRepo.findByNameContaining(name);
         if(!groomerList.isEmpty()) return Result.success(groomerList, "Find Matching Groomer!");
         return Result.error("-1", "No Matching Groomer Found.");
     }
+
+
+    // ZYH PBI NO.iii Customer can view all his pets
+    public Result<?> listAllPets_C(Integer uid) {
+        User user = userRepo.findByUid(uid);
+        List<Pet> petList = petRepo.findByUser(user);
+        if(!petList.isEmpty()) return Result.success(petList, "Find Matching Pet!");
+        return Result.error("-1", "No Matching Pet Found.");
+    }
+
+    // ZYH PBI NO.iv Customer can view his profile
+    public Result<?> viewProfile_C(Integer uid) {
+        User user = userRepo.findByUid(uid);
+        if(user != null) return Result.success(user, "Here is your profile!");
+        return Result.error("-1", "No Matching User Found.");
+    }
+
+    // ZYH PBI NO.v Customer can edit his profile
+    // This method roughly overwrites the original object 
+    // by creating a new user object. 
+    // Optimization may be required.
+    public Result<?> editProfile_C(User user) {
+        User user1 = userRepo.findByUid(user.getUid());
+        if(user1 != null) {
+            user1.setUsername(user.getUsername());
+            user1.setPassword(user.getPassword());
+            user1.setPhoneNumber(user.getPhoneNumber());
+            user1.setEmail(user.getEmail());
+            user1.setImageURL(user.getImageURL());
+            user1.setGender(user.getGender());
+            userRepo.save(user1);
+            return Result.success(user1, "Edit Successfully!");
+        }
+        return Result.error("-1", "No Matching User Found.");
+    }
+
+
 }
