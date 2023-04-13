@@ -138,4 +138,14 @@ public class AppointmentService {
 		}
 		return Result.error("-1", "No Matching Appointment Found.");
 	}
+
+	// TODO : Not necessary for now
+	// // ZYH PBI NO.ii : Customer can filter appointment by time
+	// public Result<?> getAppointmentListByTime_C(@RequestParam String time) {
+	// 	List<Appointment> appointmentList = appointmentRepo.findByTimeContaining(time);
+	// 	if (!appointmentList.isEmpty()) {
+	// 		return Result.success(appointmentList, "Find Matching Appointment!");
+	// 	}
+	// 	return Result.error("-1", "No Matching Appointment Found.");
+	// }
 }

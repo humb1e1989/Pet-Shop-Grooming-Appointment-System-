@@ -60,4 +60,16 @@ public class UserController {
     public Result<?> getGroomerByName(@RequestParam String username){
         return userService.searchGroomerByName_C(username);
     }
+
+    // ZYH PBI NO.ii Customer can view his/her profile
+    @GetMapping("/customer/profile")
+    public Result<?> viewProfile(@RequestParam Integer uid){
+        return userService.viewProfile_C(uid);
+    }
+    
+    // ZYH PBI NO.iii Customer can edit his/her profile
+    @PostMapping("/customer/profile/edit")
+    public Result<?> editProfile(@RequestBody User user){
+        return userService.editProfile_C(user);
+    }
 }
