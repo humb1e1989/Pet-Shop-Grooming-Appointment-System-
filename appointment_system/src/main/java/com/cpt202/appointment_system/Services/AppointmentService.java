@@ -56,37 +56,37 @@ public class AppointmentService {
 		return appointmentRepo.findByGroomer(findGroomer);
 	}
 
-	// YYY
-	public Result<?> getAppointmentDetail_M(@RequestParam Appointment appointment) {
-		Appointment appointment1 = appointmentRepo.findByAid(appointment.getAid());
-		if (appointment1 != null)
-			return Result.success(appointment1, "Find Matching Appointment!");
-		return Result.error("-1", "No Matching Appointment Found.");
-	}
+	// // YYY
+	// public Result<?> getAppointmentDetail_M(@RequestParam Appointment appointment) {
+	// 	Appointment appointment1 = appointmentRepo.findByAid(appointment.getAid());
+	// 	if (appointment1 != null)
+	// 		return Result.success(appointment1, "Find Matching Appointment!");
+	// 	return Result.error("-1", "No Matching Appointment Found.");
+	// }
 
-	/*
-	 * Customer Part
-	 */
-	// YYY
-	public Result<?> getAppointmentBy_Uid(@RequestParam User user) {
-		// return appointmentRepo.findByUser(user);
-		// return appointmentRepo.findByUsernameIs(user.getUsername());
+	// /*
+	//  * Customer Part
+	//  */
+	// // YYY
+	// public Result<?> getAppointmentBy_Uid(@RequestParam User user) {
+	// 	// return appointmentRepo.findByUser(user);
+	// 	// return appointmentRepo.findByUsernameIs(user.getUsername());
 
-		List<Appointment> appointmentList = appointmentRepo.findByUidIs(user.getUid());
-		if (!appointmentList.isEmpty()) {
-			return Result.success(appointmentList, "Find Matching Customer!");
-		}
+	// 	List<Appointment> appointmentList = appointmentRepo.findByUidIs(user.getUid());
+	// 	if (!appointmentList.isEmpty()) {
+	// 		return Result.success(appointmentList, "Find Matching Customer!");
+	// 	}
 
-		return Result.error("-1", "No Matching Customers Found.");
-	}
+	// 	return Result.error("-1", "No Matching Customers Found.");
+	// }
 
-	// YYY (modified by ZYH)
-	public Result<?> getAppointmentDetail_C(@RequestParam User user) {
-		Appointment appointment1 = appointmentRepo.findByAid(user.getUid());
-		if (appointment1 != null)
-			return Result.success(appointment1, "Find Matching Appointment!");
-		return Result.error("-1", "No Matching Appointment Found.");
-	}
+	// // YYY (modified by ZYH)
+	// public Result<?> getAppointmentDetail_C(@RequestParam User user) {
+	// 	Appointment appointment1 = appointmentRepo.findByAid(user.getUid());
+	// 	if (appointment1 != null)
+	// 		return Result.success(appointment1, "Find Matching Appointment!");
+	// 	return Result.error("-1", "No Matching Appointment Found.");
+	// }
 
 	/* ZYH */
 	// TODO : para name to be uniformed

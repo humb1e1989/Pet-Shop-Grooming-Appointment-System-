@@ -12,8 +12,8 @@ public interface AppointmentRepo extends JpaRepository<Appointment, Integer> {
 
     public List<Appointment> findByUser(User user);
 
-    // return the appointment list with a specific username
-    public List<Appointment> findByUidIs(int uid);
+    // // return the appointment list with a specific username
+    // public List<Appointment> findByUidIs(int uid);
     // Appointment can be searched by username
     //ZYH TODO: I do not realy know how to form the function name (if any problem, please change it)
     public List<Appointment> findByUserUsernameContaining(String username);
