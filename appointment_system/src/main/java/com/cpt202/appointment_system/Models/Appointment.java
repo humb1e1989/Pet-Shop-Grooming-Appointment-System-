@@ -37,11 +37,15 @@ public class Appointment {
             When an appointment is finished, the status is "finished"
             When an appointment is cancelled, the status is "cancelled"
     */
+
     @Column(columnDefinition = "varchar(50)", nullable = false)
     private String status;
 
-    @Column(columnDefinition = "varchar(50)", nullable = false)
-    private String petName;
+    //Bowen Li's modification
+    //Actually create a new constructor can slove this problem I add a pet Object below
+    //you can try to use pid to modify it
+    // @Column(columnDefinition = "varchar(50)", nullable = false)
+    // private String petName;
 
     @Column(columnDefinition = "varchar(50)", nullable = false)
     private String serviceType;
@@ -75,5 +79,14 @@ public class Appointment {
     public Appointment(){
         
     }
+
+    public Appointment(Date startTime, String serviceType, Groomer groomer, User user, Pet pet) {
+        this.startTime = startTime;
+        this.serviceType = serviceType;
+        this.groomer = groomer;
+        this.user = user;
+        this.pet = pet;
+    }
+    
 
 }

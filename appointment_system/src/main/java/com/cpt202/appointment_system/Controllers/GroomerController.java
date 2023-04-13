@@ -17,8 +17,8 @@ import com.cpt202.appointment_system.Services.GroomerService;
 @RequestMapping("/appointment-system")
 public class GroomerController {
 
-    // @Autowired
-    // private GroomerService groomerService;
+    @Autowired
+    private GroomerService groomerService;
 
     
     // // Manager Part
@@ -28,29 +28,29 @@ public class GroomerController {
         
     // }
 
-    // @GetMapping("/manager/groomerList/view")
-    // public Result<?> viewGroomer_M(@RequestParam Integer gid){
-    //     return groomerService.viewOneGroomer(gid);
-    // }
+    @GetMapping("/manager/groomerList/view")
+    public Result<?> viewGroomer_M(@RequestParam Integer gid){
+        return groomerService.viewOneGroomer(gid);
+    }
 
-    // @GetMapping("/manager/groomerList/search")
-    // public Result<?> searchGroomerById_M(@RequestParam Integer gid){
-    //     return groomerService.searchGroomerByFullID_M(gid);
-    // }
+    @GetMapping("/manager/groomerList/search")
+    public Result<?> searchGroomerById_M(@RequestParam Integer gid){
+        return groomerService.searchGroomerByFullID_M(gid);
+    }
 
     // @PostMapping("/manager/groomerList/add")
     // public Result<?> addGroomer_M(@RequestBody Groomer groomer){
     //     return groomerService.addGroomer_M(groomer);
     // }
 
-    // @PostMapping("/manager/groomerList/edit")
-    // public void editGrommer_M(@RequestBody Groomer groomer){
-    //     groomerService.editGroomer_M(groomer);
-    // }
+    @PostMapping("/manager/groomerList/edit")
+    public void editGrommer_M(@RequestBody Groomer groomer){
+        groomerService.editGroomer_M(groomer);
+    }
 
 
     // // Customer part
-    // // getAllGroomers_C is just for test, it'll be further modified.
+    // getAllGroomers_C is just for test, it'll be further modified.
     // @GetMapping("/") 
     // public Result<?> getAllGroomers_C(){
     //     return groomerService.listAllGroomers();

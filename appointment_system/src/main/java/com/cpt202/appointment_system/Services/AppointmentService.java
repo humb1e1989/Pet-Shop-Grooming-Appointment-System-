@@ -1,8 +1,7 @@
 package com.cpt202.appointment_system.Services;
-
 import java.sql.Date;
 import java.text.SimpleDateFormat;
-
+import java.util.Calendar;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +22,9 @@ public class AppointmentService {
 
 	@Autowired
 	private UserRepo userRepo;
+
+	@Autowired
+	private GroomerRepo groomerRepo;
 
 	@Autowired
 	private AppointmentRepo appointmentRepo;
@@ -66,6 +68,8 @@ public class AppointmentService {
 			return Result.success(appointment1, "Find Matching Appointment!");
 		return Result.error("-1", "No Matching Appointment Found.");
 	}
+
+
 
 	/*
 	 * Customer Part
@@ -114,22 +118,42 @@ public class AppointmentService {
 	// Bowen li's modification
 	// Customer can make appointment when fill in all feilds
 	public Result<?> makeAppointment_C(Appointment appointment) {
+		Calendar calendar = Calendar.getInstance();
+		Date currentdate = new Date(System.currentTimeMillis());
+		appointment.setCreateTime(currentdate);
+		appointment.setStatus("pending");
+		Date temp =new Date(appointment.getStartTime().getTime());
+        calendar.setTime(temp);
+        Groomer OrderedGroomer=groomerRepo.findByGid(appointment.getGroomer().getGid());
 
+        //different servicetype have different service time
+		//the total price is depending on the the rank of groomer and the servicetype
 		if (appointment.getServiceType() == "washing") {
-			appointment.setTotalprice(50 * (1 + 0.1 * appointment.getGroomer().getRank()));
+            calendar.add(Calendar.MINUTE, 30);
+			Date finishTime = new Date(calendar.getTimeInMillis());
+			appointment.setFinishTime(finishTime);
+			appointment.setTotalprice(50 * (1 + 0.1 * OrderedGroomer.getRank()));
 		}
 
 		if (appointment.getServiceType() == "haircut") {
-			appointment.setTotalprice(60 * (1 + 0.1 * appointment.getGroomer().getRank()));
+			calendar.add(Calendar.MINUTE, 40);
+			Date finishTime = new Date(calendar.getTimeInMillis());
+			appointment.setFinishTime(finishTime);
+			appointment.setTotalprice(60 * (1 + 0.1 * OrderedGroomer.getRank()));
 		}
 		if (appointment.getServiceType() == "drying") {
-			appointment.setTotalprice(40 * (1 + 0.1 * appointment.getGroomer().getRank()));
+			calendar.add(Calendar.MINUTE, 10);
+			Date finishTime = new Date(calendar.getTimeInMillis());
+			appointment.setFinishTime(finishTime);
+			appointment.setTotalprice(40 * (1 + 0.1 * OrderedGroomer.getRank()));
 		}
 
 		appointmentRepo.save(appointment);
 		return Result.success();
-
+        
 	}
+
+
 
 	// ZYH PBI NO.i : Customer can cancel appointment
 	public Result<?> cancelAppointment_C(@RequestParam int aid) {
@@ -152,7 +176,7 @@ public class AppointmentService {
 		if (appointment1 != null) {
 			appointment1.setServiceType(appointment.getServiceType());
 			appointment1.setGroomer(appointment.getGroomer());
-			appointment1.setPetName(appointment.getPetName());
+			// appointment1.setPetName(appointment.getPetName());
 			appointment1.setStartTime(appointment.getStartTime());
 			appointment1.setTotalprice(appointment.getTotalprice());
 			// TODO : New one or modified one?
@@ -161,6 +185,7 @@ public class AppointmentService {
 		}
 		return Result.error("-1", "No Matching Appointment Found.");
 	}
+
 
 	// TODO : Not necessary for now
 	// // ZYH PBI NO.ii : Customer can filter appointment by time

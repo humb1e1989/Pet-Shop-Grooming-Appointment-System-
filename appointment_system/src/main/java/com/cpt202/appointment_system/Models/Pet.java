@@ -34,5 +34,8 @@ public class Pet {
     @Column(name = "image_url", nullable = true)
     private String imageURL;
 
+    public Pet(Integer pid) {
+        this.pid = pid;
+    }
     
 }
