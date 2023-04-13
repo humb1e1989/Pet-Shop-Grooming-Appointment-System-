@@ -57,21 +57,28 @@ public class AppointmentService {
 	}
 
 	// YYY
-	// public Result<?> getAppointmentList_C(@RequestParam User user) {
-	// 	// return appointmentRepo.findByUser(user);
-	// 	// return appointmentRepo.findByUsernameIs(user.getUsername());
-
-	// 	List<Appointment> appointmentList = appointmentRepo.findByUidIs(user.getUid());
-	// 	if (!appointmentList.isEmpty()) {
-	// 		return Result.success(appointmentList, "Find Matching Customer!");
-	// 	}
-
-	// 	return Result.error("-1", "No Matching Customers Found.");
-	// }
+	public Result<?> getAppointmentDetail_M(@RequestParam Appointment appointment) {
+		Appointment appointment1 = appointmentRepo.findByAid(appointment.getAid());
+		if (appointment1 != null)
+			return Result.success(appointment1, "Find Matching Appointment!");
+		return Result.error("-1", "No Matching Appointment Found.");
+	}
 
 	/*
 	 * Customer Part
 	 */
+	// YYY
+	public Result<?> getAppointmentBy_Uid(@RequestParam User user) {
+		// return appointmentRepo.findByUser(user);
+		// return appointmentRepo.findByUsernameIs(user.getUsername());
+
+		List<Appointment> appointmentList = appointmentRepo.findByUidIs(user.getUid());
+		if (!appointmentList.isEmpty()) {
+			return Result.success(appointmentList, "Find Matching Customer!");
+		}
+
+		return Result.error("-1", "No Matching Customers Found.");
+	}
 
 	// YYY (modified by ZYH)
 	public Result<?> getAppointmentDetail_C(@RequestParam User user) {
@@ -101,28 +108,24 @@ public class AppointmentService {
 		return Result.error("-1", "No Matching Appointment Found.");
 	}
 
+	// Bowen li's modification
+	// Customer can make appointment when fill in all feilds
+	public Result<?> makeAppointment_C(Appointment appointment) {
 
-	//Bowen li's modification
-	// Customer can make appointment when fill in all feilds 
-    public Result<?>makeAppointment_C(Appointment appointment) {
-        
-        
-
-		if(appointment .getServiceType()=="washing"){
-		  appointment.setTotalprice(50*(1+0.1*appointment.getGroomer().getRank()));
-		}
-  
-		if(appointment.getServiceType()=="haircut"){
-		  appointment.setTotalprice(60*(1+0.1*appointment.getGroomer().getRank()));
-		}
-		if(appointment.getServiceType()=="drying"){
-		  appointment.setTotalprice(40*(1+0.1*appointment.getGroomer().getRank()));
+		if (appointment.getServiceType() == "washing") {
+			appointment.setTotalprice(50 * (1 + 0.1 * appointment.getGroomer().getRank()));
 		}
 
-		
+		if (appointment.getServiceType() == "haircut") {
+			appointment.setTotalprice(60 * (1 + 0.1 * appointment.getGroomer().getRank()));
+		}
+		if (appointment.getServiceType() == "drying") {
+			appointment.setTotalprice(40 * (1 + 0.1 * appointment.getGroomer().getRank()));
+		}
+
 		appointmentRepo.save(appointment);
 		return Result.success();
-        
+
 	}
 
 }
