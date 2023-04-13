@@ -1,5 +1,8 @@
 package com.cpt202.appointment_system.Services;
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -128,12 +131,32 @@ public class AppointmentService {
 
 	}
 
-
 	// ZYH PBI NO.i : Customer can cancel appointment
 	public Result<?> cancelAppointment_C(@RequestParam int aid) {
 		Appointment appointment = appointmentRepo.findByAid(aid);
 		if (appointment != null) {
-			appointmentRepo.delete(appointment);
+			appointment.setStatus("Cancelled");
+			// SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			// TODO : curremt time form to be modified
+			Date date = new Date(System.currentTimeMillis());
+			appointment.setCancelTime(date);
+			return Result.success(appointment, "Appointment Cancelled!");
+		}
+		return Result.error("-1", "No Matching Appointment Found.");
+	}
+
+	// ZYH PBI NO.iii : Customer can modify appointment
+	// same problem as editProfile_C()
+	public Result<?> modifyAppointment_C(Appointment appointment) {
+		Appointment appointment1 = appointmentRepo.findByAid(appointment.getAid());
+		if (appointment1 != null) {
+			appointment1.setServiceType(appointment.getServiceType());
+			appointment1.setGroomer(appointment.getGroomer());
+			appointment1.setPetName(appointment.getPetName());
+			appointment1.setStartTime(appointment.getStartTime());
+			appointment1.setTotalprice(appointment.getTotalprice());
+			// TODO : New one or modified one?
+			appointmentRepo.save(appointment1);
 			return Result.success();
 		}
 		return Result.error("-1", "No Matching Appointment Found.");
@@ -142,10 +165,11 @@ public class AppointmentService {
 	// TODO : Not necessary for now
 	// // ZYH PBI NO.ii : Customer can filter appointment by time
 	// public Result<?> getAppointmentListByTime_C(@RequestParam String time) {
-	// 	List<Appointment> appointmentList = appointmentRepo.findByTimeContaining(time);
-	// 	if (!appointmentList.isEmpty()) {
-	// 		return Result.success(appointmentList, "Find Matching Appointment!");
-	// 	}
-	// 	return Result.error("-1", "No Matching Appointment Found.");
+	// List<Appointment> appointmentList =
+	// appointmentRepo.findByTimeContaining(time);
+	// if (!appointmentList.isEmpty()) {
+	// return Result.success(appointmentList, "Find Matching Appointment!");
+	// }
+	// return Result.error("-1", "No Matching Appointment Found.");
 	// }
 }

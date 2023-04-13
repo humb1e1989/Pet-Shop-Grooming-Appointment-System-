@@ -94,4 +94,10 @@ public class AppointmentController {
         return appointmentService.makeAppointment_C(appointment);
     }
 
+    // Customer can modify appointment
+    @PostMapping("/customer/modifyappointment")
+    public Result<?> modifyappointment_C(@RequestBody Appointment appointment) {
+        return appointmentService.modifyAppointment_C(appointment);
+    }
+
 }
