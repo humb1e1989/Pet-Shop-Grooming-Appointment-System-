@@ -99,5 +99,31 @@ public class UserService {
         return Result.error("-1", "No Matching Pet Found.");
     }
 
+    // ZYH PBI NO.iv Customer can view his profile
+    public Result<?> viewProfile_C(Integer uid) {
+        User user = userRepo.findByUid(uid);
+        if(user != null) return Result.success(user, "Here is your profile!");
+        return Result.error("-1", "No Matching User Found.");
+    }
+
+    // ZYH PBI NO.v Customer can edit his profile
+    // This method roughly overwrites the original object 
+    // by creating a new user object. 
+    // Optimization may be required.
+    public Result<?> editProfile_C(User user) {
+        User user1 = userRepo.findByUid(user.getUid());
+        if(user1 != null) {
+            user1.setUsername(user.getUsername());
+            user1.setPassword(user.getPassword());
+            user1.setPhoneNumber(user.getPhoneNumber());
+            user1.setEmail(user.getEmail());
+            user1.setImageURL(user.getImageURL());
+            user1.setGender(user.getGender());
+            userRepo.save(user1);
+            return Result.success(user1, "Edit Successfully!");
+        }
+        return Result.error("-1", "No Matching User Found.");
+    }
+
 
 }
