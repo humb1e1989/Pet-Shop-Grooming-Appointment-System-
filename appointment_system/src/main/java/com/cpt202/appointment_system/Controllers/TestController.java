@@ -3,7 +3,7 @@ package com.cpt202.appointment_system.Controllers;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,8 +26,9 @@ private GroomerService groomerService;
 
     // Manager Part
     @GetMapping("/manager/grommerList")  
-    public String getAllGroomers_M(Model model){
-        model.addAttribute("grommerList", groomerService.listAllGroomers());
+    public String getAllGroomers_M(Model model, Model model1){
+        model.addAttribute("groomerList", groomerService.listAllGroomers());
+        model1.addAttribute("groomer", new Groomer(0, null, null, null, null, null));
         return "allGrommers";
         
     }
@@ -43,8 +44,9 @@ private GroomerService groomerService;
     }
 
     @PostMapping("/manager/groomerList/add")
-    public Result<?> addGroomer_M(@RequestBody Groomer groomer){
-        return groomerService.addGroomer_M(groomer);
+    public String addGroomer_M(@ModelAttribute("groomer") Groomer groomer){
+        groomerService.addGroomer_M(groomer);
+        return "allGrommers";
     }
 
     @PostMapping("/manager/groomerList/edit")
