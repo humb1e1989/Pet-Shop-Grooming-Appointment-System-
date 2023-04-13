@@ -17,31 +17,22 @@ import com.cpt202.appointment_system.Models.Groomer;
 import com.cpt202.appointment_system.Services.GroomerService;
 
 @Controller
+
 public class TestController {
 //SQZ And WJT
 //Try to connect front end and back end
 @Autowired
 private GroomerService groomerService;
-
-
     // Manager Part
-    @GetMapping("/manager/grommerList")  
+    @GetMapping("/manager/groomerList")  
     public String getAllGroomers_M(Model model, Model model1){
         model.addAttribute("groomerList", groomerService.listAllGroomers());
         model1.addAttribute("groomer", new Groomer(0, null, null, null, null, null));
-        return "allGrommers";
+        return "allGroomers";
         
     }
 
-    @GetMapping("/manager/groomerList/view")
-    public Result<?> viewGroomer_M(@RequestParam Integer gid){
-        return groomerService.viewOneGroomer(gid);
-    }
-
-    @GetMapping("/manager/groomerList/search")
-    public Result<?> searchGroomerById_M(@RequestParam Integer gid){
-        return groomerService.searchGroomerByFullID_M(gid);
-    }
+ 
 
     @PostMapping("/manager/groomerList/add")
     public String addGroomer_M(@ModelAttribute("groomer") Groomer groomer){
@@ -49,22 +40,6 @@ private GroomerService groomerService;
         return "allGrommers";
     }
 
-    @PostMapping("/manager/groomerList/edit")
-    public void editGrommer_M(@RequestBody Groomer groomer){
-        groomerService.editGroomer_M(groomer);
-    }
-
-
-    // Customer part
-    // getAllGroomers_C is just for test, it'll be further modified.
-    @GetMapping("/") 
-    public Result<?> getAllGroomers_C(){
-        return groomerService.listAllGroomers();
-    }
-
-    @GetMapping("/view-groomer")
-    public Result<?> viewGroomer_C(@RequestParam Integer gid){
-        return groomerService.viewOneGroomer(gid);
-    }
+    
 
 }

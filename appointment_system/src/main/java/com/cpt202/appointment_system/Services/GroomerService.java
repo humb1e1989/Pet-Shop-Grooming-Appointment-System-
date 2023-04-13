@@ -117,15 +117,6 @@ public class GroomerService {
     }
 
 
-    // return Result.error("-2", "Phone Number Exists.");
-
-    // }
-
-    // groomerRepo.save(g);
-    // return Result.success();
-
-    // }
-
     // YYY PBI NO.4 - Get a groomer list by groomer name, rank and phone number, no matter manager or customer
     public Result<?> searchGroomerByName(@RequestParam Groomer groomer) {
 
