@@ -33,7 +33,7 @@ public class UserController {
         return userService.listAllCustomers_M();
     }
 
-    // Manager can search customer by name
+    // No.i: Manager can search customer by name
     @GetMapping("/manager/customerList/search")
     public Result<?> getCustomerByName(@RequestParam String username){
         return userService.searchCustomerByName_M(username);
@@ -45,5 +45,14 @@ public class UserController {
         return userService.viewOneCustomer_M(uid);
     }
 
- 
+    /* Customer Part
+        This is a part to fullfill all the functions of customer.
+     */
+
+     //TODO : Number
+     // ZYH PBI NO.i Customer can search a groomer by name
+    @GetMapping("/customer/groomerList/search")
+    public Result<?> getGroomerByName(@RequestParam String username){
+        return userService.searchGroomerByName_C(username);
+    }
 }
