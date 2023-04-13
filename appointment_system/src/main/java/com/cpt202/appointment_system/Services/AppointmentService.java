@@ -115,6 +115,7 @@ public class AppointmentService {
 		return Result.error("-1", "No Matching Appointment Found.");
 	}
 
+
 	// Bowen li's modification
 	// Customer can make appointment when fill in all feilds
 	public Result<?> makeAppointment_C(Appointment appointment) {
@@ -128,20 +129,20 @@ public class AppointmentService {
 
         //different servicetype have different service time
 		//the total price is depending on the the rank of groomer and the servicetype
-		if (appointment.getServiceType() == "washing") {
+		if (appointment.getServiceType().equals("washing") ) {
             calendar.add(Calendar.MINUTE, 30);
 			Date finishTime = new Date(calendar.getTimeInMillis());
 			appointment.setFinishTime(finishTime);
 			appointment.setTotalprice(50 * (1 + 0.1 * OrderedGroomer.getRank()));
 		}
 
-		if (appointment.getServiceType() == "haircut") {
+		if (appointment.getServiceType().equals("haircut")) {
 			calendar.add(Calendar.MINUTE, 40);
 			Date finishTime = new Date(calendar.getTimeInMillis());
 			appointment.setFinishTime(finishTime);
 			appointment.setTotalprice(60 * (1 + 0.1 * OrderedGroomer.getRank()));
 		}
-		if (appointment.getServiceType() == "drying") {
+		if (appointment.getServiceType().equals("drying")) {
 			calendar.add(Calendar.MINUTE, 10);
 			Date finishTime = new Date(calendar.getTimeInMillis());
 			appointment.setFinishTime(finishTime);
