@@ -65,7 +65,7 @@ public class Appointment {
     @Column(columnDefinition = "DATETIME", nullable = true)
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd HH:mm:ss")//bowen li's modification
-    private Date finishTime;
+    private Date  finishTime;
     
     @Column(columnDefinition = "DATETIME", nullable = true)
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")

@@ -38,5 +38,9 @@ public class Pet {
     public Pet(Integer pid) {
         this.pid = pid;
     }
+
+    public Pet() {
+    }
+    
     
 }
