@@ -238,8 +238,11 @@ public class AppointmentService {
 			appointment1.setServiceType(appointment.getServiceType());
 			appointment1.setGroomer(appointment.getGroomer());
 			// appointment1.setPetName(appointment.getPetName());
+			appointment1.setPet(appointment.getPet());
 			appointment1.setStartTime(appointment.getStartTime());
 			appointment1.setTotalprice(appointment.getTotalprice());
+			appointment1.setFinishTime(appointment.getFinishTime());
+			appointment1.setCreateTime(appointment.getCreateTime());
 			// TODO : New one or modified one?
 			appointmentRepo.save(appointment1);
 			return Result.success();
