@@ -226,6 +226,8 @@ public class AppointmentService {
 			// TODO : curremt time form to be modified
 			// Date date = new Date(System.currentTimeMillis());
 			// appointment.setCancelTime(date);
+			Timestamp currentTime = new Timestamp(System.currentTimeMillis());
+			appointment.setCancelTime(currentTime);
 			return Result.success(appointment, "Appointment Cancelled!");
 		}
 		return Result.error("-1", "No Matching Appointment Found.");
