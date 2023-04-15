@@ -448,7 +448,7 @@
                         <div class="team-block-two wow fadeInUp animated animated" data-wow-delay="00ms" data-wow-duration="1500ms" style="visibility: visible; animation-duration: 1500ms; animation-delay: 0ms; animation-name: fadeInUp;">
                             <div class="inner-box">
                                 <div class="image-box">
-                                    <figure class="image"><img src="/assets/images/team/team-5.png" alt=""></figure>
+                                    <figure class="image"><img th:src="${g1.getImageURL()}" alt=""></figure>
                                 </div>
                                 <div class="lower-content">
                                     <ul class="rating clearfix centred" style="color: #ffa800">
@@ -458,7 +458,7 @@
                                             <i class="fas fa-star"></i>
                                             <i class="fas fa-star"></i>=====</li>
                                     </ul>
-                                    <h3><a href="Home.html"><p th:text="${g1.getName()}"></p></a></h3>
+                                    <h3><a th:href="@{/home/groomers}"><p th:text="${g1.getName()}"></p></a></h3>
                                     <div class="designation">
                                         <span class="bar"></span>
                                         <p th:text="${g1.getDescription()}"></p>
@@ -472,7 +472,7 @@
                         <div class="team-block-two wow fadeInUp animated animated" data-wow-delay="200ms" data-wow-duration="1500ms" style="visibility: visible; animation-duration: 1500ms; animation-delay: 200ms; animation-name: fadeInUp;">
                             <div class="inner-box">
                                 <div class="image-box">
-                                    <figure class="image"><img src="/assets/images/team/team-6.png" alt=""></figure>
+                                    <figure class="image"><img th:src="${g2.getImageURL()}" alt=""></figure>
                                 </div>
                                 <div class="lower-content">
                                     <ul class="rating clearfix centred" style="color: #ffa800">
@@ -482,7 +482,7 @@
                                             <i class="fas fa-star"></i>
                                             <i class="fas fa-star"></i>=====</li>
                                     </ul>
-                                    <h3><a href="Home.html"><p th:text="${g2.getName()}"></p></a></h3>
+                                    <h3><a th:href="@{/home/groomers}"><p th:text="${g2.getName()}"></p></a></h3>
                                     <div class="designation">
                                         <span class="bar"></span>
                                         <p th:text="${g2.getDescription()}"></p>
@@ -496,7 +496,7 @@
                         <div class="team-block-two wow fadeInUp animated animated" data-wow-delay="400ms" data-wow-duration="1500ms" style="visibility: visible; animation-duration: 1500ms; animation-delay: 400ms; animation-name: fadeInUp;">
                             <div class="inner-box">
                                 <div class="image-box">
-                                    <figure class="image"><img src="/assets/images/team/team-7.png" alt=""></figure>
+                                    <figure class="image"><img th:src="${g3.getImageURL()}" alt=""></figure>
                                 </div>
                                 <div class="lower-content">
                                     <ul class="rating clearfix centred" style="color: #ffa800">
@@ -506,7 +506,7 @@
                                             <i class="fas fa-star"></i>
                                             <i class="fas fa-star"></i>=====</li>
                                     </ul>
-                                    <h3><a href="Home.html"><p th:text="${g3.getName()}"></p></a></h3>
+                                    <h3><a th:href="@{/home/groomers}"><p th:text="${g3.getName()}"></p></a></h3>
                                     <div class="designation">
                                         <span class="bar"></span>
                                         <p th:text="${g3.getDescription()}"></p>
@@ -520,7 +520,8 @@
                         <div class="team-block-two wow fadeInUp animated animated" data-wow-delay="600ms" data-wow-duration="1500ms" style="visibility: visible; animation-duration: 1500ms; animation-delay: 600ms; animation-name: fadeInUp;">
                             <div class="inner-box">
                                 <div class="image-box">
-                                    <figure class="image"><img src="/assets/images/team/team-8.png" alt=""></figure>
+                                    <!-- src="/assets/images/team/team-8.png" -->
+                                    <figure class="image"><img th:src="${g4.getImageURL()}" alt=""></figure>
                                 </div>
                                 <div class="lower-content">
                                     <ul class="rating clearfix centred" style="color: #ffa800">
@@ -530,7 +531,7 @@
                                             <i class="fas fa-star"></i>
                                             <i class="fas fa-star"></i>=====</li>
                                     </ul>
-                                    <h3><a href="Home.html"><p th:text="${g4.getName()}"></p></a></h3>
+                                    <h3><a th:href="@{/home/groomers}"><p th:text="${g4.getName()}"></p></a></h3>
                                     <div class="designation">
                                         <span class="bar"></span>
                                         <p th:text="${g4.getDescription()}"></p>

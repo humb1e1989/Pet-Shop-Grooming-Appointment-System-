@@ -66,11 +66,9 @@ public class GroomerController {
     }
 
     @GetMapping("/groomers") 
-    public String getAllGroomers(Model model){
-        model.addAttribute("groomer1", "james");
+    public String getAllGroomers(){
         return "Groomers";
     }
-
 
 
     // @GetMapping("/view-groomer")
