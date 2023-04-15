@@ -1,5 +1,8 @@
 package com.cpt202.appointment_system.Models;
 import java.sql.Date;
+import java.sql.Time;
+import java.sql.Timestamp;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,15 +22,15 @@ public class Appointment {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer aid;
 
-    @Column(columnDefinition = "DATETIME DEFAULT CURRENT_TIMESTAMP", nullable = false)
+    @Column(columnDefinition = "Timestamp DEFAULT CURRENT_TIMESTAMP", nullable = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd HH:mm:ss")//bowen li's modification
-    private Date createTime;
+    private Timestamp createTime;
 
-    @Column(columnDefinition = "DATETIME", nullable = false)
+    @Column(columnDefinition = "Timestamp", nullable = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd HH:mm:ss")//bowen li's modification
-    private Date startTime;
+    private Timestamp startTime;
 
     /* @Column(columnDefinition = "tinyint", nullable = false)
         ZYH's modification: change the type of status from tinyint to varchar(50)
@@ -62,15 +65,15 @@ public class Appointment {
     @JoinColumn(name = "pid", referencedColumnName = "pid", nullable = false)
     private Pet pet;
 
-    @Column(columnDefinition = "DATETIME", nullable = true)
+    @Column(columnDefinition = "Timestamp", nullable = true)
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd HH:mm:ss")//bowen li's modification
-    private Date  finishTime;
+    private Timestamp finishTime;
     
-    @Column(columnDefinition = "DATETIME", nullable = true)
+    @Column(columnDefinition = "Timestamp", nullable = true)
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd HH:mm:ss")//bowen li's modification
-    private Date cancelTime;
+    private Timestamp cancelTime;
 
     //bowen li's modification
     @Column(columnDefinition = "Double", nullable = true)
@@ -80,7 +83,7 @@ public class Appointment {
         
     }
 
-    public Appointment(Date startTime, String serviceType, Groomer groomer, User user, Pet pet) {
+    public Appointment(Timestamp startTime, String serviceType, Groomer groomer, User user, Pet pet) {
         this.startTime = startTime;
         this.serviceType = serviceType;
         this.groomer = groomer;
