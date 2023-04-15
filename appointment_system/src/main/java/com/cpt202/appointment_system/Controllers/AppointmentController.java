@@ -48,9 +48,14 @@ public class AppointmentController {
     }
 
     // YYY PBI NO.1 - Manager can view all of appointments
+    // @GetMapping("/manager/appointmentList")
+    // public Result<?> getAllAppointment_M() {
+    //     return appointmentService.getAppointmentList_M();
+    // }
     @GetMapping("/manager/appointmentList")
-    public Result<?> getAllAppointment_M() {
-        return appointmentService.getAppointmentList_M();
+    public String getAllAppointment_M(Model model) {
+        model.addAttribute("appointment", appointmentService.getAppointmentList_M());
+        return "allGroomers";
     }
 
     // YYY PBI NO.2 - Manager view the appointment detail
