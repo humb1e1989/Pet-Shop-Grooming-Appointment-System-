@@ -83,7 +83,7 @@
                 border-collapse: separate;
                  
             } */
-            .box .cat:before {
+            /* .box .cat:before {
                 width: 400px;
                 height: 400px;
                 border-radius: 200px;
@@ -92,7 +92,17 @@
                 right: 30px;
                 top: -200px;
                 z-index: 0;
-            }
+            } */
+
+			.box {
+
+				padding : 20px;
+				margin : 20px;
+				height : 40px;
+				background-color:  #fcffab;
+				border-radius: 20px;
+				align-content: center;
+			}
             #org1{
                 background-color: #ffd24d;
                 border-radius: 20px;
@@ -339,12 +349,31 @@
             
             </table>
 		</div>
-        <div class="box">
-            <input type="button" onclick="showPerson1();" value="add" /><br>
-    
-            <div id="org1"><button type="reset">click</button></div>
-    
-        </div>
 
-	</body>
+		<!-- <div id="org1">
+			<table>
+				<thead>
+					<tr> 
+						<th>Num</th><th>Name</th><th>Size</th><th>Type</th><th colspan='1'>Operatioin</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr >
+						<div class="box" th:each="groomer: ${groomerList}" >
+							<td th:text="${groomer.gid}"></td><td th:text="${groomer.name}"></td><td th:text="${groomer.gender}"></td><td th:text="${groomer.rank}"></td>
+						</div>
+					</tr>
+					<!-- <input type="button" onclick="showPerson1();" value="add" /><br> -->
+				</body>
+			</table>
+		</div> -->
+
+		<div id="org1"  >
+			<div class="box" th:each="groomer: ${groomerList}" >
+				<td th:text="${groomer.gid}"></td><td th:text="${groomer.name}"></td><td th:text="${groomer.gender}"></td><td th:text="${groomer.rank}"></td>
+				<!-- <span th:text="${groomer.gid}"></span><span th:text="${groomer.name}"></span><span th:text="${groomer.gender}"></span><span th:text="${groomer.rank}"></span> -->
+			</div>
+		</div>
+
+
 </html>
