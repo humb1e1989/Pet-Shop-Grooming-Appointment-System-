@@ -20,7 +20,8 @@ public class Pet {
 
     @Column(columnDefinition = "varchar(10)", nullable = false)
     private String size;
-
+    
+    //pet size including "small","medium","large"
     @Column(columnDefinition = "varchar(50)", nullable = false)
     private String type;
 
@@ -37,5 +38,9 @@ public class Pet {
     public Pet(Integer pid) {
         this.pid = pid;
     }
+
+    public Pet() {
+    }
+    
     
 }
