@@ -10,7 +10,7 @@ public class mainController {
     @GetMapping("/")
     public String home(Model model) {
         model.addAttribute("username", "Tomas");
-        return "home";// because it is a controller, the springboot will pull a file from the
+        return "Home";// because it is a controller, the springboot will pull a file from the
                       // resources
     }
 }
