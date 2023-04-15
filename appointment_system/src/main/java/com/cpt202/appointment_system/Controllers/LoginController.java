@@ -10,6 +10,7 @@ import com.cpt202.appointment_system.Services.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
@@ -17,7 +18,7 @@ import javax.websocket.Session;
 
 import java.util.Optional;
 
-@RestController
+@Controller
 @RequestMapping("/appointment-system")
 public class LoginController {
 
@@ -25,14 +26,14 @@ public class LoginController {
     private LoginService loginService;
     
     
-    @PostMapping("/register")
+    @GetMapping("/register")
     public ResponseEntity register(User User){
         return loginService.registerUser(user);
     }
 
     @GetMapping("/login")  
-    public ResponseEntity login(User user, HttpSession session ){
-        return loginService.loginUser(user,session);
+     public ResponseEntity login(User user, HttpSession session ){
+         return loginService.loginUser(user,session);
     }
 
     @GetMapping("/logout")  

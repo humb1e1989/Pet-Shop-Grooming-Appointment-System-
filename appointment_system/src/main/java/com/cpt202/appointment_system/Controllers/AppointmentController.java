@@ -43,16 +43,16 @@ public class AppointmentController {
         return appointmentService.getAppointmentBy_GroomerName(groomerName);
     }
 
-    // YYY - Manager can view all of appointments
+    // YYY PBI NO.1 - Manager can view all of appointments
     @GetMapping("/manager/appointmentList")
     public Result<?> getAllAppointment_M() {
         return appointmentService.getAppointmentList_M();
     }
 
-    // YYY - Manager view their appointments detail
+    // YYY PBI NO.2 - Manager view the appointment detail
     @GetMapping("/manager/appointmentList/view")
-    public Result<?> viewAppointment_M(@RequestParam User user) {
-        return appointmentService.getAppointmentDetail_M(user);
+    public Result<?> viewAppointment_M(@RequestParam Appointment appointment) {
+        return appointmentService.getAppointmentDetail_M(appointment);
     }
 
     /*
@@ -60,16 +60,41 @@ public class AppointmentController {
      * This is a part to fullfill all the functions of customer.
      */
 
-    // YYY - Customer can view all of history appointments (only his appointment)
+    //YYY PBI NO.3 - Customer can view all of history appointments (only hisappointment)
     @GetMapping("/customer/appointmentList")
     public Result<?> getUserAppointment_C(@RequestParam User user) {
-        return appointmentService.getAppointmentList_C(user);
+        return appointmentService.getAppointmentBy_Uid(user);
     }
 
-    // Customer can view appointments detail (only their own appointment detail)
-    @GetMapping("/customer/appointmentList/view")
-    public Result<?> viewAppointment_C(@RequestParam User user) {
-        return appointmentService.getAppointmentDetail_C(user);
+    // TODO : Number the PBI
+    // ZYH PBI NO.i Customer can view appointments detail (only their own
+    // appointment detail)
+    // @GetMapping("/customer/appointmentList/view")
+    // public Result<?> viewAppointment_C(@RequestParam User user) {
+    //     return appointmentService.getAppointmentDetail_C(user);
+    // }
+
+    // ZYH PBI NO.i Customer can search appointment by user name
+    @GetMapping("/customer/appointmentList/search")
+    public Result<?> getAppointmentByName_C(@RequestParam String username) {
+        return appointmentService.getAppointmentListByUserName_C(username);
     }
 
+    // Customer can make appointment
+    @PostMapping("/customer/makeappointment")
+    public Result<?> makeappointment_C(@RequestBody Appointment appointment) {
+        return appointmentService.makeAppointment_C(appointment);
+    }
+
+    // Customer can cancel appointment
+    @PostMapping("/customer/cancelAppointment")
+    public Result<?> cancelAppointment_C(@RequestBody int aid) {
+        return appointmentService.cancelAppointment_C(aid);
+    }
+
+    // Customer can modify appointment
+    @PostMapping("/customer/editAppointment")
+    public Result<?> editAppointment_C(@RequestBody Appointment appointment) {
+        return appointmentService.modifyAppointment_C(appointment);
+    }
 }

@@ -16,11 +16,12 @@ public class Pet {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int pid;
+    private Integer pid;
 
     @Column(columnDefinition = "varchar(10)", nullable = false)
     private String size;
-
+    
+    //pet size including "small","medium","large"
     @Column(columnDefinition = "varchar(50)", nullable = false)
     private String type;
 
@@ -34,5 +35,12 @@ public class Pet {
     @Column(name = "image_url", nullable = true)
     private String imageURL;
 
+    public Pet(Integer pid) {
+        this.pid = pid;
+    }
+
+    public Pet() {
+    }
+    
     
 }

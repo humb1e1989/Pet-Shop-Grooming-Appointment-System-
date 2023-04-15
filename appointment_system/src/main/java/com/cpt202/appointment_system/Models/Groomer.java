@@ -6,48 +6,56 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import com.mysql.cj.protocol.a.NativeConstants.IntegerDataType;
+
 import lombok.Data;
 
 
 @Data
 @Entity
 public class Groomer {
-
+    
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(columnDefinition = "int(7)")
-    private int gid;
-
+    private Integer gid;
+    
+    // need
     @Column(columnDefinition = "varchar(50)", nullable = false)
     private String name;
 
     @Column(columnDefinition = "varchar(20)", nullable = false)
     private String gender;
 
-    @Column(name = "image_url", nullable = false)
+    // need
+    @Column(name = "image_url", nullable = true)
     private String imageURL;
 
     // name it "ranking" in MySQL to avoid possible error 
     // since rank() is a buil-in function in MySQL 
+    // need
     @Column(name = "ranking", columnDefinition = "tinyint", nullable = false)
-    private byte rank;
+    private Integer rank;
 
-    @Column(columnDefinition = "varchar(11)", nullable = false)
+    @Column(columnDefinition = "varchar(11)", nullable = true)
     private String phoneNumber;
 
-    
-    // I think "description" is a reasonable attribute but not a basic one.
-    // Besides, I am not familiar with storing large text in MySQL for a moment. 
-
-    // @Column(columnDefinition = " ", nullable = false)
-    // private String description;
+    // need
+    @Column(nullable = true)
+    private String description;
     
 
     public Groomer() {
     }
 
+
+    public Groomer(int gid) {
+        this.gid=gid;
+    }
+
+
     
-    public Groomer(int gid, String name, String gender, String imageURL, byte rank, String phoneNumber) {
+    public Groomer(int gid, String name, String gender, String imageURL, Integer rank, String phoneNumber) {
         this.gid = gid;
         this.name = name;
         this.gender = gender;

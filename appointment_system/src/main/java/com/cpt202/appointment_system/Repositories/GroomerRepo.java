@@ -7,10 +7,15 @@ import com.cpt202.appointment_system.Models.Groomer;
 
 public interface GroomerRepo extends JpaRepository<Groomer, Integer>{
 
-    public Groomer findByGid(int gid);
+    public Groomer findByGid(Integer gid);
     
+    // groomer can be searched by name
     public List<Groomer> findByNameContaining(String name);
 
     public Groomer findByPhoneNumber(String phoneNumber);
+
+    public List<Groomer> findByNameIs(String name);
+    public List<Groomer> findByRankIs(Integer rank);
+    public List<Groomer> findByPhoneNumberIs(String phoneNumber);
 
 }
