@@ -23,9 +23,10 @@ public class LoginController {
 
     @Autowired
     private LoginService loginService;
-
+    
+    
     @PostMapping("/register")
-    public ResponseEntity register(User user){
+    public ResponseEntity register(User User){
         return loginService.registerUser(user);
     }
 
@@ -38,7 +39,4 @@ public class LoginController {
     public ResponseEntity logout(User user, HttpSession session){
         return loginService.logoutUser(session);
     }
-
-
-
 }
