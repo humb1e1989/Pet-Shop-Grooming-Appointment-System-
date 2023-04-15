@@ -1,5 +1,6 @@
 package com.cpt202.appointment_system.Services;
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
@@ -121,10 +122,10 @@ public class AppointmentService {
 	// Customer can make appointment when fill in all feilds
 	public Result<?> makeAppointment_C(Appointment appointment) {
 		Calendar calendar = Calendar.getInstance();
-		Date currentdate = new Date(System.currentTimeMillis());
-		appointment.setCreateTime(currentdate);
+		Timestamp currentTime = new Timestamp(System.currentTimeMillis());
+		appointment.setCreateTime(currentTime);
 		appointment.setStatus("pending");
-		Date temp =new Date(appointment.getStartTime().getTime());
+		Timestamp temp =new Timestamp(appointment.getStartTime().getTime());
         calendar.setTime(temp);
         Groomer OrderedGroomer=groomerRepo.findByGid(appointment.getGroomer().getGid());
         Pet pet=petRepo.findByPid(appointment.getPet().getPid());
@@ -147,7 +148,7 @@ public class AppointmentService {
 		//the total price is depending on the rank of groomer, servicetype and pet_size
 		if (appointment.getServiceType().equals("washing") ) {
             calendar.add(Calendar.MINUTE, 30);
-			Date finishTime = new Date(calendar.getTimeInMillis());
+			Timestamp finishTime = new Timestamp(calendar.getTimeInMillis());
 			appointment.setFinishTime(finishTime);
             if(pet.getSize().equals("small")){
 				appointment.setTotalprice(50 * (1 + 0.1 * OrderedGroomer.getRank())*0.5);
@@ -163,7 +164,7 @@ public class AppointmentService {
 
 		if (appointment.getServiceType().equals("haircut")) {
 			calendar.add(Calendar.MINUTE, 40);
-			Date finishTime = new Date(calendar.getTimeInMillis());
+			Timestamp finishTime = new Timestamp(calendar.getTimeInMillis());
 			appointment.setFinishTime(finishTime);
 			if(pet.getSize().equals("small")){
 				appointment.setTotalprice(60 * (1 + 0.1 * OrderedGroomer.getRank())*0.5);
@@ -178,7 +179,7 @@ public class AppointmentService {
 
 		if (appointment.getServiceType().equals("drying")) {
 			calendar.add(Calendar.MINUTE, 10);
-			Date finishTime = new Date(calendar.getTimeInMillis());
+			Timestamp finishTime = new Timestamp(calendar.getTimeInMillis());
 			appointment.setFinishTime(finishTime);
 			if(pet.getSize().equals("small")){
 				appointment.setTotalprice(40* (1 + 0.1 * OrderedGroomer.getRank())*0.5);
@@ -206,7 +207,7 @@ public class AppointmentService {
         
 	}
 
-	public static boolean isOverlap(Date start1, Date end1, Date start2, Date end2) {
+	public static boolean isOverlap(Timestamp start1, Timestamp end1, Timestamp start2, Timestamp end2) {
         if (start1.before(end2) && start2.before(end1)) {
             return true;
         } else {
@@ -223,8 +224,10 @@ public class AppointmentService {
 			appointment.setStatus("Cancelled");
 			// SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			// TODO : curremt time form to be modified
-			Date date = new Date(System.currentTimeMillis());
-			appointment.setCancelTime(date);
+			// Date date = new Date(System.currentTimeMillis());
+			// appointment.setCancelTime(date);
+			Timestamp currentTime = new Timestamp(System.currentTimeMillis());
+			appointment.setCancelTime(currentTime);
 			return Result.success(appointment, "Appointment Cancelled!");
 		}
 		return Result.error("-1", "No Matching Appointment Found.");

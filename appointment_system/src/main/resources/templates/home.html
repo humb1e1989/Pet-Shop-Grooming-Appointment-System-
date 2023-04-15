@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
     <head>
-        <title>
-            Team
-        </title>
+        <title>Pet_Appointment_System</title>
     </head>
     <body>
-        <h1>
-            Team Home Page
-        </h1>
+        <h1> Home Page</h1>
+        <h2>Welcome!<span th:text="${username}"><span> !</h2>
+        <div><a th:href="@{/appointment-system/customer/makeappointment}">Make Appointment</a><div>
     </body>
 </html>
