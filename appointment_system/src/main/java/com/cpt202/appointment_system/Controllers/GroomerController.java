@@ -1,7 +1,10 @@
 package com.cpt202.appointment_system.Controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,7 +17,7 @@ import com.cpt202.appointment_system.Models.Groomer;
 import com.cpt202.appointment_system.Services.GroomerService;
 
 @Controller
-@RequestMapping("/appointment-system")
+@RequestMapping("/home")
 public class GroomerController {
 
     @Autowired
@@ -50,20 +53,30 @@ public class GroomerController {
 
 
     // // Customer part
-    // getAllGroomers_C is just for test, it'll be further modified.
-    // @GetMapping("/") 
-    // public Result<?> getAllGroomers_C(){
-    //     return groomerService.listAllGroomers();
-    // }
+    
+    @GetMapping() 
+    public String getFirstFourGroomers_C(Model model){
+        List<Groomer> gList = groomerService.listAllGroomers();
+        // if (gList.size() < 4) then how to deal with it ???
+        model.addAttribute("g1", gList.get(0));
+        model.addAttribute("g2", gList.get(1));
+        model.addAttribute("g3", gList.get(2));
+        model.addAttribute("g4", gList.get(3));
+        return "Home";
+    }
+
+    @GetMapping("/groomers") 
+    public String getAllGroomers(Model model){
+        model.addAttribute("groomer1", "james");
+        return "Groomers";
+    }
+
+
 
     // @GetMapping("/view-groomer")
     // public Result<?> viewGroomer_C(@RequestParam Integer gid){
     //     return groomerService.viewOneGroomer(gid);
     // }
-
-
-    
-
 
 
     
