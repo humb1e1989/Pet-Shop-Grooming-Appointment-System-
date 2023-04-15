@@ -26,16 +26,33 @@ public class TestController {
     @GetMapping("/manager/groomerList")  
     public String getAllGroomers(Model model){
         model.addAttribute("groomerList", groomerService.listAllGroomers());
-        model.addAttribute("groomer", new Groomer(2, null, null, null, null, null));
+        //model.addAttribute("groomer", new Groomer());
         return "allGroomers";
         
     }
 
+    // @GetMapping("/manager/groomerList/add")
+    // public String addGroomer(Model model){
+    //     model.addAttribute("groomer", new Groomer());
+    //     return "AddPet";
+    // }
+
     @GetMapping("/manager/groomerList/add")
-    public String addGroomer_M(@ModelAttribute("groomer") Groomer groomer){
-        //groomerService.addGroomer_M(groomer);
-        return "home";
+    public String addGroomer(Model model){
+        model.addAttribute("groomer", new Groomer());
+        return "AddPet";
     }
+        
+    
+
+    @PostMapping("/manager/groomerList/add")
+    public String addGroomer_M(@ModelAttribute("groomer") Groomer groomer){
+        //System.out.println("Sucessful");
+        groomerService.addGroomer_M(groomer);
+        return "allGroomers";
+    }
+
+
 
     
 
