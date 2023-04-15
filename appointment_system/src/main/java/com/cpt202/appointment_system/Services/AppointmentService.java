@@ -203,7 +203,7 @@ public class AppointmentService {
         
 		appointmentRepo.save(appointment);
 		return Result.success();
-        
+		
 	}
 
 	public static boolean isOverlap(Date start1, Date end1, Date start2, Date end2) {

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Make Appointment</title>
+    </head>
+    <body>
+        <h1>New Appointment</h1>
+        
+        <form th:action="@{/appointment-system/customer/makeappointment}" method="POST" th:object="${appointment}">
+            <div>
+                <label for="startTime">Start Time</label>
+                <input type="datetime-local" th:field="*{startTime}" id="startTime" name="startTime">
+
+                <label for="serviceType">Service Type</label>
+                <input type="text" th:field="*{serviceType}" id="serviceType" name="serviceType">
+                
+                <label for="groomer">Groomer ID</label>
+                <input type="text" th:field="*{groomer}" id="gid" name="gid">
+
+                <label for="user">User  ID</label>
+                <input type="text" th:field="*{user}" id="user" name="user">
+
+                <label for="pet">Service Type</label>
+                <input type="text" th:field="*{pet}" id="pet" name="pet">
+
+            <div> 
+            <div>
+                <button type="submit">confirm</button>
+            <div>
+        </form>
+    </body>
+</html>

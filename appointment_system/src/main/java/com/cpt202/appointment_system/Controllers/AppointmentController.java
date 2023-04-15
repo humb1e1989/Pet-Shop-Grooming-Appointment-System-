@@ -3,7 +3,10 @@ package com.cpt202.appointment_system.Controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,7 +18,8 @@ import com.cpt202.appointment_system.Models.Appointment;
 import com.cpt202.appointment_system.Models.User;
 import com.cpt202.appointment_system.Services.AppointmentService;
 
-@RestController
+// @RestController
+@Controller
 @RequestMapping("/appointment-system")
 public class AppointmentController {
 
@@ -79,11 +83,19 @@ public class AppointmentController {
     public Result<?> getAppointmentByName_C(@RequestParam String username) {
         return appointmentService.getAppointmentListByUserName_C(username);
     }
-
+    
+    //bowenli's pbi
     // Customer can make appointment
+    @GetMapping("/customer/makeappointment")
+    public String makeappointment(Model model) {// capable of convert a string into object
+        model.addAttribute("appointment", new Appointment());
+        return "makeappointment";
+    }
+
     @PostMapping("/customer/makeappointment")
-    public Result<?> makeappointment_C(@RequestBody Appointment appointment) {
-        return appointmentService.makeAppointment_C(appointment);
+    public String makeappointment_C(@ModelAttribute("appointment") Appointment appointment) {
+         appointmentService.makeAppointment_C(appointment);
+         return "home";
     }
 
     // Customer can cancel appointment
