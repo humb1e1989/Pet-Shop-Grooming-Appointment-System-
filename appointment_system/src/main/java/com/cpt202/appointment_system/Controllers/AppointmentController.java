@@ -92,7 +92,7 @@ public class AppointmentController {
     //bowenli's pbi
     // Customer can make appointment
     @GetMapping("/customer/makeappointment")
-    public String makeappointment(Model model) {
+    public String makeappointment(Model model) {// capable of convert a string into object
         model.addAttribute("appointment", new Appointment());
         return "makeappointment";
     }

@@ -47,9 +47,8 @@ public class TestController {
 
     @PostMapping("/manager/groomerList/add")
     public String addGroomer_M(@ModelAttribute("groomer") Groomer groomer){
-        //System.out.println("Sucessful");
-        groomerService.addGroomer_M(groomer);
-        return "allGroomers";
+        //groomerService.addGroomer_M(groomer);
+        return "home";
     }
 
 
