@@ -56,14 +56,29 @@ public class GroomerController {
     
     @GetMapping() 
     public String getFirstFourGroomers_C(Model model){
+
         List<Groomer> gList = groomerService.listAllGroomers();
-        // if (gList.size() < 4) then how to deal with it ???
+        // this logic is not good enough but easy to implement
+        if (gList.size() < 4) {
+            Groomer groomer = new Groomer();
+            groomer.setImageURL("/assets/images/no-user.png");
+            groomer.setName("No Groomer");
+            groomer.setDescription("-------------------------");
+            model.addAttribute("g1", groomer);
+            model.addAttribute("g2", groomer);
+            model.addAttribute("g3", groomer);
+            model.addAttribute("g4", groomer);
+            return "Home";
+        }
+
         model.addAttribute("g1", gList.get(0));
         model.addAttribute("g2", gList.get(1));
         model.addAttribute("g3", gList.get(2));
         model.addAttribute("g4", gList.get(3));
         return "Home";
+
     }
+
 
     @GetMapping("/groomers") 
     public String getAllGroomers(){

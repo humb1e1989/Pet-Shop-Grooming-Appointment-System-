@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>IPet - Petcare HTML 5 Website Template</title>
+    <title>IPet</title>
 
     <!-- Stylesheets -->
     <link href="/assets/css/font-awesome-all.css" rel="stylesheet">
@@ -35,7 +35,7 @@
             <div class="auto-container-fluid">
                 <div class="outer-box clearfix bg-white">
                     <div class="logo-box pull-left">
-                        <figure class="logo"><a href="Home.html"><img src="/assets/images/logo-1.png" alt=""></a></figure>
+                        <figure class="logo"><a th:href="@{/home}"><img src="/assets/images/logo-1.png" alt=""></a></figure>
                     </div>
                     <div class="menu-area pull-right clearfix">
                         <!--Mobile Navigation Toggler-->
@@ -48,11 +48,11 @@
                             <div class="collapse navbar-collapse show clearfix" id="navbarSupportedContent">
                                 <ul class="navigation clearfix">
 
-                                    <li><a href="Home.html">Home</a></li>
+                                    <li><a th:href="@{/home}">Home</a></li>
 
                                     <li><a href="Pricing.html">Pricing Plans</a></li>
 
-                                    <li><a href="Groomers.html">Groomers</a></li>
+                                    <li><a th:href="@{/home/groomers}">Groomers</a></li>
 
                                     <li class="dropdown"><a href="AllService.html">Services</a>
                                         <ul>
@@ -88,7 +88,7 @@
             <div class="auto-container">
                 <div class="outer-box clearfix">
                     <figure class="sticky-logo pull-left">
-                        <a href="Home.html"><img src="/assets/images/logo-3.png" alt=""></a>
+                        <a th:href="@{/home}"><img src="/assets/images/logo-3.png" alt=""></a>
                     </figure>
                     <div class="menu-area pull-right clearfix">
                         <nav class="main-menu clearfix">
@@ -107,7 +107,7 @@
         <div class="close-btn"><i class="fas fa-times"></i></div>
 
         <nav class="menu-box">
-            <div class="nav-logo"><a href="Home.html"><img src="/assets/images/logo-2.png" alt="" title=""></a></div>
+            <div class="nav-logo"><a th:href="@{/home}"><img src="/assets/images/logo-2.png" alt="" title=""></a></div>
             <div class="menu-outer"><!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header--></div>
             <div class="contact-info">
                 <h4>Contact Info</h4>
@@ -458,7 +458,7 @@
                                             <i class="fas fa-star"></i>
                                             <i class="fas fa-star"></i>=====</li>
                                     </ul>
-                                    <h3><a th:href="@{/home/groomers}"><p th:text="${g1.getName()}"></p></a></h3>
+                                    <h3><a th:href="@{/home/groomers}"><p><b th:text="${g1.getName()}"></b></p></a></h3>
                                     <div class="designation">
                                         <span class="bar"></span>
                                         <p th:text="${g1.getDescription()}"></p>
@@ -482,7 +482,7 @@
                                             <i class="fas fa-star"></i>
                                             <i class="fas fa-star"></i>=====</li>
                                     </ul>
-                                    <h3><a th:href="@{/home/groomers}"><p th:text="${g2.getName()}"></p></a></h3>
+                                    <h3><a th:href="@{/home/groomers}"><p><b th:text="${g2.getName()}"></b></p></a></h3>
                                     <div class="designation">
                                         <span class="bar"></span>
                                         <p th:text="${g2.getDescription()}"></p>
@@ -506,7 +506,7 @@
                                             <i class="fas fa-star"></i>
                                             <i class="fas fa-star"></i>=====</li>
                                     </ul>
-                                    <h3><a th:href="@{/home/groomers}"><p th:text="${g3.getName()}"></p></a></h3>
+                                    <h3><a th:href="@{/home/groomers}"><p><b th:text="${g3.getName()}"></b></p></a></h3>
                                     <div class="designation">
                                         <span class="bar"></span>
                                         <p th:text="${g3.getDescription()}"></p>
@@ -531,7 +531,7 @@
                                             <i class="fas fa-star"></i>
                                             <i class="fas fa-star"></i>=====</li>
                                     </ul>
-                                    <h3><a th:href="@{/home/groomers}"><p th:text="${g4.getName()}"></p></a></h3>
+                                    <h3><a th:href="@{/home/groomers}"><p><b th:text="${g4.getName()}"></b></p></a></h3>
                                     <div class="designation">
                                         <span class="bar"></span>
                                         <p th:text="${g4.getDescription()}"></p>
@@ -713,7 +713,7 @@
                         <div class="col-lg-4 col-md-6 col-sm-12 footer-column">
                             <div class="footer-widget logo-widget">
 
-                                <figure class="footer-logo footer-logo-center"><a href="Home.html"><img src="/assets/images/logo-2.png" alt=""></a></figure>
+                                <figure class="footer-logo footer-logo-center"><a href="/home"><img src="/assets/images/logo-2.png" alt=""></a></figure>
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-6 col-sm-12 footer-column">
@@ -723,8 +723,8 @@
                                 </div>
                                 <div class="widget-content">
                                     <ul class="links-list clearfix">
-                                        <li><a href="Home.html">Home</a></li>
-                                        <li><a href="Groomers.html">Groomers</a></li>
+                                        <li><a th:href="@{/home}">Home</a></li>
+                                        <li><a th:href="@{/home/groomers}"></a>Groomers</a></li>
                                         <li><a href="Pricing.html">Pricing plan</a></li>
                                         <li><a href="AllService.html">Our Services</a></li>
 
