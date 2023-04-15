@@ -102,6 +102,7 @@ public class AppointmentController {
          appointmentService.makeAppointment_C(appointment);
          return "home";
     }
+    
 
     // Customer can cancel appointment
     @PostMapping("/customer/cancelAppointment")
@@ -114,4 +115,6 @@ public class AppointmentController {
     public Result<?> editAppointment_C(@RequestBody Appointment appointment) {
         return appointmentService.modifyAppointment_C(appointment);
     }
+
+    
 }
