@@ -1,0 +1,110 @@
+@font-face {
+    font-family: "flaticon";
+    src: url("../fonts/flaticona05f.ttf?763b9a819514f020847bd1e8b2775ef8") format("truetype"),
+url("../fonts/flaticona05f.woff?763b9a819514f020847bd1e8b2775ef8") format("woff"),
+url("../fonts/flaticona05f.woff2?763b9a819514f020847bd1e8b2775ef8") format("woff2"),
+url("../fonts/flaticona05f.eot?763b9a819514f020847bd1e8b2775ef8#iefix") format("embedded-opentype"),
+url("../fonts/flaticona05f.svg?763b9a819514f020847bd1e8b2775ef8#flaticon") format("svg");
+}
+
+i[class^="flaticon-"]:before, i[class*=" flaticon-"]:before {
+    font-family: flaticon !important;
+    font-style: normal;
+    font-weight: normal !important;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.flaticon-age-group:before {
+    content: "\f101";
+}
+.flaticon-artificial-intelligence-1:before {
+    content: "\f102";
+}
+.flaticon-artificial-intelligence:before {
+    content: "\f103";
+}
+.flaticon-cctv-camera:before {
+    content: "\f104";
+}
+.flaticon-circuit:before {
+    content: "\f105";
+}
+.flaticon-cloud-network:before {
+    content: "\f106";
+}
+.flaticon-computer-science:before {
+    content: "\f107";
+}
+.flaticon-computer:before {
+    content: "\f108";
+}
+.flaticon-cracked-skin:before {
+    content: "\f109";
+}
+.flaticon-customer-service:before {
+    content: "\f10a";
+}
+.flaticon-data-science:before {
+    content: "\f10b";
+}
+.flaticon-font:before {
+    content: "\f10c";
+}
+.flaticon-gamepad:before {
+    content: "\f10d";
+}
+.flaticon-gender-equality:before {
+    content: "\f10e";
+}
+.flaticon-map:before {
+    content: "\f10f";
+}
+.flaticon-medicines:before {
+    content: "\f110";
+}
+.flaticon-message:before {
+    content: "\f111";
+}
+.flaticon-microphone:before {
+    content: "\f112";
+}
+.flaticon-nanotech:before {
+    content: "\f113";
+}
+.flaticon-phone:before {
+    content: "\f114";
+}
+.flaticon-product:before {
+    content: "\f115";
+}
+.flaticon-productivity:before {
+    content: "\f116";
+}
+.flaticon-quotes:before {
+    content: "\f117";
+}
+.flaticon-sales:before {
+    content: "\f118";
+}
+.flaticon-science:before {
+    content: "\f119";
+}
+.flaticon-scientist:before {
+    content: "\f11a";
+}
+.flaticon-smiling-girl:before {
+    content: "\f11b";
+}
+.flaticon-speech:before {
+    content: "\f11c";
+}
+.flaticon-travel:before {
+    content: "\f11d";
+}
+.flaticon-virtual-reality:before {
+    content: "\f11e";
+}
