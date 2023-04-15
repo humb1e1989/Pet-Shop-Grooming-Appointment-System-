@@ -86,4 +86,15 @@ public class AppointmentController {
         return appointmentService.makeAppointment_C(appointment);
     }
 
+    // Customer can cancel appointment
+    @PostMapping("/customer/cancelAppointment")
+    public Result<?> cancelAppointment_C(@RequestBody int aid) {
+        return appointmentService.cancelAppointment_C(aid);
+    }
+
+    // Customer can modify appointment
+    @PostMapping("/customer/editAppointment")
+    public Result<?> editAppointment_C(@RequestBody Appointment appointment) {
+        return appointmentService.modifyAppointment_C(appointment);
+    }
 }
