@@ -16,6 +16,7 @@ import com.cpt202.appointment_system.Common.Result;
 import com.cpt202.appointment_system.Models.Groomer;
 import com.cpt202.appointment_system.Services.GroomerService;
 
+
 @Controller
 @RequestMapping("/home")
 public class GroomerController {
@@ -53,29 +54,45 @@ public class GroomerController {
 
 
     // // Customer part
-    
     @GetMapping() 
     public String getFirstFourGroomers_C(Model model){
 
         List<Groomer> gList = groomerService.listAllGroomers();
 
-        // this logic is not good enough but easy to implement
         if (gList.size() < 4) {
+
             Groomer groomer = new Groomer();
             groomer.setImageURL("/assets/images/no-user.png");
             groomer.setName("No Groomer");
             groomer.setDescription("No Description");
-            model.addAttribute("g1", groomer);
-            model.addAttribute("g2", groomer);
-            model.addAttribute("g3", groomer);
-            model.addAttribute("g4", groomer);
+            if (gList.size() == 0){
+                for (int i = 0; i < 4; ++i) {
+                    String attribName = "g" + i;
+                    model.addAttribute(attribName, groomer);
+                }
+                return "home";
+            }
+
+            int temp = 0;
+            for (int i = 0; i < gList.size(); ++i) {
+                String attribName = "g" + i;
+                model.addAttribute(attribName, gList.get(i));
+                temp = i;
+            }
+             
+            for (int i = temp + 1; i < 4; ++i) {
+                String attribName = "g" + i;
+                model.addAttribute(attribName, groomer);
+            }
+
             return "home";
         }
         
-        model.addAttribute("g1", gList.get(0));
-        model.addAttribute("g2", gList.get(1));
-        model.addAttribute("g3", gList.get(2));
-        model.addAttribute("g4", gList.get(3));
+
+        model.addAttribute("g0", gList.get(0));
+        model.addAttribute("g1", gList.get(1));
+        model.addAttribute("g2", gList.get(2));
+        model.addAttribute("g3", gList.get(3));
         return "home";
 
     }
@@ -92,5 +109,5 @@ public class GroomerController {
     //     return groomerService.viewOneGroomer(gid);
     // }
 
-    
+
 }
