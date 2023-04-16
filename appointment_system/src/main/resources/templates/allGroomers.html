@@ -29,7 +29,7 @@
 
                 overflow: hidden;
             }
-            table {
+            #table1 {
                 background-color: yellowgreen;
                 width: 1050px;
         
@@ -50,7 +50,7 @@
                 border-collapse: collapse;
             }
 
-            table td {
+            #table1 td {
                 width: auto;
                 border-left:none;
 
@@ -83,7 +83,7 @@
                 border-collapse: separate;
                  
             } */
-            .box .cat:before {
+            /* .box .cat:before {
                 width: 400px;
                 height: 400px;
                 border-radius: 200px;
@@ -92,7 +92,17 @@
                 right: 30px;
                 top: -200px;
                 z-index: 0;
-            }
+            } */
+
+			.box {
+
+				padding : 20px;
+				margin : 20px;
+				height : 40px;
+				background-color:  #fcffab;
+				border-radius: 20px;
+				align-content: center;
+			}
             #org1{
                 background-color: #ffd24d;
                 border-radius: 20px;
@@ -275,24 +285,33 @@
         <button type="button" onclick="hidePerson()">Hide Pet Record</button>
 		<button type="button" onclick="showAddPerson()">Add New Pet</button>
 
+
+		<div>
+
+			<a th:href="@{/manager/groomerList/add}">Add Pet</a>
+
+		</div>
+
 		<hr >
         		<!-- 新增人员信息 -->
-		
-	<form th:action="@{/manger/groomerList/add}" th:object="${groomer}">
+	
+	<!-- <form th:action="@{/manger/groomerList/add}" method="POST" th:object="${groomer}">
 		<div id="div2" style="display: none;"align=center>
 			<fieldset id="field2" style="width:600px;border-radius: 20px;"align=center>
 				<legend>Add New Pet</legend>
-				<input type="hidden" name="id" id="uid"/><br>
+				<label for="phoneNumber">ID</label>
 				ID：<input type="text" th:field="*{phoneNumber}" name="id" id="id" />&nbsp
+				<label for="name">Name</label>
 				Name：<input type="text" th:field="*{name}" name="name" id="name"  />&nbsp
+				<label for="gender">Gender Type</label>
 				Gender：<input type="text" th:field="*{gender}" name="gender" id="gender"/>&nbsp
-				<br><br>
+				<label for="rank">Ranks</label>
 				Rank：<input type="text"  th:field="*{rank}" name="rank" id="rank" />&nbsp
-				<!-- 籍贯：<input type="text" name="area" id="area" value="弗吉尼亚州汉普顿" /><br> -->
+				<br><br>
 				<button type="button">Submit</button>
 			</fieldset>
 		</div><br><br>
-	</form>
+	</form> -->
 
 		<!-- 更新人员信息 -->
 		<div id="div3" style="display: none;" name="div3"  align=center>
@@ -330,12 +349,31 @@
             
             </table>
 		</div>
-        <div class="box">
-            <input type="button" onclick="showPerson1();" value="add" /><br>
-    
-            <div id="org1"><button type="reset">click</button></div>
-    
-        </div>
 
-	</body>
+		<!-- <div id="org1">
+			<table>
+				<thead>
+					<tr> 
+						<th>Num</th><th>Name</th><th>Size</th><th>Type</th><th colspan='1'>Operatioin</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr >
+						<div class="box" th:each="groomer: ${groomerList}" >
+							<td th:text="${groomer.gid}"></td><td th:text="${groomer.name}"></td><td th:text="${groomer.gender}"></td><td th:text="${groomer.rank}"></td>
+						</div>
+					</tr>
+					<!-- <input type="button" onclick="showPerson1();" value="add" /><br> -->
+				</body>
+			</table>
+		</div> -->
+
+		<div id="org1"  >
+			<div class="box" th:each="groomer: ${groomerList}" >
+				<td th:text="${groomer.gid}"></td><td th:text="${groomer.name}"></td><td th:text="${groomer.gender}"></td><td th:text="${groomer.rank}"></td>
+				<!-- <span th:text="${groomer.gid}"></span><span th:text="${groomer.name}"></span><span th:text="${groomer.gender}"></span><span th:text="${groomer.rank}"></span> -->
+			</div>
+		</div>
+
+
 </html>

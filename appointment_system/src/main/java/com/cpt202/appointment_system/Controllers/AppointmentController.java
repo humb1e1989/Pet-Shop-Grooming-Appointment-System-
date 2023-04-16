@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.cpt202.appointment_system.Common.Result;
 import com.cpt202.appointment_system.Models.Appointment;
 import com.cpt202.appointment_system.Models.User;
@@ -48,9 +47,14 @@ public class AppointmentController {
     }
 
     // YYY PBI NO.1 - Manager can view all of appointments
+    // @GetMapping("/manager/appointmentList")
+    // public Result<?> getAllAppointment_M() {
+    //     return appointmentService.getAppointmentList_M();
+    // }
     @GetMapping("/manager/appointmentList")
-    public Result<?> getAllAppointment_M() {
-        return appointmentService.getAppointmentList_M();
+    public String getAllAppointment_M(Model model) {
+        model.addAttribute("appointment", appointmentService.getAppointmentList_M());
+        return "allGroomers";
     }
 
     // YYY PBI NO.2 - Manager view the appointment detail
@@ -87,7 +91,7 @@ public class AppointmentController {
     //bowenli's pbi
     // Customer can make appointment
     @GetMapping("/customer/makeappointment")
-    public String makeappointment(Model model) {
+    public String makeappointment(Model model) {// capable of convert a string into object
         model.addAttribute("appointment", new Appointment());
         return "makeappointment";
     }
@@ -97,6 +101,7 @@ public class AppointmentController {
          appointmentService.makeAppointment_C(appointment);
          return "home";
     }
+    
 
     // Customer can cancel appointment
     @PostMapping("/customer/cancelAppointment")
@@ -109,4 +114,6 @@ public class AppointmentController {
     public Result<?> editAppointment_C(@RequestBody Appointment appointment) {
         return appointmentService.modifyAppointment_C(appointment);
     }
+
+    
 }
