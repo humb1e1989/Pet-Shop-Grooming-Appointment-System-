@@ -18,17 +18,8 @@ public class GroomerService {
 
     // CYZ
     public List<Groomer> listAllGroomers() {
-
         List<Groomer> groomerList = groomerRepo.findAll();
-
-        if (!groomerList.isEmpty()) {
-            return groomerList;
-            //return Result.success(groomerList, "Successfully Return All Grommers!");
-        }
-
         return groomerList;
-        //return Result.error("-1", "No Groomers.");
-
     }
 
     // CYZ

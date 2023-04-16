@@ -88,7 +88,7 @@ public class GroomerController {
             return "home";
         }
         
-
+        
         model.addAttribute("g0", gList.get(0));
         model.addAttribute("g1", gList.get(1));
         model.addAttribute("g2", gList.get(2));
@@ -104,10 +104,10 @@ public class GroomerController {
     }
 
 
-    // @GetMapping("/view-groomer")
-    // public Result<?> viewGroomer_C(@RequestParam Integer gid){
-    //     return groomerService.viewOneGroomer(gid);
-    // }
+    @GetMapping("/view-groomer")
+    public Result<?> viewGroomer_C(@RequestParam Integer gid){
+        return groomerService.viewOneGroomer(gid);
+    }
 
 
 }
