@@ -58,24 +58,25 @@ public class GroomerController {
     public String getFirstFourGroomers_C(Model model){
 
         List<Groomer> gList = groomerService.listAllGroomers();
+
         // this logic is not good enough but easy to implement
         if (gList.size() < 4) {
             Groomer groomer = new Groomer();
             groomer.setImageURL("/assets/images/no-user.png");
             groomer.setName("No Groomer");
-            groomer.setDescription("-------------------------");
+            groomer.setDescription("No Description");
             model.addAttribute("g1", groomer);
             model.addAttribute("g2", groomer);
             model.addAttribute("g3", groomer);
             model.addAttribute("g4", groomer);
-            return "Home";
+            return "home";
         }
-
+        
         model.addAttribute("g1", gList.get(0));
         model.addAttribute("g2", gList.get(1));
         model.addAttribute("g3", gList.get(2));
         model.addAttribute("g4", gList.get(3));
-        return "Home";
+        return "home";
 
     }
 
@@ -90,7 +91,6 @@ public class GroomerController {
     // public Result<?> viewGroomer_C(@RequestParam Integer gid){
     //     return groomerService.viewOneGroomer(gid);
     // }
-
 
     
 }
