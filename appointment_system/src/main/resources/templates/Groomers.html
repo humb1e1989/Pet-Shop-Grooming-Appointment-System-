@@ -35,7 +35,7 @@
             <div class="auto-container-fluid">
                 <div class="outer-box clearfix bg-white">
                     <div class="logo-box pull-left">
-                        <figure class="logo"><a href="Home.html"><img src="/assets/images/logo-1.png" alt=""></a></figure>
+                        <figure class="logo"><a th:href="@{/home}"><img src="/assets/images/logo-1.png" alt=""></a></figure>
                     </div>
                     <div class="menu-area pull-right clearfix">
                         <!--Mobile Navigation Toggler-->
@@ -48,11 +48,11 @@
                             <div class="collapse navbar-collapse show clearfix" id="navbarSupportedContent">
                                 <ul class="navigation clearfix">
 
-                                    <li><a href="Home.html">Home</a></li>
+                                    <li><a th:href="@{/home}">Home</a></li>
 
                                     <li><a href="Pricing.html">Pricing Plans</a></li>
 
-                                    <li><a href="Groomers.html">Groomers</a></li>
+                                    <li><a th:href="@{/home/groomers}">Groomers</a></li>
 
                                     <li class="dropdown"><a href="AllService.html">Services</a>
                                         <ul>
@@ -88,7 +88,7 @@
             <div class="auto-container">
                 <div class="outer-box clearfix">
                     <figure class="sticky-logo pull-left">
-                        <a href="Home.html"><img src="/assets/images/logo-3.png" alt=""></a>
+                        <a th:href="@{/home}"><img src="/assets/images/logo-3.png" alt=""></a>
                     </figure>
                     <div class="menu-area pull-right clearfix">
                         <nav class="main-menu clearfix">
@@ -107,7 +107,7 @@
         <div class="close-btn"><i class="fas fa-times"></i></div>
 
         <nav class="menu-box">
-            <div class="nav-logo"><a href="Home.html"><img src="/assets/images/logo-2.png" alt="" title=""></a></div>
+            <div class="nav-logo"><a th:href="@{/home}"><img src="/assets/images/logo-2.png" alt="" title=""></a></div>
             <div class="menu-outer"><!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header--></div>
             <div class="contact-info">
                 <h4>Contact Info</h4>
@@ -128,7 +128,7 @@
                 <div class="content-box">
                     <h1>Meet Our Team</h1>
                     <ul class="bread-crumb clearfix">
-                        <li><a href="Home.html">Home</a></li>
+                        <li><a th:href="@{/home}">Home</a></li>
                         <li>Our Team</li>
                     </ul>
                 </div>
@@ -259,7 +259,7 @@
                         <div class="col-lg-4 col-md-6 col-sm-12 footer-column">
                             <div class="footer-widget logo-widget">
 
-                                <figure class="footer-logo footer-logo-center"><a href="Home.html"><img src="/assets/images/logo-2.png" alt=""></a></figure>
+                                <figure class="footer-logo footer-logo-center"><a th:href="@{/home}"><img src="/assets/images/logo-2.png" alt=""></a></figure>
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-6 col-sm-12 footer-column">
@@ -269,8 +269,8 @@
                                 </div>
                                 <div class="widget-content">
                                     <ul class="links-list clearfix">
-                                        <li><a href="Home.html">Home</a></li>
-                                        <li><a href="Groomers.html">Groomers</a></li>
+                                        <li><a th:href="@{/home}">Home</a></li>
+                                        <li><a th:href="@{/home/groomers}">Groomers</a></li>
                                         <li><a href="Pricing.html">Pricing plan</a></li>
                                         <li><a href="AllService.html">Our Services</a></li>
 
