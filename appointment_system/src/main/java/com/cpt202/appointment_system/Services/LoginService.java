@@ -14,6 +14,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+
+import java.sql.Timestamp;
 import java.util.Optional;
 
 @Service
@@ -22,25 +24,27 @@ public class LoginService {
     @Autowired
     private UserRepo userRepository;
 
-    @PostMapping("/register")
-    public ResponseEntity<String> registerUser(@RequestBody User user) {
+
+    public ResponseEntity<String> registerUser(User user) {
         if (userRepository.existsByUsername(user.getUsername()) || userRepository.existsByEmail(user.getEmail())) {
             return new ResponseEntity<>("Username or email already exists.", HttpStatus.BAD_REQUEST);
         } // the test if the username and the email havr already be registered before.
         else{
+            Timestamp currentTime = new Timestamp(System.currentTimeMillis());
+            user.setRegistrationTime(currentTime);
             userRepository.save(user);
         return new ResponseEntity<>("User registered successfully.", HttpStatus.OK);
         }
     }
 
-    @PostMapping("/login")
-    public ResponseEntity<String> loginUser(@RequestBody User user, HttpSession session) {
+
+    public ResponseEntity<String> loginUser(User user, HttpSession session) {
         Optional<User> dbUser = userRepository.findByUsername(user.getUsername());
         if (dbUser.isPresent()){
             if(dbUser.get().getPassword().equals(user.getPassword())){
                 dbUser.get().setFailedLoginAttempts(0);
                 userRepository.save(dbUser.get());
-                session.setAttribute("userId", dbUser.get().getId());
+                session.setAttribute("userId", dbUser.get().getUid());
                 return new ResponseEntity<>("User logged in successfully.", HttpStatus.OK);
             } // successful logging in
             else{
@@ -58,7 +62,7 @@ public class LoginService {
         
     }
 
-    @GetMapping("/logout")
+
     public ResponseEntity<String> logoutUser(HttpSession session) {
         session.invalidate();
         return new ResponseEntity<>("User logged out successfully.", HttpStatus.OK);
