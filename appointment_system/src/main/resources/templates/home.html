@@ -240,24 +240,24 @@
         </section>
         <!-- solutions-style-two end -->
 
-        <!-- project-style-two Services-->
-        <section class="project-style-two">
+         <!-- project-style-two Services-->
+         <section class="project-style-two">
             <div class="auto-container">
                 <div class="sec-title centred">
                     <h5>Services</h5>
                     <h2>Our Successful Services </h2>
-                    <div class="divider" style="background-image: url(/assets/images/icons/divider-1.png);"></div>
+                    <div class="divider" style="background-image: url(assets/images/icons/divider-1.png);"></div>
                 </div>
 
                 <div class="three-item-carousel owl-carousel owl-theme owl-nav-none dots-style-one">
                     <div class="project-block-two">
                         <div class="inner-box">
                             <figure class="image-box">
-                                <img src="/assets/images/gallery/project-2-4.jpg" alt="">
+                                <img src="assets/images/gallery/project-2-4.jpg" alt="">
                             </figure>
                             <div class="text">
                                 <!-- <h5><a href="PetBoarding.html">Pet Boarding</a></h5> -->
-                                <h5><a href="PetBoarding.html">Pet Boarding</a></h5>
+                                <h5><a href="PetBathing.html">Pet Bathing</a></h5>
                             </div>
                         </div>
                     </div>
@@ -265,10 +265,10 @@
                     <div class="project-block-two">
                         <div class="inner-box">
                             <figure class="image-box">
-                                <img src="/assets/images/gallery/project-2-5.jpg" alt="">
+                                <img src="assets/images/gallery/project-2-5.jpg" alt="">
                             </figure>
                             <div class="text">
-                                <h5><a href="PetGrooming.html">Pet Grooming</a></h5>
+                                <h5><a href="PetHaircut.html">Pet Haircut</a></h5>
                             </div>
                         </div>
                     </div>
@@ -276,7 +276,7 @@
                     <div class="project-block-two">
                         <div class="inner-box">
                             <figure class="image-box">
-                                <img src="/assets/images/gallery/project-2-9.jpg" alt="">
+                                <img src="assets/images/gallery/project-2-9.jpg" alt="">
                             </figure>
                             <div class="text">
                                 <h5><a href="PetDyeHair.html">Pet Dye Hair</a></h5>
@@ -287,7 +287,18 @@
                     <div class="project-block-two">
                         <div class="inner-box">
                             <figure class="image-box">
-                                <img src="/assets/images/gallery/project-2-3.jpg" alt="">
+                                <img src="assets/images/gallery/project-2-7.jpg" alt="">
+                            </figure>
+                            <div class="text">
+                                <h5><a href="HairDrying.html">Hair Drying</a></h5>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-block-two">
+                        <div class="inner-box">
+                            <figure class="image-box">
+                                <img src="assets/images/gallery/project-2-3.jpg" alt="">
                             </figure>
                             <div class="text">
                                 <h5><a href="VeterinaryCare.html">Veterinary Care</a></h5>
@@ -295,33 +306,25 @@
                         </div>
                     </div>
 
+                    
                     <div class="project-block-two">
                         <div class="inner-box">
                             <figure class="image-box">
-                                <img src="/assets/images/gallery/project-2-6.jpg" alt="">
+                                <img src="assets/images/gallery/project-2-8.jpg" alt="">
                             </figure>
                             <div class="text">
-                                <h5><a href="DayCare.html">Day Care</a></h5>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="project-block-two">
-                        <div class="inner-box">
-                            <figure class="image-box">
-                                <img src="/assets/images/gallery/project-2-8.jpg" alt="">
-                            </figure>
-                            <div class="text">
-                                <h5><a href="service-details.html">Pet Training</a></h5>
+                                <h5><a href="PetTraining.html">Pet Training</a></h5>
                             </div>
                         </div>
                     </div>
                 </div>
+                
                 <div class="more-btn centred mr-25">
                     <a href="AllService.html" class="theme-btn btn-ten">All Services</a>
                 </div>
             </div>
         </section>
+
         <!-- project-style-two end -->
 
         
@@ -452,11 +455,14 @@
                                 </div>
                                 <div class="lower-content">
                                     <ul class="rating clearfix centred" style="color: #ffa800">
-                                        <li>=====<i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>=====</li>
+                                        <li>=====
+                                            <script th:inline="javascript">
+                                                var ranking = [[${g0.getRank()}]];
+                                                for (var i=0; i < ranking; i++){
+                                                    document.write("<i class=\"fas fa-star\"></i>");
+                                                }
+                                            </script>
+                                        =====</li>
                                     </ul>
                                     <h3><a th:href="@{/home/groomers}"><p><b th:text="${g0.getName()}"></b></p></a></h3>
                                     <div class="designation">
@@ -476,11 +482,14 @@
                                 </div>
                                 <div class="lower-content">
                                     <ul class="rating clearfix centred" style="color: #ffa800">
-                                        <li>=====<i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>=====</li>
+                                        <li>=====
+                                            <script th:inline="javascript">
+                                                var ranking = [[${g1.getRank()}]];
+                                                for (var i=0; i < ranking; i++){
+                                                    document.write("<i class=\"fas fa-star\"></i>");
+                                                }
+                                            </script>
+                                        =====</li>
                                     </ul>
                                     <h3><a th:href="@{/home/groomers}"><p><b th:text="${g1.getName()}"></b></p></a></h3>
                                     <div class="designation">
@@ -500,11 +509,14 @@
                                 </div>
                                 <div class="lower-content">
                                     <ul class="rating clearfix centred" style="color: #ffa800">
-                                        <li>=====<i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>=====</li>
+                                        <li>=====
+                                            <script th:inline="javascript">
+                                                var ranking = [[${g2.getRank()}]];
+                                                for (var i=0; i < ranking; i++){
+                                                    document.write("<i class=\"fas fa-star\"></i>");
+                                                }
+                                            </script>
+                                        =====</li>
                                     </ul>
                                     <h3><a th:href="@{/home/groomers}"><p><b th:text="${g2.getName()}"></b></p></a></h3>
                                     <div class="designation">
@@ -525,11 +537,14 @@
                                 </div>
                                 <div class="lower-content">
                                     <ul class="rating clearfix centred" style="color: #ffa800">
-                                        <li>=====<i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>=====</li>
+                                        <li>=====
+                                            <script th:inline="javascript">
+                                                var ranking = [[${g3.getRank()}]];
+                                                for (var i=0; i < ranking; i++){
+                                                    document.write("<i class=\"fas fa-star\"></i>");
+                                                }
+                                            </script>
+                                        =====</li>
                                     </ul>
                                     <h3><a th:href="@{/home/groomers}"><p><b th:text="${g3.getName()}"></b></p></a></h3>
                                     <div class="designation">
@@ -540,6 +555,9 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="more-btn mr-25 centred">
+                    <a href="allGroomers.html" class="theme-btn btn-ten">All Groomer</a>
                 </div>
             </div>
         </section>
