@@ -53,7 +53,7 @@ public class GroomerController {
     }
 
     
-    // // Customer part
+    // Customer part
     @GetMapping() 
     public String getFirstFourGroomers_C(Model model){
 
@@ -104,10 +104,11 @@ public class GroomerController {
     }
 
 
-    @GetMapping("/view-groomer")
-    public Result<?> viewGroomer_C(@RequestParam Integer gid){
-        return groomerService.viewOneGroomer(gid);
-    }
+    // This method may never be used
+    // @GetMapping("/view-groomer")
+    // public Result<?> viewGroomer_C(@RequestParam Integer gid){
+    //     return groomerService.viewOneGroomer(gid);
+    // }
 
 
 }
