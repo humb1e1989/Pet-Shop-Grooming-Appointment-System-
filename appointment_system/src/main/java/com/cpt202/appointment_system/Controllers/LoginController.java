@@ -26,17 +26,17 @@ public class LoginController {
     private LoginService loginService;
     
     
-    @GetMapping("/register")
-    public ResponseEntity register(User User){
+    @PostMapping("/register")
+    public ResponseEntity register(@RequestBody User user){
         return loginService.registerUser(user);
     }
 
-    @GetMapping("/login")  
-     public ResponseEntity login(User user, HttpSession session ){
-         return loginService.loginUser(user,session);
+    @PostMapping("/login")
+     public ResponseEntity login(@RequestBody User user, HttpSession session){
+        return loginService.loginUser(user,session);
     }
 
-    @GetMapping("/logout")  
+    @GetMapping("/logout") 
     public ResponseEntity logout(User user, HttpSession session){
         return loginService.logoutUser(session);
     }

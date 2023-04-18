@@ -49,9 +49,10 @@ public class Appointment {
     //you can try to use pid to modify it
     // @Column(columnDefinition = "varchar(50)", nullable = false)
     // private String petName;
-
-    @Column(columnDefinition = "varchar(50)", nullable = false)
-    private String serviceType;
+    
+    @ManyToOne
+    @JoinColumn(columnDefinition = "sid", referencedColumnName = "sid",nullable = false)
+    private ServiceType serviceType;
 
     @ManyToOne
     @JoinColumn(name = "gid", referencedColumnName = "gid", nullable = false)
@@ -83,7 +84,7 @@ public class Appointment {
         
     }
 
-    public Appointment(Timestamp startTime, String serviceType, Groomer groomer, User user, Pet pet) {
+    public Appointment(Timestamp startTime, ServiceType serviceType, Groomer groomer, User user, Pet pet) {
         this.startTime = startTime;
         this.serviceType = serviceType;
         this.groomer = groomer;
