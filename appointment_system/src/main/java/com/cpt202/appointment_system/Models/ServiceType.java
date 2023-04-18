@@ -15,7 +15,6 @@ import lombok.Data;
 public class ServiceType {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(columnDefinition = "int(7)")
     private Integer sid;
 
     @Column(columnDefinition = "varchar(50)", nullable = true)
@@ -39,7 +38,5 @@ public class ServiceType {
 
     public ServiceType() {
     }
-
-    
 
 }
