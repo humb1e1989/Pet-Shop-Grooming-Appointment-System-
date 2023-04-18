@@ -452,11 +452,14 @@
                                 </div>
                                 <div class="lower-content">
                                     <ul class="rating clearfix centred" style="color: #ffa800">
-                                        <li>=====<i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>=====</li>
+                                        <li>=====
+                                            <script th:inline="javascript">
+                                                var ranking = [[${g0.getRank()}]];
+                                                for (var i=0; i < ranking; i++){
+                                                    document.write("<i class=\"fas fa-star\"></i>");
+                                                }
+                                            </script>
+                                        =====</li>
                                     </ul>
                                     <h3><a th:href="@{/home/groomers}"><p><b th:text="${g0.getName()}"></b></p></a></h3>
                                     <div class="designation">
@@ -476,11 +479,14 @@
                                 </div>
                                 <div class="lower-content">
                                     <ul class="rating clearfix centred" style="color: #ffa800">
-                                        <li>=====<i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>=====</li>
+                                        <li>=====
+                                            <script th:inline="javascript">
+                                                var ranking = [[${g1.getRank()}]];
+                                                for (var i=0; i < ranking; i++){
+                                                    document.write("<i class=\"fas fa-star\"></i>");
+                                                }
+                                            </script>
+                                        =====</li>
                                     </ul>
                                     <h3><a th:href="@{/home/groomers}"><p><b th:text="${g1.getName()}"></b></p></a></h3>
                                     <div class="designation">
@@ -500,11 +506,14 @@
                                 </div>
                                 <div class="lower-content">
                                     <ul class="rating clearfix centred" style="color: #ffa800">
-                                        <li>=====<i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>=====</li>
+                                        <li>=====
+                                            <script th:inline="javascript">
+                                                var ranking = [[${g2.getRank()}]];
+                                                for (var i=0; i < ranking; i++){
+                                                    document.write("<i class=\"fas fa-star\"></i>");
+                                                }
+                                            </script>
+                                        =====</li>
                                     </ul>
                                     <h3><a th:href="@{/home/groomers}"><p><b th:text="${g2.getName()}"></b></p></a></h3>
                                     <div class="designation">
@@ -525,11 +534,14 @@
                                 </div>
                                 <div class="lower-content">
                                     <ul class="rating clearfix centred" style="color: #ffa800">
-                                        <li>=====<i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>=====</li>
+                                        <li>=====
+                                            <script th:inline="javascript">
+                                                var ranking = [[${g3.getRank()}]];
+                                                for (var i=0; i < ranking; i++){
+                                                    document.write("<i class=\"fas fa-star\"></i>");
+                                                }
+                                            </script>
+                                        =====</li>
                                     </ul>
                                     <h3><a th:href="@{/home/groomers}"><p><b th:text="${g3.getName()}"></b></p></a></h3>
                                     <div class="designation">
