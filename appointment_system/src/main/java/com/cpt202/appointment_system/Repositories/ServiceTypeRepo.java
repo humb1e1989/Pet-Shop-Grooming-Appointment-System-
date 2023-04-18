@@ -5,4 +5,6 @@ import com.cpt202.appointment_system.Models.ServiceType;
 
 public interface ServiceTypeRepo extends JpaRepository<ServiceType, Integer>{
     
+    public ServiceType  findBySid(Integer sid);
+
 }

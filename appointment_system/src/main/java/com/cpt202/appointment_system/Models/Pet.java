@@ -16,7 +16,6 @@ public class Pet {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(columnDefinition = "int(7)")
     private Integer pid;
 
     @Column(columnDefinition = "varchar(10)", nullable = false)
