@@ -27,10 +27,14 @@ public class ServiceType {
     @Column(columnDefinition = "int(7)", nullable = true)
     private Integer  basicPrice;
 
-    public ServiceType(String serviceName, int serviceTime, int basicPrice) {
-        serviceName = serviceName;
-        serviceTime = serviceTime;
-        basicPrice = basicPrice;
+    // public ServiceType(String serviceName, int serviceTime, int basicPrice) {
+    //     serviceName = serviceName;
+    //     serviceTime = serviceTime;
+    //     basicPrice = basicPrice;
+    // }
+
+    public ServiceType(Integer sid) {
+        this.sid = sid;
     }
 
     public ServiceType() {
