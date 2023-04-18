@@ -1,6 +1,8 @@
 package com.cpt202.appointment_system.Controllers;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -55,7 +57,7 @@ public class GroomerController {
     
     // Customer part
     @GetMapping() 
-    public String getFirstFourGroomers_C(Model model){
+    public String getRandomFourGroomers_C(Model model){
 
         List<Groomer> gList = groomerService.listAllGroomers();
 
@@ -88,11 +90,21 @@ public class GroomerController {
             return "home";
         }
         
+        // ensure the random num not duplicate
+
+        Random r = new Random();
+        List<Integer> intList = new ArrayList<>();
+
+        for (int i = 0; i < 4; i++) {
+            int ran = r.nextInt(gList.size());
+            while (intList.contains(ran)){
+                ran = r.nextInt(gList.size());
+            }
+            intList.add(ran);
+            String attribName = "g" + i;
+            model.addAttribute(attribName, gList.get(ran));
+        }
         
-        model.addAttribute("g0", gList.get(0));
-        model.addAttribute("g1", gList.get(1));
-        model.addAttribute("g2", gList.get(2));
-        model.addAttribute("g3", gList.get(3));
         return "home";
 
     }
