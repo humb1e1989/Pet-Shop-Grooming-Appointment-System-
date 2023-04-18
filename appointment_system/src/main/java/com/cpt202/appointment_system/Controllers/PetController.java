@@ -40,5 +40,11 @@ public class PetController {
     public Result<?> deletePet(@RequestParam Integer pid){
         return petService.deletePet_C(pid);
     }
-    
+
+    //SQZ And WJT
+    @PostMapping("/customer/petList/update")
+    public Result<?> deletePet(@RequestBody Pet pet){
+        return petService.updatePet_C(pet);
+    }
+
 }
