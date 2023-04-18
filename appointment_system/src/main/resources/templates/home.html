@@ -142,7 +142,7 @@
                             <h2>Comprehend the need of your loving PET</h2>
                             <p>More details are below</p>
                             <div class="btn-box">
-                                <a href="/appointment-system/customer/makeappointment" class="theme-btn btn-eleven">Make Appointment</a>
+                                <a th:href="@{/appointment-system/customer/makeappointment}" class="theme-btn btn-eleven">Make Appointment</a>
                             </div>
                         </div>
                     </div>
@@ -448,6 +448,30 @@
                         <div class="team-block-two wow fadeInUp animated animated" data-wow-delay="00ms" data-wow-duration="1500ms" style="visibility: visible; animation-duration: 1500ms; animation-delay: 0ms; animation-name: fadeInUp;">
                             <div class="inner-box">
                                 <div class="image-box">
+                                    <figure class="image"><img th:src="${g0.getImageURL()}" alt=""></figure>
+                                </div>
+                                <div class="lower-content">
+                                    <ul class="rating clearfix centred" style="color: #ffa800">
+                                        <li>=====<i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>=====</li>
+                                    </ul>
+                                    <h3><a th:href="@{/home/groomers}"><p><b th:text="${g0.getName()}"></b></p></a></h3>
+                                    <div class="designation">
+                                        <span class="bar"></span>
+                                        <p th:text="${g0.getDescription()}"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 col-sm-12 team-block">
+                        <div class="team-block-two wow fadeInUp animated animated" data-wow-delay="200ms" data-wow-duration="1500ms" style="visibility: visible; animation-duration: 1500ms; animation-delay: 200ms; animation-name: fadeInUp;">
+                            <div class="inner-box">
+                                <div class="image-box">
                                     <figure class="image"><img th:src="${g1.getImageURL()}" alt=""></figure>
                                 </div>
                                 <div class="lower-content">
@@ -469,7 +493,7 @@
                     </div>
 
                     <div class="col-lg-3 col-md-6 col-sm-12 team-block">
-                        <div class="team-block-two wow fadeInUp animated animated" data-wow-delay="200ms" data-wow-duration="1500ms" style="visibility: visible; animation-duration: 1500ms; animation-delay: 200ms; animation-name: fadeInUp;">
+                        <div class="team-block-two wow fadeInUp animated animated" data-wow-delay="400ms" data-wow-duration="1500ms" style="visibility: visible; animation-duration: 1500ms; animation-delay: 400ms; animation-name: fadeInUp;">
                             <div class="inner-box">
                                 <div class="image-box">
                                     <figure class="image"><img th:src="${g2.getImageURL()}" alt=""></figure>
@@ -493,9 +517,10 @@
                     </div>
 
                     <div class="col-lg-3 col-md-6 col-sm-12 team-block">
-                        <div class="team-block-two wow fadeInUp animated animated" data-wow-delay="400ms" data-wow-duration="1500ms" style="visibility: visible; animation-duration: 1500ms; animation-delay: 400ms; animation-name: fadeInUp;">
+                        <div class="team-block-two wow fadeInUp animated animated" data-wow-delay="600ms" data-wow-duration="1500ms" style="visibility: visible; animation-duration: 1500ms; animation-delay: 600ms; animation-name: fadeInUp;">
                             <div class="inner-box">
                                 <div class="image-box">
+                                    <!-- src="/assets/images/team/team-8.png" -->
                                     <figure class="image"><img th:src="${g3.getImageURL()}" alt=""></figure>
                                 </div>
                                 <div class="lower-content">
@@ -510,31 +535,6 @@
                                     <div class="designation">
                                         <span class="bar"></span>
                                         <p th:text="${g3.getDescription()}"></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6 col-sm-12 team-block">
-                        <div class="team-block-two wow fadeInUp animated animated" data-wow-delay="600ms" data-wow-duration="1500ms" style="visibility: visible; animation-duration: 1500ms; animation-delay: 600ms; animation-name: fadeInUp;">
-                            <div class="inner-box">
-                                <div class="image-box">
-                                    <!-- src="/assets/images/team/team-8.png" -->
-                                    <figure class="image"><img th:src="${g4.getImageURL()}" alt=""></figure>
-                                </div>
-                                <div class="lower-content">
-                                    <ul class="rating clearfix centred" style="color: #ffa800">
-                                        <li>=====<i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>=====</li>
-                                    </ul>
-                                    <h3><a th:href="@{/home/groomers}"><p><b th:text="${g4.getName()}"></b></p></a></h3>
-                                    <div class="designation">
-                                        <span class="bar"></span>
-                                        <p th:text="${g4.getDescription()}"></p>
                                     </div>
                                 </div>
                             </div>
