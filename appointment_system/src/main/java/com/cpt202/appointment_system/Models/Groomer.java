@@ -17,7 +17,6 @@ public class Groomer {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(columnDefinition = "int(7)")
     private Integer gid;
     
     @Column(columnDefinition = "varchar(50)", nullable = false)

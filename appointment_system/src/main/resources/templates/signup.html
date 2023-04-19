@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>sign</title>
+
+  <!-- 引入样式 -->
+  <!--  <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">-->
+  <link rel="stylesheet" href="../static/assets/css/signup.css">
+  <link href="../static/assets/css/signup.css" rel="stylesheet">
+  <!--  <link href="assets/css/style.css" rel="stylesheet">-->
+  <!-- 引入组件库 -->
+  <!--  <script src="https://unpkg.com/element-ui/lib/index.js"></script>-->
+
+</head>
+<body>
+<div>
+  <button id="displaysign" onclick="start()">Log in</button>
+</div>
+
+
+<div id="signform" class="modal" style="display: none">
+ <div class="container">
+  <div class="header">
+    <span class="close">&times; </span>
+    <h2>Log in</h2>
+    <!--      <div class="signclose">-->
+    <!--        <img id="close" src="css/icon-17.png" width="35px" height="35px" onclick="signclose()">-->
+    <!--    </div>-->
+  </div>
+  <form class="form" id="formlog">
+    <div class="form_control">
+      <label for="usernamelog">用户名</label>
+      <input type="text" placeholder="请输入用户名" id="usernamelog">
+      <!--        <i class="el-icon-success"></i>-->
+      <!--        <i class="el-icon-warning"></i>-->
+      <small>Error Message</small>
+
+    </div>
+
+    <div class="form_control">
+      <label for="passwordlog">密码</label>
+      <input type="password" placeholder="请输入密码" id="passwordlog">
+      <!--        <i class="el-icon-success"></i>-->
+      <!--        <i class="el-icon-warning"></i>-->
+      <small>Error Message</small>
+    </div>
+
+    <button class="theme-btn btn-seven" id="Login" >Log in</button>
+
+    <p>还没有账号?赶快<a href="#" style="text-decoration: none;color: #43A047" onclick="signre()">Sign up</a>一个吧</p>
+
+  </form>
+</div>
+</div>
+
+
+<!--    sign up-->
+<div id="registerform" class="modal" style="display: none">
+  <div class="container">
+  <div class="header">
+    <span class="close">&times; </span>
+    <h2>Register</h2>
+    <!--      <div class="signclose">-->
+    <!--        <img id="close" src="css/icon-17.png" width="35px" height="35px" onclick="signclose()">-->
+    <!--    </div>-->
+  </div>
+
+  <form class="form" id="form">
+    <div class="form_control">
+      <label for="username">用户名</label>
+      <input type="text" placeholder="请输入用户名" id="username">
+      <i class="el-icon-success"></i>
+      <i class="el-icon-warning"></i>
+      <small>Error Message</small>
+    </div>
+
+    <div class="form_control">
+      <label for="email">邮箱</label>
+      <input type="text" placeholder="请输入邮箱" id="email">
+      <i class="el-icon-success"></i>
+      <i class="el-icon-warning"></i>
+      <small>Error Message</small>
+    </div>
+
+    <div class="form_control">
+      <label for="password">密码</label>
+      <input type="text" placeholder="请输入密码" id="password">
+      <i class="el-icon-success"></i>
+      <i class="el-icon-warning"></i>
+      <small>Error Message</small>
+    </div>
+
+    <div class="form_control">
+      <label for="password2">重复密码</label>
+      <input type="password" placeholder="请再次输入密码" id="password2"><BR>
+      <i class="el-icon-success"></i>
+      <i class="el-icon-warning"></i>
+      <small>Error Message</small>
+    </div>
+    <!--    <button type="submit">Submit</button>-->
+    <!--    <div class="col-lg-12 col-md-12 col-sm-12 form-group message-btn">-->
+    <button class="theme-btn btn-seven" type="submit" >Submit</button>
+    <!--    </div>-->
+    <p>已有账号密码<a href="#" style="text-decoration: none;color: #43A047" onclick="resign()">Log in</a>一个吧</p>
+  </form>
+</div>
+
+
+</body>
+<script src="./jquery-3.6.0.min.js"></script>
+<!--<script src="./signup.js"></script>-->
+<script>
+  var span = document.getElementsByClassName("close")[0];
+  span.onclick = function () {
+    document.getElementById('signform').style.display="none"
+    document.getElementById('registerform').style.display="none"
+  }
+  var span1 = document.getElementsByClassName("close")[1];
+  span1.onclick = function () {
+    document.getElementById('signform').style.display="none"
+    document.getElementById('registerform').style.display="none"
+  }
+  function start() {
+    document.getElementById('signform').style.display=""
+  }
+
+  // function signclose() {
+  //   document.getElementById('signform').style.display="none"
+  //   document.getElementById('registerform').style.display="none"
+  // }
+
+  function loading() {
+    document.getElementById('registerloading').style.display=""
+  }
+
+
+  function signre() {
+    if(document.getElementById('signform').style.display=="" && document.getElementById('registerform').style.display=="none"){
+      document.getElementById('signform').style.display="none"
+      document.getElementById('registerform').style.display=""
+    }
+  }
+
+
+  function resign() {
+    if(document.getElementById('registerform').style.display=="" && document.getElementById('signform').style.display=="none"){
+      document.getElementById('signform').style.display=""
+      document.getElementById('registerform').style.display="none"
+    }
+  }
+
+  // Log in 的 constraints
+  const formlog = document.getElementById("formlog");
+  const usernamelog = document.getElementById("usernamelog");
+  const passowrdlog = document.getElementById("passwordlog");
+
+
+  // sign up 的 constraints
+  //获取页面实体（输入框、表单）---------------------------------------
+  const form = document.getElementById("form");
+  const username = document.getElementById("username");
+  const email = document.getElementById("email");
+  const passowrd = document.getElementById("password");
+  const password2 = document.getElementById("password2");
+
+  //form表单提交事件-----------------------------------
+  form.addEventListener('submit', (e) => {
+    checkInputs();
+    e.preventDefault();//防止浏览器刷新页面提交表单
+  })
+
+  username.addEventListener("blur",checkUsername)
+  email.addEventListener("blur",checkEmail)
+  password.addEventListener("blur",checkPassword)
+  password2.addEventListener("blur",checkPassword2)
+
+  function checkUsername(){
+    const usernameValue = username.value.trim();
+    //用户名验证
+    if (usernameValue==="") {
+      setErrorFor(username, "Username can not be empty");
+    } else {
+      setSuccessFor(username);
+    }
+  }
+  function checkEmail(){
+    const emailValue = email.value.trim();
+    //邮箱验证
+    if(emailValue===""){
+      setErrorFor(email,"Email can not be empty");
+    }else if(!valiEmail(emailValue)){//valiEmail返回的false表示邮箱不正确，则对其取反为true，if执行
+      setErrorFor(email,"Email format is incorrect, please re-enter");
+    }else{
+      setSuccessFor(email);
+    }
+  }
+  function checkPassword(){
+    const passwordValue = passowrd.value.trim();
+    //密码验证
+    if(passwordValue===""){
+      setErrorFor(password,"Password can not be empty");
+    }else{
+      setSuccessFor(passowrd)
+    }
+  }
+  function checkPassword2(){
+    const passwordValue = passowrd.value.trim();
+    const password2Value = password2.value.trim();
+    //重复密码验证
+    if(password2Value===""){
+      setErrorFor(password2,"Password can not be empty");
+    }else if(passwordValue!==password2Value){
+      setErrorFor(password2,"The passwords entered twice are inconsistent, please re-enter")
+    }else{
+      setSuccessFor(password2)
+    }
+  }
+
+  //总验证方法-------------------------------------------
+  function checkInputs() {
+    //获取输入框实体的输入值
+    const usernameValue = username.value.trim();
+    const emailValue = email.value.trim();
+    const passwordValue = passowrd.value.trim();
+    const password2Value = password2.value.trim();
+    //用户名验证
+    if (usernameValue==="") {
+      setErrorFor(username, "Username can not be empty");
+    } else {
+      setSuccessFor(username);
+    }
+    //邮箱验证
+    if(emailValue===""){
+      setErrorFor(email,"Email can not be empty");
+    }else if(!valiEmail(emailValue)){//valiEmail返回的false表示邮箱不正确，则对其取反为true，if执行
+      setErrorFor(email,"Email format is incorrect, please re-enter");
+    }else{
+      setSuccessFor(email);
+    }
+    //密码验证
+    if(passwordValue===""){
+      setErrorFor(password,"Password can not be empty");
+    }else{
+      setSuccessFor(passowrd)
+    }
+    //重复密码验证
+    if(password2Value===""){
+      setErrorFor(password2,"Password can not be empty");
+    }else if(passwordValue!==password2Value){
+      setErrorFor(password2,"The passwords entered twice are inconsistent, please re-enter")
+    }else{
+      setSuccessFor(password2)
+    }
+  }
+
+  //简单封装验证成功和失败的方法-------------------------------
+  //验证原理：输入框的父组件上添加成功或失败的样式，并且将验证错误信息动态添加到<small>标签中
+
+  //验证失败
+  function setErrorFor(input, message) {
+    //input即为组件名（在这里因只有输入框所以写成input），message是错误信息（在总验证方法中传回错误信息message）
+    const formControl = input.parentElement;//所验证实体（输入框）的父组件
+    const small = formControl.querySelector('small');
+    small.textContent = message;
+    //此处须注意细节，如果只添加错误样式，输入错误信息后再次输入正确的信息，两个样式相互重叠，造成偏差，
+    //所以之前应先去除已出现的样式，没明白的话，可以将添加success的代码注释掉，看看效果
+    formControl.classList.remove('success');
+    formControl.classList.add('error');
+  }
+  //验证成功
+  function setSuccessFor(input) {
+    const formControl = input.parentElement;
+    //同理
+    formControl.classList.remove('error');
+    formControl.classList.add('success');
+  }
+
+  //邮箱验证特殊情况：邮箱格式不正确----------------------------
+  function valiEmail(email){
+    const regEmail = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/;
+    //将传过来的email值与定义的邮箱范围相比较
+    return regEmail.test(email);//返回true或false
+  }</script>
+</html>

@@ -13,10 +13,12 @@ import com.cpt202.appointment_system.Common.Result;
 import com.cpt202.appointment_system.Models.Appointment;
 import com.cpt202.appointment_system.Models.Groomer;
 import com.cpt202.appointment_system.Models.Pet;
+import com.cpt202.appointment_system.Models.ServiceType;
 import com.cpt202.appointment_system.Models.User;
 import com.cpt202.appointment_system.Repositories.AppointmentRepo;
 import com.cpt202.appointment_system.Repositories.GroomerRepo;
 import com.cpt202.appointment_system.Repositories.PetRepo;
+import com.cpt202.appointment_system.Repositories.ServiceTypeRepo;
 import com.cpt202.appointment_system.Repositories.UserRepo;
 
 @Service
@@ -36,6 +38,10 @@ public class AppointmentService {
 
 	@Autowired
 	private GroomerRepo groRepo;
+
+	@Autowired
+	private ServiceTypeRepo serviceTypeRepo;
+
 
 	/*
 	 * Manager Part
@@ -132,8 +138,8 @@ public class AppointmentService {
         Pet pet=petRepo.findByPid(appointment.getPet().getPid());
         User user=userRepo.findByUid(appointment.getUser().getUid());
 		List<Appointment> appointmentList=appointmentRepo.findByGroomer(OrderedGroomer);
-        
-
+        ServiceType servicetype=serviceTypeRepo.findBySid(appointment.getServiceType().getSid());
+		
         //if groomer or user or pet do not exists failed
 		if(user==null){
 			return Result.error("-2", "User is invalid");
@@ -144,54 +150,25 @@ public class AppointmentService {
 		if(pet==null){
 			return Result.error("-2", "No such pet");
 		}
+		if(servicetype==null){
+			return Result.error("-2", "No such service");
+		}
+
 	
         //different servicetype have different service time
 		//the total price is depending on the rank of groomer, servicetype and pet_size
-		if (appointment.getServiceType().equals("washing") ) {
-            calendar.add(Calendar.MINUTE, 30);
-			Timestamp finishTime = new Timestamp(calendar.getTimeInMillis());
-			appointment.setFinishTime(finishTime);
-            if(pet.getSize().equals("small")){
-				appointment.setTotalprice(50 * (1 + 0.1 * OrderedGroomer.getRank())*0.5);
-			}
-			if(pet.getSize().equals("medium")){
-				appointment.setTotalprice(50 * (1 + 0.1 * OrderedGroomer.getRank())*1.0);
-			}
-			if(pet.getSize().equals("large")){
-				appointment.setTotalprice(50 * (1 + 0.1 * OrderedGroomer.getRank())*1.5);
-			}
-			
-		}
 
-		if (appointment.getServiceType().equals("haircut")) {
-			calendar.add(Calendar.MINUTE, 40);
-			Timestamp finishTime = new Timestamp(calendar.getTimeInMillis());
-			appointment.setFinishTime(finishTime);
-			if(pet.getSize().equals("small")){
-				appointment.setTotalprice(60 * (1 + 0.1 * OrderedGroomer.getRank())*0.5);
-			}
-			if(pet.getSize().equals("medium")){
-				appointment.setTotalprice(60* (1 + 0.1 * OrderedGroomer.getRank())*1.0);
-			}
-			if(pet.getSize().equals("large")){
-				appointment.setTotalprice(60* (1 + 0.1 * OrderedGroomer.getRank())*1.5);
-			}
+		calendar.add(Calendar.MINUTE, servicetype.getBasicPrice());
+		Timestamp finishTime = new Timestamp(calendar.getTimeInMillis());
+		appointment.setFinishTime(finishTime);
+		if(pet.getSize().equals("small")){
+			appointment.setTotalprice(50 * (1 + 0.1 * OrderedGroomer.getRank())*0.5);
 		}
-
-		if (appointment.getServiceType().equals("drying")) {
-			calendar.add(Calendar.MINUTE, 10);
-			Timestamp finishTime = new Timestamp(calendar.getTimeInMillis());
-			appointment.setFinishTime(finishTime);
-			if(pet.getSize().equals("small")){
-				appointment.setTotalprice(40* (1 + 0.1 * OrderedGroomer.getRank())*0.5);
-			}
-			if(pet.getSize().equals("medium")){
-				appointment.setTotalprice(40 * (1 + 0.1 * OrderedGroomer.getRank())*1.0);
-			}
-			if(pet.getSize().equals("large")){
-				appointment.setTotalprice(40 * (1 + 0.1 * OrderedGroomer.getRank())*1.5);
-			}
-			appointment.setTotalprice(40 * (1 + 0.1 * OrderedGroomer.getRank()));
+		if(pet.getSize().equals("medium")){
+			appointment.setTotalprice(50 * (1 + 0.1 * OrderedGroomer.getRank())*1.0);
+		}
+		if(pet.getSize().equals("large")){
+			appointment.setTotalprice(50 * (1 + 0.1 * OrderedGroomer.getRank())*1.5);
 		}
 
 		//if the groomer has already been booked, return error

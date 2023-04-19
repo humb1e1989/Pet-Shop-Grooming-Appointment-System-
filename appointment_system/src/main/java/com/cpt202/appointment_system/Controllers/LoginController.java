@@ -22,24 +22,22 @@ import java.util.Optional;
 @RequestMapping("/appointment-system")
 public class LoginController {
 
-    // @Autowired
-    // private LoginService loginService;
+    @Autowired
+    private LoginService loginService;
+    
+    
+    @PostMapping("/register")
+    public ResponseEntity register(@RequestBody User user){
+        return loginService.registerUser(user);
+    }
 
-    // @PostMapping("/register")
-    // public ResponseEntity register(User user){
-    //     return loginService.registerUser(user);
-    // }
+    @PostMapping("/login")
+     public ResponseEntity login(@RequestBody User user, HttpSession session){
+        return loginService.loginUser(user,session);
+    }
 
-    // @GetMapping("/login")  
-    // public ResponseEntity login(User user, HttpSession session ){
-    //     return loginService.loginUser(user,session);
-    // }
-
-    // @GetMapping("/logout")  
-    // public ResponseEntity logout(User user, HttpSession session){
-    //     return loginService.logoutUser(session);
-    // }
-
-
-
+    @GetMapping("/logout") 
+    public ResponseEntity logout(User user, HttpSession session){
+        return loginService.logoutUser(session);
+    }
 }

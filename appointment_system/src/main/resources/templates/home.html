@@ -9,19 +9,6 @@
     <title>IPet</title>
 
     <!-- Stylesheets -->
-<<<<<<< HEAD
-    <link href="/assets/css/font-awesome-all.css" rel="stylesheet">
-    <link href="/assets/css/flaticon.css" rel="stylesheet">
-    <link href="/assets/css/owl.css" rel="stylesheet">
-    <link href="/assets/css/bootstrap.css" rel="stylesheet">
-    <link href="/assets/css/jquery.fancybox.min.css" rel="stylesheet">
-    <link href="/assets/css/animate.css" rel="stylesheet">
-    <link href="/assets/css/color.css" rel="stylesheet">
-    <link href="/assets/css/style.css" rel="stylesheet">
-    <link href="/assets/css/responsive.css" rel="stylesheet">
-    <link href="/assets/css/theme-template.css" rel="stylesheet">
-
-=======
     <link href="assets/css/font-awesome-all.css" rel="stylesheet">
     <link href="assets/css/flaticon.css" rel="stylesheet">
     <link href="assets/css/owl.css" rel="stylesheet">
@@ -32,7 +19,6 @@
     <link href="assets/css/style.css" rel="stylesheet">
     <link href="assets/css/responsive.css" rel="stylesheet">
     <link href="assets/css/theme-template.css" rel="stylesheet">
->>>>>>> frontend
 </head>
 
 
@@ -48,11 +34,7 @@
             <div class="auto-container-fluid">
                 <div class="outer-box clearfix bg-white">
                     <div class="logo-box pull-left">
-<<<<<<< HEAD
-                        <figure class="logo"><a th:href="@{/home}"><img src="/assets/images/logo-1.png" alt=""></a></figure>
-=======
                         <figure class="logo"><a href="Home.html"><img src="assets/images/logo-1.png" alt=""></a></figure>
->>>>>>> frontend
                     </div>
                     <div class="menu-area pull-right clearfix">
                         <!--Mobile Navigation Toggler-->
@@ -105,11 +87,7 @@
             <div class="auto-container">
                 <div class="outer-box clearfix">
                     <figure class="sticky-logo pull-left">
-<<<<<<< HEAD
-                        <a th:href="@{/home}"><img src="/assets/images/logo-3.png" alt=""></a>
-=======
                         <a href="Home.html"><img src="assets/images/logo-3.png" alt=""></a>
->>>>>>> frontend
                     </figure>
                     <div class="menu-area pull-right clearfix">
                         <nav class="main-menu clearfix">
@@ -128,11 +106,7 @@
         <div class="close-btn"><i class="fas fa-times"></i></div>
 
         <nav class="menu-box">
-<<<<<<< HEAD
-            <div class="nav-logo"><a th:href="@{/home}"><img src="/assets/images/logo-2.png" alt="" title=""></a></div>
-=======
             <div class="nav-logo"><a href="Home.html"><img src="assets/images/logo-2.png" alt="" title=""></a></div>
->>>>>>> frontend
             <div class="menu-outer"><!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header--></div>
             <div class="contact-info">
                 <h4>Contact Info</h4>
@@ -265,8 +239,8 @@
         </section>
         <!-- solutions-style-two end -->
 
-        <!-- project-style-two Services-->
-        <section class="project-style-two">
+         <!-- project-style-two Services-->
+         <section class="project-style-two">
             <div class="auto-container">
                 <div class="sec-title centred">
                     <h5>Services</h5>
@@ -349,6 +323,7 @@
                 </div>
             </div>
         </section>
+
         <!-- project-style-two end -->
 
         
@@ -475,21 +450,22 @@
                         <div class="team-block-two wow fadeInUp animated animated" data-wow-delay="00ms" data-wow-duration="1500ms" style="visibility: visible; animation-duration: 1500ms; animation-delay: 0ms; animation-name: fadeInUp;">
                             <div class="inner-box">
                                 <div class="image-box">
-<<<<<<< HEAD
-                                    <figure class="image"><img th:src="${g0.getImageURL()}" alt=""></figure>
-=======
                                     <figure class="image"><img src="assets/images/team/team-5.png" alt=""></figure>
->>>>>>> frontend
                                 </div>
                                 <div class="lower-content">
                                     <ul class="rating clearfix centred" style="color: #ffa800">
-                                        <li>=====<i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>=====</li>
+                                
+                                        <li>=====
+                                            <script th:inline="javascript">
+                                                // Please ignore this error (It can run as we want anyway)
+                                                var ranking = [[${g0.getRank()}]];
+                                                for (var i=0; i < ranking; i++){
+                                                    document.write("<i class=\"fas fa-star\"></i>");
+                                                }
+                                            </script>
+                                        =====</li>
                                     </ul>
-                                    <h3><a th:href="@{/home/groomers}"><p><b th:text="${g0.getName()}"></b></p></a></h3>
+                                    <h3><p><b th:text="${g0.getName()}"></b></p></h3>
                                     <div class="designation">
                                         <span class="bar"></span>
                                         <p th:text="${g0.getDescription()}"></p>
@@ -503,21 +479,21 @@
                         <div class="team-block-two wow fadeInUp animated animated" data-wow-delay="200ms" data-wow-duration="1500ms" style="visibility: visible; animation-duration: 1500ms; animation-delay: 200ms; animation-name: fadeInUp;">
                             <div class="inner-box">
                                 <div class="image-box">
-<<<<<<< HEAD
-                                    <figure class="image"><img th:src="${g1.getImageURL()}" alt=""></figure>
-=======
                                     <figure class="image"><img src="assets/images/team/team-6.png" alt=""></figure>
->>>>>>> frontend
                                 </div>
                                 <div class="lower-content">
                                     <ul class="rating clearfix centred" style="color: #ffa800">
-                                        <li>=====<i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>=====</li>
+                                        <li>=====
+                                            <script th:inline="javascript">
+                                                // Please ignore this error (It can run as we want anyway)
+                                                var ranking = [[${g1.getRank()}]];
+                                                for (var i=0; i < ranking; i++){
+                                                    document.write("<i class=\"fas fa-star\"></i>");
+                                                }
+                                            </script>
+                                        =====</li>
                                     </ul>
-                                    <h3><a th:href="@{/home/groomers}"><p><b th:text="${g1.getName()}"></b></p></a></h3>
+                                    <h3><p><b th:text="${g1.getName()}"></b></p></h3>
                                     <div class="designation">
                                         <span class="bar"></span>
                                         <p th:text="${g1.getDescription()}"></p>
@@ -531,21 +507,21 @@
                         <div class="team-block-two wow fadeInUp animated animated" data-wow-delay="400ms" data-wow-duration="1500ms" style="visibility: visible; animation-duration: 1500ms; animation-delay: 400ms; animation-name: fadeInUp;">
                             <div class="inner-box">
                                 <div class="image-box">
-<<<<<<< HEAD
-                                    <figure class="image"><img th:src="${g2.getImageURL()}" alt=""></figure>
-=======
                                     <figure class="image"><img src="assets/images/team/team-7.png" alt=""></figure>
->>>>>>> frontend
                                 </div>
                                 <div class="lower-content">
                                     <ul class="rating clearfix centred" style="color: #ffa800">
-                                        <li>=====<i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>=====</li>
+                                        <li>=====
+                                            <script th:inline="javascript">
+                                                // Please ignore this error (It can run as we want anyway)
+                                                var ranking = [[${g2.getRank()}]];
+                                                for (var i=0; i < ranking; i++){
+                                                    document.write("<i class=\"fas fa-star\"></i>");
+                                                }
+                                            </script>
+                                        =====</li>
                                     </ul>
-                                    <h3><a th:href="@{/home/groomers}"><p><b th:text="${g2.getName()}"></b></p></a></h3>
+                                    <h3><p><b th:text="${g2.getName()}"></b></p></h3>
                                     <div class="designation">
                                         <span class="bar"></span>
                                         <p th:text="${g2.getDescription()}"></p>
@@ -559,22 +535,21 @@
                         <div class="team-block-two wow fadeInUp animated animated" data-wow-delay="600ms" data-wow-duration="1500ms" style="visibility: visible; animation-duration: 1500ms; animation-delay: 600ms; animation-name: fadeInUp;">
                             <div class="inner-box">
                                 <div class="image-box">
-<<<<<<< HEAD
-                                    <!-- src="/assets/images/team/team-8.png" -->
-                                    <figure class="image"><img th:src="${g3.getImageURL()}" alt=""></figure>
-=======
                                     <figure class="image"><img src="assets/images/team/team-8.png" alt=""></figure>
->>>>>>> frontend
                                 </div>
                                 <div class="lower-content">
                                     <ul class="rating clearfix centred" style="color: #ffa800">
-                                        <li>=====<i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>=====</li>
+                                        <li>=====
+                                            <script th:inline="javascript">
+                                                // Please ignore this error (It can run as we want anyway)
+                                                var ranking = [[${g3.getRank()}]];
+                                                for (var i=0; i < ranking; i++){
+                                                    document.write("<i class=\"fas fa-star\"></i>");
+                                                }
+                                            </script>
+                                        =====</li>
                                     </ul>
-                                    <h3><a th:href="@{/home/groomers}"><p><b th:text="${g3.getName()}"></b></p></a></h3>
+                                    <h3><p><b th:text="${g3.getName()}"></b></p></h3>
                                     <div class="designation">
                                         <span class="bar"></span>
                                         <p th:text="${g3.getDescription()}"></p>
@@ -583,6 +558,9 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="more-btn mr-25 centred">
+                    <a th:href="@{/home/groomers}" class="theme-btn btn-ten">See All Groomers!</a>
                 </div>
             </div>
         </section>
@@ -747,7 +725,7 @@
         <!-- testimonial-style-five end -->
 
 
-        <!-- main-footer finished-->
+        <!-- main-footer -->
         <footer class="main-footer footer-style-five">
             <div class="footer-top-two">
                 <div class="pattern-layer"></div>
@@ -757,10 +735,14 @@
                             <div class="footer-widget logo-widget">
 
 <<<<<<< HEAD
+<<<<<<< HEAD
                                 <figure class="footer-logo footer-logo-center"><a href="/home"><img src="/assets/images/logo-2.png" alt=""></a></figure>
 =======
                                 <figure class="footer-logo footer-logo-center"><a href="Home.html"><img src="assets/images/logo-2.png" alt=""></a></figure>
 >>>>>>> frontend
+=======
+                                <figure class="footer-logo footer-logo-center"><a th:href="@{/home}"><img src="/assets/images/logo-2.png" alt=""></a></figure>
+>>>>>>> ef25d407c03a45232b76dfd231c31f97dffefbc5
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-6 col-sm-12 footer-column">
@@ -771,7 +753,7 @@
                                 <div class="widget-content">
                                     <ul class="links-list clearfix">
                                         <li><a th:href="@{/home}">Home</a></li>
-                                        <li><a th:href="@{/home/groomers}"></a>Groomers</a></li>
+                                        <li><a th:href="@{/home/groomers}">Groomers</a></li>
                                         <li><a href="Pricing.html">Pricing plan</a></li>
                                         <li><a href="AllService.html">Our Services</a></li>
 
@@ -805,15 +787,17 @@
         </footer>
         <!-- main-footer end -->
         
-        <!-- scroll to top -->
+                <!-- scroll to top -->
         <button class="scroll-top style-two scroll-to-target" data-target="html">
             <i class="fas fa-angle-up"></i>
         </button>
+
         
     </div>
 
 
     <!-- jequery plugins -->
+<<<<<<< HEAD
     <script src="assets/js/jquery.js"></script>
     <script src="assets/js/popper.min.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
@@ -826,6 +810,26 @@
     <script src="assets/js/tilt.jquery.js"></script>
     <script src="assets/js/isotope.js"></script>
     <script src="assets/js/bxslider.js"></script>
+=======
+    <script src="/assets/js/jquery.js"></script>
+    <script src="/assets/js/popper.min.js"></script>
+    <script src="/assets/js/bootstrap.min.js"></script>
+    <script src="/assets/js/owl.js"></script>
+    <script src="/assets/js/wow.js"></script>
+    <script src="/assets/js/validation.js"></script>
+    <script src="/assets/js/jquery.fancybox.js"></script>
+    <script src="/assets/js/appear.js"></script>
+    <script src="/assets/js/scrollbar.js"></script>
+    <script src="/assets/js/tilt.jquery.js"></script>
+    <script src="/assets/js/isotope.js"></script>
+    <script src="/assets/js/bxslider.js"></script>
+    <script src="/assets/js/jquery.circleType.js"></script>
+
+    <!-- map script -->
+    <!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-CE0deH3Jhj6GN4YvdCFZS7DpbXexzGU"></script>-->
+    <!--<script src="/assets/js/gmaps.js"></script>-->
+    <!--<script src="/assets/js/map-helper.js"></script>-->
+>>>>>>> ef25d407c03a45232b76dfd231c31f97dffefbc5
 
     <!-- main-js -->
     <script src="assets/js/script.js"></script>

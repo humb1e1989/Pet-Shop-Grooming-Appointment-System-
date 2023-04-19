@@ -1,6 +1,8 @@
 package com.cpt202.appointment_system.Controllers;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -53,9 +55,9 @@ public class GroomerController {
     }
 
     
-    // // Customer part
+    // Customer part
     @GetMapping() 
-    public String getFirstFourGroomers_C(Model model){
+    public String getRandomFourGroomers_C(Model model){
 
         List<Groomer> gList = groomerService.listAllGroomers();
 
@@ -89,25 +91,38 @@ public class GroomerController {
         }
         
         
-        model.addAttribute("g0", gList.get(0));
-        model.addAttribute("g1", gList.get(1));
-        model.addAttribute("g2", gList.get(2));
-        model.addAttribute("g3", gList.get(3));
+        Random r = new Random();
+        List<Integer> intList = new ArrayList<>();
+
+        for (int i = 0; i < 4; i++) {
+            int ran = r.nextInt(gList.size());
+            while (intList.contains(ran)){
+                ran = r.nextInt(gList.size());
+            }
+            intList.add(ran);
+            String attribName = "g" + i;
+            model.addAttribute(attribName, gList.get(ran));
+        }
+        
         return "home";
 
     }
 
 
     @GetMapping("/groomers") 
-    public String getAllGroomers(){
+    public String getAllGroomers(Model model){
+        List<Groomer> gList = groomerService.listAllGroomers();
+        model.addAttribute("gList", gList);
+
         return "Groomers";
     }
 
 
-    @GetMapping("/view-groomer")
-    public Result<?> viewGroomer_C(@RequestParam Integer gid){
-        return groomerService.viewOneGroomer(gid);
-    }
+    // This method may never be used
+    // @GetMapping("/view-groomer")
+    // public Result<?> viewGroomer_C(@RequestParam Integer gid){
+    //     return groomerService.viewOneGroomer(gid);
+    // }
 
 
 }
