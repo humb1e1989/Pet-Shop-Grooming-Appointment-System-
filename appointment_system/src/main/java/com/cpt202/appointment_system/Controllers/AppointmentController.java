@@ -59,8 +59,9 @@ public class AppointmentController {
 
     // YYY PBI NO.2 - Manager view the appointment detail
     @GetMapping("/manager/appointmentList/view")
-    public Result<?> viewAppointment_M(@RequestParam Appointment appointment) {
-        return appointmentService.getAppointmentDetail_M(appointment);
+    public String viewAppointment_M(@RequestParam Appointment appointment, Model model) {
+        model.addAttribute("appointmentDetail", appointmentService.getAppointmentDetail_M(appointment));
+        return "appointmentDetail";
     }
 
     /*
@@ -70,8 +71,9 @@ public class AppointmentController {
 
     //YYY PBI NO.3 - Customer can view all of history appointments (only hisappointment)
     @GetMapping("/customer/appointmentList")
-    public Result<?> getUserAppointment_C(@RequestParam User user) {
-        return appointmentService.getAppointmentBy_Uid(user);
+    public String getUserAppointment_C(@RequestParam User user, Model model) {
+        model.addAttribute("myAppointmentList", appointmentService.getAppointmentBy_Uid(user));
+        return "myAppointments";
     }
 
     // TODO : Number the PBI
