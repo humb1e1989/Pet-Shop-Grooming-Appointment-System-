@@ -24,5 +24,7 @@ public class PetService {
         petRepo.deleteById(pid);
         return Result.success(null, "Pet deleted succssfully!");
     }
+
+    //ZYH Customer can get all pets
     
 }

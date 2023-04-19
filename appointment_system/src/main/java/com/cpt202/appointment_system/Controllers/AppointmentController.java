@@ -103,7 +103,7 @@ public class AppointmentController {
     //      return "home";
     // }
 
-    @PostMapping("/customer/makeappointment")
+    @PostMapping("/customer/makeAppointment")
     public Result<?> makeappointment_C(@RequestBody Appointment appointment) {
          return  appointmentService.makeAppointment_C(appointment);
     }
