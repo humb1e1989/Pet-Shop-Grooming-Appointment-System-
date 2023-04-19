@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Team Home</title>
+    </head>
+    <body>
+        <h1>Team Home Page</h1>
+        <h2>Welcome! <span th:text="${username}"></span></h2>
+
+        <div><a th:href="@{/team/list}">Team List</a></div>
+        <div></div><a th:href="@{/team/add}">Add Team</a></div>
+    </body>
+</html>

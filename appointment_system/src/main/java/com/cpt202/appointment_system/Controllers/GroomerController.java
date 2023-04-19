@@ -26,11 +26,11 @@ public class GroomerController {
 
     
     // // Manager Part
-    // @GetMapping("/manager/grommerList")  
-    // public Result<?> getAllGroomers_M(){
-    //     return groomerService.listAllGroomers();
+    @GetMapping("/manager/grommerList")  
+    public List<Groomer> getAllGroomers_M(){
+        return groomerService.listAllGroomers();
         
-    // }
+    }
 
     @GetMapping("/manager/groomerList/view")
     public Result<?> viewGroomer_M(@RequestParam Integer gid){
