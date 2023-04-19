@@ -72,7 +72,7 @@ public class AppointmentController {
     //YYY PBI NO.3 - Customer can view all of history appointments (only hisappointment)
     @GetMapping("/customer/appointmentList")
     public String getUserAppointment_C(@RequestParam User user, Model model) {
-        model.addAttribute("myAppointmentList", appointmentService.getAppointmentBy_Uid(user));
+        model.addAttribute("appointmentList", appointmentService.getAppointmentBy_Uid(user));
         return "myAppointments";
     }
 
