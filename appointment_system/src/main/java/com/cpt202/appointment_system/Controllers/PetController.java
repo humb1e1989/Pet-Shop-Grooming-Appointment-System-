@@ -52,7 +52,7 @@ public class PetController {
         return petService.deletePet_C(pid);
     }
 
-    // //SQZ And WJT
+    //SQZ And WJT
     // @PostMapping("/customer/petList/update")
     // public Result<?> deletePet(@RequestBody Pet pet){
     //     return petService.updatePet_C(pet);
