@@ -53,8 +53,8 @@ public class AppointmentController {
     // }
     @GetMapping("/manager/appointmentList")
     public String getAllAppointment_M(Model model) {
-        model.addAttribute("appointment", appointmentService.getAppointmentList_M());
-        return "allGroomers";
+        model.addAttribute("appointmentList", appointmentService.getAppointmentList_M());
+        return "allAppointments";
     }
 
     // YYY PBI NO.2 - Manager view the appointment detail
