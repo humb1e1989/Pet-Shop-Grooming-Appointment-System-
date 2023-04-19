@@ -26,7 +26,6 @@ public class TestController {
         model.addAttribute("groomerList", groomerService.listAllGroomers());
         //model.addAttribute("groomer", new Groomer());
         return "allGroomers";
-        
     }
 
     // @GetMapping("/manager/groomerList/add")
@@ -42,11 +41,10 @@ public class TestController {
     }
         
     
-
     @PostMapping("/manager/groomerList/add")
     public String addGroomer_M(@ModelAttribute("groomer") Groomer groomer){
-        //groomerService.addGroomer_M(groomer);
-        return "home";
+        groomerService.addGroomer_M(groomer);
+        return "allGroomers";
     }
 
 
