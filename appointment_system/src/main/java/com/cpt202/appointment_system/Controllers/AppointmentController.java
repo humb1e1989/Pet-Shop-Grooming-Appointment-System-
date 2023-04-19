@@ -14,12 +14,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.cpt202.appointment_system.Common.Result;
 import com.cpt202.appointment_system.Models.Appointment;
+import com.cpt202.appointment_system.Models.Groomer;
 import com.cpt202.appointment_system.Models.User;
 import com.cpt202.appointment_system.Services.AppointmentService;
+import com.cpt202.appointment_system.Services.GroomerService;
 
 // @RestController
 @Controller
-@RequestMapping("/appointment-system")
+@RequestMapping("/home")
 public class AppointmentController {
 
     /*
@@ -30,6 +32,7 @@ public class AppointmentController {
     // WJT Manger Part
     @Autowired
     private AppointmentService appointmentService;
+    private GroomerService groomerService;
 
     @GetMapping("/manager/appointmentList/search/customername")
     public List<Appointment> getAppointmentByName(@RequestParam String customerName) {
@@ -51,10 +54,16 @@ public class AppointmentController {
     // public Result<?> getAllAppointment_M() {
     //     return appointmentService.getAppointmentList_M();
     // }
-    @GetMapping("/manager/appointmentList")
+    @GetMapping("/appointmentList")
     public String getAllAppointment_M(Model model) {
-        model.addAttribute("appointmentList", appointmentService.getAppointmentList_M());
+        List<Appointment> appointmentList = appointmentService.getAppointmentList_M();
+        model.addAttribute("appointmentList", appointmentList);
+        
         return "allAppointments";
+        // List<Groomer> gList = groomerService.listAllGroomers();
+        // model.addAttribute("gList", gList);
+
+        // return "Groomers";
     }
 
     // YYY PBI NO.2 - Manager view the appointment detail
