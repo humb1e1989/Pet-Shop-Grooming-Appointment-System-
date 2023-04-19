@@ -114,13 +114,5 @@ public class GroomerController {
     public String getAllGroomers(){
         return "Groomers";
     }
-
-
-    // This method may never be used
-    // @GetMapping("/view-groomer")
-    // public Result<?> viewGroomer_C(@RequestParam Integer gid){
-    //     return groomerService.viewOneGroomer(gid);
-    // }
-
-
+    
 }
