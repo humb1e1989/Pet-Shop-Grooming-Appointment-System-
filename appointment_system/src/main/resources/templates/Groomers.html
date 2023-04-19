@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="zxx" xmlns:th="http://www.thymeleaf.org">
+<html lang="zxx">
 
 <head>
     <meta charset="utf-8">
@@ -137,8 +137,7 @@
         <!-- End Page Title -->
 
 
-        <!-- team-page-section TEAM MEMBERS 需要连接groomers的数据库-->
-        <section class="team-page-section">
+        <section class="team-page-section" th:class="team-page-section">
             <div class="auto-container">
                 <div class="sec-title style-two centred">
                     <h5>TEAM MEMBERS</h5>
@@ -146,99 +145,29 @@
                     <div class="divider" style="background-image: url(/assets/images/icons/divider-1.png);"></div>
                 </div>
                 <div class="row clearfix">
-                    <div class="col-lg-3 col-md-6 col-sm-12 team-block">
+                    <div class="col-lg-3 col-md-6 col-sm-12 team-block" th:each="groomer : ${gList}">
                         <div class="team-block-two wow fadeInUp animated animated" data-wow-delay="00ms" data-wow-duration="1500ms" style="visibility: visible; animation-duration: 1500ms; animation-delay: 0ms; animation-name: fadeInUp;">
                             <div class="inner-box">
                                 <div class="image-box">
-                                    <figure class="image"><img src="/assets/images/team/team-5.png" alt=""></figure>
+                                    <figure class="image"><img th:src="${groomer.getImageURL()}" alt=""></figure>
                                 </div>
                                 <div class="lower-content">
                                     <ul class="rating clearfix centred" style="color: #ffa800">
-                                        <li>=====<i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>=====</li>
+                                        <li>=====
+                                            <script th:inline="javascript">
+                                                
+                                                // Please ignore this error (It can run as we want anyway)
+                                                var ranking = [[${groomer.getRank()}]];
+                                                for (var i=0; i < ranking; i++){
+                                                    document.write("<i class=\"fas fa-star\"></i>");
+                                                }
+                                            </script>
+                                        =====</li>
                                     </ul>
-                                    
-                                    <h3><a href="Home.html">Hard Branots</a></h3>
+                                    <h3><p><b th:text="${groomer.getName()}"></b></p></h3>
                                     <div class="designation">
-                                        <p>Founder</p>
                                         <span class="bar"></span>
-                                        <p>Ut hendrerit nec neque nec porttitor. Ut semper, lacus posuere mollis ultricies, purus</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6 col-sm-12 team-block">
-                        <div class="team-block-two wow fadeInUp animated animated" data-wow-delay="200ms" data-wow-duration="1500ms" style="visibility: visible; animation-duration: 1500ms; animation-delay: 200ms; animation-name: fadeInUp;">
-                            <div class="inner-box">
-                                <div class="image-box">
-                                    <figure class="image"><img src="/assets/images/team/team-6.png" alt=""></figure>
-                                </div>
-                                <div class="lower-content">
-                                    <ul class="rating clearfix centred" style="color: #ffa800">
-                                        <li>=====<i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>=====</li>
-                                    </ul>
-                                    <h3><a href="Home.html">Monica Bana</a></h3>
-                                    <div class="designation">
-                                        <p>Veterinarian</p>
-                                        <span class="bar"></span>
-                                        <p>Ut hendrerit nec neque nec porttitor. Ut semper, lacus posuere mollis ultricies, purus</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-12 team-block">
-                        <div class="team-block-two wow fadeInUp animated animated" data-wow-delay="400ms" data-wow-duration="1500ms" style="visibility: visible; animation-duration: 1500ms; animation-delay: 400ms; animation-name: fadeInUp;">
-                            <div class="inner-box">
-                                <div class="image-box">
-                                    <figure class="image"><img src="/assets/images/team/team-7.png" alt=""></figure>
-                                </div>
-                                <div class="lower-content">
-                                    <ul class="rating clearfix centred" style="color: #ffa800">
-                                        <li>=====<i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>=====</li>
-                                    </ul>
-                                    <h3><a href="Home.html">James Rio</a></h3>
-                                    <div class="designation">
-                                        <p>Pet Sitter</p>
-                                        <span class="bar"></span>
-                                        <p>Ut hendrerit nec neque nec porttitor. Ut semper, lacus posuere mollis ultricies, purus</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-12 team-block">
-                        <div class="team-block-two wow fadeInUp animated animated" data-wow-delay="600ms" data-wow-duration="1500ms" style="visibility: visible; animation-duration: 1500ms; animation-delay: 600ms; animation-name: fadeInUp;">
-                            <div class="inner-box">
-                                <div class="image-box">
-                                    <figure class="image"><img src="/assets/images/team/team-8.png" alt=""></figure>
-                                </div>
-                                <div class="lower-content">
-                                    <ul class="rating clearfix centred" style="color: #ffa800">
-                                        <li>=====<i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>=====</li>
-                                    </ul>
-                                    <h3><a href="Home.html">Neil Roberto</a></h3>
-                                    <div class="designation">
-                                        <p>Dog Trainer</p>
-                                        <span class="bar"></span>
-                                        <p>Ut hendrerit nec neque nec porttitor. Ut semper, lacus posuere mollis ultricies, purus</p>
+                                        <p th:text="${groomer.getDescription()}"></p>
                                     </div>
                                 </div>
                             </div>
@@ -247,6 +176,7 @@
                 </div>
             </div>
         </section>
+        
         <!-- team-page-section end -->
 
 

@@ -28,11 +28,11 @@ public class GroomerController {
 
     
     // // Manager Part
-    // @GetMapping("/manager/grommerList")  
-    // public Result<?> getAllGroomers_M(){
-    //     return groomerService.listAllGroomers();
+    @GetMapping("/manager/grommerList")  
+    public List<Groomer> getAllGroomers_M(){
+        return groomerService.listAllGroomers();
         
-    // }
+    }
 
     @GetMapping("/manager/groomerList/view")
     public Result<?> viewGroomer_M(@RequestParam Integer gid){
@@ -90,8 +90,7 @@ public class GroomerController {
             return "home";
         }
         
-        // ensure the random num not duplicate
-
+        
         Random r = new Random();
         List<Integer> intList = new ArrayList<>();
 
@@ -111,7 +110,10 @@ public class GroomerController {
 
 
     @GetMapping("/groomers") 
-    public String getAllGroomers(){
+    public String getAllGroomers(Model model){
+        List<Groomer> gList = groomerService.listAllGroomers();
+        model.addAttribute("gList", gList);
+
         return "Groomers";
     }
     

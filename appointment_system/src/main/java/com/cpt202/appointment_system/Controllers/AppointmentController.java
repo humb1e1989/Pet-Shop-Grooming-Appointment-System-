@@ -53,14 +53,15 @@ public class AppointmentController {
     // }
     @GetMapping("/manager/appointmentList")
     public String getAllAppointment_M(Model model) {
-        model.addAttribute("appointment", appointmentService.getAppointmentList_M());
-        return "allGroomers";
+        model.addAttribute("appointmentList", appointmentService.getAppointmentList_M());
+        return "allAppointments";
     }
 
     // YYY PBI NO.2 - Manager view the appointment detail
     @GetMapping("/manager/appointmentList/view")
-    public Result<?> viewAppointment_M(@RequestParam Appointment appointment) {
-        return appointmentService.getAppointmentDetail_M(appointment);
+    public String viewAppointment_M(@RequestParam Appointment appointment, Model model) {
+        model.addAttribute("appointmentDetail", appointmentService.getAppointmentDetail_M(appointment));
+        return "appointmentDetail";
     }
 
     /*
@@ -70,8 +71,9 @@ public class AppointmentController {
 
     //YYY PBI NO.3 - Customer can view all of history appointments (only hisappointment)
     @GetMapping("/customer/appointmentList")
-    public Result<?> getUserAppointment_C(@RequestParam User user) {
-        return appointmentService.getAppointmentBy_Uid(user);
+    public String getUserAppointment_C(@RequestParam User user, Model model) {
+        model.addAttribute("appointmentList", appointmentService.getAppointmentBy_Uid(user));
+        return "myAppointments";
     }
 
     // TODO : Number the PBI
@@ -91,22 +93,22 @@ public class AppointmentController {
     //bowenli's pbi
 
     //Customer can make appointment
-    @GetMapping("/customer/makeappointment")
-    public String makeappointment(Model model) {// capable of convert a string into object
-        model.addAttribute("appointment", new Appointment());
-        return "makeappointment";
-    }
-
-    @PostMapping("/customer/makeappointment")
-    public String makeappointment_C(@ModelAttribute("appointment") Appointment appointment) {
-         appointmentService.makeAppointment_C(appointment);
-         return "home";
-    }
+    // @GetMapping("/customer/makeappointment")
+    // public String makeappointment(Model model) {// capable of convert a string into object
+    //     model.addAttribute("appointment", new Appointment());
+    //     return "makeappointment";
+    // }
 
     // @PostMapping("/customer/makeappointment")
-    // public Result<?> makeappointment_C(@RequestBody Appointment appointment) {
-    //      return  appointmentService.makeAppointment_C(appointment);
+    // public String makeappointment_C(@ModelAttribute("appointment") Appointment appointment) {
+    //      appointmentService.makeAppointment_C(appointment);
+    //      return "home";
     // }
+
+    @PostMapping("/customer/makeAppointment")
+    public Result<?> makeappointment_C(@RequestBody Appointment appointment) {
+         return  appointmentService.makeAppointment_C(appointment);
+    }
     
 
     // Customer can cancel appointment

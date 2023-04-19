@@ -20,6 +20,7 @@ public class Appointment {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(columnDefinition = "int(7)")
     private Integer aid;
 
     @Column(columnDefinition = "Timestamp DEFAULT CURRENT_TIMESTAMP", nullable = false)
@@ -51,7 +52,7 @@ public class Appointment {
     // private String petName;
     
     @ManyToOne
-    @JoinColumn(columnDefinition = "sid", referencedColumnName = "sid",nullable = false)
+    @JoinColumn(name="sid",referencedColumnName = "sid",nullable = false)
     private ServiceType serviceType;
 
     @ManyToOne
@@ -83,6 +84,24 @@ public class Appointment {
     public Appointment(){
         
     }
+
+
+    public Appointment(Integer aid, Timestamp createTime, Timestamp startTime, String status, ServiceType serviceType,
+            Groomer groomer, User user, Pet pet, Timestamp finishTime, Timestamp cancelTime, Double totalprice) {
+        this.aid = aid;
+        this.createTime = createTime;
+        this.startTime = startTime;
+        this.status = status;
+        this.serviceType = serviceType;
+        this.groomer = groomer;
+        this.user = user;
+        this.pet = pet;
+        this.finishTime = finishTime;
+        this.cancelTime = cancelTime;
+        this.totalprice = totalprice;
+    }
+
+
 
     public Appointment(Timestamp startTime, ServiceType serviceType, Groomer groomer, User user, Pet pet) {
         this.startTime = startTime;

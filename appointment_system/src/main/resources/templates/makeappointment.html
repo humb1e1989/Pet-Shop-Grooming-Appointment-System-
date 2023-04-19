@@ -1,5 +1,10 @@
+p<<<<<<< HEAD
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+=======
+﻿<!DOCTYPE html>
+<html lang="zxx">
+>>>>>>> frontend
 
 <head>
     <meta charset="utf-8">
@@ -183,6 +188,10 @@
                                 <div class="col-lg-12 col-md-12 col-sm-12 form-group">
                                     <label for="Pet">Your Pet :</label><i class="fal fa-paw-alt"></i>&nbsp;&nbsp;&nbsp;&nbsp;
                                     <select name="Pet" id ="Pet">
+
+                                        <div th:each="pet: ${petList}">
+                                            <option th:text="${pet.petName}"><p th:text="${pet.petName}"></p></option>
+                                        </div>
                                         <option value="Dog">宠物1</option>
                                         <option value="Cat">宠物2</option>
                                     </select>
