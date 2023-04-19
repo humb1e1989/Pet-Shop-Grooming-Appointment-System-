@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Team</title>
+    </head>
+    <body>
+        <h1>Team List Page</h1>
+        <h2>Welcome!</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Member Count</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="team : ${teamList}">
+                    <td th:text="${team.name}"></td>
+                    <td th:text="${team.memberCount}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>

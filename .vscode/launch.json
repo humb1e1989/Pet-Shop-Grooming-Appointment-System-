@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "TeamApplication",
+            "request": "launch",
+            "mainClass": "com.cpt202_group10.team.TeamApplication",
+            "projectName": "team"
+        },
+        {
+            "type": "java",
             "name": "Spring Boot-AppointmentSystemApplication<appointment_system>",
             "request": "launch",
             "cwd": "${workspaceFolder}",

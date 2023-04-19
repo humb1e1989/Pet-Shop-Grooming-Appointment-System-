@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="zxx" xmlns:th="http://www.thymeleaf.org">
+<html lang="zxx">
 
 <head>
     <meta charset="utf-8">
@@ -181,8 +181,7 @@
 
                                 <!--选择自己的宠物， 需要从该用户的宠物数据库调-->
                                 <div class="col-lg-12 col-md-12 col-sm-12 form-group">
-                                    <i class="fal fa-paw-alt"></i>
-                                    <label for="Pet">Pet:</label>
+                                    <label for="Pet">Your Pet :</label><i class="fal fa-paw-alt"></i>&nbsp;&nbsp;&nbsp;&nbsp;
                                     <select name="Pet" id ="Pet">
                                         <option value="Dog">宠物1</option>
                                         <option value="Cat">宠物2</option>
@@ -192,22 +191,24 @@
                                 <!--选择服务， 可多选-->
                                 <div class="col-lg-12 col-md-12 col-sm-12 form-group">
 
-                                    Service:
+                                    Service:  
                                     <label>
-                                        <input type="checkbox" name="service" value="PetGrooming" >
-                                    </label> PetGrooming
+                                        <input type="checkbox" name="service" value="PetBathing" >
+                                    </label> Pet Bathing&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     <label>
-                                        <input type="checkbox" name="service" value="PetBoarding" >
-                                    </label> PetBoarding
+                                        <input type="checkbox" name="service" value="PetHaircut" >
+                                    </label> Pet Haircut&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    
                                     <label>
-                                        <input type="checkbox" name="service" value="PetTraining" >
-                                    </label> PetTraining<br>
+                                        <input type="checkbox" name="service" value="Hairdrying" >
+                                    </label> Hair drying
+                                    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     <label>
                                         <input type="checkbox" name="service" value="PetDyeHair" >
-                                    </label> PetDyeHair
+                                    </label> Pet DyeHair&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     <label>
-                                        <input type="checkbox" name="service" value="DayCare" >
-                                    </label> DayCare
+                                        <input type="checkbox" name="service" value="PetTraining" >
+                                    </label> Pet Training&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     <label>
                                         <input type="checkbox" name="service" value="VeterinaryCare" >
                                     </label> VeterinaryCare
@@ -216,10 +217,9 @@
 
                                 <!--选择服务时间，需要将已下单时间标灰-->
                                 <div class="col-lg-12 col-md-12 col-sm-12 form-group">
-                                    <i class="fal fa-calendar-alt"></i>
-                                    <label for="StartTime">Start Time:</label>
+                                    <label for="StartTime">Start Time :</label><i class="fal fa-calendar-alt"></i>&nbsp;&nbsp;&nbsp;&nbsp;
                                     <input type="datetime-local" id="StartTime"
-                                           name="StartTime" value="2023-05-01T00:00"
+                                           name="StartTime" value="yyyy-MM-ddTHH:mm"
                                            min="2023-05-01T00:00" max="2024-05-01T00:00">
 
                                 </div>
@@ -227,7 +227,7 @@
 
                                 <!--选择Groomer， 需要从Groomer数据库调-->
                                 <div class="col-lg-12 col-md-12 col-sm-12 form-group">
-                                    <label for="Groomer">Groomer:</label>
+                                    <label for="Groomer">Groomer :</label><i class="far fa-user"></i>&nbsp;&nbsp;&nbsp;&nbsp;
                                     <select name="Groomer" id="Groomer">
                                         <option value="Groomer1">Groomer1</option>
                                         <option value="Groomer2">Groomer2</option>
@@ -240,8 +240,6 @@
                                 </div>
 
                             </div>
-                            <br>
-                            <p class="form-messege text-center"></p>
                         </form>
                     </div>
                 </div>
