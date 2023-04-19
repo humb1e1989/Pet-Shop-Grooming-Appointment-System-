@@ -91,22 +91,22 @@ public class AppointmentController {
     //bowenli's pbi
 
     //Customer can make appointment
-    // @GetMapping("/customer/makeappointment")
-    // public String makeappointment(Model model) {// capable of convert a string into object
-    //     model.addAttribute("appointment", new Appointment());
-    //     return "makeappointment";
-    // }
-
-    // @PostMapping("/customer/makeappointment")
-    // public String makeappointment_C(@ModelAttribute("appointment") Appointment appointment) {
-    //      appointmentService.makeAppointment_C(appointment);
-    //      return "home";
-    // }
+    @GetMapping("/customer/makeappointment")
+    public String makeappointment(Model model) {// capable of convert a string into object
+        model.addAttribute("appointment", new Appointment());
+        return "makeappointment";
+    }
 
     @PostMapping("/customer/makeappointment")
-    public Result<?> makeappointment_C(@RequestBody Appointment appointment) {
-         return  appointmentService.makeAppointment_C(appointment);
+    public String makeappointment_C(@ModelAttribute("appointment") Appointment appointment) {
+         appointmentService.makeAppointment_C(appointment);
+         return "home";
     }
+
+    // @PostMapping("/customer/makeappointment")
+    // public Result<?> makeappointment_C(@RequestBody Appointment appointment) {
+    //      return  appointmentService.makeAppointment_C(appointment);
+    // }
     
 
     // Customer can cancel appointment
