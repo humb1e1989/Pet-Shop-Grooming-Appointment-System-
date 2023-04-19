@@ -42,9 +42,9 @@ public class PetController {
     }
 
     //SQZ And WJT
-    @PostMapping("/customer/petList/update")
-    public Result<?> deletePet(@RequestBody Pet pet){
-        return petService.updatePet_C(pet);
-    }
+    // @PostMapping("/customer/petList/update")
+    // public Result<?> deletePet(@RequestBody Pet pet){
+    //     return petService.updatePet_C(pet);
+    // }
 
 }
