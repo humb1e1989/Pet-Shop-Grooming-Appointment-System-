@@ -50,7 +50,8 @@ public class User {
     @Column(columnDefinition = "varchar(100)", nullable = true)
     private String email;
 
-    @Column(nullable = false)
+    //TODO : default value = 0
+    @Column(nullable = false, columnDefinition = "int(11) default 0")
     private Integer failedLoginAttempts = 0;
     
 
