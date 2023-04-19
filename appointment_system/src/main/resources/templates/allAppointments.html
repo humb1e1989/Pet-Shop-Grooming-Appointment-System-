@@ -1,23 +1,29 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
     <head>
-        <title>Team</title>
+        <title>Appointment</title>
     </head>
     <body>
-        <h1>Team List Page</h1>
+        <h1>Appointment List Page</h1>
         <h2>Welcome!</h2>
 
         <table>
             <thead>
                 <tr>
-                    <th>Name</th>
-                    <th>Member Count</th>
+                    <th>Start Time</th>
+                    <th>Service Type</th>
+                    <th>Groomer</th>
+                    <th>User</th>
+                    <th>Pet</th>
                 </tr>
             </thead>
             <tbody>
                 <tr th:each="appointment : ${appointmentList}">
-                    <td th:text="${team.name}"></td>
-                    <td th:text="${team.memberCount}"></td>
+                    <td th:text="${appointment.startTime}"></td>
+                    <td th:text="${appointment.serviceType}"></td>
+                    <td th:text="${appointment.groomer}"></td>
+                    <td th:text="${appointment.user}"></td>
+                    <td th:text="${appointment.pet}"></td>
                 </tr>
             </tbody>
         </table>
