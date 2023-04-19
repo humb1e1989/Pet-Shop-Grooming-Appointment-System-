@@ -37,15 +37,16 @@ public class LoginController {
         else model.addAttribute("error", "登录失败");
         return "signup";
     }
-    // 注册注册注册
+// 注册注册注册
     @PostMapping("/reg")
     public String registerUser(@RequestParam("rename") String username,
                                @RequestParam("reemail") String email,
                                @RequestParam("repass") String password,
                                @RequestParam("repass2") String password2,
+                               @RequestParam("phone") String phone,
                                Model model) {
         // User user = new User(username, password,);
-        User user=new User(null, username, password, 0, null, null, null, "18382328676", email, 0);
+        User user=new User(null, username, password, 0, null, null, null, phone, email, 0);
         // if(password!=password2){
         //     model.addAttribute("error", "注册失败:两次输入密码不相同");
         //     return "log&regiresult";
