@@ -25,6 +25,7 @@ public class LoginService {
     private UserRepo userRepository;
 
 
+    
     // public ResponseEntity<String> registerUser(User user) {
     //     if (userRepository.existsByUsername(user.getUsername()) || userRepository.existsByEmail(user.getEmail())) {
     //         return new ResponseEntity<>("Username or email already exists.", HttpStatus.BAD_REQUEST);
