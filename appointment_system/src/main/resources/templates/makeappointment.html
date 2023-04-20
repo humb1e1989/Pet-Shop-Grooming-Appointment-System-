@@ -185,10 +185,9 @@
                                     <select name="Pet" id ="Pet">
 
                                         <div th:each="pet: ${petList}">
-                                            <option th:text="${pet.petName}"><p th:text="${pet.petName}"></p></option>
+                                            <option th:value="${pet.petName}"><p th:text="${pet.petName}"></p></option>
                                         </div>
-                                        <option value="Dog">宠物1</option>
-                                        <option value="Cat">宠物2</option>
+                                    
                                     </select>
                                 </div>
                                 
@@ -233,8 +232,9 @@
                                 <div class="col-lg-12 col-md-12 col-sm-12 form-group">
                                     <label for="Groomer">Groomer :</label><i class="far fa-user"></i>&nbsp;&nbsp;&nbsp;&nbsp;
                                     <select name="Groomer" id="Groomer">
-                                        <option value="Groomer1">Groomer1</option>
-                                        <option value="Groomer2">Groomer2</option>
+                                        <div th:each="groomer : ${gList}">
+                                            <option th:value="${groomer.getName()}"><p th:text="${groomer.getName()}"></p></option>
+                                        </div>
                                     </select>
                                 </div>
 
