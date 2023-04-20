@@ -85,6 +85,9 @@
 
                                         <li><a th:href="@{/home/groomers}">Groomers</a></li>
 
+                                        <li><a th:href="@{/appointment-system/manager/appointmentList}">All
+                                                Appointments</a></li>
+
                                         <li class="dropdown"><a href="AllService.html">Services</a>
                                             <ul>
                                                 <li><a href="AllService.html">All Services</a></li>
@@ -133,7 +136,71 @@
         </header>
         <!-- main-header end -->
 
+        <!-- Mobile Menu  -->
+        <div class="mobile-menu">
+            <div class="menu-backdrop"></div>
+            <div class="close-btn"><i class="fas fa-times"></i></div>
 
+            <nav class="menu-box">
+                <div class="nav-logo"><a th:href="@{/home}"><img src="/assets/images/logo-2.png" alt="" title=""></a>
+                </div>
+                <div class="menu-outer"><!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header-->
+                </div>
+                <div class="contact-info">
+                    <h4>Contact Info</h4>
+                    <ul>
+                        <li>111 Ren Ai Road Industrial park, Suchou, China</li>
+                        <li><a href="tel:+0991 433-8833">+0991 433-8833</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <!-- End Mobile Menu -->
+
+        <!-- Page Title -->
+        <section class="page-title centred">
+            <div class="pattern-layer" style="background-image: url(/assets/images/shape/shape-87.png);"></div>
+            <div class="auto-container">
+                <div class="content-box">
+                    <h1>All My Appointments</h1>
+                    <form action="@{/appointment-system/customer/appointmentList/search}" method="GET">
+                        <input type="text" placeholder="Search..." name="Search">
+                        <button type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+        <!-- End Page Title -->
+
+        <!-- team-page-section -->
+        <section class="team-page-section" th:class="team-page-section">
+            <ul class="rating clearfix centred" style="color: #ffa800">
+                <div class="auto-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Appointment ID</th>
+                                <th>Start Time</th>
+                                <th>Service Type</th>
+                                <th>Groomer</th>
+                                <th>User</th>
+                                <th>Pet</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="appointment : ${appointment}">
+                                <td th:text="${appointment.getAid()}"></td>
+                                <td th:text="${appointment.getStartTime()}"></td>
+                                <td th:text="${appointment.serviceType.serviceName}"></td>
+                                <td th:text="${appointment.groomer.name}"></td>
+                                <td th:text="${appointment.user.username}"></td>
+                                <td th:text="${appointment.pet.name}"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+        </section>
+        <!-- team-page-section end -->
 
 
     </div>
