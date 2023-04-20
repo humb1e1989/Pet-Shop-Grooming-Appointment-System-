@@ -16,12 +16,13 @@ import com.cpt202.appointment_system.Common.Result;
 import com.cpt202.appointment_system.Models.Appointment;
 import com.cpt202.appointment_system.Models.Groomer;
 import com.cpt202.appointment_system.Models.User;
+import com.cpt202.appointment_system.Repositories.AppointmentRepo;
 import com.cpt202.appointment_system.Services.AppointmentService;
 import com.cpt202.appointment_system.Services.GroomerService;
 
 // @RestController
 @Controller
-@RequestMapping("/home")
+@RequestMapping("/appointment-system")
 public class AppointmentController {
 
     /*
@@ -31,7 +32,12 @@ public class AppointmentController {
 
     // WJT Manger Part
     @Autowired
+    private AppointmentRepo appointmentRepo;
+
+    @Autowired
     private AppointmentService appointmentService;
+
+    @Autowired
     private GroomerService groomerService;
 
     @GetMapping("/manager/appointmentList/search/customername")
@@ -51,19 +57,15 @@ public class AppointmentController {
 
     // YYY PBI NO.1 - Manager can view all of appointments
     // @GetMapping("/manager/appointmentList")
-    // public Result<?> getAllAppointment_M() {
-    //     return appointmentService.getAppointmentList_M();
+    // public String getAllAppointment_M(Model model) {
+    //     // List<Appointment> appointmentList = appointmentService.getAppointmentList_M();
+    //     // model.addAttribute("appointmentList", appointmentList);
     // }
-    @GetMapping("/appointmentList")
-    public String getAllAppointment_M(Model model) {
-        List<Appointment> appointmentList = appointmentService.getAppointmentList_M();
-        model.addAttribute("appointmentList", appointmentList);
-        
+    @GetMapping("/manager/appointmentList")
+    public String getAllAppointment_M(Model model) {// capable of convert a string into object
+        // model.addAttribute("appointmentList", appointmentService.listAllAppointments());
+        model.addAttribute("appointment", appointmentService.listAllAppointments());
         return "allAppointments";
-        // List<Groomer> gList = groomerService.listAllGroomers();
-        // model.addAttribute("gList", gList);
-
-        // return "Groomers";
     }
 
     // YYY PBI NO.2 - Manager view the appointment detail
@@ -100,6 +102,7 @@ public class AppointmentController {
     //bowenli's pbi
 
     //Customer can make appointment
+    // {"name": "asas", "pet": "宠物1", "serviceType": "Pet Bathing", "startTime": "2023/05/04 00:44", "groomer": "Groomer1"}
     @GetMapping("/customer/makeappointment")
     public String makeappointment(Model model) {// capable of convert a string into object
         model.addAttribute("appointment", new Appointment());
