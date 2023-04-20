@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="zxx" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="utf-8">
@@ -24,7 +24,6 @@
 
 <!-- page wrapper -->
 <body>
-
 
 <div class="boxed_wrapper">
 
@@ -54,8 +53,8 @@
                                     <li><a href="Pricing.html">Pricing Plans</a></li>
 
                                     <li><a th:href="@{/home/groomers}">Groomers</a></li>
-                                        
-                                    <li><a th:href="@{/home/appointmentList}">All Appointments</a></li>
+                                    
+                                    <li><a th:href="@{/appointment-system/manager/appointmentList}">All Appointments</a></li>
 
                                     <li><a th:href="@{/appointment-system/manager/appointmentList/view}">View Appointment Detail</a></li>
 
@@ -743,16 +742,9 @@
                     <div class="row clearfix">
                         <div class="col-lg-4 col-md-6 col-sm-12 footer-column">
                             <div class="footer-widget logo-widget">
-
-<<<<<<< HEAD
-<<<<<<< HEAD
                                 <figure class="footer-logo footer-logo-center"><a href="/home"><img src="/assets/images/logo-2.png" alt=""></a></figure>
-=======
                                 <figure class="footer-logo footer-logo-center"><a href="Home.html"><img src="assets/images/logo-2.png" alt=""></a></figure>
->>>>>>> frontend
-=======
                                 <figure class="footer-logo footer-logo-center"><a th:href="@{/home}"><img src="/assets/images/logo-2.png" alt=""></a></figure>
->>>>>>> ef25d407c03a45232b76dfd231c31f97dffefbc5
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-6 col-sm-12 footer-column">
@@ -807,20 +799,6 @@
 
 
     <!-- jequery plugins -->
-<<<<<<< HEAD
-    <script src="assets/js/jquery.js"></script>
-    <script src="assets/js/popper.min.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
-    <script src="assets/js/owl.js"></script>
-    <script src="assets/js/wow.js"></script>
-    <script src="assets/js/validation.js"></script>
-    <script src="assets/js/jquery.fancybox.js"></script>
-    <script src="assets/js/appear.js"></script>
-    <script src="assets/js/scrollbar.js"></script>
-    <script src="assets/js/tilt.jquery.js"></script>
-    <script src="assets/js/isotope.js"></script>
-    <script src="assets/js/bxslider.js"></script>
-=======
     <script src="/assets/js/jquery.js"></script>
     <script src="/assets/js/popper.min.js"></script>
     <script src="/assets/js/bootstrap.min.js"></script>
@@ -839,7 +817,6 @@
     <!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-CE0deH3Jhj6GN4YvdCFZS7DpbXexzGU"></script>-->
     <!--<script src="/assets/js/gmaps.js"></script>-->
     <!--<script src="/assets/js/map-helper.js"></script>-->
->>>>>>> ef25d407c03a45232b76dfd231c31f97dffefbc5
 
     <!-- main-js -->
     <script src="assets/js/script.js"></script>

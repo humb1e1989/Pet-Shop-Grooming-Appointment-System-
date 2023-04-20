@@ -106,14 +106,10 @@ public class AppointmentService {
 	/* ZYH */
 	// TODO : para name to be uniformed
 	// YYY - Manager can view all appointments
-	public List<Appointment> getAppointmentList_M() {
-		return appointmentRepo.findAll();
-		// List<Appointment> appointmentList = appointmentRepo.findAll();
-		// if (!appointmentList.isEmpty()) {
-		// 	return Result.success(appointmentList, "Find Matching Appointments!");
-		// }
-		// return Result.error("-1", "No Matching Appointment Found.");
-	}
+    public List<Appointment> listAllAppointments() {
+        List<Appointment> appointmentList = appointmentRepo.findAll();
+        return appointmentList;
+    }
 
 	// ZYH : Customer can search appointment by user name
 	public Result<?> getAppointmentListByUserName_C(@RequestParam String username) {

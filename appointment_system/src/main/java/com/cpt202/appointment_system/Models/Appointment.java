@@ -103,21 +103,28 @@ public class Appointment {
 
 
 
-    // public Appointment(Timestamp startTime, ServiceType serviceType, Groomer groomer, User user, Pet pet) {
-    //     this.startTime = startTime;
-    //     this.serviceType = serviceType;
-    //     this.groomer = groomer;
-    //     this.user = user;
-    //     this.pet = pet;
-    // }
-    
-    public Appointment(Timestamp startTime, ServiceType serviceType, Groomer groomer, User user, Pet pet, Double totalprice) {
+    public Appointment(Timestamp startTime, ServiceType serviceType, Groomer groomer, User user, Pet pet) {
         this.startTime = startTime;
         this.serviceType = serviceType;
         this.groomer = groomer;
         this.user = user;
         this.pet = pet;
-        this.totalprice = totalprice;
+    }
+
+    
+    
+    // public Appointment(Timestamp startTime, ServiceType serviceType, Groomer groomer, User user, Pet pet, Double totalprice) {
+    //     this.startTime = startTime;
+    //     this.serviceType = serviceType;
+    //     this.groomer = groomer;
+    //     this.user = user;
+    //     this.pet = pet;
+    //     this.totalprice = totalprice;
+    // }
+
+
+    public Appointment(Integer aid) {
+        this.aid = aid;
     }
 
 
