@@ -22,6 +22,7 @@ public class LoginController {
     private LoginService loginService;
     @GetMapping("/")
     public String showForm() {
+        
         return "signup";
     }
 
