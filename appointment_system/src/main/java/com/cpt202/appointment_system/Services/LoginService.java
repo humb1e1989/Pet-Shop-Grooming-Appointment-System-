@@ -66,6 +66,7 @@ public class LoginService {
     public boolean loginUser(String username,String password) {
         Optional<User> dbUser = userRepository.findByUsername(username);
         if (dbUser.isPresent()&&dbUser.get().getPassword().equals(password)){
+            user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
             return true;
         } else {
             return false;
@@ -88,6 +89,7 @@ public class LoginService {
         else{
             Timestamp currentTime = new Timestamp(System.currentTimeMillis());
             user.setRegistrationTime(currentTime);
+            user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
             userRepository.save(user);
             return 3;
         }
