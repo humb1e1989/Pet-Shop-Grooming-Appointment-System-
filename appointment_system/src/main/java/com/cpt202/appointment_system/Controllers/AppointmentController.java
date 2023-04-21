@@ -69,12 +69,13 @@ public class AppointmentController {
     }
 
     // YYY PBI NO.2 - Manager view the appointment detail
-    @GetMapping("/manager/appointmentList/view")
-    public String getAppointment(Model model) {// capable of convert a string into object
-        // model.addAttribute("appointmentList", appointmentService.listAllAppointments());
-        model.addAttribute("appointment", new Appointment(1));
-        return "appointmentDetail";
-    }
+    // @GetMapping("/manager/appointmentList/view")
+    // public String getAppointment(Model model) {// capable of convert a string into object
+    //     // model.addAttribute("appointmentList", appointmentService.listAllAppointments());
+    //     Appointment appointment = new Appointment();
+    //     model.addAttribute("appointment", appointment);
+    //     return "appointmentDetail";
+    // }
     @PostMapping("/manager/appointmentList/view")
     public String viewAppointment_M(@RequestParam("appointment") Appointment appointment, Model model) {
         Appointment appointmentDetail = appointmentService.getAppointmentDetail_M(appointment);

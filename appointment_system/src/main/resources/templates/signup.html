@@ -11,43 +11,34 @@
   <!--  <link href="assets/css/style.css" rel="stylesheet">-->
   <!-- 引入组件库 -->
   <!--  <script src="https://unpkg.com/element-ui/lib/index.js"></script>-->
+  <!-- <p id="message" th:text="${message}" style="display:none;"></p>
+  <p id="error" th:text="${error}" style="display:none;"></p> -->
 
 </head>
 <body>
 <div>
   <button id="displaysign" onclick="start()">Log in</button>
+  <a href="/appointment-system/logout">注销</a><br>
+  <a href="/profile">个人界面</a><br>
 </div>
 
-
-
-
+<p id="message" th:text="${message}" style="display:none;"></p>
+<p id="error" th:text="${error}" style="display:none;"></p>
     <script>
         window.onload = function() {
             const message = document.getElementById("message").innerText;
             const error = document.getElementById("error").innerText;
             if (message) {
-                alert("登录成功");
-                window.location.href = "/home";
+                alert(message);
+                window.location.href = "/appointment-system";
             } else if (error) {
-                alert("登录失败");
-                window.location.href = "/";
+                alert(error);
+                window.location.href = "/appointment-system";
             }
         }
     </script>
 
-    <p id="message" th:text="${message}" style="display:none;"></p>
-    <p id="error" th:text="${error}" style="display:none;"></p>
-
-
-
-
-
-
-
-
-
-
-
+    <h1>欢迎，<span th:text="${username}"></span></h1>
 
 <div id="signform" class="modal" style="display: none">
   <div class="container">
@@ -57,7 +48,7 @@
     </div>
 
     <!--    Form-->
-    <form class="form" action="/appointment-system/" id="loginForm" method="post">
+    <form class="form" action="/appointment-system" id="loginForm" method="post">
       <!-- <input type="hidden" name="action" value="login"> -->
       <div class="form_control">
         <label for="uname">用户名</label>
@@ -198,35 +189,93 @@
     phone.addEventListener("blur",checkPhone)
 
     function checkPhone(){
-      const userphoneValue = phone.value.trim();
-      //用户名验证
-      if (userphoneValue==="") {
-        setErrorFor(phone, "Username can not be empty");
-      } else {
+      const phoneValue = phone.value.trim();
+      const cPhone = /^1[3-9]\d{9}$/;
+      //手机验证
+      if (phoneValue==="") {
+        setErrorFor(phone, "Phone number can not be empty");
+      } 
+      else if(!cPhone.test(phoneValue))
+      {
+        setErrorFor(phone, "Invalid mobile phone");
+      } 
+      else{
         setSuccessFor(phone);
       }
     }
   
-    function checkUsername(){
-      const usernameValue = username.value.trim();
-      //用户名验证
-      if (usernameValue==="") {
-        setErrorFor(username, "Username can not be empty");
-      } else {
-        setSuccessFor(username);
-      }
-    }
-    function checkEmail(){
-      const emailValue = email.value.trim();
-      //邮箱验证
-      if(emailValue===""){
-        setErrorFor(email,"Email can not be empty");
-      }else if(!valiEmail(emailValue)){//valiEmail返回的false表示邮箱不正确，则对其取反为true，if执行
-        setErrorFor(email,"Email format is incorrect, please re-enter");
-      }else{
-        setSuccessFor(email);
-      }
-    }
+    // function checkUsername(){
+    //   const usernameValue = username.value.trim();
+    //   //用户名验证
+    //   if (usernameValue==="") {
+    //     setErrorFor(username, "Username can not be empty");
+    //   } else {
+    //     setSuccessFor(username);
+    //   }
+    // }
+
+    function checkUsername() {
+            const usernameValue = username.value.trim();
+            // 用户名验证
+            if (usernameValue === "") {
+                setErrorFor(username, "Username can not be empty");
+            } else {
+                // 检查用户名是否唯一
+                fetch(`/appointment-system/check-unique?value=${usernameValue}`)
+                    .then(response => {
+                        if (response.status === 200) {
+                            setSuccessFor(username);
+                        } else if (response.status === 409) {
+                            setErrorFor(username, "Username already exists");
+                        } else {
+                            setErrorFor(username, "Error checking username");
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error fetching data:', error);
+                    });
+            }
+        }
+
+    // function checkEmail(){
+    //   const emailValue = email.value.trim();
+    //   //邮箱验证
+    //   if(emailValue===""){
+    //     setErrorFor(email,"Email can not be empty");
+    //   }else if(!valiEmail(emailValue)){//valiEmail返回的false表示邮箱不正确，则对其取反为true，if执行
+    //     setErrorFor(email,"Email format is incorrect, please re-enter");
+    //   }else{
+    //     setSuccessFor(email);
+    //   }
+    // }
+
+    function checkEmail() {
+            const emailValue = email.value.trim();
+
+            // 邮箱验证
+            if (emailValue === "") {
+                setErrorFor(email, "Email can not be empty");
+            } else if (!valiEmail(emailValue)) {
+                setErrorFor(email, "Email format is incorrect, please re-enter");
+            } else {
+                // 检查邮箱是否唯一
+                fetch(`/appointment-system/check-uniqueem?value=${emailValue}`)
+                    .then(response => {
+                        if (response.status === 200) {
+                            setSuccessFor(email);
+                        } else if (response.status === 409) {
+                            setErrorFor(email, "Email already exists");
+                        } else {
+                            setErrorFor(email, "Error checking email");
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error fetching data:', error);
+                    });
+            }
+        }
+
+    
     function checkPassword(){
       const passwordValue = passowrd.value.trim();
       const cPassword = /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,16}$/;
@@ -263,6 +312,7 @@
       const passwordValue = passowrd.value.trim();
       const password2Value = password2.value.trim();
       const cPassword = /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,16}$/;
+      const cPhone = /^1[3-9]\d{9}$/;
       //用户名验证
       if (usernameValue==="") {
         setErrorFor(username, "Username can not be empty");
@@ -292,6 +342,18 @@
       else{
         setSuccessFor(passowrd)
       }
+      //手机验证
+      if (phoneValue==="") {
+        setErrorFor(phone, "Phone number can not be empty");
+      } 
+      else if(!cPhone.test(phoneValue))
+      {
+        setErrorFor(phone, "Phone number must be 11 digits");
+      } 
+      else{
+        setSuccessFor(phone);
+      }
+
       //重复密码验证
       if(password2Value===""){
         setErrorFor(password2,"Password can not be empty");
@@ -333,7 +395,7 @@
   
     //邮箱验证特殊情况：邮箱格式不正确----------------------------
     function valiEmail(email){
-      const regEmail = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/;
+      const regEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
       //将传过来的email值与定义的邮箱范围相比较
       return regEmail.test(email);//返回true或false
     }</script>

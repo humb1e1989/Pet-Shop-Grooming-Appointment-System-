@@ -212,9 +212,34 @@
                                 <td th:text="${appointment.user.username}"></td>
                                 <td th:text="${appointment.pet.name}"></td>
                                 <td>
-                                    <a th:href="@{/appointment-system/manager/appointmentList/view}">
+                                    <!-- <body>
+                                        <input type="text">
                                         <button>View Detail</button>
-                                    </a>
+                                        <script src="jquery-3.3.1.min.js"></script>
+                                        <script>
+                                            $("button").click(function () {
+                                                var num = appointment;
+                                                window.location.href = "b.html?num=" + num;
+                                            })
+                                        </script>
+                                    </body> -->
+                                    <form th:action="@{/appointment-system/manager/appointmentList/view}" method="POST" th:object="${appointment}">
+                                        <!-- <div>
+                                            <label for="name">Team Name</label>
+                                            <input type="text" th:field="*{name}" id="neam" name="name">
+                            
+                                            <label for="count">Member Count</label>
+                                            <input type="text" th:field="*{memberCount}" id="count" name="count">
+                                        </div> -->
+                                        <div>
+                                            <input type="text" id="appointment" name="appointment">
+                                            <button type="submit">View Detail</button>
+                                        </div>
+                                    </form>
+
+                                    <!-- <a th:href="@{/appointment-system/manager/appointmentList/view}">
+                                        <button>View Detail</button>
+                                    </a> -->
                                     <!-- <div>
                                         <button type="button">View Detail</button>
                                     </div> -->
