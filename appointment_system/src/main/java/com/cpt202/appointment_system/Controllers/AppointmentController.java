@@ -64,15 +64,24 @@ public class AppointmentController {
     @GetMapping("/manager/appointmentList")
     public String getAllAppointment_M(Model model) {// capable of convert a string into object
         // model.addAttribute("appointmentList", appointmentService.listAllAppointments());
-        model.addAttribute("appointment", appointmentService.listAllAppointments());
+        model.addAttribute("appointmentList", appointmentService.listAllAppointments());
         return "allAppointments";
     }
 
     // YYY PBI NO.2 - Manager view the appointment detail
-    @GetMapping("/manager/appointmentList/view")
-    public Result<?> viewAppointment_M(@RequestParam Appointment appointment) {
-        return appointmentService.getAppointmentDetail_M(appointment);
-    }
+    // @GetMapping("/manager/appointmentList")
+    // public String getAppointment(Model model) {// capable of convert a string into object
+    //     // model.addAttribute("appointmentList", appointmentService.listAllAppointments());
+    //     model.addAttribute("appointment", new Appointment());
+    //     return "allAppointments";
+    // }
+    // @PostMapping("/manager/appointmentList/view")
+    // public String viewAppointment_M(@RequestParam("appointment") Appointment appointment, Model model) {
+    //     Appointment appointmentDetail = appointmentService.getAppointmentDetail_M(appointment);
+    //     model.addAttribute("appointmentDetail", appointmentDetail);
+
+    //     return "appointmentDetail";
+    // }
 
     /*
      * Customer Part
@@ -82,7 +91,7 @@ public class AppointmentController {
     //YYY PBI NO.3 - Customer can view all of history appointments (only hisappointment)
     @GetMapping("/customer/appointmentList")
     public String getUserAppointment_C(Model model) {
-        model.addAttribute("appointment", appointmentService.listAllAppointments());
+        model.addAttribute("appointmentList", appointmentService.listAllAppointments());
         return "allAppointments";
     }
 

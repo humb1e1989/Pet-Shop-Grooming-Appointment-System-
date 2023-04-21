@@ -70,11 +70,10 @@ public class AppointmentService {
 	}
 
 	// YYY
-	public Result<?> getAppointmentDetail_M(@RequestParam Appointment appointment) {
-		Appointment appointment1 = appointmentRepo.findByAid(appointment.getAid());
-		if (appointment1 != null)
-			return Result.success(appointment1, "Find Matching Appointment!");
-		return Result.error("-1", "No Matching Appointment Found.");
+	public Appointment getAppointmentDetail_M(@RequestParam Appointment appointment) {
+		Appointment appointmentDetail = appointmentRepo.findByAid(appointment.getAid());
+
+		return appointmentDetail;
 	}
 
 

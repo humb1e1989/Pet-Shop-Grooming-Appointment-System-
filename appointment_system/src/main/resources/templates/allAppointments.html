@@ -175,8 +175,22 @@
         <!-- team-page-section -->
         <section class="team-page-section" th:class="team-page-section">
             <ul class="rating clearfix centred" style="color: #ffa800">
+                <style>
+                    .ulys {
+                        background: #ced3a0;
+                        font-family: Arial, Helvetica, sans-serif;
+                        border-collapse: collapse;
+                        padding: 0;
+                        width: 100%;
+                    }
+                    .ulys tr{
+                        height : 60px;
+                        border-bottom: 1px solid #000000;
+                        line-height: 30px;
+                    }
+                </style>
                 <div class="auto-container">
-                    <table>
+                    <table class="ulys">
                         <thead>
                             <tr>
                                 <th>Appointment ID</th>
@@ -188,7 +202,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr th:each="appointment : ${appointment}">
+                            <tr th:each="appointment : ${appointmentList}">
                                 <td th:text="${appointment.getAid()}"></td>
                                 <td th:text="${appointment.getStartTime()}"></td>
                                 <td th:text="${appointment.serviceType.serviceName}"></td>
