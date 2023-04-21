@@ -212,17 +212,6 @@
                                 <td th:text="${appointment.user.username}"></td>
                                 <td th:text="${appointment.pet.name}"></td>
                                 <td>
-                                    <!-- <body>
-                                        <input type="text">
-                                        <button>View Detail</button>
-                                        <script src="jquery-3.3.1.min.js"></script>
-                                        <script>
-                                            $("button").click(function () {
-                                                var num = appointment;
-                                                window.location.href = "b.html?num=" + num;
-                                            })
-                                        </script>
-                                    </body> -->
                                     <form th:action="@{/appointment-system/manager/appointmentList/view}" method="POST" th:object="${appointment}">
                                         <!-- <div>
                                             <label for="name">Team Name</label>
@@ -236,19 +225,12 @@
                                             <button type="submit">View Detail</button>
                                         </div>
                                     </form>
-
-                                    <!-- <a th:href="@{/appointment-system/manager/appointmentList/view}">
-                                        <button>View Detail</button>
-                                    </a> -->
-                                    <!-- <div>
-                                        <button type="button">View Detail</button>
-                                    </div> -->
                                 </td>
                             </tr>
                         </tbody>
                     </table>
                     <div>
-                        <button type="submit">Back</button>
+                        <a th:href="@{/}" onClick="javascript :history.Go(-1);">Back</a>
                     </div>
                 </div>
         </section>
