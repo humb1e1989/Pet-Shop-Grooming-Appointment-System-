@@ -247,13 +247,15 @@
                         <tbody>
                             <tr>
                                 <td th:text="${appointment.aid}"></td>
+                                <!-- <td th:text="${appointment.serviceType.getServiceName()}"></td>
+                                <td th:text="${appointment.groomer.getName()}"></td> -->
                                 <td th:text="${appointment.serviceType}"></td>
                                 <td th:text="${appointment.groomer}"></td>
                                 <td th:text="${appointment.user}"></td>
                                 <td th:text="${appointment.pet}"></td>
                             </tr>
                         </tbody>
-                        
+
                         <thead>
                             <tr>
                                 <th>Status</th>
@@ -261,7 +263,6 @@
                                 <th>Start Time</th>
                                 <th>Finish Time</th>
                                 <th>Cancel Time</th>
-                                <th>Total Price</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -271,12 +272,24 @@
                                 <td th:text="${appointment.startTime}"></td>
                                 <td th:text="${appointment.finishTime}"></td>
                                 <td th:text="${appointment.cancelTime}"></td>
+                            </tr>
+                        </tbody>
+
+                        <thead>
+                            <tr>
+                                <th>Total Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
                                 <td th:text="${appointment.totalprice}"></td>
                             </tr>
                         </tbody>
+
                     </table>
                     <div>
-                        <a th:href="@{/appointment-system/manager/appointmentList}" onClick="javascript :history.Go(-1);">Back</a>
+                        <a th:href="@{/appointment-system/manager/appointmentList}"
+                            onClick="javascript :history.Go(-1);" class="theme-btn btn-ten">Back</a>
                     </div>
                 </div>
         </section>

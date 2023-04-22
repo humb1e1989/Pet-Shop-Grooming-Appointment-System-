@@ -2,6 +2,7 @@ package com.cpt202.appointment_system.Services;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -82,6 +83,16 @@ public class AppointmentService {
 	 * Customer Part
 	 */
 	// YYY
+	public List<Appointment> appointmentSearch(@RequestParam String keyword) {
+		List<Appointment> resulList = new ArrayList<>();
+		Appointment resulList_aid = appointmentRepo.findByAid(Integer.valueOf(keyword).intValue());
+		List<Appointment> resulList_gid = appointmentRepo.findByGid(Integer.valueOf(keyword).intValue());
+		List<Appointment> resulList_gname = appointmentRepo.fetchByServiceType(keyword);
+		resulList.add(resulList_aid);
+		resulList.addAll(resulList_gid);
+		return resulList;
+	}
+
 	public Result<?> getAppointmentBy_Uid(@RequestParam User user) {
 		// return appointmentRepo.findByUser(user);
 		// return appointmentRepo.findByUsernameIs(user.getUsername());

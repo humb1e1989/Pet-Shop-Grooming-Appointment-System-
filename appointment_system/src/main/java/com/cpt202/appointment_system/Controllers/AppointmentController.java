@@ -68,8 +68,8 @@ public class AppointmentController {
         return "allAppointments";
     }
 
-    // YYY PBI NO.2 - Manager view the appointment detail
-    @GetMapping("/manager/appointmentList/view")
+    // YYY PBI NO.2 - Manager view the appointment detail, 这个view可以在customer和manager中通用
+    @GetMapping("/appointmentList/view")
     public String getAppointment(Model model, @RequestParam("aid") int aid) {// capable of convert a string into object
         // model.addAttribute("appointmentList", appointmentService.listAllAppointments());
         Appointment appointment = appointmentService.getAppointmentBy_Aid(aid);
@@ -93,6 +93,17 @@ public class AppointmentController {
     @GetMapping("/customer/appointmentList")
     public String getUserAppointment_C(Model model) {
         model.addAttribute("appointmentList", appointmentService.listAllAppointments());
+        return "allAppointments";
+    }
+
+    @GetMapping("/manager/appointmentList/search")
+    public String appointmentSearch(Model model) {
+        model.addAttribute("keyword", new String());
+        return "allAppointments";
+    }
+    @PostMapping("/manager/appointmentList/search")
+    public String appointmentSearchBykey(Model model, @ModelAttribute("keyword") String keyword) {
+        model.addAttribute("appointmentList", appointmentService.appointmentSearch(keyword));
         return "allAppointments";
     }
 
