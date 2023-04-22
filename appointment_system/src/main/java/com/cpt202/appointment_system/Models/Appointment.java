@@ -19,7 +19,7 @@ import lombok.Data;
 public class Appointment {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(columnDefinition = "int(7)")
     private Integer aid;
 

@@ -102,7 +102,7 @@ public class AppointmentController {
         return "allAppointments";
     }
     @PostMapping("/manager/appointmentList/search")
-    public String appointmentSearchBykey(Model model, @ModelAttribute("keyword") String keyword) {
+    public String appointmentSearchBykey(Model model, @RequestParam("keyword") String keyword) {
         model.addAttribute("appointmentList", appointmentService.appointmentSearch(keyword));
         return "allAppointments";
     }

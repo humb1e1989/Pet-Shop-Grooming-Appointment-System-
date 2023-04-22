@@ -1,9 +1,11 @@
 package com.cpt202.appointment_system.Services;
+
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.LinkedHashSet;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,7 +45,6 @@ public class AppointmentService {
 	@Autowired
 	private ServiceTypeRepo serviceTypeRepo;
 
-
 	/*
 	 * Manager Part
 	 * This is a part to fullfill all the functions of managers.
@@ -77,8 +78,6 @@ public class AppointmentService {
 		return appointmentDetail;
 	}
 
-
-
 	/*
 	 * Customer Part
 	 */
@@ -88,9 +87,16 @@ public class AppointmentService {
 		Appointment resulList_aid = appointmentRepo.findByAid(Integer.valueOf(keyword).intValue());
 		List<Appointment> resulList_gid = appointmentRepo.findByGid(Integer.valueOf(keyword).intValue());
 		List<Appointment> resulList_gname = appointmentRepo.fetchByServiceType(keyword);
-		resulList.add(resulList_aid);
-		resulList.addAll(resulList_gid);
-		return resulList;
+		if (resulList_aid != null)
+			resulList.add(resulList_aid);
+		if (resulList_gid != null)
+			resulList.addAll(resulList_gid);
+		if (resulList_gname != null)
+			resulList.addAll(resulList_gname);
+
+		LinkedHashSet<Appointment> hashSet = new LinkedHashSet<>(resulList);
+		ArrayList<Appointment> resulList_Final = new ArrayList<>(hashSet);
+		return resulList_Final;
 	}
 
 	public Result<?> getAppointmentBy_Uid(@RequestParam User user) {
@@ -116,10 +122,10 @@ public class AppointmentService {
 	/* ZYH */
 	// TODO : para name to be uniformed
 	// YYY - Manager can view all appointments
-    public List<Appointment> listAllAppointments() {
-        List<Appointment> appointmentList = appointmentRepo.findAll();
-        return appointmentList;
-    }
+	public List<Appointment> listAllAppointments() {
+		List<Appointment> appointmentList = appointmentRepo.findAll();
+		return appointmentList;
+	}
 
 	// ZYH : Customer can search appointment by user name
 	public Result<?> getAppointmentListByUserName_C(@RequestParam String username) {
@@ -130,7 +136,6 @@ public class AppointmentService {
 		return Result.error("-1", "No Matching Appointment Found.");
 	}
 
-
 	// Bowen li's modification
 	// Customer can make appointment when fill in all feilds
 	public Result<?> makeAppointment_C(Appointment appointment) {
@@ -138,68 +143,65 @@ public class AppointmentService {
 		Timestamp currentTime = new Timestamp(System.currentTimeMillis());
 		appointment.setCreateTime(currentTime);
 		appointment.setStatus("pending");
-		Timestamp temp =new Timestamp(appointment.getStartTime().getTime());
-        calendar.setTime(temp);
-        Groomer OrderedGroomer=groomerRepo.findByGid(appointment.getGroomer().getGid());
-        Pet pet=petRepo.findByPid(appointment.getPet().getPid());
-        User user=userRepo.findByUid(appointment.getUser().getUid());
-		List<Appointment> appointmentList=appointmentRepo.findByGroomer(OrderedGroomer);
-        ServiceType servicetype=serviceTypeRepo.findBySid(appointment.getServiceType().getSid());
-		
-        //if groomer or user or pet do not exists failed
-		if(user==null){
+		Timestamp temp = new Timestamp(appointment.getStartTime().getTime());
+		calendar.setTime(temp);
+		Groomer OrderedGroomer = groomerRepo.findByGid(appointment.getGroomer().getGid());
+		Pet pet = petRepo.findByPid(appointment.getPet().getPid());
+		User user = userRepo.findByUid(appointment.getUser().getUid());
+		List<Appointment> appointmentList = appointmentRepo.findByGroomer(OrderedGroomer);
+		ServiceType servicetype = serviceTypeRepo.findBySid(appointment.getServiceType().getSid());
+
+		// if groomer or user or pet do not exists failed
+		if (user == null) {
 			return Result.error("-2", "User is invalid");
 		}
-        if(OrderedGroomer==null){
+		if (OrderedGroomer == null) {
 			return Result.error("-2", "No such groomer");
 		}
-		if(pet==null){
+		if (pet == null) {
 			return Result.error("-2", "No such pet");
 		}
-		if(servicetype==null){
+		if (servicetype == null) {
 			return Result.error("-2", "No such service");
 		}
 
-	
-        //different servicetype have different service time
-		//the total price is depending on the rank of groomer, servicetype and pet_size
+		// different servicetype have different service time
+		// the total price is depending on the rank of groomer, servicetype and pet_size
 
 		calendar.add(Calendar.MINUTE, servicetype.getBasicPrice());
 		Timestamp finishTime = new Timestamp(calendar.getTimeInMillis());
 		appointment.setFinishTime(finishTime);
-		if(pet.getSize().equals("small")){
-			appointment.setTotalprice(50 * (1 + 0.1 * OrderedGroomer.getRank())*0.5);
+		if (pet.getSize().equals("small")) {
+			appointment.setTotalprice(50 * (1 + 0.1 * OrderedGroomer.getRank()) * 0.5);
 		}
-		if(pet.getSize().equals("medium")){
-			appointment.setTotalprice(50 * (1 + 0.1 * OrderedGroomer.getRank())*1.0);
+		if (pet.getSize().equals("medium")) {
+			appointment.setTotalprice(50 * (1 + 0.1 * OrderedGroomer.getRank()) * 1.0);
 		}
-		if(pet.getSize().equals("large")){
-			appointment.setTotalprice(50 * (1 + 0.1 * OrderedGroomer.getRank())*1.5);
+		if (pet.getSize().equals("large")) {
+			appointment.setTotalprice(50 * (1 + 0.1 * OrderedGroomer.getRank()) * 1.5);
 		}
 
-		//if the groomer has already been booked, return error
-        for(int i=0;i<appointmentList.size();i++){
-           boolean overlap= isOverlap(appointmentList.get(i).getStartTime(), appointmentList.get(i).getFinishTime(), 
-		   appointment.getStartTime(), appointment.getFinishTime());
-           if(overlap){
-			return Result.error("-2", "the groomer has already been booked during that time");
-		   }
+		// if the groomer has already been booked, return error
+		for (int i = 0; i < appointmentList.size(); i++) {
+			boolean overlap = isOverlap(appointmentList.get(i).getStartTime(), appointmentList.get(i).getFinishTime(),
+					appointment.getStartTime(), appointment.getFinishTime());
+			if (overlap) {
+				return Result.error("-2", "the groomer has already been booked during that time");
+			}
 		}
-        
+
 		appointmentRepo.save(appointment);
 		return Result.success();
-		
+
 	}
 
 	public static boolean isOverlap(Timestamp start1, Timestamp end1, Timestamp start2, Timestamp end2) {
-        if (start1.before(end2) && start2.before(end1)) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-
+		if (start1.before(end2) && start2.before(end1)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 
 	// ZYH PBI NO.i : Customer can cancel appointment
 	public Result<?> cancelAppointment_C(@RequestParam int aid) {
@@ -236,7 +238,6 @@ public class AppointmentService {
 		}
 		return Result.error("-1", "No Matching Appointment Found.");
 	}
-
 
 	// TODO : Not necessary for now
 	// // ZYH PBI NO.ii : Customer can filter appointment by time
