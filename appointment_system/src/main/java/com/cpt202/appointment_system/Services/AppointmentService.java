@@ -70,8 +70,8 @@ public class AppointmentService {
 	}
 
 	// YYY
-	public Appointment getAppointmentDetail_M(@RequestParam Appointment appointment) {
-		Appointment appointmentDetail = appointmentRepo.findByAid(appointment.getAid());
+	public Appointment getAppointmentBy_Aid(@RequestParam int aid) {
+		Appointment appointmentDetail = appointmentRepo.findByAid(aid);
 
 		return appointmentDetail;
 	}

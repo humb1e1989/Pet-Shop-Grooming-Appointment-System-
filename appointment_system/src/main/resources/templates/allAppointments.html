@@ -212,19 +212,22 @@
                                 <td th:text="${appointment.user.username}"></td>
                                 <td th:text="${appointment.pet.name}"></td>
                                 <td>
-                                    <form th:action="@{/appointment-system/manager/appointmentList/view}" method="POST" th:object="${appointment}">
-                                        <!-- <div>
+                                    <form th:action="@{/appointment-system/manager/appointmentList/view}">
+                                        <a th:href="@{/appointment-system/manager/appointmentList/view(aid=${appointment.getAid()})}">View Detail</a>
+                                        <!-- <input type="text" name="aid" class="form-control" th:placeholder="#{appointment.getAid()}">
+                                        <a th:href="@{/appointment-system/manager/appointmentList/view}">View Detail</a> -->
+                                    </form>
+                                    <!-- <div>
                                             <label for="name">Team Name</label>
                                             <input type="text" th:field="*{name}" id="neam" name="name">
                             
                                             <label for="count">Member Count</label>
                                             <input type="text" th:field="*{memberCount}" id="count" name="count">
                                         </div> -->
-                                        <div>
+                                    <!-- <div>
                                             <input type="text" id="appointment" name="appointment">
                                             <button type="submit">View Detail</button>
-                                        </div>
-                                    </form>
+                                        </div> -->
                                 </td>
                             </tr>
                         </tbody>
