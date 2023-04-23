@@ -15,10 +15,13 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cpt202.appointment_system.Common.Result;
 import com.cpt202.appointment_system.Models.Appointment;
 import com.cpt202.appointment_system.Models.Groomer;
+import com.cpt202.appointment_system.Models.Pet;
 import com.cpt202.appointment_system.Models.User;
 import com.cpt202.appointment_system.Repositories.AppointmentRepo;
+import com.cpt202.appointment_system.Repositories.UserRepo;
 import com.cpt202.appointment_system.Services.AppointmentService;
 import com.cpt202.appointment_system.Services.GroomerService;
+import com.cpt202.appointment_system.Services.PetService;
 
 // @RestController
 @Controller
@@ -35,10 +38,17 @@ public class AppointmentController {
     private AppointmentRepo appointmentRepo;
 
     @Autowired
+    private UserRepo userRepo;
+
+    @Autowired
+
     private AppointmentService appointmentService;
 
     @Autowired
     private GroomerService groomerService;
+
+    @Autowired
+    private PetService petService;
 
     @GetMapping("/manager/appointmentList/search/customername")
     public List<Appointment> getAppointmentByName(@RequestParam String customerName) {
@@ -126,8 +136,14 @@ public class AppointmentController {
     //Customer can make appointment
     // {"name": "asas", "pet": "宠物1", "serviceType": "Pet Bathing", "startTime": "2023/05/04 00:44", "groomer": "Groomer1"}
     @GetMapping("/customer/makeappointment")
-    public String makeappointment(Model model) {// capable of convert a string into object
+    public String makeappointment(Model model) {
+        // capable of convert a string into object
         model.addAttribute("appointment", new Appointment());
+        List<Groomer> gList = groomerService.listAllGroomers();
+        model.addAttribute("gList", gList);
+        User user=userRepo.findByUid(1);
+        List<Pet> petList=petService.listAllPets(user);
+        model.addAttribute("petList", petList);
         return "makeappointment";
     }
 
@@ -136,6 +152,7 @@ public class AppointmentController {
          appointmentService.makeAppointment_C(appointment);
          return "home";
     }
+
 
     // @PostMapping("/customer/makeappointment")
     // public Result<?> makeappointment_C(@RequestBody Appointment appointment) {

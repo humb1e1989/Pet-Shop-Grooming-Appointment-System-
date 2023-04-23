@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "AppointmentSystemApplication",
+            "request": "launch",
+            "mainClass": "com.cpt202.appointment_system.AppointmentSystemApplication",
+            "projectName": "com.cpt202-appointment_system"
+        },
+        {
+            "type": "java",
             "name": "TeamApplication",
             "request": "launch",
             "mainClass": "com.cpt202_group10.team.TeamApplication",

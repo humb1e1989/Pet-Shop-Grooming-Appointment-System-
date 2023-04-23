@@ -66,8 +66,8 @@ public class LoginService {
         return user.isEmpty();
     }
 
-    public boolean checkUniqueEmail(String email) {
-        Optional<User> user = userRepository.findByEmail(email);
-        return user.isEmpty();
-    }
+    // public boolean checkUniqueEmail(String email) {
+    //     Optional<User> user = userRepository.findByEmail(email);
+    //     return user.isEmpty();
+    // }
 }

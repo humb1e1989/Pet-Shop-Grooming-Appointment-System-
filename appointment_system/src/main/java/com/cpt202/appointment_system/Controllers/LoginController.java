@@ -108,16 +108,16 @@ public class LoginController {
             return ResponseEntity.status(HttpStatus.CONFLICT).body("duplicate");
         }
     }
-    @GetMapping("/check-uniqueem")
-    public ResponseEntity<?> checkUniqueem(@RequestParam("value") String value) {
-        boolean isUnique = loginService.checkUniqueEmail(value);
+    // @GetMapping("/check-uniqueem")
+    // public ResponseEntity<?> checkUniqueem(@RequestParam("value") String value) {
+    //     boolean isUnique = loginService.checkUniqueEmail(value);
 
-        if (isUnique) {
-            return ResponseEntity.ok().body("unique");
-        } else {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body("duplicate");
-        }
-    }
+    //     if (isUnique) {
+    //         return ResponseEntity.ok().body("unique");
+    //     } else {
+    //         return ResponseEntity.status(HttpStatus.CONFLICT).body("duplicate");
+    //     }
+    // }
 }
 
 

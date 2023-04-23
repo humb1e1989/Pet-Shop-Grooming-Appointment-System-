@@ -169,7 +169,7 @@
                         <h2>Make appointment now!</h2>
                         <div class="divider mb-30" style="background-image: url(/assets/images/icons/divider-1.png);"></div>
 
-                        <form method="post" action="#" id="contact-form" class="default-form">
+                        <form method="post" th:action="@{/appointment-system/customer/makeappointment}" id="contact-form" class="default-form"  th:object="${appointment}">
                             <div class="row clearfix">
 
                                 <!--用户（有登录后删除）-->
@@ -185,7 +185,7 @@
                                     <select name="Pet" id ="Pet">
 
                                         <div th:each="pet: ${petList}">
-                                            <option th:value="${pet.petName}"><p th:text="${pet.petName}"></p></option>
+                                            <option th:value="${pet.getPid()}"><p th:text="${pet.getName()}"></p></option>
                                         </div>
                                     
                                     </select>
@@ -196,24 +196,24 @@
 
                                     Service:  
                                     <label>
-                                        <input type="checkbox" name="service" value="PetBathing" >
+                                        <input type="checkbox" name="service" value="1" >
                                     </label> Pet Bathing&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     <label>
-                                        <input type="checkbox" name="service" value="PetHaircut" >
+                                        <input type="checkbox" name="service" value="2" >
                                     </label> Pet Haircut&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     
                                     <label>
-                                        <input type="checkbox" name="service" value="Hairdrying" >
+                                        <input type="checkbox" name="service" value="3" >
                                     </label> Hair drying
                                     <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     <label>
-                                        <input type="checkbox" name="service" value="PetDyeHair" >
+                                        <input type="checkbox" name="service" value="4" >
                                     </label> Pet DyeHair&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     <label>
-                                        <input type="checkbox" name="service" value="PetTraining" >
+                                        <input type="checkbox" name="service" value="5" >
                                     </label> Pet Training&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     <label>
-                                        <input type="checkbox" name="service" value="VeterinaryCare" >
+                                        <input type="checkbox" name="service" value="6" >
                                     </label> VeterinaryCare
 
                                 </div>
@@ -233,10 +233,11 @@
                                     <label for="Groomer">Groomer :</label><i class="far fa-user"></i>&nbsp;&nbsp;&nbsp;&nbsp;
                                     <select name="Groomer" id="Groomer">
                                         <div th:each="groomer : ${gList}">
-                                            <option th:value="${groomer.getName()}"><p th:text="${groomer.getName()}"></p></option>
+                                            <option th:value="${groomer.getGid}"><p th:text="${groomer.getName()}"></p></option>
                                         </div>
                                     </select>
                                 </div>
+                            
 
                                 <!--提交按钮-->
                                 <div class="col-lg-12 col-md-12 col-sm-12 form-group message-btn">
