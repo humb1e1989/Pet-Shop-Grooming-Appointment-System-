@@ -1,7 +1,6 @@
 package com.cpt202.appointment_system.Services;
-
-
 import java.util.List;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,16 +14,22 @@ public class ServiceTypeService {
     @Autowired
     private ServiceTypeRepo serviceTypeRepo;
 
+
+    // add Service
     public Result<?> addService_M(ServiceType service) {
         serviceTypeRepo.save(service);
         return Result.success("", "Service added succssfully!");
     }
 
-  
-    public Result<?> listService_C() {
-        List<ServiceType> serviceList = serviceTypeRepo.findAll();
-        return Result.success("", "Service added succssfully!");
+    // get all services
+    public List<ServiceType> getAllServiceTypes() {
+        return serviceTypeRepo.findAll();
     }
 
+
+    // edit service
+    public void editServiceType(ServiceType service) {
+        serviceTypeRepo.save(service);
+    }
 
 }

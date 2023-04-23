@@ -24,4 +24,9 @@ public interface UserRepo extends JpaRepository<User, Integer> {
 
     // return the appointment list with a specific username
     public List<Appointment> findByUidIs(Integer uid);
+    
+    public List<User> findAll();
+
+    public User save(User user);
 }
+

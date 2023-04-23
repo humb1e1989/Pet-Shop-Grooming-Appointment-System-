@@ -141,4 +141,15 @@ public class GroomerService {
 
     }
 
+    //kx 
+    @Autowired
+    private GroomerRepo groomerRepository;
+
+    public List<Groomer> getAllGroomers() {
+        return groomerRepository.findAll();
+    }
+
+    public void updateGroomer(Groomer groomer) {
+        groomerRepository.save(groomer);
+    }
 }

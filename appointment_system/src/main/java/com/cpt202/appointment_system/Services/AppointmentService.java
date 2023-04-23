@@ -209,7 +209,7 @@ public class AppointmentService {
 
 	// ZYH PBI NO.iii : Customer can modify appointment
 	// same problem as editProfile_C()
-	public Result<?> modifyAppointment_C(Appointment appointment) {
+	public Result<?> editAppointment_C(Appointment appointment) {
 		Appointment appointment1 = appointmentRepo.findByAid(appointment.getAid());
 		if (appointment1 != null) {
 			appointment1.setServiceType(appointment.getServiceType());
@@ -227,6 +227,18 @@ public class AppointmentService {
 		return Result.error("-1", "No Matching Appointment Found.");
 	}
 
+
+	// public List<Appointment> getAllAppointments() {
+    //     return appointmentRepo.findAll();
+    // }
+
+    // public void updateAppointment(Appointment appointment) {
+    //     appointmentRepo.save(appointment);
+    // }
+
+	// public void updateService(Appointment appointment) {
+		
+	// }
 
 	// TODO : Not necessary for now
 	// // ZYH PBI NO.ii : Customer can filter appointment by time

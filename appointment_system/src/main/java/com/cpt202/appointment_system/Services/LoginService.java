@@ -63,41 +63,41 @@ public class LoginService {
         
     // }
 
-    public boolean loginUser(String username,String password) {
-        Optional<User> dbUser = userRepository.findByUsername(username);
-        if (dbUser.isPresent()&&dbUser.get().getPassword().equals(password)){
-            user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
-            return true;
-        } else {
-            return false;
-        }
-    }
+    // public boolean loginUser(String username,String password) {
+    //     Optional<User> dbUser = userRepository.findByUsername(username);
+    //     if (dbUser.isPresent()&&dbUser.get().getPassword().equals(password)){
+    //         user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
+    //         return true;
+    //     } else {
+    //         return false;
+    //     }
+    // }
 
-    public int registerUser(User user) {
-        if (userRepository.existsByUsername(user.getUsername())) {
-            return 1;
-        } // 测试用户名被注册没有
+    // public int registerUser(User user) {
+    //     if (userRepository.existsByUsername(user.getUsername())) {
+    //         return 1;
+    //     } // 测试用户名被注册没有
 
-        if ( userRepository.existsByEmail(user.getEmail())) {
-            return 2;
-        } // 测试邮箱被注册没有
+    //     if ( userRepository.existsByEmail(user.getEmail())) {
+    //         return 2;
+    //     } // 测试邮箱被注册没有
 
-        // if ( userRepository.existsByEmail(user.getEmail())) {
-        //     return 3;
-        // } // 测试邮箱验证
+    //     // if ( userRepository.existsByEmail(user.getEmail())) {
+    //     //     return 3;
+    //     // } // 测试邮箱验证
 
-        else{
-            Timestamp currentTime = new Timestamp(System.currentTimeMillis());
-            user.setRegistrationTime(currentTime);
-            user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
-            userRepository.save(user);
-            return 3;
-        }
-    }
+    //     else{
+    //         Timestamp currentTime = new Timestamp(System.currentTimeMillis());
+    //         user.setRegistrationTime(currentTime);
+    //         user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
+    //         userRepository.save(user);
+    //         return 3;
+    //     }
+    // }
 
 
-    public ResponseEntity<String> logoutUser(HttpSession session) {
-        session.invalidate();
-        return new ResponseEntity<>("User logged out successfully.", HttpStatus.OK);
-    }
+    // public ResponseEntity<String> logoutUser(HttpSession session) {
+    //     session.invalidate();
+    //     return new ResponseEntity<>("User logged out successfully.", HttpStatus.OK);
+    // }
 }

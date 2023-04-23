@@ -233,7 +233,7 @@
                                     <label for="Groomer">Groomer :</label><i class="far fa-user"></i>&nbsp;&nbsp;&nbsp;&nbsp;
                                     <select name="Groomer" id="Groomer">
                                         <div th:each="groomer : ${gList}">
-                                            <option th:value="${groomer.getName()}"><p th:text="${groomer.getName()}"></p></option>
+                                            <option th:value="${groomer.getId()}"><p th:text="${groomer.getName()}"></p></option>
                                         </div>
                                     </select>
                                 </div>
