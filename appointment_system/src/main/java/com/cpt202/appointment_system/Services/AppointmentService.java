@@ -219,45 +219,28 @@ public class AppointmentService {
 
 	// ZYH PBI NO.iii : Customer can modify appointment
 	// same problem as editProfile_C()
-	public Result<?> editAppointment_C(Appointment appointment) {
-		Appointment appointment1 = appointmentRepo.findByAid(appointment.getAid());
-		
-		if (appointment1 != null) {
-			appointment1.setServiceType(appointment.getServiceType());
-			appointment1.setGroomer(appointment.getGroomer());
-			// appointment1.setPetName(appointment.getPetName());
-			appointment1.setPet(appointment.getPet());
-			appointment1.setStartTime(appointment.getStartTime());
-			appointment1.setTotalprice(appointment.getTotalprice());
-			appointment1.setFinishTime(appointment.getFinishTime());
-			appointment1.setCreateTime(appointment.getCreateTime());
-			// New one or modified one?
-			appointmentRepo.save(appointment1);
-			return Result.success();
-		}
-		return Result.error("-1", "No Matching Appointment Found.");
-	}
-
-
-	public List<Appointment> getAllAppointments() {
-        return appointmentRepo.findAll();
-    }
-
-	public void updateService(Appointment appointment, ServiceType serviceType) {
-		appointment.setServiceType(serviceType);
+	public void editAppointment_C(Appointment appointment) {
 		appointmentRepo.save(appointment);
 	}
 
+	public List<Appointment> getAllAppointments() {
+		return appointmentRepo.findAll();
 	}
 
-	// TODO : Not necessary for now
-	// // ZYH PBI NO.ii : Customer can filter appointment by time
-	// public Result<?> getAppointmentListByTime_C(@RequestParam String time) {
-	// List<Appointment> appointmentList =
-	// appointmentRepo.findByTimeContaining(time);
-	// if (!appointmentList.isEmpty()) {
-	// return Result.success(appointmentList, "Find Matching Appointment!");
-	// }
-	// return Result.error("-1", "No Matching Appointment Found.");
+	// public void editService(Appointment appointment, ServiceType serviceType) {
+	// 	appointment.setServiceType(serviceType);
+	// 	appointmentRepo.save(appointment);
 	// }
 
+}
+
+// TODO : Not necessary for now
+// // ZYH PBI NO.ii : Customer can filter appointment by time
+// public Result<?> getAppointmentListByTime_C(@RequestParam String time) {
+// List<Appointment> appointmentList =
+// appointmentRepo.findByTimeContaining(time);
+// if (!appointmentList.isEmpty()) {
+// return Result.success(appointmentList, "Find Matching Appointment!");
+// }
+// return Result.error("-1", "No Matching Appointment Found.");
+// }

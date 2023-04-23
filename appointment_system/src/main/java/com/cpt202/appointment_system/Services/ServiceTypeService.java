@@ -30,7 +30,7 @@ public class ServiceTypeService {
     //     serviceTypeRepo.save(service);
     // }
 
-    public void updateService(ServiceType service) {
+    public void editService(ServiceType service) {
         serviceTypeRepo.save(service);
     }
 

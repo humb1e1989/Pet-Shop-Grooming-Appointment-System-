@@ -55,7 +55,7 @@ public class GroomerController {
     }
 
     
-    // Customer part
+    // 4 random groomers for home page
     @GetMapping() 
     public String getRandomFourGroomers_C(Model model){
 
