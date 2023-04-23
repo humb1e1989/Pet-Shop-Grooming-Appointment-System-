@@ -31,32 +31,32 @@ public class LoginController {
         return "signup";
     }
 
-    //登录登录登录
-    @PostMapping("")
-    public String loginUser(@RequestParam("uname") String username,
-                            @RequestParam("upwd") String password,
-                            Model model,
-                            HttpSession session,
-                            RedirectAttributes redirectAttributes) {
-        // if(loginService.loginUser(username, password)==0){
-        if(loginService.loginUser(username, password)){
-            // 添加用户信息到 session
-            session.setAttribute("user", username);
+    // //登录登录登录
+    // @PostMapping("")
+    // public String loginUser(@RequestParam("uname") String username,
+    //                         @RequestParam("upwd") String password,
+    //                         Model model,
+    //                         HttpSession session,
+    //                         RedirectAttributes redirectAttributes) {
+    //     // if(loginService.loginUser(username, password)==0){
+    //     if(loginService.loginUser(username, password)){
+    //         // 添加用户信息到 session
+    //         session.setAttribute("user", username);
 
-            redirectAttributes.addFlashAttribute("message", "登录成功");
-            return "redirect:/appointment-system";
-        } else if(loginService.loginUser(username, password)){
-            session.setAttribute("user", username);
+    //         redirectAttributes.addFlashAttribute("message", "登录成功");
+    //         return "redirect:/appointment-system";
+    //     } else if(loginService.loginUser(username, password)){
+    //         session.setAttribute("user", username);
 
-            redirectAttributes.addFlashAttribute("message", "管理员登录成功");
-            return "redirect:/manager";
-        }
+    //         redirectAttributes.addFlashAttribute("message", "管理员登录成功");
+    //         return "redirect:/manager";
+    //     }
         
-        else {
-            redirectAttributes.addFlashAttribute("error", "登录失败");
-            return "redirect:/appointment-system";
-        }
-    }
+    //     else {
+    //         redirectAttributes.addFlashAttribute("error", "登录失败");
+    //         return "redirect:/appointment-system";
+    //     }
+    // }
 
     // 注册注册注册
     @PostMapping("/reg")
