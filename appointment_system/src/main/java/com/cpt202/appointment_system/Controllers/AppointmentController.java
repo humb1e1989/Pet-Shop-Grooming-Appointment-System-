@@ -15,10 +15,13 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cpt202.appointment_system.Common.Result;
 import com.cpt202.appointment_system.Models.Appointment;
 import com.cpt202.appointment_system.Models.Groomer;
+import com.cpt202.appointment_system.Models.Pet;
 import com.cpt202.appointment_system.Models.User;
 import com.cpt202.appointment_system.Repositories.AppointmentRepo;
+import com.cpt202.appointment_system.Repositories.UserRepo;
 import com.cpt202.appointment_system.Services.AppointmentService;
 import com.cpt202.appointment_system.Services.GroomerService;
+import com.cpt202.appointment_system.Services.PetService;
 
 // @RestController
 @Controller
@@ -35,10 +38,17 @@ public class AppointmentController {
     private AppointmentRepo appointmentRepo;
 
     @Autowired
+    private UserRepo userRepo;
+
+    @Autowired
+
     private AppointmentService appointmentService;
 
     @Autowired
     private GroomerService groomerService;
+
+    @Autowired
+    private PetService petService;
 
     @GetMapping("/manager/appointmentList/search/customername")
     public List<Appointment> getAppointmentByName(@RequestParam String customerName) {
@@ -64,15 +74,25 @@ public class AppointmentController {
     @GetMapping("/manager/appointmentList")
     public String getAllAppointment_M(Model model) {// capable of convert a string into object
         // model.addAttribute("appointmentList", appointmentService.listAllAppointments());
-        model.addAttribute("appointment", appointmentService.listAllAppointments());
+        model.addAttribute("appointmentList", appointmentService.listAllAppointments());
         return "allAppointments";
     }
 
-    // YYY PBI NO.2 - Manager view the appointment detail
-    @GetMapping("/manager/appointmentList/view")
-    public Result<?> viewAppointment_M(@RequestParam Appointment appointment) {
-        return appointmentService.getAppointmentDetail_M(appointment);
+    // YYY PBI NO.2 - Manager view the appointment detail, 这个view可以在customer和manager中通用
+    @GetMapping("/appointmentList/view")
+    public String getAppointment(Model model, @RequestParam("aid") int aid) {// capable of convert a string into object
+        // model.addAttribute("appointmentList", appointmentService.listAllAppointments());
+        Appointment appointment = appointmentService.getAppointmentBy_Aid(aid);
+        model.addAttribute("appointment", appointment);
+        return "appointmentDetail";
     }
+    // @PostMapping("/manager/appointmentList/view")
+    // public String viewAppointment_M(@RequestParam("appointment") Appointment appointment, Model model) {
+    //     Appointment appointmentDetail = appointmentService.getAppointmentDetail_M(appointment);
+    //     model.addAttribute("appointmentDetail", appointmentDetail);
+
+    //     return "allAppointments";
+    // }
 
     /*
      * Customer Part
@@ -81,8 +101,20 @@ public class AppointmentController {
 
     //YYY PBI NO.3 - Customer can view all of history appointments (only hisappointment)
     @GetMapping("/customer/appointmentList")
-    public Result<?> getUserAppointment_C(@RequestParam User user) {
-        return appointmentService.getAppointmentBy_Uid(user);
+    public String getUserAppointment_C(Model model) {
+        model.addAttribute("appointmentList", appointmentService.listAllAppointments());
+        return "allAppointments";
+    }
+
+    @GetMapping("/manager/appointmentList/search")
+    public String appointmentSearch(Model model) {
+        model.addAttribute("keyword", new String());
+        return "allAppointments";
+    }
+    @PostMapping("/manager/appointmentList/search")
+    public String appointmentSearchBykey(Model model, @RequestParam("keyword") String keyword) {
+        model.addAttribute("appointmentList", appointmentService.appointmentSearch(keyword));
+        return "allAppointments";
     }
 
     // TODO : Number the PBI
@@ -104,8 +136,14 @@ public class AppointmentController {
     //Customer can make appointment
     // {"name": "asas", "pet": "宠物1", "serviceType": "Pet Bathing", "startTime": "2023/05/04 00:44", "groomer": "Groomer1"}
     @GetMapping("/customer/makeappointment")
-    public String makeappointment(Model model) {// capable of convert a string into object
+    public String makeappointment(Model model) {
+        // capable of convert a string into object
         model.addAttribute("appointment", new Appointment());
+        List<Groomer> gList = groomerService.listAllGroomers();
+        model.addAttribute("gList", gList);
+        User user=userRepo.findByUid(1);
+        List<Pet> petList=petService.listAllPets(user);
+        model.addAttribute("petList", petList);
         return "makeappointment";
     }
 
@@ -114,6 +152,7 @@ public class AppointmentController {
          appointmentService.makeAppointment_C(appointment);
          return "home";
     }
+
 
     // @PostMapping("/customer/makeappointment")
     // public Result<?> makeappointment_C(@RequestBody Appointment appointment) {
@@ -130,7 +169,7 @@ public class AppointmentController {
     // Customer can modify appointment
     @PostMapping("/customer/editAppointment")
     public Result<?> editAppointment_C(@RequestBody Appointment appointment) {
-        return appointmentService.modifyAppointment_C(appointment);
+        return appointmentService.editAppointment_C(appointment);
     }
 
 

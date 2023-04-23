@@ -40,7 +40,7 @@ public class Groomer {
     @Column(columnDefinition = "varchar(255) default 'No Description'", nullable = true)
     private String description;
     
-
+    
     public Groomer() {
     }
 

@@ -93,13 +93,14 @@ public class GroomerService {
 
         if (g.getPhoneNumber() == null) {
             g.setPhoneNumber(groomer.getPhoneNumber());
-        } else {
-            if (groomerRepo.findByPhoneNumber(g.getPhoneNumber()) == null) {
-                groomerRepo.save(g);
-                return Result.success();
-            }
-            return Result.error("-2", "Phone Number Exists or Remains the Same.");
         }
+        // } else {
+        //     if (groomerRepo.findByPhoneNumber(g.getPhoneNumber()) == null) {
+        //         groomerRepo.save(g);
+        //         return Result.success();
+        //     }
+        //     return Result.error("-2", "Phone Number Exists or Remains the Same.");
+        // }
 
         groomerRepo.save(g);
         return Result.success();

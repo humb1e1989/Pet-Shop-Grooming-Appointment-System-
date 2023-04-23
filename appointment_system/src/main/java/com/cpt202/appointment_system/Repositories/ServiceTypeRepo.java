@@ -1,5 +1,6 @@
 package com.cpt202.appointment_system.Repositories;
 import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.List;
 
 import java.util.List;
 
@@ -11,6 +12,7 @@ public interface ServiceTypeRepo extends JpaRepository<ServiceType, Integer>{
 
     public List<ServiceType> findAll();
 
+    @SuppressWarnings("unchecked")
     public ServiceType save(ServiceType service);
 
 }

@@ -6,8 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import com.cpt202.appointment_system.Models.Groomer;
+import com.cpt202.appointment_system.Models.User;
 import com.cpt202.appointment_system.Services.GroomerService;
 
 @Controller
@@ -15,11 +18,27 @@ public class mainController {
 
     @Autowired
     private GroomerService groomerService;
+    
+    // @GetMapping("/")
+    // public String home(Model model) {
+    //     model.addAttribute("user", new User());
+    //     return "home";// because it is a controller, the springboot will pull a file from the
+    //                   // resources
+    // }
+
+    // // http://localhost:8080/
+    // @PostMapping("/")
+    // public String confirmHome(@ModelAttribute("user") User user) {
+    //     LoginController.loginUser(user.getUsername(), user.getPassword());
+    //     return "home";// because it is a controller, the springboot will pull a file from the
+    //                   // resources
+    // }
+
 
     // http://localhost:8080/
     @GetMapping("/")
     public String home(Model model) {
-        model.addAttribute("username", "Tomas");
+        model.addAttribute("username", "Default");
         return "home";// because it is a controller, the springboot will pull a file from the
                       // resources
     }
