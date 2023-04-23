@@ -1,5 +1,5 @@
 package com.cpt202.appointment_system.Services;
-
+import java.util.List;
 
 import java.util.List;
 
@@ -26,5 +26,14 @@ public class ServiceTypeService {
         return Result.success("", "Service added succssfully!");
     }
 
+
+    
+    public List<ServiceType> getAllService() {
+        return serviceTypeRepo.findAll();
+    }
+
+    public void updateService(java.security.Provider.Service service) {
+        serviceTypeRepo.save(service);
+    }
 
 }

@@ -18,4 +18,8 @@ public interface GroomerRepo extends JpaRepository<Groomer, Integer>{
     public List<Groomer> findByRankIs(Integer rank);
     public List<Groomer> findByPhoneNumberIs(String phoneNumber);
 
+    public List<Groomer> findAll();
+
+    public Groomer save(Groomer groomer);
+
 }

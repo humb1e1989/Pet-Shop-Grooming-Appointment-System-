@@ -23,4 +23,8 @@ public interface AppointmentRepo extends JpaRepository<Appointment, Integer> {
 
     public List<Appointment> findByGroomer(Groomer groomer);
 
+    public List<Appointment> findAll();
+
+    public Appointment save(Appointment appointment);
+
 }

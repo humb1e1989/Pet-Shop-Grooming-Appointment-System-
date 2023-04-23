@@ -51,12 +51,10 @@ public class AppointmentService {
 	// WJT Manger Part
 	// Fiter Fuction
 	public List<Appointment> getAppointmentBy_CName(@RequestParam String username) {
-
 		List<User> userList = userRepo.findByUsernameContaining(username);
 		User findUser = userList.get(0);
 		return appointmentRepo.findByUser(findUser);
 		// userRepo.findByUsernameContaining(appointment.getUser().getUsername());
-
 	}
 
 	public List<Appointment> getAppointmentBy_Service(@RequestParam String servicetype) {
@@ -106,14 +104,10 @@ public class AppointmentService {
 	/* ZYH */
 	// TODO : para name to be uniformed
 	// YYY - Manager can view all appointments
-	public List<Appointment> getAppointmentList_M() {
-		return appointmentRepo.findAll();
-		// List<Appointment> appointmentList = appointmentRepo.findAll();
-		// if (!appointmentList.isEmpty()) {
-		// 	return Result.success(appointmentList, "Find Matching Appointments!");
-		// }
-		// return Result.error("-1", "No Matching Appointment Found.");
-	}
+    public List<Appointment> listAllAppointments() {
+        List<Appointment> appointmentList = appointmentRepo.findAll();
+        return appointmentList;
+    }
 
 	// ZYH : Customer can search appointment by user name
 	public Result<?> getAppointmentListByUserName_C(@RequestParam String username) {
@@ -213,8 +207,9 @@ public class AppointmentService {
 
 	// ZYH PBI NO.iii : Customer can modify appointment
 	// same problem as editProfile_C()
-	public Result<?> modifyAppointment_C(Appointment appointment) {
+	public Result<?> editAppointment_C(Appointment appointment) {
 		Appointment appointment1 = appointmentRepo.findByAid(appointment.getAid());
+		
 		if (appointment1 != null) {
 			appointment1.setServiceType(appointment.getServiceType());
 			appointment1.setGroomer(appointment.getGroomer());
@@ -224,13 +219,28 @@ public class AppointmentService {
 			appointment1.setTotalprice(appointment.getTotalprice());
 			appointment1.setFinishTime(appointment.getFinishTime());
 			appointment1.setCreateTime(appointment.getCreateTime());
-			// TODO : New one or modified one?
+			// New one or modified one?
 			appointmentRepo.save(appointment1);
 			return Result.success();
 		}
 		return Result.error("-1", "No Matching Appointment Found.");
 	}
 
+
+	public List<Appointment> getAllAppointments() {
+        return appointmentRepo.findAll();
+    }
+
+    public void updateAppointment(Appointment appointment) {
+        appointmentRepo.save(appointment);
+    }
+
+	public void updateService(Appointment appointment, ServiceType serviceType) {
+		appointment.setServiceType(serviceType);
+		appointmentRepo.save(appointment);
+	}
+
+	}
 
 	// TODO : Not necessary for now
 	// // ZYH PBI NO.ii : Customer can filter appointment by time
