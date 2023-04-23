@@ -48,7 +48,7 @@ public class ManagerController {
 
     @GetMapping("/maintain")
     public String showServiceTypeMaintainPage(Model model) {
-        List<ServiceType> services = ServiceTypeService.getAllService();
+        List<ServiceType> services = ServiceTypeService.getAllServiceTypes();
         model.addAttribute("services", services);
         return "maintain";
 
