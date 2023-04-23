@@ -31,7 +31,6 @@ public class GroomerController {
     @GetMapping("/manager/grommerList")  
     public List<Groomer> getAllGroomers_M(){
         return groomerService.listAllGroomers();
-        
     }
 
     @GetMapping("/manager/groomerList/view")
@@ -54,6 +53,7 @@ public class GroomerController {
         groomerService.editGroomer_M(groomer);
     }
 
+    
     
     // 4 random groomers for home page
     @GetMapping() 
@@ -117,4 +117,8 @@ public class GroomerController {
         return "Groomers";
     }
     
+
+
 }
+
+

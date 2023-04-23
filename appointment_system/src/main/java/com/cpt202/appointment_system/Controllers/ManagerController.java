@@ -56,9 +56,10 @@ public class ManagerController {
 
     @GetMapping("/maintain")
     public String showAppointmentMaintainPage(Model model) {
-        List<Appointment> appointments = AppointmentService.getAllAppointments();
+        List<Appointment> appointments = AppointmentService.listAllAppointments();
         model.addAttribute("appointments", appointments);
         return "maintain";
+
     }
 
     @PostMapping("/update")
@@ -76,8 +77,8 @@ public class ManagerController {
     }
 
     @PostMapping("/update")
-    public String updateServiceType(@ModelAttribute("services") ServiceType service, RedirectAttributes redirectAttributes) {
-        ServiceTypeService.editService(service);
+    public String updateGroomer(@ModelAttribute("services") ServiceType service, RedirectAttributes redirectAttributes) {
+        ServiceTypeService.editServiceType(service);
         redirectAttributes.addFlashAttribute("successMessage", "Service updated successfully");
         return "redirect:/manager/maintain";
     }

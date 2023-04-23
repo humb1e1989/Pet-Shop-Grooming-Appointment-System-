@@ -1,7 +1,6 @@
 package com.cpt202.appointment_system.Services;
 import java.util.List;
 
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,6 +30,11 @@ public class ServiceTypeService {
     // }
 
     public void editService(ServiceType service) {
+        serviceTypeRepo.save(service);
+    }
+
+    // edit service
+    public void editServiceType(ServiceType service) {
         serviceTypeRepo.save(service);
     }
 

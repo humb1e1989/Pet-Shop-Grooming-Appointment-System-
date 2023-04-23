@@ -36,10 +36,10 @@ public class LoginService {
         }
     }
 
-    public int registerUser(User user) {
-        if (userRepository.existsByUsername(user.getUsername())) {
-            return 1;
-        } // 测试用户名被注册没有
+    // public int registerUser(User user) {
+    //     if (userRepository.existsByUsername(user.getUsername())) {
+    //         return 1;
+    //     } // 测试用户名被注册没有
 
         if ( userRepository.existsByEmail(user.getEmail())) {
             return 2;
