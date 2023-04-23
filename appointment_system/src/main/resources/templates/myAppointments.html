@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Appointment</title>
+    </head>
+    <body>
+        <h1>Appointment List Page</h1>
+        <h2>Welcome!</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Start Time</th>
+                    <th>Service Type</th>
+                    <th>Groomer</th>
+                    <th>User</th>
+                    <th>Pet</th>
+                    <th>Total Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="appointment : ${appointmentList}">
+                    <td th:text="${appointment.startTime}"></td>
+                    <td th:text="${appointment.serviceType}"></td>
+                    <td th:text="${appointment.groomer}"></td>
+                    <td th:text="${appointment.user}"></td>
+                    <td th:text="${appointment.pet}"></td>
+                    <td th:text="${appointment.totalprice}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>

@@ -25,7 +25,7 @@ public class Groomer {
     @Column(columnDefinition = "varchar(20)", nullable = false)
     private String gender;
 
-    @Column(columnDefinition = "varchar(255) default '/assets/images/no-user.png'", name = "image_url", nullable = false)
+    @Column(columnDefinition = "varchar(255) default '/assets/images/no-user.png'", name = "image_url", nullable = true)
     private String imageURL;
 
     // name it "ranking" in MySQL to avoid possible error 
@@ -37,10 +37,10 @@ public class Groomer {
     @Column(columnDefinition = "varchar(11)", nullable = true)
     private String phoneNumber;
 
-    @Column(columnDefinition = "varchar(255) default 'No Description'", nullable = false)
+    @Column(columnDefinition = "varchar(255) default 'No Description'", nullable = true)
     private String description;
     
-
+    
     public Groomer() {
     }
 

@@ -10,6 +10,49 @@
         <table>
             <thead>
                 <tr>
+                    <th>aApointment ID</th>
+                    <th>Create Time</th>
+                    <th>Start Time</th>
+                    <th>Status</th>
+                    <th>Service Type</th>
+                    <th>Groomer</th>
+                    <th>User</th>
+                    <th>Pet</th>
+                    <th>Finish Time</th>
+                    <th>Cancel Time</th>
+                    <th>Total Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="appointment : ${appointmentList}">
+                    <td th:text="${appointment.aid}"></td>
+                    <td th:text="${appointment.createTime}"></td>
+                    <td th:text="${appointment.startTime}"></td>
+                    <td th:text="${appointment.status}"></td>
+                    <td th:text="${appointment.serviceType}"></td>
+                    <td th:text="${appointment.groomer}"></td>
+                    <td th:text="${appointment.user}"></td>
+                    <td th:text="${appointment.pet}"></td>
+                    <td th:text="${appointment.finishTime}"></td>
+                    <td th:text="${appointment.cancelTime}"></td>
+                    <td th:text="${appointment.totalprice}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html> -->
+<!-- <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Appointment</title>
+    </head>
+    <body>
+        <h1>Appointment List Page</h1>
+        <h2>Welcome!</h2>
+
+        <table>
+            <thead>
+                <tr>
                     <th>Appointment ID</th>
                     <th>Start Time</th>
                     <th>Service Type</th>
@@ -33,10 +76,9 @@
 </html> -->
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<!-- <Accept-Encoding: br;q=1.0, gzip;q=0.8, *;q=0.1></Accept-Encoding:> -->
 
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -163,24 +205,15 @@
             <div class="pattern-layer" style="background-image: url(/assets/images/shape/shape-87.png);"></div>
             <div class="auto-container">
                 <div class="content-box">
-                    <h1>My Appointments</h1>
-                    <!-- <form th:action="@{/appointment-system/manager/appointmentList/search}" method="POST" th:object="${keyword}">
-                        <div>
-                            <label for="keyword">Team Name</label>
-                            <input type="text" th:field="*{keyword}" id="keyword" name="keyword">
-                        </div>
-                        <div>
-                            <button type="submit">Search</button>
-                        </div>
-                    </form> -->
+                    <h1>Appointment Detail</h1>
+                    <form action="@{/appointment-system/customer/appointmentList/search}" method="GET">
+                        <input type="text" placeholder="Search..." name="Search">
+                        <button type="submit">Search</button>
+                    </form>
                 </div>
             </div>
-
-
         </section>
         <!-- End Page Title -->
-
-
 
         <!-- team-page-section -->
         <section class="team-page-section" th:class="team-page-section">
@@ -195,125 +228,72 @@
                     }
 
                     .ulys tr {
-                        height: 60px;
+                        height: 90px;
                         border-bottom: 1px solid #ffffff;
                         line-height: 30px;
                     }
                 </style>
                 <div class="auto-container">
-                    <!-- <table class="ulys">
-                        <thead>You can search appointments here</thead>
-                        <tbody>
-                            <tr>
-                                <form th:action="@{/appointment-system/manager/appointmentList/search}">
-                                    <a class="theme-btn btn-eleven"
-                                        th:href="@{/appointment-system/manager/appointmentList/search(keyword=${appointment.getAid()})}">Search</a>
-                                </form>
-                            </tr>
-                        </tbody>
-                    </table> -->
-                    <div id="container">
-                        <div class="sea-container">
-                            <form th:action="@{/appointment-system/manager/appointmentList/search}" method="post">
-                                <li style="display: inline;"><input type="text" id="keyword" name="keyword"
-                                        class="col-lg-12 col-md-12 col-sm-12 form-group"></li>
-
-                                <li style="display: inline;"><button type="submit" value="Search" class="theme-btn btn-eleven">Search</button></li>
-                            </form>
-                            <p id="keyword"></p>
-                        </div>
-                    </div>
                     <table class="ulys">
                         <thead>
-                            <!-- <tr th:each="appointment : ${appointmentList}">
-                                <form th:action="@{/appointment-system/manager/appointmentList/search}" method="POST"
-                                    th:object="${keyword}">
-                                    <div>
-                                        <input type="text" th:field="{keyword}" id="keyword" name="keyword">
-                                    </div>
-                                    <a class="theme-btn btn-eleven"
-                                        th:href="@{/appointment-system/manager/appointmentList/search(keyword=${appointment.getAid()})}">Search</a>
-                                </form>
-                            </tr> -->
-
                             <tr>
-                                <th>Appointment ID</th>
-                                <th>Start Time</th>
+                                <th>Apointment ID</th>
                                 <th>Service Type</th>
                                 <th>Groomer</th>
                                 <th>User</th>
                                 <th>Pet</th>
-                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr th:each="appointment : ${appointmentList}">
-                                <td th:text="${appointment.getAid()}"></td>
-                                <td th:text="${appointment.getStartTime()}"></td>
-                                <td th:text="${appointment.serviceType.serviceName}"></td>
-                                <td th:text="${appointment.groomer.name}"></td>
-                                <td th:text="${appointment.user.username}"></td>
-                                <td th:text="${appointment.pet.name}"></td>
-                                <td>
-                                    <form th:action="@{/appointment-system/appointmentList/view}">
-                                        <a class="theme-btn btn-eleven"
-                                            th:href="@{/appointment-system/appointmentList/view(aid=${appointment.getAid()})}">View
-                                            Detail</a>
-                                    </form>
-                                </td>
+                            <tr>
+                                <td th:text="${appointment.aid}"></td>
+                                <!-- <td th:text="${appointment.serviceType.getServiceName()}"></td>
+                                <td th:text="${appointment.groomer.getName()}"></td> -->
+                                <td th:text="${appointment.serviceType}"></td>
+                                <td th:text="${appointment.groomer}"></td>
+                                <td th:text="${appointment.user}"></td>
+                                <td th:text="${appointment.pet}"></td>
                             </tr>
                         </tbody>
+
+                        <thead>
+                            <tr>
+                                <th>Status</th>
+                                <th>Create Time</th>
+                                <th>Start Time</th>
+                                <th>Finish Time</th>
+                                <th>Cancel Time</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td th:text="${appointment.status}"></td>
+                                <td th:text="${appointment.createTime}"></td>
+                                <td th:text="${appointment.startTime}"></td>
+                                <td th:text="${appointment.finishTime}"></td>
+                                <td th:text="${appointment.cancelTime}"></td>
+                            </tr>
+                        </tbody>
+
+                        <thead>
+                            <tr>
+                                <th>Total Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td th:text="${appointment.totalprice}"></td>
+                            </tr>
+                        </tbody>
+
                     </table>
                     <div>
-                        <a th:href="@{/}" onClick="javascript :history.Go(-1);" class="theme-btn btn-ten">Back</a>
+                        <a th:href="@{/appointment-system/manager/appointmentList}"
+                            onClick="javascript :history.Go(-1);" class="theme-btn btn-ten">Back</a>
                     </div>
                 </div>
-            </ul>
         </section>
         <!-- team-page-section end -->
-
-        <!-- Search Function -->
-
-        <!-- <section class="team-page-section" th:class="team-page-section">
-            <style>
-                .ulys {
-                    background: #ffc249;
-                    font-family: Arial, Helvetica, sans-serif;
-                    border-collapse: collapse;
-                    padding: 0;
-                    width: 100%;
-                }
-            </style>
-            <div>
-                <form th:action="@{/appointment-system/manager/appointmentList/search}" method="POST"
-                    th:object="${keyword}">
-                    <input type="text" th:field="{keyword}" id="keyword" name="keyword">
-                    <a class="theme-btn btn-eleven"
-                        th:href="@{/appointment-system/appointmentList/view(keyword=${keyword})}"></a>
-                    <div>
-                        <button type="submit">search</button>
-                    </div>
-                </form>
-            </div>
-        </section> -->
-
-        <!-- <div>
-            <form th:action="@{/appointment-system/manager/appointmentList/search}" method="POST"
-                th:object="${keyword}">
-                <div>
-                    <label for="keyword">Team Name</label>
-                    <input type="text" th:field="{keyword}" id="neam" name="keyword">
-                </div>
-                <div>
-                    <button type="submit">Save</button>
-                </div>
-            </form>
-        </div> -->
-
-
-
-
-        <!-- Search Function End -->
 
 
     </div>

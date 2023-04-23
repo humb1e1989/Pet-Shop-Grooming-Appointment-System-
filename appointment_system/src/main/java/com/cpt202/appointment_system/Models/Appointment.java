@@ -19,7 +19,7 @@ import lombok.Data;
 public class Appointment {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(columnDefinition = "int(7)")
     private Integer aid;
 
@@ -85,6 +85,24 @@ public class Appointment {
         
     }
 
+
+    public Appointment(Integer aid, Timestamp createTime, Timestamp startTime, String status, ServiceType serviceType,
+            Groomer groomer, User user, Pet pet, Timestamp finishTime, Timestamp cancelTime, Double totalprice) {
+        this.aid = aid;
+        this.createTime = createTime;
+        this.startTime = startTime;
+        this.status = status;
+        this.serviceType = serviceType;
+        this.groomer = groomer;
+        this.user = user;
+        this.pet = pet;
+        this.finishTime = finishTime;
+        this.cancelTime = cancelTime;
+        this.totalprice = totalprice;
+    }
+
+
+
     public Appointment(Timestamp startTime, ServiceType serviceType, Groomer groomer, User user, Pet pet) {
         this.startTime = startTime;
         this.serviceType = serviceType;
@@ -92,6 +110,22 @@ public class Appointment {
         this.user = user;
         this.pet = pet;
     }
+
     
+    
+    // public Appointment(Timestamp startTime, ServiceType serviceType, Groomer groomer, User user, Pet pet, Double totalprice) {
+    //     this.startTime = startTime;
+    //     this.serviceType = serviceType;
+    //     this.groomer = groomer;
+    //     this.user = user;
+    //     this.pet = pet;
+    //     this.totalprice = totalprice;
+    // }
+
+
+    public Appointment(Integer aid) {
+        this.aid = aid;
+    }
+
 
 }
