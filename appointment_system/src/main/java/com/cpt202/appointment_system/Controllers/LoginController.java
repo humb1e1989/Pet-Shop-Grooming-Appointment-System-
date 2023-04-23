@@ -38,13 +38,14 @@ public class LoginController {
                             Model model,
                             HttpSession session,
                             RedirectAttributes redirectAttributes) {
-        if(loginService.loginUser(username, password)==0){
+        // if(loginService.loginUser(username, password)==0){
+        if(loginService.loginUser(username, password)){
             // 添加用户信息到 session
             session.setAttribute("user", username);
 
             redirectAttributes.addFlashAttribute("message", "登录成功");
             return "redirect:/appointment-system";
-        } else if(loginService.loginUser(username, password)==1){
+        } else if(loginService.loginUser(username, password)){
             session.setAttribute("user", username);
 
             redirectAttributes.addFlashAttribute("message", "管理员登录成功");
@@ -119,16 +120,16 @@ public class LoginController {
             return ResponseEntity.status(HttpStatus.CONFLICT).body("duplicate");
         }
     }
-    @GetMapping("/check-uniqueem")
-    public ResponseEntity<?> checkUniqueem(@RequestParam("value") String value) {
-        boolean isUnique = loginService.checkUniqueEmail(value);
+    // @GetMapping("/check-uniqueem")
+    // public ResponseEntity<?> checkUniqueem(@RequestParam("value") String value) {
+    //     boolean isUnique = loginService.checkUniqueEmail(value);
 
-        if (isUnique) {
-            return ResponseEntity.ok().body("unique");
-        } else {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body("duplicate");
-        }
-    }
+    //     if (isUnique) {
+    //         return ResponseEntity.ok().body("unique");
+    //     } else {
+    //         return ResponseEntity.status(HttpStatus.CONFLICT).body("duplicate");
+    //     }
+    // }
 }
 
 

@@ -33,57 +33,42 @@ public class ManagerController {
     private AppointmentService AppointmentService;
 
     @GetMapping("/maintain")
-    public String showUserMaintainPage(Model model) {
+    public String showMaintainPage(Model model) {
         List<User> users = userService.getAllUsers();
         model.addAttribute("users", users);
-        return "maintain";
-    }
-
-    @GetMapping("/maintain")
-    public String showGroomerMaintainPage(Model model) {
         List<Groomer> groomers = groomerService.listAllGroomers();
         model.addAttribute("groomers", groomers);
-        return "maintain";
-    }
-
-    @GetMapping("/maintain")
-    public String showServiceTypeMaintainPage(Model model) {
         List<ServiceType> services = ServiceTypeService.getAllServiceTypes();
         model.addAttribute("services", services);
-        return "maintain";
-
-    }
-
-    @GetMapping("/maintain")
-    public String showAppointmentMaintainPage(Model model) {
         List<Appointment> appointments = AppointmentService.listAllAppointments();
         model.addAttribute("appointments", appointments);
         return "maintain";
-
     }
 
-    @PostMapping("/update")
+
+
+    @PostMapping("/user")
     public String updateUser(@ModelAttribute("user") User user, RedirectAttributes redirectAttributes) {
         userService.updateUser(user);
         redirectAttributes.addFlashAttribute("successMessage", "User updated successfully");
         return "redirect:/manager/maintain";
     }
 
-    @PostMapping("/update")
+    @PostMapping("/groomer")
     public String updateGroomer(@ModelAttribute("groomer") Groomer groomer, RedirectAttributes redirectAttributes) {
         groomerService.updateGroomer(groomer);
         redirectAttributes.addFlashAttribute("successMessage", "Groomer updated successfully");
         return "redirect:/manager/maintain";
     }
 
-    @PostMapping("/update")
-    public String updateGroomer(@ModelAttribute("services") ServiceType service, RedirectAttributes redirectAttributes) {
+    @PostMapping("/serviceType")
+    public String updateServiceType(@ModelAttribute("services") ServiceType service, RedirectAttributes redirectAttributes) {
         ServiceTypeService.editServiceType(service);
         redirectAttributes.addFlashAttribute("successMessage", "Service updated successfully");
         return "redirect:/manager/maintain";
     }
 
-    @PostMapping("/update")
+    @PostMapping("/appointment")
     public String updateAppointment(@ModelAttribute("appointments") Appointment appointment,
             RedirectAttributes redirectAttributes) {
         AppointmentService.editAppointment_C(appointment);
