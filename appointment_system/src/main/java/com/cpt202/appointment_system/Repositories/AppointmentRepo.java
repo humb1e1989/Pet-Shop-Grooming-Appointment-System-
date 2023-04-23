@@ -26,13 +26,29 @@ public interface AppointmentRepo extends JpaRepository<Appointment, Integer> {
     @Query(value = "SELECT * FROM appointment WHERE gid = ?1", nativeQuery = true)
     public List<Appointment> findByGid(Integer gid);
 
+    // @Transactional(timeout = 10)
+    // @Query(value = "SELECT * FROM appointment WHERE name = :gname", nativeQuery = true)
+    // public List<Appointment> findByGname(@Param("gname") String gname);
+
     @Transactional(timeout = 10)
     @Query(value = "SELECT * FROM appointment WHERE pid = ?1", nativeQuery = true)
     public List<Appointment> findByPid(Integer pid);
 
     @Transactional(timeout = 10)
+    @Query(value = "SELECT * FROM appointment WHERE sid = ?1", nativeQuery = true)
+    public List<Appointment> findBySid(Integer sid);
+
+    @Transactional(timeout = 10)
+    @Query(value = "SELECT * FROM appointment WHERE price = ?1", nativeQuery = true)
+    public List<Appointment> findByPrice(Integer price);
+
+    @Transactional(timeout = 10)
     @Query(value = "SELECT * FROM appointment WHERE service_type = :service_type", nativeQuery = true)
-    public List<Appointment> fetchByServiceType(@Param("service_type") String service_type);
+    public List<Appointment> findByServiceType(@Param("service_type") String service_type);
+
+    @Transactional(timeout = 10)
+    @Query(value = "SELECT * FROM appointment WHERE status = :status", nativeQuery = true)
+    public List<Appointment> findByStatus(@Param("status") String status);
 
     // WJT
     public List<Appointment> findByserviceType(String servicetype);
