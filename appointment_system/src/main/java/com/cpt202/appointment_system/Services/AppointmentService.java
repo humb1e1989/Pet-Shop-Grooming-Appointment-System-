@@ -82,8 +82,6 @@ public class AppointmentService {
         return pattern.matcher(str).matches();  
   }
 	// YYY
-<<<<<<< Updated upstream
-=======
 	public List<Appointment> appointmentSearch(@RequestParam String keyword) {
 		List<Appointment> resulList = new ArrayList<>();
 		if (isInteger(keyword)) {
@@ -116,7 +114,6 @@ public class AppointmentService {
 		return resulList_Final;
 	}
 
->>>>>>> Stashed changes
 	public Result<?> getAppointmentBy_Uid(@RequestParam User user) {
 		// return appointmentRepo.findByUser(user);
 		// return appointmentRepo.findByUsernameIs(user.getUsername());

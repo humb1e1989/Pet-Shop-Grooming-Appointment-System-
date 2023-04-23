@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Manager Maintain Page</title>
+</head>
+
+<body>
+    <h1>Manager Maintain Page</h1>
+
+    <!--User maintain-->
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Username</th>
+                <th>Password</th>
+                <th>Registration Time</th>
+                <th>ImageURL</th>
+                <th>Gender</th>
+                <th>Phone Number</th>
+                <th>Email</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="user : ${users}">
+                <td th:text="${user.uid}"></td>
+                <td th:text="${user.username}"></td>
+                <td th:text="${user.password}"></td>
+                <td th:text="${user.registrationTime}"></td>
+                <td th:text="${user.imageURL}"></td>
+                <td th:text="${user.gender}"></td>
+                <td th:text="${user.phoneNumber}"></td>
+                <td th:text="${user.email}"></td>
+                <td>
+                    <button th:attr="data-id=${user.id}, data-username=${user.username}, data-password=${user.password}
+                    , data-registrationTime=${user.registrationTime}, data-imageURL=${user.imageURL}, data-gender=${user.gender}
+                    , data-phoneNumber=${user.phoneNumber}, data-email=${user.email}"
+                        onclick="editUser(this)">Edit</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <br />
+    <form id="editForm" th:action="@{/manager/update}" th:method="post">
+        <input type="hidden" id="uid" name="uid" />
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" disabled="true"/>
+        <label for="password">Password:</label>
+        <input type="text" id="password" name="password" disabled="true"/>
+        <label for="registrationTime">Registration Time:</label>
+        <input type="Timestamp" id="registrationTime" name="registrationTime" disabled="true"/>
+        <label for="imageURL">ImageURL:</label>
+        <input type="text" id="imageURL" name="imageURL" disabled="true"/>
+        <label for="gender">Gender:</label>
+        <input type="text" id="gender" name="gender" disabled="true"/>
+        <label for="phoneNumber">Phone Number:</label>
+        <input type="text" id="phoneNumber" name="phoneNumber" disabled="true"/>
+        <label for="email">Email:</label>
+        <input type="text" id="email" name="email" disabled="true"/>
+        <button type="submit">Update</button>
+    </form>
+
+    <script>
+        function editUser(button) {
+            document.getElementById("uid").value = button.dataset.id;
+            document.getElementById("username").value = button.dataset.username;
+            document.getElementById("password").value = button.dataset.password;
+            document.getElementById("registrationTime").value = button.dataset.registrationTime;
+            document.getElementById("imageURL").value = button.dataset.imageURL;
+            document.getElementById("gender").value = button.dataset.gender;
+            document.getElementById("phoneNumber").value = button.dataset.phoneNumber;
+            document.getElementById("email").value = button.dataset.email;
+        }
+    </script>
+
+    <!--Groomer maintain-->
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Groomername</th>
+                <th>Gender</th>
+                <th>imageURL</th>
+                <th>Rank</th>
+                <th>Phone Number</th>
+                <th>Description</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="groomer : ${gList}">
+                <td th:text="${groomer.gid}"></td>
+                <td th:text="${groomer.name}"></td>
+                <td th:text="${groomer.gender}"></td>
+                <td th:text="${groomer.imageURL}"></td>
+                <td th:text="${groomer.rank}"></td>
+                <td th:text="${groomer.phoneNumber}"></td>
+                <td th:text="${groomer.description}"></td>
+                <td>
+                    <button th:attr="data-id=${groomer.gid}, data-groomername=${groomer.name},
+                        data-gender=${groomer.gender},data-imageURL=${groomer.imageURL},data-rank=${groomer.rank}, 
+                        data-phoneNumber=${groomer.phoneNumber}, data-description=${groomer.description}"
+                        onclick="editUser(this)">Edit</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <br />
+    <form id="editForm" th:action="@{/manager/update}" th:method="post">
+        <input type="hidden" id="gId" name="gid" />
+        <label for="groomername">Groomer name:</label>
+        <input type="text" id="groomername" name="groomername" />
+        <label for="gender">Gender:</label>
+        <input type="text" id="gender" name="gender" />
+        <label for="imageURL">ImageURL:</label>
+        <input type="text" id="imageURL" name="imageURL" />
+        <label for="rank">Rank:</label>
+        <input type="text" id="rank" name="rank" />
+        <label for="phoneNumber">Phone Number:</label>
+        <input type="text" id="phoneNumber" name="phoneNumber" />
+        <label for="description">Description:</label>
+        <input type="text" id="description" name="description" />
+        <button type="submit">Update</button>
+    </form>
+
+    <script>
+        function editGroomer(button) {
+            document.getElementById("gid").value = button.dataset.gid;
+            document.getElementById("groomername").value = button.dataset.groomername;
+            document.getElementById("gender").value = button.dataset.gender;
+            document.getElementById("imageURL").value = button.dataset.imageURL;
+            document.getElementById("rank").value = button.dataset.rank;
+            document.getElementById("gender").value = button.dataset.gender;
+            document.getElementById("phoneNumber").value = button.dataset.phoneNumber;
+            document.getElementById("description").value = button.dataset.description;
+        }
+    </script>
+
+
+
+    <!--Service maintain-->
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Service</th>
+                <th>Service Time</th>
+                <th>BasicPrice</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="service : ${sList}">
+                <td th:text="${service.sid}"></td>
+                <td th:text="${service.serviceName}"></td>
+                <td th:text="${service.serviceTime}"></td>
+                <td th:text="${service.basicPrice}"></td>
+                <td>
+                    <button th:attr="data-id=${service.sid}, data-serviceName=${service.serviceName},
+                    data-serviceTime=${service.serviceTime},data-basicPrice=${service.basicPrice}"
+                        onclick="editService(this)">Edit</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <br />
+    <form id="editForm" th:action="@{/manager/update}" th:method="post">
+        <input type="hidden" id="sId" name="sid" />
+        <label for="serviceName">Service name:</label>
+        <input type="text" id="serviceName" name="serviceName" />
+        <label for="serviceTime">Service Time:</label>
+        <input type="text" id="serviceTime" name="serviceTime" />
+        <label for="basicPrice">Basic Price:</label>
+        <input type="text" id="basicPrice" name="basicPrice" />
+        <button type="submit">Update</button>
+    </form>
+
+    <script>
+        function editService(button) {
+            document.getElementById("sid").value = button.dataset.gid;
+            document.getElementById("serviceName").value = button.dataset.serviceName;
+            document.getElementById("serviceTime").value = button.dataset.serviceTime;
+            document.getElementById("basicPrice").value = button.dataset.basicPrice;
+        }
+    </script>
+
+
+    <!--Appointment maintain-->
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>createTime</th>
+                <th>startTime</th>
+                <th>status</th>
+                <th>serviceType</th>
+                <th>groomer</th>
+                <th>user</th>
+                <th>pet</th>
+                <th>finishTime</th>
+                <th>cancelTime</th>
+                <th>totalprice</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="appointment : ${aList}">
+                <td th:text="${appointment.aid}"></td>
+                <td th:text="${appointment.createTime}"></td>
+                <td th:text="${appointment.startTime}"></td>
+                <td th:text="${appointment.status}"></td>
+                <td th:text="${appointment.serviceType}"></td>
+                <td th:text="${appointment.groomer}"></td>
+                <td th:text="${appointment.user}"></td>
+                <td th:text="${appointment.pet}"></td>
+                <td th:text="${appointment.finishTime}"></td>
+                <td th:text="${appointment.cancelTime}"></td>
+                <td th:text="${appointment.totalprice}"></td>
+                <td>
+                    <button th:attr="data-aid=${appointment.aid}, data-createTime=${appointment.createTime},
+                    data-startTime=${appointment.startTime},data-status=${appointment.status},data-serviceType=${appointment.serviceType}, 
+                    data-groomer=${appointment.groomer}, data-user=${appointment.user},data-pet=${appointment.pet},data-finishTime=${appointment.finishTime}, 
+                    data-cancelTime=${appointment.cancelTime}, data-totalprice=${appointment.totalprice}"
+                        onclick="editAppointment(this)">Edit</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <br />
+    <form id="editForm" th:action="@{/manager/update}" th:method="post">
+        <input type="text" id="aId" name="aid" disabled="true"/>
+        <label for="createTime">createTime:</label>
+        <input type="text" id="createTime" name="createTime" disabled="true" />
+        <label for="startTime">startTime:</label>
+        <input type="text" id="startTime" name="startTime" disabled="true"/>
+        <label for="status">status:</label>
+        <select type="text" id="status" name="status" >
+            <option value="0"><P>Waiting</P></option>
+            <option value="1"><P>Working</P></option>
+            <option value="2"><P>Done</P></option>
+        </select>
+        <label for="serviceType">serviceType:</label>
+        <input type="text" id="serviceType" name="serviceType" disabled="true"/>
+        <label for="groomer">groomer:</label>
+        <input type="text" id="groomer" name="groomer" disabled="true"/>
+        <label for="user">user:</label>
+        <input type="text" id="user" name="user" disabled="true"/>
+        <label for="status">pet:</label>
+        <input type="text" id="pet" name="pet" disabled="true"/>
+        <label for="finishTime">finishTime:</label>
+        <input type="text" id="finishTime" name="finishTime" disabled="true"/>
+        <label for="cancelTime">cancelTime:</label>
+        <input type="text" id="cancelTime" name="cancelTime" disabled="true"/>
+        <label for="totalprice">totalprice:</label>
+        <input type="text" id="totalprice" name="totalprice" disabled="true"/>
+        <button type="submit">Update</button>
+    </form>
+
+    <script>
+        function editAppointment(button) {
+            document.getElementById("aid").value = button.dataset.aid;
+            document.getElementById("createTime").value = button.dataset.createTime;
+            document.getElementById("startTime").value = button.dataset.startTime;
+            document.getElementById("status").value = button.dataset.status;
+            document.getElementById("serviceType").value = button.dataset.serviceType;
+            document.getElementById("groomer").value = button.dataset.groomer;
+            document.getElementById("user").value = button.dataset.user;
+            document.getElementById("pet").value = button.dataset.pet;
+            document.getElementById("finishTime").value = button.dataset.finishTime;
+            document.getElementById("cancelTime").value = button.dataset.cancelTime;
+            document.getElementById("totalprice").value = button.dataset.totalprice;
+            
+        }
+    </script>
+
+
+</body>
+
+</html>

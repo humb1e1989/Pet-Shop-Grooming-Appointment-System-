@@ -1,0 +1,158 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #9659b6;
+    font-family: "Helvetica Neue", sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+}
+.modal {
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+
+.container {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    width: 400px;
+    max-width: 100%;
+
+    margin: 8% auto;
+
+}
+#close{
+    position: relative;
+    left: 90%;
+}
+#close2{
+    position: relative;
+    left: 90%;
+}
+
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+.header {
+    background-color: #f7f7f7;
+    border-radius: 10px 10px 0 0;
+    border-bottom: 1px soild #f0f0f0;
+    padding: 20px 40px;
+
+}
+
+.header h2 {
+    margin: 0;
+}
+
+.form {
+    padding: 30px 40px;
+}
+
+.form_control {
+    margin-bottom: 10px;
+    padding-bottom: 20px;
+    position: relative;
+}
+
+ .form_control label {
+    display: inline-block;
+    margin-bottom: 5px;
+}
+.form_control input {
+    border: 2px solid #f0f0f0;
+    border-radius: 4px;
+    display: block;
+    font-family: inherit;
+    font-size: 14px;
+    padding: 10px;
+    width: 100%;
+}
+
+
+.form_control input:focus {
+    outline: 0;
+}
+
+输入框验证的样式
+.form_control.success input {
+    border-color: #2ecc71;
+}
+
+.form_control.error input {
+    border-color: #e74c3c;
+}
+
+/* 验证的图标的样式 */
+.form_control.success i.el-icon-success {
+    visibility: visible;
+    color: #2ecc71;
+}
+
+.form_control.error i.el-icon-warning {
+    visibility: visible;
+    color: #e74c3c;
+}
+
+.form_control i {
+    position: absolute;
+    top: 40px;
+    right: 10px;
+    visibility: hidden;
+}
+
+.form_control small {
+    visibility: hidden;
+    position: absolute;
+    font-weight: 600;
+    bottom: 0;
+    left: 0;
+}
+
+/* 验证错误的提示信息样式 */
+.form_control.error small {
+    visibility: visible;
+    color: #e74c3c;
+}
+
+.form button {
+    background-color: #8e44ad;
+    border: 2px solid #8e44ad;
+    border-radius: 5px;
+    color: #fff;
+    padding: 10px;
+    width: 100%;
+    font-size: 16px;
+    display: block;
+    transition: 0.3s;
+}
+
+.form button:hover {
+    background-color: #fff;
+    color: #8e44ad;
+}

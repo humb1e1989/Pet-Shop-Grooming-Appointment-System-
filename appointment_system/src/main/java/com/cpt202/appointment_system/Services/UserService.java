@@ -126,4 +126,13 @@ public class UserService {
     }
 
 
+    public List<User> getAllUsers() {
+        return userRepo.findAll();
+    }
+
+    public void updateUser(User user) {
+        userRepo.save(user);
+    }
+
+
 }

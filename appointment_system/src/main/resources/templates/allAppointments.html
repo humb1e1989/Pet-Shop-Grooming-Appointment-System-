@@ -216,7 +216,11 @@
                         <div class="sea-container">
                             <form th:action="@{/appointment-system/manager/appointmentList/search}" method="post">
                                 <li style="display: inline;"><input type="text" id="keyword" name="keyword"
+<<<<<<< HEAD
                                         class="col-lg-12 col-md-12 col-sm-12 form-group">You can search here by Uid, Gid, Pid, Sid, </li>
+=======
+                                        class="col-lg-12 col-md-12 col-sm-12 form-group"></li>
+>>>>>>> main
 
                                 <li style="display: inline;"><button type="submit" value="Search" class="theme-btn btn-eleven">Search</button></li>
                             </form>
@@ -243,7 +247,10 @@
                                 <th>Groomer</th>
                                 <th>User</th>
                                 <th>Pet</th>
+<<<<<<< HEAD
                                 <th>Status</th>
+=======
+>>>>>>> main
                                 <th></th>
                             </tr>
                         </thead>
@@ -255,7 +262,10 @@
                                 <td th:text="${appointment.groomer.name}"></td>
                                 <td th:text="${appointment.user.username}"></td>
                                 <td th:text="${appointment.pet.name}"></td>
+<<<<<<< HEAD
                                 <td th:text="${appointment.status}"></td>
+=======
+>>>>>>> main
                                 <td>
                                     <form th:action="@{/appointment-system/appointmentList/view}">
                                         <a class="theme-btn btn-eleven"

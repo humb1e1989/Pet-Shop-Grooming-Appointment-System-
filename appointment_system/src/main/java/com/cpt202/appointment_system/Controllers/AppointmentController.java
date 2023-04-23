@@ -115,9 +115,6 @@ public class AppointmentController {
         return appointmentService.modifyAppointment_C(appointment);
     }
 
-<<<<<<< Updated upstream
-    
-=======
 
 
     // Statical Report Part
@@ -130,5 +127,4 @@ public class AppointmentController {
         model.addAttribute("staticalReport", appointmentService.getStaticalReport());
         return "staticalReport";
     }
->>>>>>> Stashed changes
 }

@@ -18,8 +18,6 @@ public interface AppointmentRepo extends JpaRepository<Appointment, Integer> {
 
     public Appointment findByAid(Integer aid);
 
-<<<<<<< Updated upstream
-=======
     @Transactional(timeout = 10)
     @Query(value = "SELECT * FROM appointment WHERE gid = ?1", nativeQuery = true)
     public List<Appointment> findByGid(Integer gid);
@@ -48,7 +46,6 @@ public interface AppointmentRepo extends JpaRepository<Appointment, Integer> {
     @Query(value = "SELECT * FROM appointment WHERE status = :status", nativeQuery = true)
     public List<Appointment> findByStatus(@Param("status") String status);
 
->>>>>>> Stashed changes
     // WJT
     public List<Appointment> findByserviceType(String servicetype);
 

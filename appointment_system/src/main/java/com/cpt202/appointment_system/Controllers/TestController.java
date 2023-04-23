@@ -14,22 +14,6 @@
 // import com.cpt202.appointment_system.Models.Groomer;
 // import com.cpt202.appointment_system.Services.GroomerService;
 
-<<<<<<< Updated upstream
-@Controller
-public class TestController {
-//SQZ And WJT
-//Try to connect front end and back end
-    @Autowired
-    private GroomerService groomerService;
-    // Manager Part
-    @GetMapping("/manager/groomerList")  
-    public String getAllGroomers(Model model){
-        model.addAttribute("groomerList", groomerService.listAllGroomers());
-        //model.addAttribute("groomer", new Groomer());
-        return "allGroomers";
-        
-    }
-=======
 // @Controller
 // public class TestController {
 // //SQZ And WJT
@@ -43,7 +27,6 @@ public class TestController {
 //         //model.addAttribute("groomer", new Groomer());
 //         return "allGroomers";
 //     }
->>>>>>> Stashed changes
 
 //     // @GetMapping("/manager/groomerList/add")
 //     // public String addGroomer(Model model){
@@ -58,20 +41,11 @@ public class TestController {
 //     }
         
     
-<<<<<<< Updated upstream
-
-    @PostMapping("/manager/groomerList/add")
-    public String addGroomer_M(@ModelAttribute("groomer") Groomer groomer){
-        //groomerService.addGroomer_M(groomer);
-        return "home";
-    }
-=======
 //     @PostMapping("/manager/groomerList/add")
 //     public String addGroomer_M(@ModelAttribute("groomer") Groomer groomer){
 //         groomerService.addGroomer_M(groomer);
 //         return "allGroomers";
 //     }
->>>>>>> Stashed changes
 
 
 

@@ -22,10 +22,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -57,8 +53,6 @@
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
 
-<<<<<<< Updated upstream
-=======
 		<!-- <dependency>
 		    <groupId>org.springframework.boot</groupId>
 		    <artifactId>spring-boot-starter-security</artifactId>
@@ -117,7 +111,6 @@
 
 
 
->>>>>>> Stashed changes
 	</dependencies>
 
 	<build>

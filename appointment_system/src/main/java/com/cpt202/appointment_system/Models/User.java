@@ -1,5 +1,6 @@
 package com.cpt202.appointment_system.Models;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 
@@ -33,9 +34,9 @@ public class User {
     @Column(columnDefinition = "tinyint", nullable = false)
     private Integer type;  // type 0: customer; type 1: manager
 
-    @Column(columnDefinition = "DATETIME DEFAULT CURRENT_TIMESTAMP", nullable = false)
+    @Column(columnDefinition = "Timestamp DEFAULT CURRENT_TIMESTAMP", nullable = true)
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date registrationTime;
+    private Timestamp registrationTime;
 
     @Column(name = "image_url", nullable = true)
     private String imageURL;
@@ -49,7 +50,8 @@ public class User {
     @Column(columnDefinition = "varchar(100)", nullable = true)
     private String email;
 
-    @Column(nullable = false)
+    //TODO : default value = 0
+    @Column(nullable = false, columnDefinition = "int(11) default 0")
     private Integer failedLoginAttempts = 0;
     
 
@@ -63,8 +65,8 @@ public class User {
     }
 
 
-    public User(Integer uid, String username, String password, Integer type, Date registrationTime, String imageURL,
-            String gender, String phoneNumber, String email, Integer failedLoginAttempts) {
+    public User(Integer uid, String username, String password, Integer type, Timestamp registrationTime,
+            String imageURL, String gender, String phoneNumber, String email, Integer failedLoginAttempts) {
         this.uid = uid;
         this.username = username;
         this.password = password;
@@ -76,6 +78,7 @@ public class User {
         this.email = email;
         this.failedLoginAttempts = failedLoginAttempts;
     }
+
 
 
 
