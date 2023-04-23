@@ -115,5 +115,20 @@ public class AppointmentController {
         return appointmentService.modifyAppointment_C(appointment);
     }
 
+<<<<<<< Updated upstream
     
+=======
+
+
+    // Statical Report Part
+    // This is a part to fullfill all the functions of statical report.
+
+    // Get the Quarterly Profit Report and Annual Profit Report
+    // YYY PBI NO.4 - Manager can view the statical report of all appointments
+    @GetMapping("/manager/staticalReport")
+    public String getStaticalReport(Model model) {
+        model.addAttribute("staticalReport", appointmentService.getStaticalReport());
+        return "staticalReport";
+    }
+>>>>>>> Stashed changes
 }

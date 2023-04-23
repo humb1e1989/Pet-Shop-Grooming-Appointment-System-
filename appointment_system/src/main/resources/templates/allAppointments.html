@@ -1,0 +1,324 @@
+<!-- <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Appointment</title>
+    </head>
+    <body>
+        <h1>Appointment List Page</h1>
+        <h2>Welcome!</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Appointment ID</th>
+                    <th>Start Time</th>
+                    <th>Service Type</th>
+                    <th>Groomer</th>
+                    <th>User</th>
+                    <th>Pet</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="appointment : ${appointment}">
+                    <td th:text="${appointment.getAid()}"></td>
+                    <td th:text="${appointment.getStartTime()}"></td>
+                    <td th:text="${appointment.getServiceType()}"></td>
+                    <td th:text="${appointment.getGroomer()}"></td>
+                    <td th:text="${appointment.getUser()}"></td>
+                    <td th:text="${appointment.getPet()}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html> -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<!-- <Accept-Encoding: br;q=1.0, gzip;q=0.8, *;q=0.1></Accept-Encoding:> -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>IPet - Petcare HTML 5 Website Template</title>
+
+    <!-- Stylesheets -->
+    <link href="/assets/css/font-awesome-all.css" rel="stylesheet">
+    <link href="/assets/css/flaticon.css" rel="stylesheet">
+    <link href="/assets/css/owl.css" rel="stylesheet">
+    <link href="/assets/css/bootstrap.css" rel="stylesheet">
+    <link href="/assets/css/jquery.fancybox.min.css" rel="stylesheet">
+    <link href="/assets/css/animate.css" rel="stylesheet">
+    <link href="/assets/css/color.css" rel="stylesheet">
+    <link href="/assets/css/style.css" rel="stylesheet">
+    <link href="/assets/css/responsive.css" rel="stylesheet">
+    <link href="/assets/css/theme-template.css" rel="stylesheet">
+
+</head>
+
+<body>
+    <div class="boxed_wrapper">
+
+        <!-- main header -->
+        <header class="main-header header-style-two">
+
+            <div class="header-lower">
+                <div class="auto-container-fluid">
+                    <div class="outer-box clearfix bg-white">
+                        <div class="logo-box pull-left">
+                            <figure class="logo"><a th:href="@{/home}"><img src="/assets/images/logo-1.png" alt=""></a>
+                            </figure>
+                        </div>
+                        <div class="menu-area pull-right clearfix">
+                            <!--Mobile Navigation Toggler-->
+                            <div class="mobile-nav-toggler">
+                                <i class="icon-bar"></i>
+                                <i class="icon-bar"></i>
+                                <i class="icon-bar"></i>
+                            </div>
+                            <nav class="main-menu navbar-expand-md navbar-light">
+                                <div class="collapse navbar-collapse show clearfix" id="navbarSupportedContent">
+                                    <ul class="navigation clearfix">
+
+                                        <li><a th:href="@{/home}">Home</a></li>
+
+                                        <li><a href="Pricing.html">Pricing Plans</a></li>
+
+                                        <li><a th:href="@{/home/groomers}">Groomers</a></li>
+
+                                        <li><a th:href="@{/appointment-system/manager/appointmentList}">All
+                                                Appointments</a></li>
+
+                                        <li class="dropdown"><a href="AllService.html">Services</a>
+                                            <ul>
+                                                <li><a href="AllService.html">All Services</a></li>
+                                                <li><a href="PetGrooming.html">Pet Grooming</a></li>
+                                                <li><a href="PetTraining.html">Pet Training</a></li>
+                                                <li><a href="PetBoarding.html">Pet Boarding</a></li>
+                                                <li><a href="PetDyeHair.html">Pet Dye Hair</a></li>
+                                                <li><a href="DayCare.html">Day Care</a></li>
+                                            </ul>
+                                        </li>
+                                        <!--登陆后将join us按键改成个人信息菜单-->
+                                        <!--                                    <li><a href="Personal.html">Mine</a></li>-->
+                                        <!--                                    <ul>-->
+                                        <!--                                        <li><a href="Appointment.html">Information</a></li>-->
+                                        <!--                                        <li><a href="Appointment.html">Appointment</a></li>-->
+                                        <!--                                    </ul>-->
+
+                                    </ul>
+                                </div>
+                            </nav>
+                            <!--改为登录弹窗-->
+                            <div class="btn-box">
+                                <a href="xx.html" class="theme-btn btn-five">Join Us</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--sticky Header-->
+            <div class="sticky-header">
+                <div class="auto-container">
+                    <div class="outer-box clearfix">
+                        <figure class="sticky-logo pull-left">
+                            <a th:href="@{/home}"><img src="/assets/images/logo-3.png" alt=""></a>
+                        </figure>
+                        <div class="menu-area pull-right clearfix">
+                            <nav class="main-menu clearfix">
+                                <!--Keep This Empty / Menu will come through Javascript-->
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </header>
+        <!-- main-header end -->
+
+        <!-- Mobile Menu  -->
+        <div class="mobile-menu">
+            <div class="menu-backdrop"></div>
+            <div class="close-btn"><i class="fas fa-times"></i></div>
+
+            <nav class="menu-box">
+                <div class="nav-logo"><a th:href="@{/home}"><img src="/assets/images/logo-2.png" alt="" title=""></a>
+                </div>
+                <div class="menu-outer"><!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header-->
+                </div>
+                <div class="contact-info">
+                    <h4>Contact Info</h4>
+                    <ul>
+                        <li>111 Ren Ai Road Industrial park, Suchou, China</li>
+                        <li><a href="tel:+0991 433-8833">+0991 433-8833</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <!-- End Mobile Menu -->
+
+        <!-- Page Title -->
+        <section class="page-title centred">
+            <div class="pattern-layer" style="background-image: url(/assets/images/shape/shape-87.png);"></div>
+            <div class="auto-container">
+                <div class="content-box">
+                    <h1>My Appointments</h1>
+                    <!-- <form th:action="@{/appointment-system/manager/appointmentList/search}" method="POST" th:object="${keyword}">
+                        <div>
+                            <label for="keyword">Team Name</label>
+                            <input type="text" th:field="*{keyword}" id="keyword" name="keyword">
+                        </div>
+                        <div>
+                            <button type="submit">Search</button>
+                        </div>
+                    </form> -->
+                </div>
+            </div>
+
+
+        </section>
+        <!-- End Page Title -->
+
+
+
+        <!-- team-page-section -->
+        <section class="team-page-section" th:class="team-page-section">
+            <ul class="rating clearfix centred" style="color: #000000">
+                <style>
+                    .ulys {
+                        background: #ffc249;
+                        font-family: Arial, Helvetica, sans-serif;
+                        border-collapse: collapse;
+                        padding: 0;
+                        width: 100%;
+                    }
+
+                    .ulys tr {
+                        height: 60px;
+                        border-bottom: 1px solid #ffffff;
+                        line-height: 30px;
+                    }
+                </style>
+                <div class="auto-container">
+                    <!-- <table class="ulys">
+                        <thead>You can search appointments here</thead>
+                        <tbody>
+                            <tr>
+                                <form th:action="@{/appointment-system/manager/appointmentList/search}">
+                                    <a class="theme-btn btn-eleven"
+                                        th:href="@{/appointment-system/manager/appointmentList/search(keyword=${appointment.getAid()})}">Search</a>
+                                </form>
+                            </tr>
+                        </tbody>
+                    </table> -->
+                    <div id="container">
+                        <div class="sea-container">
+                            <form th:action="@{/appointment-system/manager/appointmentList/search}" method="post">
+                                <li style="display: inline;"><input type="text" id="keyword" name="keyword"
+                                        class="col-lg-12 col-md-12 col-sm-12 form-group">You can search here by Uid, Gid, Pid, Sid, </li>
+
+                                <li style="display: inline;"><button type="submit" value="Search" class="theme-btn btn-eleven">Search</button></li>
+                            </form>
+                            <p id="keyword"></p>
+                        </div>
+                    </div>
+                    <table class="ulys">
+                        <thead>
+                            <!-- <tr th:each="appointment : ${appointmentList}">
+                                <form th:action="@{/appointment-system/manager/appointmentList/search}" method="POST"
+                                    th:object="${keyword}">
+                                    <div>
+                                        <input type="text" th:field="{keyword}" id="keyword" name="keyword">
+                                    </div>
+                                    <a class="theme-btn btn-eleven"
+                                        th:href="@{/appointment-system/manager/appointmentList/search(keyword=${appointment.getAid()})}">Search</a>
+                                </form>
+                            </tr> -->
+
+                            <tr>
+                                <th>Appointment ID</th>
+                                <th>Start Time</th>
+                                <th>Service Type</th>
+                                <th>Groomer</th>
+                                <th>User</th>
+                                <th>Pet</th>
+                                <th>Status</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="appointment : ${appointmentList}">
+                                <td th:text="${appointment.getAid()}"></td>
+                                <td th:text="${appointment.getStartTime()}"></td>
+                                <td th:text="${appointment.serviceType.serviceName}"></td>
+                                <td th:text="${appointment.groomer.name}"></td>
+                                <td th:text="${appointment.user.username}"></td>
+                                <td th:text="${appointment.pet.name}"></td>
+                                <td th:text="${appointment.status}"></td>
+                                <td>
+                                    <form th:action="@{/appointment-system/appointmentList/view}">
+                                        <a class="theme-btn btn-eleven"
+                                            th:href="@{/appointment-system/appointmentList/view(aid=${appointment.getAid()})}">View
+                                            Detail</a>
+                                    </form>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div>
+                        <a th:href="@{/}" onClick="javascript :history.Go(-1);" class="theme-btn btn-ten">Back</a>
+                    </div>
+                </div>
+            </ul>
+        </section>
+        <!-- team-page-section end -->
+
+        <!-- Search Function -->
+
+        <!-- <section class="team-page-section" th:class="team-page-section">
+            <style>
+                .ulys {
+                    background: #ffc249;
+                    font-family: Arial, Helvetica, sans-serif;
+                    border-collapse: collapse;
+                    padding: 0;
+                    width: 100%;
+                }
+            </style>
+            <div>
+                <form th:action="@{/appointment-system/manager/appointmentList/search}" method="POST"
+                    th:object="${keyword}">
+                    <input type="text" th:field="{keyword}" id="keyword" name="keyword">
+                    <a class="theme-btn btn-eleven"
+                        th:href="@{/appointment-system/appointmentList/view(keyword=${keyword})}"></a>
+                    <div>
+                        <button type="submit">search</button>
+                    </div>
+                </form>
+            </div>
+        </section> -->
+
+        <!-- <div>
+            <form th:action="@{/appointment-system/manager/appointmentList/search}" method="POST"
+                th:object="${keyword}">
+                <div>
+                    <label for="keyword">Team Name</label>
+                    <input type="text" th:field="{keyword}" id="neam" name="keyword">
+                </div>
+                <div>
+                    <button type="submit">Save</button>
+                </div>
+            </form>
+        </div> -->
+
+
+
+
+        <!-- Search Function End -->
+
+
+    </div>
+</body>
+
+</html>

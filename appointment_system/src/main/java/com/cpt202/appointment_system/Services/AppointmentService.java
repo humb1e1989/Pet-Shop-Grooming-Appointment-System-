@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -76,7 +77,46 @@ public class AppointmentService {
 	/*
 	 * Customer Part
 	 */
+	public static boolean isInteger(String str) {  
+        Pattern pattern = Pattern.compile("^[-\\+]?[\\d]*$");  
+        return pattern.matcher(str).matches();  
+  }
 	// YYY
+<<<<<<< Updated upstream
+=======
+	public List<Appointment> appointmentSearch(@RequestParam String keyword) {
+		List<Appointment> resulList = new ArrayList<>();
+		if (isInteger(keyword)) {
+			Appointment resulList_aid = appointmentRepo.findByAid(Integer.valueOf(keyword).intValue());
+			List<Appointment> resulList_gid = appointmentRepo.findByGid(Integer.valueOf(keyword).intValue());
+			List<Appointment> resulList_sid = appointmentRepo.findBySid(Integer.valueOf(keyword).intValue());
+			List<Appointment> resulList_price = appointmentRepo.findByPrice(Integer.valueOf(keyword).intValue());
+
+			if (resulList_aid != null)
+				resulList.add(resulList_aid);
+			if (resulList_gid != null)
+				resulList.addAll(resulList_gid);
+			if (resulList_sid != null)
+				resulList.addAll(resulList_sid);
+			if (resulList_price != null)
+				resulList.addAll(resulList_price);
+		}
+		// List<Appointment> resulList_gname = appointmentRepo.findByGname(keyword);
+		List<Appointment> resulList_servicetype = appointmentRepo.findByServiceName(keyword);
+		List<Appointment> resulList_status = appointmentRepo.findByStatus(keyword);
+		// if (resulList_gname != null)
+		// resulList.addAll(resulList_gname);
+		if (resulList_servicetype != null)
+			resulList.addAll(resulList_servicetype);
+		if (resulList_status != null)
+			resulList.addAll(resulList_status);
+
+		LinkedHashSet<Appointment> hashSet = new LinkedHashSet<>(resulList);
+		ArrayList<Appointment> resulList_Final = new ArrayList<>(hashSet);
+		return resulList_Final;
+	}
+
+>>>>>>> Stashed changes
 	public Result<?> getAppointmentBy_Uid(@RequestParam User user) {
 		// return appointmentRepo.findByUser(user);
 		// return appointmentRepo.findByUsernameIs(user.getUsername());
