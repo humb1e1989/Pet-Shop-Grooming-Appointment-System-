@@ -23,124 +23,136 @@
 
 
 <!-- page wrapper -->
+
 <body>
 
-<div class="boxed_wrapper">
+    <div class="boxed_wrapper">
 
-    <!-- main header -->
-    <header class="main-header header-style-two">
+        <!-- main header -->
+        <header class="main-header header-style-two">
 
-        <div class="header-lower">
-            <div class="auto-container-fluid">
-                <div class="outer-box clearfix bg-white">
-                    <div class="logo-box pull-left">
-                        <figure class="logo"><a href="Home.html"><img src="assets/images/logo-1.png" alt=""></a></figure>
-                    </div>
-                    <div class="menu-area pull-right clearfix">
-                        <!--Mobile Navigation Toggler-->
-                        <div class="mobile-nav-toggler">
-                            <i class="icon-bar"></i>
-                            <i class="icon-bar"></i>
-                            <i class="icon-bar"></i>
+            <div class="header-lower">
+                <div class="auto-container-fluid">
+                    <div class="outer-box clearfix bg-white">
+                        <div class="logo-box pull-left">
+                            <figure class="logo"><a href="Home.html"><img src="assets/images/logo-1.png" alt=""></a>
+                            </figure>
                         </div>
-                        
-                        <nav class="main-menu navbar-expand-md navbar-light">
-                            <div class="collapse navbar-collapse show clearfix" id="navbarSupportedContent">
-                                <ul class="navigation clearfix">
-
-                                    <li><a th:href="@{/home}">Home</a></li>
-
-                                    <li><a href="Pricing.html">Pricing Plans</a></li>
-
-                                    <li><a th:href="@{/home/groomers}">Groomers</a></li>
-                                    
-                                    <li><a th:href="@{/appointment-system/manager/appointmentList}">All Appointments</a></li>
-
-                                    <li><a th:href="@{/appointment-system/manager/appointmentList/view}">View Appointment Detail</a></li>
-
-                                    <li><a th:href="@{/appointment-system/customer/appointmentList}">All My Appointments</a></li>
-
-                                    <li class="dropdown"><a href="AllService.html">Services</a>
-                                        <ul>
-                                            <li><a href="AllService.html">All Services</a></li>
-                                            <li><a href="PetGrooming.html">Pet Grooming</a></li>
-                                            <li><a href="PetTraining.html">Pet Training</a></li>
-                                            <li><a href="PetBoarding.html">Pet Boarding</a></li>
-                                            <li><a href="PetDyeHair.html">Pet Dye Hair</a></li>
-                                            <li><a href="DayCare.html">Day Care</a></li>
-                                        </ul>
-
-                                    </li>
-                                    <!--登陆后将join us按键改成个人信息菜单-->
-                                    <!--                                    <li><a href="Personal.html">Mine</a></li>-->
-                                    <!--                                    <ul>-->
-                                    <!--                                        <li><a href="Appointment.html">Information</a></li>-->
-                                    <!--                                        <li><a href="Appointment.html">Appointment</a></li>-->
-                                    <!--                                    </ul>-->
-
-                                </ul>
+                        <div class="menu-area pull-right clearfix">
+                            <!--Mobile Navigation Toggler-->
+                            <div class="mobile-nav-toggler">
+                                <i class="icon-bar"></i>
+                                <i class="icon-bar"></i>
+                                <i class="icon-bar"></i>
                             </div>
-                        </nav>
-                        <!--改为登录弹窗-->
-                        <div class="btn-box">
-                            <a href="xx.html" class="theme-btn btn-five">Join Us</a>
+
+                            <nav class="main-menu navbar-expand-md navbar-light">
+                                <div class="collapse navbar-collapse show clearfix" id="navbarSupportedContent">
+                                    <ul class="navigation clearfix">
+
+                                        <li><a th:href="@{/home}">Home</a></li>
+
+                                        <li><a href="Pricing.html">Pricing Plans</a></li>
+
+                                        <li><a th:href="@{/home/groomers}">Groomers</a></li>
+
+                                        <li><a th:href="@{/appointment-system/manager/appointmentList}">All
+                                                Appointments</a></li>
+
+                                        <li><a th:href="@{/appointment-system/manager/appointmentList/view}">View
+                                                Appointment Detail</a></li>
+
+                                        <li><a th:href="@{/appointment-system/customer/appointmentList}">All My
+                                                Appointments</a></li>
+
+                                        <li class="dropdown"><a href="AllService.html">Services</a>
+                                            <ul>
+                                                <li><a href="AllService.html">All Services</a></li>
+                                                <li><a href="PetGrooming.html">Pet Grooming</a></li>
+                                                <li><a href="PetTraining.html">Pet Training</a></li>
+                                                <li><a href="PetBoarding.html">Pet Boarding</a></li>
+                                                <li><a href="PetDyeHair.html">Pet Dye Hair</a></li>
+                                                <li><a href="DayCare.html">Day Care</a></li>
+                                            </ul>
+
+                                        </li>
+                                        <!--登陆后将join us按键改成个人信息菜单-->
+                                        <!--                                    <li><a href="Personal.html">Mine</a></li>-->
+                                        <!--                                    <ul>-->
+                                        <!--                                        <li><a href="Appointment.html">Information</a></li>-->
+                                        <!--                                        <li><a href="Appointment.html">Appointment</a></li>-->
+                                        <!--                                    </ul>-->
+
+                                    </ul>
+                                </div>
+                            </nav>
+                            <!--改为登录弹窗-->
+                            <div class="btn-box">
+                                <a href="xx.html" class="theme-btn btn-five">Join Us</a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!--sticky Header-->
-        <div class="sticky-header">
-            <div class="auto-container">
-                <div class="outer-box clearfix">
-                    <figure class="sticky-logo pull-left">
-                        <a href="Home.html"><img src="assets/images/logo-3.png" alt=""></a>
-                    </figure>
-                    <div class="menu-area pull-right clearfix">
-                        <nav class="main-menu clearfix">
-                            <!--Keep This Empty / Menu will come through Javascript-->
-                        </nav>
+            <!--sticky Header-->
+            <div class="sticky-header">
+                <div class="auto-container">
+                    <div class="outer-box clearfix">
+                        <figure class="sticky-logo pull-left">
+                            <a href="Home.html"><img src="assets/images/logo-3.png" alt=""></a>
+                        </figure>
+                        <div class="menu-area pull-right clearfix">
+                            <nav class="main-menu clearfix">
+                                <!--Keep This Empty / Menu will come through Javascript-->
+                            </nav>
+                        </div>
                     </div>
                 </div>
             </div>
+        </header>
+        <!-- main-header end -->
+
+        <!-- Mobile Menu  -->
+        <div class="mobile-menu">
+            <div class="menu-backdrop"></div>
+            <div class="close-btn"><i class="fas fa-times"></i></div>
+
+            <nav class="menu-box">
+                <div class="nav-logo"><a href="Home.html"><img src="assets/images/logo-2.png" alt="" title=""></a></div>
+                <div class="menu-outer"><!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header-->
+                </div>
+                <div class="contact-info">
+                    <h4>Contact Info</h4>
+                    <ul>
+                        <li>111 Ren Ai Road Industrial park, Suchou, China</li>
+                        <li><a href="tel:+0991 433-8833">+0991 433-8833</a></li>
+                    </ul>
+                </div>
+            </nav>
         </div>
-    </header>
-    <!-- main-header end -->
+        <!-- End Mobile Menu -->
 
-    <!-- Mobile Menu  -->
-    <div class="mobile-menu">
-        <div class="menu-backdrop"></div>
-        <div class="close-btn"><i class="fas fa-times"></i></div>
-
-        <nav class="menu-box">
-            <div class="nav-logo"><a href="Home.html"><img src="assets/images/logo-2.png" alt="" title=""></a></div>
-            <div class="menu-outer"><!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header--></div>
-            <div class="contact-info">
-                <h4>Contact Info</h4>
-                <ul>
-                    <li>111 Ren Ai Road Industrial park, Suchou, China</li>
-                    <li><a href="tel:+0991 433-8833">+0991 433-8833</a></li>
-                </ul>
-            </div>
-        </nav>
-    </div>
-    <!-- End Mobile Menu -->
-
-    <!-- banner-section Comprehend the need of your loving PET-->
+        <!-- banner-section Comprehend the need of your loving PET-->
         <section class="banner-style-eight">
             <div class="pattern-layer">
-                <div class="pattern-1" style="background-image: url(assets/images/shape/shape-70.png);" ></div>
-                <div class="pattern-2" style="background-image: url(assets/images/shape/shape-71.png); width: 800px; height: 890px"></div>
+                <div class="pattern-1" style="background-image: url(assets/images/shape/shape-70.png);"></div>
+                <div class="pattern-2"
+                    style="background-image: url(assets/images/shape/shape-71.png); width: 800px; height: 890px"></div>
 
             </div>
             <div class="anim-icon">
-                <div class="icon icon-1 rotate-me" style="background-image: url(assets/images/icons/anim-icon-1.png);"></div>
-                <div class="icon icon-2 float-bob-x" style="background-image: url(assets/images/icons/icon-24.png);"></div>
-                <div class="icon icon-3 rotate-me" style="background-image: url(assets/images/icons/anim-icon-3.png);"></div>
-                <div class="icon icon-4 float-bob-y" style="background-image: url(assets/images/icons/anim-icon-4.png);"></div>
+                <div class="icon icon-1 rotate-me" style="background-image: url(assets/images/icons/anim-icon-1.png);">
+                </div>
+                <div class="icon icon-2 float-bob-x" style="background-image: url(assets/images/icons/icon-24.png);">
+                </div>
+                <div class="icon icon-3 rotate-me" style="background-image: url(assets/images/icons/anim-icon-3.png);">
+                </div>
+                <div class="icon icon-4 float-bob-y"
+                    style="background-image: url(assets/images/icons/anim-icon-4.png);"></div>
                 <div class="icon icon-5"></div>
-                <div class="icon icon-6 rotate-me" style="background-image: url(assets/images/icons/anim-icon-5.png);"></div>
+                <div class="icon icon-6 rotate-me" style="background-image: url(assets/images/icons/anim-icon-5.png);">
+                </div>
             </div>
             <div class="auto-container">
                 <div class="row align-items-center clearfix">
@@ -149,7 +161,8 @@
                             <h2>Comprehend the need of your loving PET</h2>
                             <p>More details are below</p>
                             <div class="btn-box">
-                                <a th:href="@{/appointment-system/customer/makeappointment}" class="theme-btn btn-eleven">Make Appointment</a>
+                                <a th:href="@{/appointment-system/customer/makeappointment}"
+                                    class="theme-btn btn-eleven">Make Appointment</a>
                             </div>
                         </div>
                     </div>
@@ -176,7 +189,8 @@
                     <div class="col-lg-7 col-md-12 col-sm-12 image-column">
                         <div class="image_block_1">
                             <div class="image-box">
-                                <figure class="image js-tilt"><img src="assets/images/resource/about-1.png" alt=""></figure>
+                                <figure class="image js-tilt"><img src="assets/images/resource/about-1.png" alt="">
+                                </figure>
                             </div>
                         </div>
                     </div>
@@ -186,16 +200,23 @@
                                 <div class="tabs-box">
                                     <div class="tab-btn-box">
                                         <ul class="tab-btns tab-buttons clearfix">
-                                            <li class="tab-btn active-btn" data-tab="#tab-1"><i class="fas fa-check-circle"></i><span>Our Mission</span></li>
-                                            <li class="tab-btn" data-tab="#tab-2"><i class="fas fa-check-circle"></i><span>Our Vison</span></li>
+                                            <li class="tab-btn active-btn" data-tab="#tab-1"><i
+                                                    class="fas fa-check-circle"></i><span>Our Mission</span></li>
+                                            <li class="tab-btn" data-tab="#tab-2"><i
+                                                    class="fas fa-check-circle"></i><span>Our Vison</span></li>
                                         </ul>
                                     </div>
                                     <div class="tabs-content">
                                         <div class="tab active-tab" id="tab-1">
                                             <div class="inner">
-                                                <p>Our mission is to groom and enhance pets' physical appearance and overall health. We offers services such as bathing, grooming, trimming, and styling pets' hair, as well as providing them with nutritious food and supplements. It may also offer additional services such as training, boarding, and daycare.</p>
+                                                <p>Our mission is to groom and enhance pets' physical appearance and
+                                                    overall health. We offers services such as bathing, grooming,
+                                                    trimming, and styling pets' hair, as well as providing them with
+                                                    nutritious food and supplements. It may also offer additional
+                                                    services such as training, boarding, and daycare.</p>
                                                 <ul class="list-style-one clearfix">
-                                                    <li><i class="fas fa-solid fa-paw-simple"></i>Best groomers in the town</li>
+                                                    <li><i class="fas fa-solid fa-paw-simple"></i>Best groomers in the
+                                                        town</li>
                                                     <li>Ever undertakes pets physical</li>
                                                     <li>Avoids a pain that produces no resultant</li>
                                                     <li>Great experience to the customers</li>
@@ -204,7 +225,11 @@
                                         </div>
                                         <div class="tab" id="tab-2">
                                             <div class="inner">
-                                                <p>Our aims to provide grooming services that make pets look and feel their best, while ensuring their comfort and safety. The vision is to create a relaxing environment with high-quality tools, skilled staff, and a range of services that meet the needs of both pets and their owners.</p>
+                                                <p>Our aims to provide grooming services that make pets look and feel
+                                                    their best, while ensuring their comfort and safety. The vision is
+                                                    to create a relaxing environment with high-quality tools, skilled
+                                                    staff, and a range of services that meet the needs of both pets and
+                                                    their owners.</p>
                                                 <ul class="list-style-one clearfix">
                                                     <li>Best groomers in the town</li>
                                                     <li>Ever undertakes pets physical</li>
@@ -222,8 +247,8 @@
             </div>
         </section>
         <!-- about-section end -->
-        
-        
+
+
         <!-- solutions-style-two A fresh approach to service-->
         <section class="solutions-style-two sec-pad">
             <div class="bg-layer" style="background-image: url(assets/images/shape/shape-66.jpg);"></div>
@@ -247,8 +272,8 @@
         </section>
         <!-- solutions-style-two end -->
 
-         <!-- project-style-two Services-->
-         <section class="project-style-two">
+        <!-- project-style-two Services-->
+        <section class="project-style-two">
             <div class="auto-container">
                 <div class="sec-title centred">
                     <h5>Services</h5>
@@ -313,7 +338,7 @@
                         </div>
                     </div>
 
-                    
+
                     <div class="project-block-two">
                         <div class="inner-box">
                             <figure class="image-box">
@@ -325,7 +350,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="more-btn centred mr-25">
                     <a href="AllService.html" class="theme-btn btn-ten">All Services</a>
                 </div>
@@ -334,7 +359,7 @@
 
         <!-- project-style-two end -->
 
-        
+
         <!-- pricing-style-two PRICING PLAN -->
         <section class="pricing-style-two centred">
             <div class="pattern-layer" style="background-image: url(assets/images/shape/shape-52.png);"></div>
@@ -343,108 +368,110 @@
                     <h5>PRICING PLAN</h5>
                     <h2>Our affordable pricing plans</h2>
                     <div class="divider" style="background-image: url(assets/images/icons/divider-1.png);"></div>
-                    <p>varius arcu lacinia. Nulla lorem dui, sodales a mauris vel, tempus varius leo. Integer sollicitudin sit amet alkili gutsde</p>
+                    <p>varius arcu lacinia. Nulla lorem dui, sodales a mauris vel, tempus varius leo. Integer
+                        sollicitudin sit
+                        amet alkili gutsde</p>
                 </div>
-            <div class="pricing-pribel-plas17">
-                <div class="row">
-                  <div class="col-lg-3 col-md-6">
-                     <div class="item item--01">
-                        <div class="item__heading">
-                             <h3 class="text-uppercase">Basic Plan</h3>
+                <div class="pricing-pribel-plas17">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-6">
+                            <div class="item item--01">
+                                <div class="item__heading">
+                                    <h3 class="text-uppercase">Basic Plan</h3>
+                                </div>
+                                <div class="item__media">
+                                    <img src="assets/images/pricing-1.png" alt="Image">
+                                </div>
+                                <div class="item__content">
+                                    <ul>
+                                        <li>Walking & Grooming<strong>Yes</strong></li>
+                                        <li>Health and Foods<strong>No</strong></li>
+                                        <li>House Sitting<strong>No</strong></li>
+                                        <li>Vaccinations<strong>No</strong></li>
+                                    </ul>
+                                    <div class="item__pricing">
+                                        <p>$19<span>/mo</span></p>
+                                    </div>
+                                    <button class="theme-btn btn-eleven">Purchase</button>
+                                </div>
                             </div>
-                             <div class="item__media">
-                         <img src="assets/images/pricing-1.png" alt="Image">
-                         </div>
-                             <div class="item__content">
-                            <ul>
-                             <li>Walking & Grooming<strong>Yes</strong></li>
-                         <li>Health and Foods<strong>No</strong></li>
-                      <li>House Sitting<strong>No</strong></li>
-                         <li>Vaccinations<strong>No</strong></li>
-                         </ul>
-                         <div class="item__pricing">
-                           <p>$19<span>/mo</span></p>
-                             </div>
-                     <button class="theme-btn btn-eleven">Purchase</button>
                         </div>
-                     </div>
-                    </div>
 
-                    <div class="col-lg-3 col-md-6">
-                     <div class="item item--02">
-                      <div class="item__heading">
-                       <h3 class="text-uppercase">Grate Plan</h3>
-                     </div>
-                         <div class="item__media">
-                     <img src="assets/images/pricing-2.png" alt="Image">
-                     </div>
-                     <div class="item__content">
-                         <ul>
-                          <li>Walking & Grooming<strong>Yes</strong></li>
-                         <li>Health and Foods<strong>Yes</strong></li>
-                        <li>House Sitting<strong>No</strong></li>
-                         <li>Vaccinations<strong>No</strong></li>
-                        </ul>
-                     <div class="item__pricing">
-                     <p>$29<span>/mo</span></p>
-                     </div>
-                     <button class="theme-btn btn-eleven">Purchase</button>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="item item--02">
+                                <div class="item__heading">
+                                    <h3 class="text-uppercase">Grate Plan</h3>
+                                </div>
+                                <div class="item__media">
+                                    <img src="assets/images/pricing-2.png" alt="Image">
+                                </div>
+                                <div class="item__content">
+                                    <ul>
+                                        <li>Walking & Grooming<strong>Yes</strong></li>
+                                        <li>Health and Foods<strong>Yes</strong></li>
+                                        <li>House Sitting<strong>No</strong></li>
+                                        <li>Vaccinations<strong>No</strong></li>
+                                    </ul>
+                                    <div class="item__pricing">
+                                        <p>$29<span>/mo</span></p>
+                                    </div>
+                                    <button class="theme-btn btn-eleven">Purchase</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6">
+                            <div class="item item--03">
+                                <div class="item__heading">
+                                    <h3 class="text-uppercase">Big Plan</h3>
+                                </div>
+                                <div class="item__media">
+                                    <img src="assets/images/pricing-3.png" alt="Image">
+                                </div>
+                                <div class="item__content">
+                                    <ul>
+                                        <li>Walking & Grooming<strong>Yes</strong></li>
+                                        <li>Health and Foods<strong>Yes</strong></li>
+                                        <li>House Sitting<strong>Yes</strong></li>
+                                        <li>Vaccinations<strong>No</strong></li>
+                                    </ul>
+                                    <div class="item__pricing">
+                                        <p>$39<span>/mo</span></p>
+                                    </div>
+                                    <button class="theme-btn btn-eleven">Purchase</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6">
+                            <div class="item item--02">
+                                <div class="item__heading">
+                                    <h3 class="text-uppercase">Premium Plan</h3>
+                                </div>
+                                <div class="item__media">
+                                    <img src="assets/images/pricing-4.png" alt="Image">
+                                </div>
+                                <div class="item__content">
+                                    <ul>
+                                        <li>Walking & Grooming<strong>Yes</strong></li>
+                                        <li>Health and Foods<strong>Yes</strong></li>
+                                        <li>House Sitting<strong>Yes</strong></li>
+                                        <li>Vaccinations<strong>Yes</strong></li>
+                                    </ul>
+                                    <div class="item__pricing">
+                                        <p>$49<span>/mo</span></p>
+                                    </div>
+                                    <button class="theme-btn btn-eleven">Purchase</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                </div>
-
-                <div class="col-lg-3 col-md-6">
-                  <div class="item item--03">
-                    <div class="item__heading">
-                      <h3 class="text-uppercase">Big Plan</h3>
-                    </div>
-                         <div class="item__media">
-                      <img src="assets/images/pricing-3.png" alt="Image">
-                     </div>
-                      <div class="item__content">
-                        <ul>
-                            <li>Walking & Grooming<strong>Yes</strong></li>
-                            <li>Health and Foods<strong>Yes</strong></li>
-                            <li>House Sitting<strong>Yes</strong></li>
-                            <li>Vaccinations<strong>No</strong></li>
-                            </ul>
-                        <div class="item__pricing">
-                         <p>$39<span>/mo</span></p>
-                    </div>
-                    <button class="theme-btn btn-eleven">Purchase</button>
-                 </div>
             </div>
-             </div>
-             
-             <div class="col-lg-3 col-md-6">
-                     <div class="item item--02">
-                      <div class="item__heading">
-                       <h3 class="text-uppercase">Premium Plan</h3>
-                     </div>
-                         <div class="item__media">
-                     <img src="assets/images/pricing-4.png" alt="Image">
-                     </div>
-                     <div class="item__content">
-                         <ul>
-                          <li>Walking & Grooming<strong>Yes</strong></li>
-                         <li>Health and Foods<strong>Yes</strong></li>
-                        <li>House Sitting<strong>Yes</strong></li>
-                         <li>Vaccinations<strong>Yes</strong></li>
-                        </ul>
-                     <div class="item__pricing">
-                     <p>$49<span>/mo</span></p>
-                     </div>
-                     <button class="theme-btn btn-eleven">Purchase</button>
-                    </div>
-                </div>
-                </div>
-        </div>
-    </div>
-        </div>
         </section>
         <!-- pricing-style-two end -->
-        
-        
+
+
         <!-- team-page-section TEAM MEMBERS 需要连接groomers的数据库-->
         <section class="team-page-section">
             <div class="auto-container">
@@ -455,26 +482,31 @@
                 </div>
                 <div class="row clearfix">
                     <div class="col-lg-3 col-md-6 col-sm-12 team-block">
-                        <div class="team-block-two wow fadeInUp animated animated" data-wow-delay="00ms" data-wow-duration="1500ms" style="visibility: visible; animation-duration: 1500ms; animation-delay: 0ms; animation-name: fadeInUp;">
+                        <div class="team-block-two wow fadeInUp animated animated" data-wow-delay="00ms"
+                            data-wow-duration="1500ms"
+                            style="visibility: visible; animation-duration: 1500ms; animation-delay: 0ms; animation-name: fadeInUp;">
                             <div class="inner-box">
                                 <div class="image-box">
                                     <figure class="image"><img src="assets/images/team/team-5.png" alt=""></figure>
                                 </div>
                                 <div class="lower-content">
                                     <ul class="rating clearfix centred" style="color: #ffa800">
-                                
+
                                         <li>=====
                                             <script th:inline="javascript">
                                                 // Please ignore this error (It can run as we want anyway)
-                                                var ranking = [[${g0.getRank()}]];
+                                                var ranking = [[${ g0.getRank() }]];
 
-                                                for (var i=0; i < ranking; i++){
+                                                for (var i = 0; i < ranking; i++) {
                                                     document.write("<i class=\"fas fa-star\"></i>");
                                                 }
                                             </script>
-                                        =====</li>
+                                            =====
+                                        </li>
                                     </ul>
-                                    <h3><p><b th:text="${g0.getName()}"></b></p></h3>
+                                    <h3>
+                                        <p><b th:text="${g0.getName()}"></b></p>
+                                    </h3>
                                     <div class="designation">
                                         <span class="bar"></span>
                                         <p th:text="${g0.getDescription()}"></p>
@@ -485,7 +517,9 @@
                     </div>
 
                     <div class="col-lg-3 col-md-6 col-sm-12 team-block">
-                        <div class="team-block-two wow fadeInUp animated animated" data-wow-delay="200ms" data-wow-duration="1500ms" style="visibility: visible; animation-duration: 1500ms; animation-delay: 200ms; animation-name: fadeInUp;">
+                        <div class="team-block-two wow fadeInUp animated animated" data-wow-delay="200ms"
+                            data-wow-duration="1500ms"
+                            style="visibility: visible; animation-duration: 1500ms; animation-delay: 200ms; animation-name: fadeInUp;">
                             <div class="inner-box">
                                 <div class="image-box">
                                     <figure class="image"><img src="assets/images/team/team-6.png" alt=""></figure>
@@ -495,14 +529,17 @@
                                         <li>=====
                                             <script th:inline="javascript">
                                                 // Please ignore this error (It can run as we want anyway)
-                                                var ranking = [[${g1.getRank()}]];
-                                                for (var i=0; i < ranking; i++){
+                                                var ranking = [[${ g1.getRank() }]];
+                                                for (var i = 0; i < ranking; i++) {
                                                     document.write("<i class=\"fas fa-star\"></i>");
                                                 }
                                             </script>
-                                        =====</li>
+                                            =====
+                                        </li>
                                     </ul>
-                                    <h3><p><b th:text="${g1.getName()}"></b></p></h3>
+                                    <h3>
+                                        <p><b th:text="${g1.getName()}"></b></p>
+                                    </h3>
                                     <div class="designation">
                                         <span class="bar"></span>
                                         <p th:text="${g1.getDescription()}"></p>
@@ -513,7 +550,9 @@
                     </div>
 
                     <div class="col-lg-3 col-md-6 col-sm-12 team-block">
-                        <div class="team-block-two wow fadeInUp animated animated" data-wow-delay="400ms" data-wow-duration="1500ms" style="visibility: visible; animation-duration: 1500ms; animation-delay: 400ms; animation-name: fadeInUp;">
+                        <div class="team-block-two wow fadeInUp animated animated" data-wow-delay="400ms"
+                            data-wow-duration="1500ms"
+                            style="visibility: visible; animation-duration: 1500ms; animation-delay: 400ms; animation-name: fadeInUp;">
                             <div class="inner-box">
                                 <div class="image-box">
                                     <figure class="image"><img src="assets/images/team/team-7.png" alt=""></figure>
@@ -523,14 +562,17 @@
                                         <li>=====
                                             <script th:inline="javascript">
                                                 // Please ignore this error (It can run as we want anyway)
-                                                var ranking = [[${g2.getRank()}]];
-                                                for (var i=0; i < ranking; i++){
+                                                var ranking = [[${ g2.getRank() }]];
+                                                for (var i = 0; i < ranking; i++) {
                                                     document.write("<i class=\"fas fa-star\"></i>");
                                                 }
                                             </script>
-                                        =====</li>
+                                            =====
+                                        </li>
                                     </ul>
-                                    <h3><p><b th:text="${g2.getName()}"></b></p></h3>
+                                    <h3>
+                                        <p><b th:text="${g2.getName()}"></b></p>
+                                    </h3>
                                     <div class="designation">
                                         <span class="bar"></span>
                                         <p th:text="${g2.getDescription()}"></p>
@@ -541,7 +583,9 @@
                     </div>
 
                     <div class="col-lg-3 col-md-6 col-sm-12 team-block">
-                        <div class="team-block-two wow fadeInUp animated animated" data-wow-delay="600ms" data-wow-duration="1500ms" style="visibility: visible; animation-duration: 1500ms; animation-delay: 600ms; animation-name: fadeInUp;">
+                        <div class="team-block-two wow fadeInUp animated animated" data-wow-delay="600ms"
+                            data-wow-duration="1500ms"
+                            style="visibility: visible; animation-duration: 1500ms; animation-delay: 600ms; animation-name: fadeInUp;">
                             <div class="inner-box">
                                 <div class="image-box">
                                     <figure class="image"><img src="assets/images/team/team-8.png" alt=""></figure>
@@ -551,14 +595,17 @@
                                         <li>=====
                                             <script th:inline="javascript">
                                                 // Please ignore this error (It can run as we want anyway)
-                                                var ranking = [[${g3.getRank()}]];
-                                                for (var i=0; i < ranking; i++){
+                                                var ranking = [[${ g3.getRank() }]];
+                                                for (var i = 0; i < ranking; i++) {
                                                     document.write("<i class=\"fas fa-star\"></i>");
                                                 }
                                             </script>
-                                        =====</li>
+                                            =====
+                                        </li>
                                     </ul>
-                                    <h3><p><b th:text="${g3.getName()}"></b></p></h3>
+                                    <h3>
+                                        <p><b th:text="${g3.getName()}"></b></p>
+                                    </h3>
                                     <div class="designation">
                                         <span class="bar"></span>
                                         <p th:text="${g3.getDescription()}"></p>
@@ -574,8 +621,8 @@
             </div>
         </section>
         <!-- team-page-section end -->
-        
-        
+
+
         <!-- gallery-style finished-->
         <section class="gallery-style">
             <div class="auto-container">
@@ -585,38 +632,50 @@
                 </div>
                 <div class="row clearfix">
                     <div class="col-lg-12 col-md-12 col-sm-12 content-column">
-                         <div class="row">
-                         <div class="col-sm-6 col-md-4">
-                             <div class="gallery-image">
-                            <figure class="image"><a href="assets/images/gallery/gallery-1.jpg" class="lightbox-image" data-fancybox="gallery"><img src="assets/images/gallery/gallery-1.jpg" alt=""></a></figure>
+                        <div class="row">
+                            <div class="col-sm-6 col-md-4">
+                                <div class="gallery-image">
+                                    <figure class="image"><a href="assets/images/gallery/gallery-1.jpg"
+                                            class="lightbox-image" data-fancybox="gallery"><img
+                                                src="assets/images/gallery/gallery-1.jpg" alt=""></a></figure>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-4">
+                                <div class="gallery-image">
+                                    <figure class="image"><a href="assets/images/gallery/gallery-2.jpg"
+                                            class="lightbox-image" data-fancybox="gallery"><img
+                                                src="assets/images/gallery/gallery-2.jpg" alt=""></a></figure>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-4">
+                                <div class="gallery-image">
+                                    <figure class="image"><a href="assets/images/gallery/gallery-3.jpg"
+                                            class="lightbox-image" data-fancybox="gallery"><img
+                                                src="assets/images/gallery/gallery-3.jpg" alt=""></a></figure>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-4">
+                                <div class="gallery-image">
+                                    <figure class="image"><a href="assets/images/gallery/gallery-4.jpg"
+                                            class="lightbox-image" data-fancybox="gallery"><img
+                                                src="assets/images/gallery/gallery-4.jpg" alt=""></a></figure>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-4">
+                                <div class="gallery-image">
+                                    <figure class="image"><a href="assets/images/gallery/gallery-5.jpg"
+                                            class="lightbox-image" data-fancybox="gallery"><img
+                                                src="assets/images/gallery/gallery-5.jpg" alt=""></a></figure>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-4">
+                                <div class="gallery-image">
+                                    <figure class="image"><a href="assets/images/gallery/gallery-6.jpg"
+                                            class="lightbox-image" data-fancybox="gallery"><img
+                                                src="assets/images/gallery/gallery-6.jpg" alt=""></a></figure>
+                                </div>
                             </div>
                         </div>
-                     <div class="col-sm-6 col-md-4">
-                         <div class="gallery-image">
-                <figure class="image"><a href="assets/images/gallery/gallery-2.jpg" class="lightbox-image" data-fancybox="gallery"><img src="assets/images/gallery/gallery-2.jpg" alt=""></a></figure>
-                </div>
-            </div>
-            <div class="col-sm-6 col-md-4">
-                <div class="gallery-image">
-               <figure class="image"><a href="assets/images/gallery/gallery-3.jpg" class="lightbox-image" data-fancybox="gallery"><img src="assets/images/gallery/gallery-3.jpg" alt=""></a></figure>
-               </div>
-            </div>
-            <div class="col-sm-6 col-md-4">
-                <div class="gallery-image">
-               <figure class="image"><a href="assets/images/gallery/gallery-4.jpg" class="lightbox-image" data-fancybox="gallery"><img src="assets/images/gallery/gallery-4.jpg" alt=""></a></figure>
-               </div>
-            </div>
-            <div class="col-sm-6 col-md-4">
-                <div class="gallery-image">
-                <figure class="image"><a href="assets/images/gallery/gallery-5.jpg" class="lightbox-image" data-fancybox="gallery"><img src="assets/images/gallery/gallery-5.jpg" alt=""></a></figure>
-                </div>
-            </div> 
-            <div class="col-sm-6 col-md-4">
-                <div class="gallery-image">
-                <figure class="image"><a href="assets/images/gallery/gallery-6.jpg" class="lightbox-image" data-fancybox="gallery"><img src="assets/images/gallery/gallery-6.jpg" alt=""></a></figure>
-                </div>
-            </div>
-        </div>
 
 
                     </div>
@@ -624,115 +683,6 @@
             </div>
         </section>
         <!-- gallery-style end -->
-
-        
-        
-        <!-- testimonial-style-five Happy Story 需要连接用户评论的数据库-->
-        <section class="testimonial-style-five bg-color-1">
-            <div class="auto-container">
-                <div class="sec-title style-two centred">
-                    <h5>Happy Story</h5>
-                    <h2>What clients say about our <br>amazing work</h2>
-                    <div class="divider" style="background-image: url(assets/images/icons/divider-1.png);"></div>
-                </div>three-item-carousel
-                <div class="two-column-carousel owl-carousel owl-theme owl-nav-none dots-style-one">
-                    <div class="testimonial-block">
-                        <div class="inner-box">
-                            <div class="light-icon"><i class="flaticon-quotes"></i></div>
-                            <div class="text">
-                                <p>Lorem ipsum dolor amet consectetur adipisicing elit sed eiusmod tempor incididunt ut labore et dolore magna aliqua.enim ad minim eniam quis nostrud exercitation.</p>
-                            </div>
-                            <div class="author-box">
-                                <figure class="author-thumb">
-                                    <div class="shape"></div>
-                                    <img src="assets/images/resource/testimonial-9.png" alt="">
-                                </figure>
-                                <h3>Roslin Miriyam</h3>
-                                <span class="designation">Premium Client</span>
-                                <ul class="rating clearfix">
-                                    <li><i class="fas fa-star"></i></li>
-                                    <li><i class="fas fa-star"></i></li>
-                                    <li><i class="fas fa-star"></i></li>
-                                    <li><i class="fas fa-star"></i></li>
-                                    <li><i class="fas fa-star"></i></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="testimonial-block">
-                        <div class="inner-box">
-                            <div class="light-icon"><i class="flaticon-quotes"></i></div>
-                            <div class="text">
-                                <p>Lorem ipsum dolor amet consectetur adipisicing elit sed eiusmod tempor incididunt ut labore et dolore magna aliqua.enim ad minim eniam quis nostrud exercitation.</p>
-                            </div>
-                            <div class="author-box">
-                                <figure class="author-thumb">
-                                    <div class="shape"></div>
-                                    <img src="assets/images/resource/testimonial-10.png" alt="">
-                                </figure>
-                                <h3>Joseph Davies</h3>
-                                <span class="designation">Pet Visiter</span>
-                                <ul class="rating clearfix">
-                                    <li><i class="fas fa-star"></i></li>
-                                    <li><i class="fas fa-star"></i></li>
-                                    <li><i class="fas fa-star"></i></li>
-                                    <li><i class="fas fa-star"></i></li>
-                                    <li><i class="fas fa-star"></i></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="testimonial-block">
-                        <div class="inner-box">
-                            <div class="light-icon"><i class="flaticon-quotes"></i></div>
-                            <div class="text">
-                                <p>Lorem ipsum dolor amet consectetur adipisicing elit sed eiusmod tempor incididunt ut labore et dolore magna aliqua.enim ad minim eniam quis nostrud exercitation.</p>
-                            </div>
-                            <div class="author-box">
-                                <figure class="author-thumb">
-                                    <div class="shape"></div>
-                                    <img src="assets/images/resource/testimonial-11.png" alt="">
-                                </figure>
-                                <h3>Joanna Lundy</h3>
-                                <span class="designation">Pet Owner Review</span>
-                                <ul class="rating clearfix">
-                                    <li><i class="fas fa-star"></i></li>
-                                    <li><i class="fas fa-star"></i></li>
-                                    <li><i class="fas fa-star"></i></li>
-                                    <li><i class="fas fa-star"></i></li>
-                                    <li><i class="fas fa-star"></i></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="testimonial-block">
-                        <div class="inner-box">
-                            <div class="light-icon"><i class="flaticon-quotes"></i></div>
-                            <div class="text">
-                                <p>Come up with a combo that works best for you.</p>
-                            </div>
-                            <div class="author-box">
-                                <figure class="author-thumb">
-                                    <div class="shape"></div>
-                                    <img src="assets/images/resource/testimonial-12.png" alt="">
-                                </figure>
-                                <h3>William Eagle</h3>
-                                <span class="designation">Dog Walker Review</span>
-                                <ul class="rating clearfix">
-                                    <li><i class="fas fa-star"></i></li>
-                                    <li><i class="fas fa-star"></i></li>
-                                    <li><i class="fas fa-star"></i></li>
-                                    <li><i class="fas fa-star"></i></li>
-                                    <li><i class="fas fa-star"></i></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- testimonial-style-five end -->
-
 
         <!-- main-footer -->
         <footer class="main-footer footer-style-five">
@@ -742,9 +692,12 @@
                     <div class="row clearfix">
                         <div class="col-lg-4 col-md-6 col-sm-12 footer-column">
                             <div class="footer-widget logo-widget">
-                                <figure class="footer-logo footer-logo-center"><a href="/home"><img src="/assets/images/logo-2.png" alt=""></a></figure>
-                                <figure class="footer-logo footer-logo-center"><a href="Home.html"><img src="assets/images/logo-2.png" alt=""></a></figure>
-                                <figure class="footer-logo footer-logo-center"><a th:href="@{/home}"><img src="/assets/images/logo-2.png" alt=""></a></figure>
+                                <figure class="footer-logo footer-logo-center"><a href="/home"><img
+                                            src="/assets/images/logo-2.png" alt=""></a></figure>
+                                <figure class="footer-logo footer-logo-center"><a href="Home.html"><img
+                                            src="assets/images/logo-2.png" alt=""></a></figure>
+                                <figure class="footer-logo footer-logo-center"><a th:href="@{/home}"><img
+                                            src="/assets/images/logo-2.png" alt=""></a></figure>
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-6 col-sm-12 footer-column">
@@ -788,13 +741,13 @@
             </div>
         </footer>
         <!-- main-footer end -->
-        
-                <!-- scroll to top -->
+
+        <!-- scroll to top -->
         <button class="scroll-top style-two scroll-to-target" data-target="html">
             <i class="fas fa-angle-up"></i>
         </button>
 
-        
+
     </div>
 
 
