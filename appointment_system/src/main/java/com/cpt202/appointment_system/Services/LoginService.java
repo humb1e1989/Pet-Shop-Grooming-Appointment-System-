@@ -26,14 +26,21 @@ public class LoginService {
     private UserRepo userRepository;
 
 
-    public boolean loginUser(String username,String password) {
+    public int loginUser(String username,String password) {
         Optional<User> dbUser = userRepository.findByUsername(username);
         // if (dbUser.isPresent()&&dbUser.get().getPassword().equals(new BCryptPasswordEncoder().encode(password))){
             if (dbUser.isPresent()&&dbUser.get().getPassword().equals(password)){
-            return true;
-        } else {
-            return false;
-        }
+                if(dbUser.get().getType().equals(0)){
+                    return 0;
+                }
+                else{
+                    return 1;
+                }
+            }
+            
+            else {return 2;}
+            
+           
     }
 
     public int registerUser(User user) {
@@ -66,8 +73,8 @@ public class LoginService {
         return user.isEmpty();
     }
 
-    // public boolean checkUniqueEmail(String email) {
-    //     Optional<User> user = userRepository.findByEmail(email);
-    //     return user.isEmpty();
-    // }
+    public boolean checkUniqueEmail(String email) {
+        Optional<User> user = userRepository.findByEmail(email);
+        return user.isEmpty();
+    }
 }

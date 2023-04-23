@@ -84,13 +84,25 @@ public class AppointmentService {
 		List<Appointment> resulList = new ArrayList<>();
 		Appointment resulList_aid = appointmentRepo.findByAid(Integer.valueOf(keyword).intValue());
 		List<Appointment> resulList_gid = appointmentRepo.findByGid(Integer.valueOf(keyword).intValue());
-		List<Appointment> resulList_gname = appointmentRepo.fetchByServiceType(keyword);
+		List<Appointment> resulList_sid = appointmentRepo.findBySid(Integer.valueOf(keyword).intValue());
+		List<Appointment> resulList_price = appointmentRepo.findByPrice(Integer.valueOf(keyword).intValue());
+		// List<Appointment> resulList_gname = appointmentRepo.findByGname(keyword);
+		List<Appointment> resulList_servicetype = appointmentRepo.findByServiceType(keyword);
+		List<Appointment> resulList_status = appointmentRepo.findByStatus(keyword);
 		if (resulList_aid != null)
 			resulList.add(resulList_aid);
 		if (resulList_gid != null)
 			resulList.addAll(resulList_gid);
-		if (resulList_gname != null)
-			resulList.addAll(resulList_gname);
+		if (resulList_sid != null)
+			resulList.addAll(resulList_sid);
+		if (resulList_price != null)
+			resulList.addAll(resulList_price);
+		// if (resulList_gname != null)
+		// resulList.addAll(resulList_gname);
+		if (resulList_servicetype != null)
+			resulList.addAll(resulList_servicetype);
+		if (resulList_status != null)
+			resulList.addAll(resulList_status);
 
 		LinkedHashSet<Appointment> hashSet = new LinkedHashSet<>(resulList);
 		ArrayList<Appointment> resulList_Final = new ArrayList<>(hashSet);
@@ -228,8 +240,8 @@ public class AppointmentService {
 	}
 
 	// public void editService(Appointment appointment, ServiceType serviceType) {
-	// 	appointment.setServiceType(serviceType);
-	// 	appointmentRepo.save(appointment);
+	// appointment.setServiceType(serviceType);
+	// appointmentRepo.save(appointment);
 	// }
 
 }
