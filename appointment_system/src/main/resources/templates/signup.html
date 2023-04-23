@@ -16,11 +16,59 @@
 
 </head>
 <body>
-<div>
-  <button id="displaysign" onclick="start()">Log in</button>
-  <a href="/appointment-system/logout">注销</a><br>
-  <a href="/profile">个人界面</a><br>
-</div>
+
+
+<button id="Login" onclick="start()">Log in</button>
+<button id="Logout" style="display: none;">Log out</button>
+<button id='Profile' >个人界面</button>
+<button id='Appointment' >订单界面</button>
+
+
+<input id="user" th:value="${session.user}">
+
+<script>
+
+//给log out函数连接方法
+const logoutButton = document.getElementById("Logout");
+  logoutButton.onclick = function () {
+    window.location.href = "/appointment-system/logout";
+  };
+
+  const user = document.getElementById('user').value;
+  var buttonprofile = document.getElementById("Profile");
+  var buttonappoint = document.getElementById("Appointment");
+  if(user=="") {
+    document.getElementById("Login").style.display = "block";
+    document.getElementById("Logout").style.display = "none";
+    buttonprofile.onclick= start;
+    buttonappoint.onclick= start;
+
+  }
+  else {
+    document.getElementById("Login").style.display = "none";
+    document.getElementById("Logout").style.display = "block";
+    buttonprofile.onclick= Profile;
+    buttonappoint.onclick = Appoint;
+  }
+
+function start() {
+      document.getElementById('signform').style.display=""
+    }
+
+function Profile(){
+  window.location.href="/appointment-system/profile";
+}
+
+function Appoint(){
+  window.location.href="/appointment-system/appoint";
+}
+
+
+</script>
+
+
+
+
 
 <p id="message" th:text="${message}" style="display:none;"></p>
 <p id="error" th:text="${error}" style="display:none;"></p>
@@ -38,7 +86,7 @@
         }
     </script>
 
-    <h1>欢迎，<span th:text="${username}"></span></h1>
+    <h1>欢迎，<span th:text="${session.user}"></span></h1>
 
 <div id="signform" class="modal" style="display: none">
   <div class="container">
@@ -73,7 +121,7 @@
 
 
 <!--    sign up-->
-<div id="registerform" class="modal" style="display: none">
+<div id="signupform" class="modal" style="display: none">
   <div class="container">
     <div class="header">
       <span class="close">&times; </span>
@@ -128,6 +176,8 @@
     </form>
     <p th:text="${message}"></p>
   </div>
+</div>
+
 
 
 </body>
@@ -136,12 +186,12 @@
     var span = document.getElementsByClassName("close")[0];
     span.onclick = function () {
       document.getElementById('signform').style.display="none"
-      document.getElementById('registerform').style.display="none"
+      document.getElementById('signupform').style.display="none"
     }
     var span1 = document.getElementsByClassName("close")[1];
     span1.onclick = function () {
       document.getElementById('signform').style.display="none"
-      document.getElementById('registerform').style.display="none"
+      document.getElementById('signupform').style.display="none"
     }
     function start() {
       document.getElementById('signform').style.display=""
@@ -152,16 +202,16 @@
     }
   
     function signre() {
-      if(document.getElementById('signform').style.display=="" && document.getElementById('registerform').style.display=="none"){
+      if(document.getElementById('signform').style.display=="" && document.getElementById('signupform').style.display=="none"){
         document.getElementById('signform').style.display="none"
-        document.getElementById('registerform').style.display=""
+        document.getElementById('signupform').style.display=""
       }
     }
   
     function resign() {
-      if(document.getElementById('registerform').style.display=="" && document.getElementById('signform').style.display=="none"){
+      if(document.getElementById('signupform').style.display=="" && document.getElementById('signform').style.display=="none"){
         document.getElementById('signform').style.display=""
-        document.getElementById('registerform').style.display="none"
+        document.getElementById('signupform').style.display="none"
       }
     }
   
@@ -175,13 +225,7 @@
     const password2 = document.getElementById("password2");
     const phone = document.getElementById("phone");
   
-    //form表单提交事件-----------------------------------
-    form.addEventListener('submit', (e) => {
-    // 如果 checkInputs 返回 false（即输入不符合要求），阻止表单提交
-    if (checkInputs()!=0) {
-    e.preventDefault();
-}
-    })
+
     username.addEventListener("blur",checkUsername)
     email.addEventListener("blur",checkEmail)
     password.addEventListener("blur",checkPassword)
@@ -203,16 +247,6 @@
         setSuccessFor(phone);
       }
     }
-  
-    // function checkUsername(){
-    //   const usernameValue = username.value.trim();
-    //   //用户名验证
-    //   if (usernameValue==="") {
-    //     setErrorFor(username, "Username can not be empty");
-    //   } else {
-    //     setSuccessFor(username);
-    //   }
-    // }
 
     function checkUsername() {
             const usernameValue = username.value.trim();
@@ -237,17 +271,6 @@
             }
         }
 
-    // function checkEmail(){
-    //   const emailValue = email.value.trim();
-    //   //邮箱验证
-    //   if(emailValue===""){
-    //     setErrorFor(email,"Email can not be empty");
-    //   }else if(!valiEmail(emailValue)){//valiEmail返回的false表示邮箱不正确，则对其取反为true，if执行
-    //     setErrorFor(email,"Email format is incorrect, please re-enter");
-    //   }else{
-    //     setSuccessFor(email);
-    //   }
-    // }
 
     function checkEmail() {
             const emailValue = email.value.trim();
@@ -303,6 +326,15 @@
       }
     }
   
+    //form表单提交事件-----------------------------------
+    form.addEventListener('submit', (e) => {
+    // 如果 checkInputs 返回 false（即输入不符合要求），阻止表单提交
+    const checkvalue=checkInputs();
+    if (checkvalue!=0) {
+    e.preventDefault();
+}
+    })
+    
     //总验证方法-------------------------------------------
     function checkInputs() {
       //获取输入框实体的输入值
@@ -311,25 +343,59 @@
       const emailValue = email.value.trim();
       const passwordValue = passowrd.value.trim();
       const password2Value = password2.value.trim();
+      const phoneValue = phone.value.trim();
       const cPassword = /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,16}$/;
       const cPhone = /^1[3-9]\d{9}$/;
       //用户名验证
-      if (usernameValue==="") {
-        setErrorFor(username, "Username can not be empty");
-        test++;
-      } else {
-        setSuccessFor(username);
-      }
-      //邮箱验证
-      if(emailValue===""){
-        setErrorFor(email,"Email can not be empty");
-        test++;
-      }else if(!valiEmail(emailValue)){//valiEmail返回的false表示邮箱不正确，则对其取反为true，if执行
-        setErrorFor(email,"Email format is incorrect, please re-enter");
-        test++;
-      }else{
-        setSuccessFor(email);
-      }
+      if (usernameValue === "") {
+                setErrorFor(username, "Username can not be empty");
+                test++;
+            } 
+            else {
+                // 检查用户名是否唯一
+                fetch(`/appointment-system/check-unique?value=${usernameValue}`)
+                    .then(response => {
+                        if (response.status === 200) {
+                            setSuccessFor(username);
+                        } else if (response.status === 409) {
+                            setErrorFor(username, "Username already exists");
+                            test++;
+                        } else {
+                            setErrorFor(username, "Error checking username");
+                            test++;
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error fetching data:', error);
+                        test++;
+                    });
+            }
+
+      if (emailValue === "") {
+                setErrorFor(email, "Email can not be empty");
+                test++;
+            } else if (!valiEmail(emailValue)) {
+                setErrorFor(email, "Email format is incorrect, please re-enter");
+                test++;
+            } else {
+                // 检查邮箱是否唯一
+                fetch(`/appointment-system/check-uniqueem?value=${emailValue}`)
+                    .then(response => {
+                        if (response.status === 200) {
+                            setSuccessFor(email);
+                        } else if (response.status === 409) {
+                            setErrorFor(email, "Email already exists");
+                            test++;
+                        } else {
+                            setErrorFor(email, "Error checking email");
+                            test++;
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error fetching data:', error);
+                        test++;
+                    });
+            }
       //密码验证
       if(passwordValue===""){
         setErrorFor(password,"Password can not be empty");
