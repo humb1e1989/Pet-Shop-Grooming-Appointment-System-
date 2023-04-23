@@ -26,10 +26,10 @@ public class LoginController {
     // @Autowired
     // private AuthenticationManager authenticationManager;
     
-    // @GetMapping("")
-    // public String showForm() {
-    //     return "signup";
-    // }
+    @GetMapping("")
+    public String showForm() {
+        return "signup";
+    }
 
     //登录登录登录
     @PostMapping("")
