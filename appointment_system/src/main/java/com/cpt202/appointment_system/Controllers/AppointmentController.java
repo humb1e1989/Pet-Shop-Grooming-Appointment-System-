@@ -15,10 +15,13 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cpt202.appointment_system.Common.Result;
 import com.cpt202.appointment_system.Models.Appointment;
 import com.cpt202.appointment_system.Models.Groomer;
+import com.cpt202.appointment_system.Models.Pet;
 import com.cpt202.appointment_system.Models.User;
 import com.cpt202.appointment_system.Repositories.AppointmentRepo;
+import com.cpt202.appointment_system.Repositories.UserRepo;
 import com.cpt202.appointment_system.Services.AppointmentService;
 import com.cpt202.appointment_system.Services.GroomerService;
+import com.cpt202.appointment_system.Services.PetService;
 
 // @RestController
 @Controller
@@ -31,9 +34,6 @@ public class AppointmentController {
      */
 
     // WJT Manger Part
-    @Autowired
-    private AppointmentRepo appointmentRepo;
-
     @Autowired
     private AppointmentRepo appointmentRepo;
 

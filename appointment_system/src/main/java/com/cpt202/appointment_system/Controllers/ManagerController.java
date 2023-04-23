@@ -76,7 +76,7 @@ public class ManagerController {
     }
 
     @PostMapping("/update")
-    public String updateGroomer(@ModelAttribute("services") Service service, RedirectAttributes redirectAttributes) {
+    public String updateGroomer(@ModelAttribute("services") ServiceType service, RedirectAttributes redirectAttributes) {
         ServiceTypeService.updateService(service);
         redirectAttributes.addFlashAttribute("successMessage", "Service updated successfully");
         return "redirect:/manager/maintain";
@@ -85,7 +85,7 @@ public class ManagerController {
     @PostMapping("/update")
     public String updateAppointment(@ModelAttribute("appointments") Appointment appointment,
             RedirectAttributes redirectAttributes) {
-        AppointmentService.updateService(appointment);
+        AppointmentService.editAppointment_C(appointment);
         redirectAttributes.addFlashAttribute("successMessage", "Appointment updated successfully");
         return "redirect:/manager/maintain";
     }

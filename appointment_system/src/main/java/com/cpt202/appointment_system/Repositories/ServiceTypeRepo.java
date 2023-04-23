@@ -10,6 +10,7 @@ public interface ServiceTypeRepo extends JpaRepository<ServiceType, Integer>{
 
     public List<ServiceType> findAll();
 
+    @SuppressWarnings("unchecked")
     public ServiceType save(ServiceType service);
 
 }

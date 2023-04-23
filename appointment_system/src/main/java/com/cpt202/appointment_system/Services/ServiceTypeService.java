@@ -15,25 +15,23 @@ public class ServiceTypeService {
     @Autowired
     private ServiceTypeRepo serviceTypeRepo;
 
+    // add a new service
     public Result<?> addService_M(ServiceType service) {
         serviceTypeRepo.save(service);
         return Result.success("", "Service added succssfully!");
     }
-
-  
-    public Result<?> listService_C() {
-        List<ServiceType> serviceList = serviceTypeRepo.findAll();
-        return Result.success("", "Service added succssfully!");
-    }
-
-
     
-    public List<ServiceType> getAllService() {
+    // get all services
+    public List<ServiceType> getAllServiceTypes() {
         return serviceTypeRepo.findAll();
     }
 
-    public void updateService(java.security.Provider.Service service) {
-        serviceTypeRepo.save(service);
-    }
+    // public void updateService(java.security.Provider.Service service) {
+    //     serviceTypeRepo.save(service);
+    // }
+
+    // public void updateService(ServiceType service) {
+    //     serviceTypeRepo.save(service);
+    // }
 
 }

@@ -243,10 +243,6 @@ public class AppointmentService {
         return appointmentRepo.findAll();
     }
 
-    public void updateAppointment(Appointment appointment) {
-        appointmentRepo.save(appointment);
-    }
-
 	public void updateService(Appointment appointment, ServiceType serviceType) {
 		appointment.setServiceType(serviceType);
 		appointmentRepo.save(appointment);
@@ -264,4 +260,4 @@ public class AppointmentService {
 	// }
 	// return Result.error("-1", "No Matching Appointment Found.");
 	// }
-}
+
