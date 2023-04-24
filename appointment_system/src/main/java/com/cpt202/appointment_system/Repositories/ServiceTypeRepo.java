@@ -15,4 +15,5 @@ public interface ServiceTypeRepo extends JpaRepository<ServiceType, Integer>{
     @SuppressWarnings("unchecked")
     public ServiceType save(ServiceType service);
 
+    public void deleteById(Integer sid);
 }

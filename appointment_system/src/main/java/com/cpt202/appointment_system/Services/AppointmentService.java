@@ -178,7 +178,7 @@ public class AppointmentService {
 		// different servicetype have different service time
 		// the total price is depending on the rank of groomer, servicetype and pet_size
 
-		calendar.add(Calendar.MINUTE, servicetype.getBasicPrice());
+		calendar.add(Calendar.MINUTE, servicetype.getBasic_price());
 		Timestamp finishTime = new Timestamp(calendar.getTimeInMillis());
 		appointment.setFinishTime(finishTime);
 		if (pet.getSize().equals("small")) {

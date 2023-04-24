@@ -4,6 +4,9 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.cpt202.appointment_system.Models.Appointment;
 import com.cpt202.appointment_system.Models.User;
@@ -29,6 +32,14 @@ public interface UserRepo extends JpaRepository<User, Integer> {
 
     public Optional<User> findByEmail(String email);
 
+    @SuppressWarnings("unchecked")
     public User save(User user);
+
+    @Transactional
+    @Modifying
+    @Query(value = "DELETE FROM `user` WHERE uid = ?1", nativeQuery = true)
+    public void deleteByUid(Integer uid);
+   
+    // public void deleteByUid(Integer uid);
 }
 
