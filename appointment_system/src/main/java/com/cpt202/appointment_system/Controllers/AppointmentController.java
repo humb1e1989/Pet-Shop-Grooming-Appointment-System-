@@ -14,14 +14,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.cpt202.appointment_system.Common.Result;
 import com.cpt202.appointment_system.Models.Appointment;
-import com.cpt202.appointment_system.Models.Groomer;
-import com.cpt202.appointment_system.Models.Pet;
 import com.cpt202.appointment_system.Models.User;
-import com.cpt202.appointment_system.Repositories.AppointmentRepo;
-import com.cpt202.appointment_system.Repositories.UserRepo;
 import com.cpt202.appointment_system.Services.AppointmentService;
-import com.cpt202.appointment_system.Services.GroomerService;
-import com.cpt202.appointment_system.Services.PetService;
 
 // @RestController
 @Controller
@@ -35,20 +29,7 @@ public class AppointmentController {
 
     // WJT Manger Part
     @Autowired
-    private AppointmentRepo appointmentRepo;
-
-    @Autowired
-    private UserRepo userRepo;
-
-    @Autowired
-
     private AppointmentService appointmentService;
-
-    @Autowired
-    private GroomerService groomerService;
-
-    @Autowired
-    private PetService petService;
 
     @GetMapping("/manager/appointmentList/search/customername")
     public List<Appointment> getAppointmentByName(@RequestParam String customerName) {
@@ -67,62 +48,30 @@ public class AppointmentController {
 
     // YYY PBI NO.1 - Manager can view all of appointments
     // @GetMapping("/manager/appointmentList")
-    // public String getAllAppointment_M(Model model) {
-    // // List<Appointment> appointmentList =
-    // appointmentService.getAppointmentList_M();
-    // // model.addAttribute("appointmentList", appointmentList);
+    // public Result<?> getAllAppointment_M() {
+    //     return appointmentService.getAppointmentList_M();
     // }
     @GetMapping("/manager/appointmentList")
-    public String getAllAppointment_M(Model model) {// capable of convert a string into object
-        // model.addAttribute("appointmentList",
-        // appointmentService.listAllAppointments());
-        model.addAttribute("appointmentList", appointmentService.listAllAppointments());
-        return "allAppointments";
+    public String getAllAppointment_M(Model model) {
+        model.addAttribute("appointment", appointmentService.getAppointmentList_M());
+        return "allGroomers";
     }
 
-    // YYY PBI NO.2 - Manager view the appointment detail,
-    // 这个view可以在customer和manager中通用
-    @GetMapping("/appointmentList/view")
-    public String getAppointment(Model model, @RequestParam("aid") int aid) {// capable of convert a string into object
-        // model.addAttribute("appointmentList",
-        // appointmentService.listAllAppointments());
-        Appointment appointment = appointmentService.getAppointmentBy_Aid(aid);
-        model.addAttribute("appointment", appointment);
-        return "appointmentDetail";
+    // YYY PBI NO.2 - Manager view the appointment detail
+    @GetMapping("/manager/appointmentList/view")
+    public Result<?> viewAppointment_M(@RequestParam Appointment appointment) {
+        return appointmentService.getAppointmentDetail_M(appointment);
     }
-    // @PostMapping("/manager/appointmentList/view")
-    // public String viewAppointment_M(@RequestParam("appointment") Appointment
-    // appointment, Model model) {
-    // Appointment appointmentDetail =
-    // appointmentService.getAppointmentDetail_M(appointment);
-    // model.addAttribute("appointmentDetail", appointmentDetail);
-
-    // return "allAppointments";
-    // }
 
     /*
      * Customer Part
      * This is a part to fullfill all the functions of customer.
      */
 
-    // YYY PBI NO.3 - Customer can view all of history appointments (only
-    // hisappointment)
+    //YYY PBI NO.3 - Customer can view all of history appointments (only hisappointment)
     @GetMapping("/customer/appointmentList")
-    public String getUserAppointment_C(Model model) {
-        model.addAttribute("appointmentList", appointmentService.listAllAppointments());
-        return "allAppointments";
-    }
-
-    @GetMapping("/manager/appointmentList/search")
-    public String appointmentSearch(Model model) {
-        model.addAttribute("keyword", new String());
-        return "allAppointments";
-    }
-
-    @PostMapping("/manager/appointmentList/search")
-    public String appointmentSearchBykey(Model model, @RequestParam("keyword") String keyword) {
-        model.addAttribute("appointmentList", appointmentService.appointmentSearch(keyword));
-        return "allAppointments";
+    public Result<?> getUserAppointment_C(@RequestParam User user) {
+        return appointmentService.getAppointmentBy_Uid(user);
     }
 
     // TODO : Number the PBI
@@ -130,7 +79,7 @@ public class AppointmentController {
     // appointment detail)
     // @GetMapping("/customer/appointmentList/view")
     // public Result<?> viewAppointment_C(@RequestParam User user) {
-    // return appointmentService.getAppointmentDetail_C(user);
+    //     return appointmentService.getAppointmentDetail_C(user);
     // }
 
     // ZYH PBI NO.i Customer can search appointment by user name
@@ -138,34 +87,21 @@ public class AppointmentController {
     public Result<?> getAppointmentByName_C(@RequestParam String username) {
         return appointmentService.getAppointmentListByUserName_C(username);
     }
-
-    // bowenli's pbi
-
+    
+    //bowenli's pbi
     // Customer can make appointment
-    // {"name": "asas", "pet": "宠物1", "serviceType": "Pet Bathing", "startTime":
-    // "2023/05/04 00:44", "groomer": "Groomer1"}
     @GetMapping("/customer/makeappointment")
-    public String makeappointment(Model model) {
-        // capable of convert a string into object
+    public String makeappointment(Model model) {// capable of convert a string into object
         model.addAttribute("appointment", new Appointment());
-        List<Groomer> gList = groomerService.listAllGroomers();
-        model.addAttribute("gList", gList);
-        User user = userRepo.findByUid(1);
-        List<Pet> petList = petService.listAllPets(user);
-        model.addAttribute("petList", petList);
         return "makeappointment";
     }
 
     @PostMapping("/customer/makeappointment")
     public String makeappointment_C(@ModelAttribute("appointment") Appointment appointment) {
-        appointmentService.makeAppointment_C(appointment);
-        return "home";
+         appointmentService.makeAppointment_C(appointment);
+         return "home";
     }
-
-    // @PostMapping("/customer/makeappointment")
-    // public Result<?> makeappointment_C(@RequestBody Appointment appointment) {
-    // return appointmentService.makeAppointment_C(appointment);
-    // }
+    
 
     // Customer can cancel appointment
     @PostMapping("/customer/cancelAppointment")
@@ -174,10 +110,12 @@ public class AppointmentController {
     }
 
     // Customer can modify appointment
-    // TODO: if failed, return error message
     @PostMapping("/customer/editAppointment")
     public Result<?> editAppointment_C(@RequestBody Appointment appointment) {
-        appointmentService.editAppointment_C(appointment);
-        return Result.success();
+        return appointmentService.modifyAppointment_C(appointment);
     }
+
+
+
+
 }
