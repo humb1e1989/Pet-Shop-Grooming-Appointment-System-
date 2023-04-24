@@ -26,12 +26,15 @@ public class Groomer {
     private String gender;
 
     @Column(columnDefinition = "varchar(255) default '/assets/images/no-user.png'", name = "image_url", nullable = true)
-    private String imageURL;
+    private String image_url;
+
+    // @Column(columnDefinition = "varchar(255)", name = "imageURL", nullable = true)
+    // private String imageURL;
 
     // name it "ranking" in MySQL to avoid possible error 
     // since rank() is a buil-in function in MySQL 
     // need
-    @Column(name = "ranking", columnDefinition = "tinyint", nullable = false)
+    @Column(name = "ranking", columnDefinition = "int", nullable = false)
     private Integer rank;
 
     @Column(columnDefinition = "varchar(11)", nullable = true)
@@ -51,11 +54,11 @@ public class Groomer {
 
 
     
-    public Groomer(int gid, String name, String gender, String imageURL, Integer rank, String phoneNumber) {
+    public Groomer(Integer gid, String name, String gender, String image_url, Integer rank, String phoneNumber) {
         this.gid = gid;
         this.name = name;
         this.gender = gender;
-        this.imageURL = imageURL;
+        this.image_url = image_url;
         this.rank = rank;
         this.phoneNumber = phoneNumber;
     }    

@@ -19,6 +19,7 @@ import com.cpt202.appointment_system.Models.Groomer;
 import com.cpt202.appointment_system.Services.GroomerService;
 
 
+// @Controller
 @Controller
 @RequestMapping("/home")
 public class GroomerController {
@@ -27,7 +28,7 @@ public class GroomerController {
     private GroomerService groomerService;
 
     
-    // // Manager Part
+    // Manager Part
     @GetMapping("/manager/grommerList")  
     public List<Groomer> getAllGroomers_M(){
         return groomerService.listAllGroomers();
@@ -64,7 +65,7 @@ public class GroomerController {
         if (gList.size() < 4) {
 
             Groomer groomer = new Groomer();
-            groomer.setImageURL("/assets/images/no-user.png");
+            groomer.setImage_url("/assets/images/no-user.png");
             groomer.setName("No Groomer");
             groomer.setDescription("No Description");
             if (gList.size() == 0){

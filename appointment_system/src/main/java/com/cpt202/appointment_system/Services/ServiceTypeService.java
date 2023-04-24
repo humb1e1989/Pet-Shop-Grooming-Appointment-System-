@@ -38,4 +38,8 @@ public class ServiceTypeService {
         serviceTypeRepo.save(service);
     }
 
+    public void deleteServiceTypeById(Integer sid) {
+        serviceTypeRepo.deleteById(sid);
+    }
+
 }

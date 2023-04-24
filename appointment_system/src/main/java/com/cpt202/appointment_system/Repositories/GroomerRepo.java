@@ -1,6 +1,11 @@
 package com.cpt202.appointment_system.Repositories;
 import java.util.List;
+
+import javax.transaction.Transactional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
 
 import com.cpt202.appointment_system.Models.Groomer;
 
@@ -22,4 +27,10 @@ public interface GroomerRepo extends JpaRepository<Groomer, Integer>{
 
     public Groomer save(Groomer groomer);
 
+    @Transactional
+    @Modifying
+    @Query(value = "DELETE FROM `groomer` WHERE gid = ?1", nativeQuery = true)
+    public void deleteByGid(Integer gid);
+
+    
 }

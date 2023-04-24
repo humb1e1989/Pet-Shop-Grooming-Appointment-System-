@@ -16,8 +16,7 @@ public interface AppointmentRepo extends JpaRepository<Appointment, Integer> {
     public List<Appointment> findByUser(User user);
 
     // Appointment can be searched by username
-    // ZYH TODO: I do not realy know how to form the function name (if any problem,
-    // please change it)
+    //ZYH TODO: I do not realy know how to form the function name (if any problem, please change it)
     public List<Appointment> findByUserUsernameContaining(String username);
 
     public Appointment findByAid(Integer aid);
@@ -39,12 +38,12 @@ public interface AppointmentRepo extends JpaRepository<Appointment, Integer> {
     public List<Appointment> findBySid(Integer sid);
 
     @Transactional(timeout = 10)
-    @Query(value = "SELECT * FROM appointment WHERE price = ?1", nativeQuery = true)
+    @Query(value = "SELECT * FROM appointment WHERE totalprice = ?1", nativeQuery = true)
     public List<Appointment> findByPrice(Integer price);
 
     @Transactional(timeout = 10)
     @Query(value = "SELECT * FROM appointment WHERE service_type = :service_type", nativeQuery = true)
-    public List<Appointment> findByServiceType(@Param("service_type") String service_type);
+    public List<Appointment> findByServiceName(@Param("service_type") String service_type);
 
     @Transactional(timeout = 10)
     @Query(value = "SELECT * FROM appointment WHERE status = :status", nativeQuery = true)
@@ -54,9 +53,5 @@ public interface AppointmentRepo extends JpaRepository<Appointment, Integer> {
     public List<Appointment> findByserviceType(String servicetype);
 
     public List<Appointment> findByGroomer(Groomer groomer);
-
-    public List<Appointment> findAll();
-
-    public Appointment save(Appointment appointment);
 
 }

@@ -18,8 +18,7 @@ public class GroomerService {
 
     // CYZ
     public List<Groomer> listAllGroomers() {
-        List<Groomer> groomerList = groomerRepo.findAll();
-        return groomerList;
+        return groomerRepo.findAll();
     }
 
     // CYZ
@@ -123,5 +122,9 @@ public class GroomerService {
 
     public void updateGroomer(Groomer groomer) {
         groomerRepository.save(groomer);
+    }
+
+    public void deleteGroomerById(Integer gid) {
+        groomerRepository.deleteByGid(gid);
     }
 }

@@ -18,13 +18,13 @@ public class ServiceType {
     private Integer sid;
 
     @Column(columnDefinition = "varchar(50)", nullable = true)
-    private String serviceName;
+    private String service_name;
     
     @Column(columnDefinition = "int(7)", nullable = true)
-    private Integer serviceTime;
+    private Integer service_time;
 
     @Column(columnDefinition = "int(7)", nullable = true)
-    private Integer  basicPrice;
+    private Integer  basic_price;
 
     // public ServiceType(String serviceName, int serviceTime, int basicPrice) {
     //     serviceName = serviceName;
