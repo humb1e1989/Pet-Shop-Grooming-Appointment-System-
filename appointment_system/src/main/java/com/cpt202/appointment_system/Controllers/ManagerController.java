@@ -47,18 +47,18 @@ public class ManagerController {
     @Autowired
     private GroomerRepo GroomerRepo;
 
-    // @GetMapping("")
-    // public String showMaintainPage(Model model) {
-    //     List<User> users = userService.listAllCustomers_M();
-    //     model.addAttribute("users", users);
-    //     List<Groomer> groomers = groomerService.listAllGroomers();
-    //     model.addAttribute("groomers", groomers);
-    //     List<ServiceType> services = ServiceTypeService.getAllServiceTypes();
-    //     model.addAttribute("serviceTypes", services);
-    //     List<Appointment> appointments = AppointmentService.listAllAppointments();
-    //     model.addAttribute("appointments", appointments);
-    //     return "manager";
-    // }
+    @GetMapping("")
+    public String showMaintainPage(Model model) {
+        List<User> users = userService.listAllCustomers_M();
+        model.addAttribute("users", users);
+        List<Groomer> groomers = groomerService.listAllGroomers();
+        model.addAttribute("groomers", groomers);
+        List<ServiceType> services = ServiceTypeService.getAllServiceTypes();
+        model.addAttribute("serviceTypes", services);
+        List<Appointment> appointments = AppointmentService.getAllAppointments();
+        model.addAttribute("appointments", appointments);
+        return "manager";
+    }
 
     // @GetMapping("/delete")
     // public Result<?> deleteUser1(@RequestParam("uid") Integer uid) {

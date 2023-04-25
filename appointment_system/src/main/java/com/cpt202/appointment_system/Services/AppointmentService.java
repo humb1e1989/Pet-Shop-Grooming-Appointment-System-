@@ -289,6 +289,13 @@ public class AppointmentService {
 		return Result.error("-1", "No Matching Appointment Found.");
 	}
 
+
+	//get all appointment list
+	    // get all services
+    public List<Appointment> getAllAppointments() {
+        return appointmentRepo.findAll();
+    }
+
 	// TODO : Not necessary for now
 	// // ZYH PBI NO.ii : Customer can filter appointment by time
 	// public Result<?> getAppointmentListByTime_C(@RequestParam String time) {
