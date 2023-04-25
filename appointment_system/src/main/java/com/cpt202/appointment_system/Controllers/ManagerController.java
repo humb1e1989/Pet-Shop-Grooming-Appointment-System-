@@ -55,12 +55,8 @@ public class ManagerController {
         model.addAttribute("groomers", groomers);
         List<ServiceType> services = ServiceTypeService.getAllServiceTypes();
         model.addAttribute("serviceTypes", services);
-<<<<<<< HEAD
-        List<Appointment> appointments = AppointmentService.getAllAppointments();
-=======
-        List<Appointment> appointments = AppointmentService.listAllAppointments();
->>>>>>> 3c85a2bbec2863bdff13817cbb1e386df6413547
-        model.addAttribute("appointments", appointments);
+        // List<Appointment> appointments = AppointmentService.getAllAppointments();
+        // model.addAttribute("appointments", appointments);
         return "manager";
     }
 
