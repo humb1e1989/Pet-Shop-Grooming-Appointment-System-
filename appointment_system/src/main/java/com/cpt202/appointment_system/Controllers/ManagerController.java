@@ -1,6 +1,7 @@
 package com.cpt202.appointment_system.Controllers;
 
 import java.security.Provider.Service;
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,6 +22,7 @@ import com.cpt202.appointment_system.Models.Appointment;
 import com.cpt202.appointment_system.Models.Groomer;
 import com.cpt202.appointment_system.Models.ServiceType;
 import com.cpt202.appointment_system.Models.User;
+import com.cpt202.appointment_system.Repositories.AppointmentRepo;
 import com.cpt202.appointment_system.Repositories.GroomerRepo;
 import com.cpt202.appointment_system.Services.GroomerService;
 import com.cpt202.appointment_system.Services.UserService;
@@ -47,6 +49,9 @@ public class ManagerController {
     @Autowired
     private GroomerRepo GroomerRepo;
 
+    @Autowired
+    private AppointmentRepo AppointmentRepo;
+
     @GetMapping("")
     public String showMaintainPage(Model model) {
         List<User> users = userService.listAllCustomers_M();
@@ -55,8 +60,11 @@ public class ManagerController {
         model.addAttribute("groomers", groomers);
         List<ServiceType> services = ServiceTypeService.getAllServiceTypes();
         model.addAttribute("serviceTypes", services);
-        // List<Appointment> appointments = AppointmentService.getAllAppointments();
-        // model.addAttribute("appointments", appointments);
+        List<Appointment> appointments = AppointmentService.getAllAppointments();
+        model.addAttribute("appointments", appointments);
+        // List<User> userList = userService.listAllCustomers_M();
+        // model.addAttribute("userList", userList);
+        // model.addAttribute("userSearchRst", new ArrayList<User>());
         return "manager";
     }
 
@@ -98,6 +106,12 @@ public class ManagerController {
         return "redirect:/manager";
     }
 
+    @PostMapping("/addGroomer")
+    public String addGroomer(@ModelAttribute Groomer groomer) {
+        groomerService.updateGroomer(groomer);
+        return "redirect:/manager";
+    }
+
     @PostMapping("/updateGroomer")
     public String updateGroomer(@ModelAttribute Groomer groomer) {
         groomerService.editGroomer_M(groomer);
@@ -113,10 +127,54 @@ public class ManagerController {
 
     @PostMapping("/updateServiceType")
     public String updateServiceType(@ModelAttribute ServiceType service) {
-        ServiceTypeService.editServiceType(service);
+        ServiceTypeService.updateServiceType(service);
         return "redirect:/manager";
     }
 
+    @PostMapping("/addServiceType")
+    public String addServiceType(@ModelAttribute ServiceType service) {
+        ServiceTypeService.updateServiceType(service);
+        return "redirect:/manager";
+    }
+   
+    @PostMapping("/updateAppointment")
+    public String updateAppointment(@ModelAttribute("appointments") Appointment appointment) {
+        AppointmentRepo.updateStatusByAid(appointment.getStatus(), appointment.getAid());
+        return "redirect:/manager";
+    }
+
+    @GetMapping("/searchUser")
+    public String searchUser(Model model) {
+        model.addAttribute("keyword", new String());
+        return "manager";
+    }
+
+    @PostMapping("/searchUser")
+    public String searchUserByKey(Model model, @RequestParam("keyword") String keyword) {
+        List<User> userSearchRst =  userService.searchCustomerByName_M(keyword);
+        model.addAttribute("users", userSearchRst);
+        return "manager";
+    }
+// @PostMapping("/searchUser")
+//     public String searchUserByKey(@ModelAttribute("searchedUser") User searchedUser, Model model) {
+//         String searchedName = searchedUser.getUsername();
+//         List<User> userSearchRst =  userService.searchCustomerByName_M(searchedName);
+//         model.addAttribute("userSearchRst", userSearchRst);
+//         return "redirect:/manager";
+//         // return Result.success();
+//     }
+
+    // @GetMapping("/manager/appointmentList/search")
+    // public String appointmentSearch(Model model) {
+    //     model.addAttribute("keyword", new String());
+    //     return "allAppointments";
+    // }
+
+    // @PostMapping("/manager/appointmentList/search")
+    // public String appointmentSearchBykey(Model model, @RequestParam("keyword") String keyword) {
+    //     model.addAttribute("appointmentList", appointmentService.appointmentSearch(keyword));
+    //     return "allAppointments";
+    // }
     // @PostMapping("/user")
     // public String updateUser(@ModelAttribute("user") User user, RedirectAttributes redirectAttributes) {
     //     userService.updateUser(user);
@@ -140,11 +198,7 @@ public class ManagerController {
     //     return "redirect:/manager";
     // }
 
-    // @PostMapping("/appointment")
-    // public String updateAppointment(@ModelAttribute("appointments") Appointment appointment,
-    //         RedirectAttributes redirectAttributes) {
-    //     AppointmentService.editAppointment_C(appointment);
-    //     redirectAttributes.addFlashAttribute("successMessage", "Appointment updated successfully");
-    //     return "redirect:/manager";
-    // }
+
+
+
 }

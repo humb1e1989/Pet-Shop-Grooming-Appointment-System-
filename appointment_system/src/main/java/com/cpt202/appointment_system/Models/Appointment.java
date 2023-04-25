@@ -26,12 +26,12 @@ public class Appointment {
     @Column(columnDefinition = "Timestamp DEFAULT CURRENT_TIMESTAMP", nullable = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd HH:mm:ss")//bowen li's modification
-    private Timestamp createTime;
+    private Timestamp create_time;
 
     @Column(columnDefinition = "Timestamp", nullable = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd HH:mm:ss")//bowen li's modification
-    private Timestamp startTime;
+    private Timestamp start_time;
 
     /* @Column(columnDefinition = "tinyint", nullable = false)
         ZYH's modification: change the type of status from tinyint to varchar(50)
@@ -53,7 +53,7 @@ public class Appointment {
     
     @ManyToOne
     @JoinColumn(name="sid",referencedColumnName = "sid",nullable = false)
-    private ServiceType serviceType;
+    private ServiceType service_type;
 
     @ManyToOne
     @JoinColumn(name = "gid", referencedColumnName = "gid", nullable = false)
@@ -70,42 +70,40 @@ public class Appointment {
     @Column(columnDefinition = "Timestamp", nullable = true)
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd HH:mm:ss")//bowen li's modification
-    private Timestamp finishTime;
+    private Timestamp finish_time;
     
     @Column(columnDefinition = "Timestamp", nullable = true)
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd HH:mm:ss")//bowen li's modification
-    private Timestamp cancelTime;
+    private Timestamp cancel_time;
 
     //bowen li's modification
     @Column(columnDefinition = "Double", nullable = true)
-    private Double totalprice;
+    private Double total_price;
     
     public Appointment(){
-        
     }
-
 
     public Appointment(Integer aid, Timestamp createTime, Timestamp startTime, String status, ServiceType serviceType,
             Groomer groomer, User user, Pet pet, Timestamp finishTime, Timestamp cancelTime, Double totalprice) {
         this.aid = aid;
-        this.createTime = createTime;
-        this.startTime = startTime;
+        this.create_time = createTime;
+        this.start_time = startTime;
         this.status = status;
-        this.serviceType = serviceType;
+        this.service_type = serviceType;
         this.groomer = groomer;
         this.user = user;
         this.pet = pet;
-        this.finishTime = finishTime;
-        this.cancelTime = cancelTime;
-        this.totalprice = totalprice;
+        this.finish_time = finishTime;
+        this.cancel_time = cancelTime;
+        this.total_price = totalprice;
     }
 
 
 
     public Appointment(Timestamp startTime, ServiceType serviceType, Groomer groomer, User user, Pet pet) {
-        this.startTime = startTime;
-        this.serviceType = serviceType;
+        this.start_time = startTime;
+        this.service_type = serviceType;
         this.groomer = groomer;
         this.user = user;
         this.pet = pet;

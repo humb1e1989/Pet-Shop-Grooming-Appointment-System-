@@ -111,8 +111,8 @@ public class AppointmentController {
 
     // Customer can modify appointment
     @PostMapping("/customer/editAppointment")
-    public Result<?> editAppointment_C(@RequestBody Appointment appointment) {
-        return appointmentService.modifyAppointment_C(appointment);
+    public void editAppointment_C(@RequestBody Appointment appointment) {
+        appointmentService.editAppointment(appointment);
     }
 
 

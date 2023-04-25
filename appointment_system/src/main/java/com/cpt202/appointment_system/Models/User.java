@@ -2,7 +2,7 @@ package com.cpt202.appointment_system.Models;
 
 import java.sql.Timestamp;
 import java.util.Date;
-
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -21,6 +21,7 @@ import lombok.Data;
 @Entity
 public class User {
 
+    
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer uid;

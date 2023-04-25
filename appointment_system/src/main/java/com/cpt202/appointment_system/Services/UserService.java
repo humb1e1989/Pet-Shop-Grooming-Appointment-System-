@@ -56,14 +56,8 @@ public class UserService {
     }
 
     // CYZ
-    public Result<?> searchCustomerByName_M(String username) {
-        List<User> userList = userRepo.findByUsernameContaining(username);
-
-        if (!userList.isEmpty()) {
-            return Result.success(userList, "Find Matching Customers!");
-        }
-
-        return Result.error("-1", "No Matching Customers Found.");
+    public List<User> searchCustomerByName_M(String username) {
+        return userRepo.findByUsernameContaining(username);
     }
 
     

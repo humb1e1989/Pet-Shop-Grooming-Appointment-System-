@@ -14,7 +14,16 @@
     <h1>Manager Maintain Page</h1>
 
     <!--User maintain-->
-    <table>
+
+    <div>
+        <form th:action="@{/manager/searchUser}" method="post">
+            <input type="text" id="keyword" name="keyword" placeholder="Search by Username" />
+            <button type="submit">Search</button>
+        </form>
+    </div>
+
+    
+    <!-- <table>
         <thead>
             <tr>
                 <th>ID</th>
@@ -25,7 +34,61 @@
                 <th>Gender</th>
                 <th>Phone Number</th>
                 <th>Email</th>
-                <th>Action</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr th:each="user : ${userSearchRst}">
+                <td th:text="${user.uid}"></td>
+                <td th:text="${user.username}"></td>
+                <td th:text="${user.password}"></td>
+                <td th:text="${user.registrationTime}"></td>
+                <td th:text="${user.imageURL}"></td>
+                <td th:text="${user.gender}"></td>
+                <td th:text="${user.phoneNumber}"></td>
+                <td th:text="${user.email}"></td>
+            </tr>
+        </tbody>
+    </table> -->
+
+    <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Username</th>
+            <th>Password</th>
+            <th>Registration Time</th>
+            <th>ImageURL</th>
+            <th>Gender</th>
+            <th>Phone Number</th>
+            <th>Email</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="user : ${users}">
+            <td th:text="${user.uid}"></td>
+            <td th:text="${user.username}"></td>
+            <td th:text="${user.password}"></td>
+            <td th:text="${user.registrationTime}"></td>
+            <td th:text="${user.imageURL}"></td>
+            <td th:text="${user.gender}"></td>
+            <td th:text="${user.phoneNumber}"></td>
+            <td th:text="${user.email}"></td>
+          </tr>
+        </tbody>
+      </table>
+
+    <!-- <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Username</th>
+                <th>Password</th>
+                <th>Registration Time</th>
+                <th>ImageURL</th>
+                <th>Gender</th>
+                <th>Phone Number</th>
+                <th>Email</th>
             </tr>
         </thead>
         <tbody>
@@ -46,7 +109,7 @@
                 </td>
             </tr>
         </tbody>
-    </table>
+    </table> -->
     <br />
 
 
@@ -82,22 +145,25 @@
                 <td>
                     <form th:action="@{/manager/deleteGroomer}" method="POST" object="${groomer}">
                         <!-- <input type="text" th:value="${groomer.gid}" id="gid" name="gid" /> -->
-                        <input type="text" th:value="${groomer.gid}"  name="gid"/>
+                        <input type="hidden" th:value="${groomer.gid}"  name="gid"/>
                         <!-- id="gid1" -->
                         <button type="submit">Delete</button>
                     </form>
                 </td>
-                <td>
+                
+                <!-- <td>
                     <form th:action="@{/manager/updateGroomer}" method="POST" object="${groomer}">
-                        <!-- <input type="text" th:value="${groomer.gid}" id="gid" name="gid" /> -->
-                        <input type="text" th:value="${groomer.gid}"  name="gid"/>
-                        <button type="submit">Delete</button>
+                        <input type="hidden" th:value="${groomer.gid}"  name="gid"/>
+                        <button type="submit">Update</button>
                     </form>
-                </td>
-            </tr>
+                </td> -->
+                
 
+            </tr>
         </tbody>
     </table>
+
+
     <br />
     <form id="editForm" th:action="@{/manager/updateGroomer}" th:method="post" th:object="${groomer}">
         <input type="hidden" id="gid" name="gid" />
@@ -114,7 +180,26 @@
         <label for="description">Description:</label>
         <input type="text" id="description" name="description" />
         <button type="submit">Update</button>
+        <!-- add a groomer -->
     </form>
+    <form th:action="@{/manager/addGroomer}" method="POST" object="${groomer}">
+        <!-- <input type="text" th:value="${groomer.gid}" id="gid" name="gid" /> -->
+        <input type="hidden" name="gid"/>
+        <label for="addName">Groomer name:</label>
+        <input type="text" id="addName" name="name" />
+        <label for="addGender">Gender:</label>
+        <input type="text" id="addGender" name="gender" />
+        <label for="addImage_url">ImageURL:</label>
+        <input type="text" id="addImage_url" name="image_url" />
+        <label for="addRank">Rank:</label>
+        <input type="text" id="addRank" name="rank" />
+        <label for="addPhoneNumber">Phone Number:</label>
+        <input type="text" id="addPhoneNumber" name="phoneNumber" />
+        <label for="addDescription">Description:</label>
+        <input type="text" id="addDescription" name="description" />
+        <button type="submit">Add</button>
+    </form>
+
 
     <script th:inline="javascript">
         function editGroomer(button) {
@@ -144,7 +229,7 @@
         </thead>
         <tbody>
             <tr th:each="serviceType : ${serviceTypes}">
-                <td th:text="${serviceType.sid}"></td>
+                <td th:text="${serviceType.sid}" ></td>
                 <td th:text="${serviceType.service_name}"></td>
                 <td th:text="${serviceType.service_time}"></td>
                 <td th:text="${serviceType.basic_price}"></td>
@@ -153,24 +238,43 @@
                     data-service_time=${serviceType.service_time},data-basic_price=${serviceType.basic_price}"
                         onclick="editService(this)">Edit</button>
                 </td>
+                <td>
+                    <form th:action="@{/manager/deleteServiceType}" method="POST" object="${serviceType}">
+                        <!-- <input type="text" th:value="${groomer.gid}" id="gid" name="gid" /> -->
+                        <input type="hidden" th:value="${serviceType.sid}"  name="sid"/>
+                        <!-- id="gid1" -->
+                        <button type="submit">Delete</button>
+                    </form>
+                </td>
             </tr>
         </tbody>
     </table>
     <br />
-    <form id="editForm" th:action="@{/manager/updateService}" th:method="post" th:object="${serviceType}">
+    <form id="editForm" th:action="@{/manager/updateServiceType}" th:method="post" th:object="${serviceType}">
         <input type="hidden" id="sid" name="sid" />
-        <label for="service_name">Service name:</label>
+        <label for="service_name">Service name:  </label>
         <input type="text" id="service_name" name="service_name" />
-        <label for="service_time">Service Time:</label>
+        <label for="service_time">Service Time:  </label>
         <input type="text" id="service_time" name="service_time" />
-        <label for="basicPrice">Basic Price:</label>
+        <label for="basic_price">Basic Price:  </label>
         <input type="text" id="basic_price" name="basic_price" />
         <button type="submit">Update</button>
+    </form>
+    <form th:action="@{/manager/addServiceType}" method="POST" object="${serviceType}">
+        <!-- <input type="text" th:value="${groomer.gid}" id="gid" name="gid" /> -->
+        <input type="hidden" id="addSid" name="sid" />
+        <label for="addService_name">Service name:  </label>
+        <input type="text" id="addService_name" name="service_name" />
+        <label for="addService_time">Service Time:  </label>
+        <input type="text" id="addService_time" name="service_time" />
+        <label for="addBasic_price">Basic Price:  </label>
+        <input type="text" id="addBasic_price" name="basic_price" />
+        <button type="submit">Add</button>
     </form>
 
     <script th:inline="javascript">
         function editService(button) {
-            document.getElementById("sid").value = button.dataset.gid;
+            document.getElementById("sid").value = button.dataset.sid;
             document.getElementById("service_name").value = button.dataset.service_name;
             document.getElementById("service_time").value = button.dataset.service_time;
             document.getElementById("basic_price").value = button.dataset.basic_price;
@@ -197,78 +301,107 @@
             </tr>
         </thead>
         <tbody>
-            <tr th:each="appointment : ${aList}">
+            <tr th:each="appointment : ${appointments}">
                 <td th:text="${appointment.aid}"></td>
-                <td th:text="${appointment.createTime}"></td>
-                <td th:text="${appointment.startTime}"></td>
+                <td th:text="${appointment.create_time}"></td>
+                <td th:text="${appointment.start_time}"></td>
                 <td th:text="${appointment.status}"></td>
-                <td th:text="${appointment.serviceType}"></td>
-                <td th:text="${appointment.groomer}"></td>
-                <td th:text="${appointment.user}"></td>
-                <td th:text="${appointment.pet}"></td>
-                <td th:text="${appointment.finishTime}"></td>
-                <td th:text="${appointment.cancelTime}"></td>
-                <td th:text="${appointment.totalprice}"></td>
+                <td th:text="${appointment.service_type.service_name}"></td>
+                <td th:text="${appointment.groomer.name}"></td>
+                <td th:text="${appointment.user.username}"></td>
+                <td th:text="${appointment.pet.name}"></td>
+                <td th:text="${appointment.finish_time}"></td>
+                <td th:text="${appointment.cancel_time}"></td>
+                <td th:text="${appointment.total_price}"></td>
+                <!-- <td>
+                    <button th:attr="data-aid=${appointment.aid}, data-create_time=${appointment.create_time},
+                    data-start_time=${appointment.start_time},data-status=${appointment.status},data-service_type=${appointment.service_type.service_name}, 
+                    data-groomer=${appointment.groomer.name}, data-user=${appointment.user.username},data-pet=${appointment.pet.name},data-finish_time=${appointment.finish_time}, 
+                    data-cancel_time=${appointment.cancel_time}, data-total_price=${appointment.total_price}"
+                        onclick="editAppointment(this)">Edit</button>
+                </td> -->
                 <td>
-                    <button th:attr="data-aid=${appointment.aid}, data-createTime=${appointment.createTime},
-                    data-startTime=${appointment.startTime},data-status=${appointment.status},data-serviceType=${appointment.serviceType}, 
-                    data-groomer=${appointment.groomer}, data-user=${appointment.user},data-pet=${appointment.pet},data-finishTime=${appointment.finishTime}, 
-                    data-cancelTime=${appointment.cancelTime}, data-totalprice=${appointment.totalprice}"
+                    <button th:attr="data-aid=${appointment.aid}, data-status=${appointment.status}"
                         onclick="editAppointment(this)">Edit</button>
                 </td>
             </tr>
         </tbody>
     </table>
     <br />
-    <form id="editForm" th:action="@{/manager/update}" th:method="post">
-        <input type="text" id="aId" name="aid" disabled="true" />
-        <label for="createTime">createTime:</label>
-        <input type="text" id="createTime" name="createTime" disabled="true" />
-        <label for="startTime">startTime:</label>
-        <input type="text" id="startTime" name="startTime" disabled="true" />
+
+    <!-- update appointment -->
+    <form id="editForm" th:action="@{/manager/updateAppointment}" th:method="post" th:object="${appointment}">
+        <input type="text" id="aid" name="aid" disabled="true" />
+        <!-- <label for="create_time">createTime:</label>
+        <input type="text" id="create_time" name="create_time" disabled="true" />
+        <label for="start_time">startTime:</label>
+        <input type="text" id="start_time" name="start_time" disabled="true" /> -->
         <label for="status">status:</label>
         <select type="text" id="status" name="status">
-            <option value="0">
-                <P>Waiting</P>
+            <option value="Pending">
+                <P>Pending</P>
             </option>
-            <option value="1">
-                <P>Working</P>
+            <option value="Accepted">
+                <P>Accepted</P>
             </option>
-            <option value="2">
-                <P>Done</P>
+            <option value="Finished">
+                <P>Finished</P>
+            </option>
+            <option value="Cancelled">
+                <P>Cancelled</P>
             </option>
         </select>
-        <label for="serviceType">serviceType:</label>
-        <input type="text" id="serviceType" name="serviceType" disabled="true" />
+        <!-- <label for="service_type">serviceType:</label>
+        <input type="text" id="service_type" name="service_type" disabled="true" />
         <label for="groomer">groomer:</label>
         <input type="text" id="groomer" name="groomer" disabled="true" />
         <label for="user">user:</label>
         <input type="text" id="user" name="user" disabled="true" />
-        <label for="status">pet:</label>
-        <input type="text" id="pet" name="pet" disabled="true" />
-        <label for="finishTime">finishTime:</label>
-        <input type="text" id="finishTime" name="finishTime" disabled="true" />
-        <label for="cancelTime">cancelTime:</label>
-        <input type="text" id="cancelTime" name="cancelTime" disabled="true" />
-        <label for="totalprice">totalprice:</label>
-        <input type="text" id="totalprice" name="totalprice" disabled="true" />
+        <label for="pet">pet:</label>
+        <input type="text" id="pet" name="pet" disabled="true" /> -->
+        <!-- <label for="finish_time">finishTime:</label>
+        <input type="text" id="finish_time" name="finish_time" disabled="true" />
+        <label for="cancel_time">cancelTime:</label>
+        <input type="text" id="cancel_time" name="cancel_time" disabled="true" /> -->
+        <!-- <label for="total_price">totalprice:</label>
+        <input type="text" id="total_price" name="total_price" disabled="true" /> -->
         <button type="submit">Update</button>
     </form>
 
-    <script th:inline="javascript">
-        function editAppointment(button) {
-            document.getElementById("aid").value = button.dataset.aid;
-            document.getElementById("createTime").value = button.dataset.createTime;
-            document.getElementById("startTime").value = button.dataset.startTime;
-            document.getElementById("status").value = button.dataset.status;
-            document.getElementById("serviceType").value = button.dataset.serviceType;
+    <!-- To be modified -->
+    <!-- <form th:action="@{/manager/}" method="POST" object="${groomer}">
+        <input type="hidden" name="gid"/>
+        <label for="addName">Groomer name:</label>
+        <input type="text" id="addName" name="name" />
+        <label for="addGender">Gender:</label>
+        <input type="text" id="addGender" name="gender" />
+        <label for="addImage_url">ImageURL:</label>
+        <input type="text" id="addImage_url" name="image_url" />
+        <label for="addRank">Rank:</label>
+        <input type="text" id="addRank" name="rank" />
+        <label for="addPhoneNumber">Phone Number:</label>
+        <input type="text" id="addPhoneNumber" name="phoneNumber" />
+        <label for="addDescription">Description:</label>
+        <input type="text" id="addDescription" name="description" />
+        <button type="submit">Add</button>
+    </form> -->
+
+    <!-- document.getElementById("create_time").value = button.dataset.create_time;
+            document.getElementById("start_time").value = button.dataset.start_time;
+
+            document.getElementById("service_type").value = button.dataset.service_type;
             document.getElementById("groomer").value = button.dataset.groomer;
             document.getElementById("user").value = button.dataset.user;
             document.getElementById("pet").value = button.dataset.pet;
-            document.getElementById("finishTime").value = button.dataset.finishTime;
-            document.getElementById("cancelTime").value = button.dataset.cancelTime;
-            document.getElementById("totalprice").value = button.dataset.totalprice;
-
+            document.getElementById("finish_time").value = button.dataset.finish_time;
+            document.getElementById("cancel_time").value = button.dataset.cancel_time;
+            document.getElementById("total_price").value = button.dataset.total_price; -->
+    <script th:inline="javascript">
+        function editAppointment(button) {
+            document.getElementById("aid").value = button.dataset.aid;
+            
+            document.getElementById("status").value = button.dataset.status;
+            
         }
     </script>
 

@@ -43,11 +43,11 @@ public class UserController {
         return "manager/customerList";
     }
 
-    // No.i: Manager can search customer by name
-    @GetMapping("/manager/customerList/search")
-    public Result<?> getCustomerByName(@RequestParam String username) {
-        return userService.searchCustomerByName_M(username);
-    }
+    // // No.i: Manager can search customer by name
+    // @GetMapping("/manager/customerList/search")
+    // public Result<?> getCustomerByName(@RequestParam String username) {
+    //     return userService.searchCustomerByName_M(username);
+    // }
 
     // Manager can view customer detail
     @GetMapping("/manager/customerList/view")

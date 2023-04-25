@@ -29,12 +29,8 @@ public class ServiceTypeService {
     //     serviceTypeRepo.save(service);
     // }
 
-    public void editService(ServiceType service) {
-        serviceTypeRepo.save(service);
-    }
-
     // edit service
-    public void editServiceType(ServiceType service) {
+    public void updateServiceType(ServiceType service) {
         serviceTypeRepo.save(service);
     }
 

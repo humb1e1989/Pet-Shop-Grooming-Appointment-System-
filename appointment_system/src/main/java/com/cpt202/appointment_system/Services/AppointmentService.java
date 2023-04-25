@@ -58,7 +58,7 @@ public class AppointmentService {
 	}
 
 	public List<Appointment> getAppointmentBy_Service(@RequestParam String servicetype) {
-		return appointmentRepo.findByserviceType(servicetype);
+		return appointmentRepo.findByService_type(servicetype);
 	}
 
 	public List<Appointment> getAppointmentBy_GroomerName(@RequestParam String grommername) {
@@ -88,9 +88,9 @@ public class AppointmentService {
 		List<Appointment> resulList = new ArrayList<>();
 		if (isInteger(keyword)) {
 			Appointment resulList_aid = appointmentRepo.findByAid(Integer.valueOf(keyword).intValue());
-			List<Appointment> resulList_gid = appointmentRepo.findByGid(Integer.valueOf(keyword).intValue());
+			List<Appointment> resulList_gid = appointmentRepo.findByGroomer(Integer.valueOf(keyword).intValue());
 			List<Appointment> resulList_sid = appointmentRepo.findBySid(Integer.valueOf(keyword).intValue());
-			List<Appointment> resulList_price = appointmentRepo.findByPrice(Integer.valueOf(keyword).intValue());
+			List<Appointment> resulList_price = appointmentRepo.findByTotal_price(Double.valueOf(keyword));
 
 			if (resulList_aid != null)
 				resulList.add(resulList_aid);
@@ -102,7 +102,7 @@ public class AppointmentService {
 				resulList.addAll(resulList_price);
 		}
 		// List<Appointment> resulList_gname = appointmentRepo.findByGname(keyword);
-		List<Appointment> resulList_servicetype = appointmentRepo.findByServiceName(keyword);
+		List<Appointment> resulList_servicetype = appointmentRepo.findByService_type(keyword);
 		List<Appointment> resulList_status = appointmentRepo.findByStatus(keyword);
 		// if (resulList_gname != null)
 		// resulList.addAll(resulList_gname);
@@ -150,7 +150,7 @@ public class AppointmentService {
 
 	// ZYH : Customer can search appointment by user name
 	public Result<?> getAppointmentListByUserName_C(@RequestParam String username) {
-		List<Appointment> appointmentList = appointmentRepo.findByUserUsernameContaining(username);
+		List<Appointment> appointmentList = appointmentRepo.findByUserContaining(username);
 		if (!appointmentList.isEmpty()) {
 			return Result.success(appointmentList, "Find Matching Appointment!");
 		}
@@ -162,9 +162,9 @@ public class AppointmentService {
 	public Result<?> makeAppointment_C(Appointment appointment) {
 		Calendar calendar = Calendar.getInstance();
 		Timestamp currentTime = new Timestamp(System.currentTimeMillis());
-		appointment.setCreateTime(currentTime);
+		appointment.setCreate_time(currentTime);
 		appointment.setStatus("pending");
-		Timestamp temp = new Timestamp(appointment.getStartTime().getTime());
+		Timestamp temp = new Timestamp(appointment.getStart_time().getTime());
 		calendar.setTime(temp);
 		Groomer OrderedGroomer = groomerRepo.findByGid(appointment.getGroomer().getGid());
 		Pet pet = petRepo.findByPid(appointment.getPet().getPid());
@@ -184,57 +184,57 @@ public class AppointmentService {
 
 		// different servicetype have different service time
 		// the total price is depending on the rank of groomer, servicetype and pet_size
-		if (appointment.getServiceType().equals("washing")) {
+		if (appointment.getService_type().equals("washing")) {
 			calendar.add(Calendar.MINUTE, 30);
 			Timestamp finishTime = new Timestamp(calendar.getTimeInMillis());
-			appointment.setFinishTime(finishTime);
+			appointment.setFinish_time(finishTime);
 			if (pet.getSize().equals("small")) {
-				appointment.setTotalprice(50 * (1 + 0.1 * OrderedGroomer.getRank()) * 0.5);
+				appointment.setTotal_price(50 * (1 + 0.1 * OrderedGroomer.getRank()) * 0.5);
 			}
 			if (pet.getSize().equals("medium")) {
-				appointment.setTotalprice(50 * (1 + 0.1 * OrderedGroomer.getRank()) * 1.0);
+				appointment.setTotal_price(50 * (1 + 0.1 * OrderedGroomer.getRank()) * 1.0);
 			}
 			if (pet.getSize().equals("large")) {
-				appointment.setTotalprice(50 * (1 + 0.1 * OrderedGroomer.getRank()) * 1.5);
+				appointment.setTotal_price(50 * (1 + 0.1 * OrderedGroomer.getRank()) * 1.5);
 			}
 
 		}
 
-		if (appointment.getServiceType().equals("haircut")) {
+		if (appointment.getService_type().equals("haircut")) {
 			calendar.add(Calendar.MINUTE, 40);
 			Timestamp finishTime = new Timestamp(calendar.getTimeInMillis());
-			appointment.setFinishTime(finishTime);
+			appointment.setFinish_time(finishTime);
 			if (pet.getSize().equals("small")) {
-				appointment.setTotalprice(60 * (1 + 0.1 * OrderedGroomer.getRank()) * 0.5);
+				appointment.setTotal_price(60 * (1 + 0.1 * OrderedGroomer.getRank()) * 0.5);
 			}
 			if (pet.getSize().equals("medium")) {
-				appointment.setTotalprice(60 * (1 + 0.1 * OrderedGroomer.getRank()) * 1.0);
+				appointment.setTotal_price(60 * (1 + 0.1 * OrderedGroomer.getRank()) * 1.0);
 			}
 			if (pet.getSize().equals("large")) {
-				appointment.setTotalprice(60 * (1 + 0.1 * OrderedGroomer.getRank()) * 1.5);
+				appointment.setTotal_price(60 * (1 + 0.1 * OrderedGroomer.getRank()) * 1.5);
 			}
 		}
 
-		if (appointment.getServiceType().equals("drying")) {
+		if (appointment.getService_type().equals("drying")) {
 			calendar.add(Calendar.MINUTE, 10);
 			Timestamp finishTime = new Timestamp(calendar.getTimeInMillis());
-			appointment.setFinishTime(finishTime);
+			appointment.setFinish_time(finishTime);
 			if (pet.getSize().equals("small")) {
-				appointment.setTotalprice(40 * (1 + 0.1 * OrderedGroomer.getRank()) * 0.5);
+				appointment.setTotal_price(40 * (1 + 0.1 * OrderedGroomer.getRank()) * 0.5);
 			}
 			if (pet.getSize().equals("medium")) {
-				appointment.setTotalprice(40 * (1 + 0.1 * OrderedGroomer.getRank()) * 1.0);
+				appointment.setTotal_price(40 * (1 + 0.1 * OrderedGroomer.getRank()) * 1.0);
 			}
 			if (pet.getSize().equals("large")) {
-				appointment.setTotalprice(40 * (1 + 0.1 * OrderedGroomer.getRank()) * 1.5);
+				appointment.setTotal_price(40 * (1 + 0.1 * OrderedGroomer.getRank()) * 1.5);
 			}
-			appointment.setTotalprice(40 * (1 + 0.1 * OrderedGroomer.getRank()));
+			appointment.setTotal_price(40 * (1 + 0.1 * OrderedGroomer.getRank()));
 		}
 
 		// if the groomer has already been booked, return error
 		for (int i = 0; i < appointmentList.size(); i++) {
-			boolean overlap = isOverlap(appointmentList.get(i).getStartTime(), appointmentList.get(i).getFinishTime(),
-					appointment.getStartTime(), appointment.getFinishTime());
+			boolean overlap = isOverlap(appointmentList.get(i).getStart_time(), appointmentList.get(i).getFinish_time(),
+					appointment.getStart_time(), appointment.getFinish_time());
 			if (overlap) {
 				return Result.error("-2", "the groomer has already been booked during that time");
 			}
@@ -263,7 +263,7 @@ public class AppointmentService {
 			// Date date = new Date(System.currentTimeMillis());
 			// appointment.setCancelTime(date);
 			Timestamp currentTime = new Timestamp(System.currentTimeMillis());
-			appointment.setCancelTime(currentTime);
+			appointment.setCancel_time(currentTime);
 			return Result.success(appointment, "Appointment Cancelled!");
 		}
 		return Result.error("-1", "No Matching Appointment Found.");
@@ -271,22 +271,23 @@ public class AppointmentService {
 
 	// ZYH PBI NO.iii : Customer can modify appointment
 	// same problem as editProfile_C()
-	public Result<?> modifyAppointment_C(Appointment appointment) {
-		Appointment appointment1 = appointmentRepo.findByAid(appointment.getAid());
-		if (appointment1 != null) {
-			appointment1.setServiceType(appointment.getServiceType());
-			appointment1.setGroomer(appointment.getGroomer());
-			// appointment1.setPetName(appointment.getPetName());
-			appointment1.setPet(appointment.getPet());
-			appointment1.setStartTime(appointment.getStartTime());
-			appointment1.setTotalprice(appointment.getTotalprice());
-			appointment1.setFinishTime(appointment.getFinishTime());
-			appointment1.setCreateTime(appointment.getCreateTime());
-			// TODO : New one or modified one?
-			appointmentRepo.save(appointment1);
-			return Result.success();
-		}
-		return Result.error("-1", "No Matching Appointment Found.");
+	public void editAppointment(Appointment appointment) {
+		// Appointment appointment1 = appointmentRepo.findByAid(appointment.getAid());
+		// if (appointment1 != null) {
+		// 	appointment1.setServiceType(appointment.getServiceType());
+		// 	appointment1.setGroomer(appointment.getGroomer());
+		// 	// appointment1.setPetName(appointment.getPetName());
+		// 	appointment1.setPet(appointment.getPet());
+		// 	appointment1.setStartTime(appointment.getStartTime());
+		// 	appointment1.setTotalprice(appointment.getTotalprice());
+		// 	appointment1.setFinishTime(appointment.getFinishTime());
+		// 	appointment1.setCreateTime(appointment.getCreateTime());
+		// 	// TODO : New one or modified one?
+		// 	appointmentRepo.save(appointment1);
+		// 	return Result.success();
+		// }
+		// return Result.error("-1", "No Matching Appointment Found.");
+		appointmentRepo.save(appointment);
 	}
 
 
@@ -307,5 +308,5 @@ public class AppointmentService {
 	// return Result.error("-1", "No Matching Appointment Found.");
 	// }
 
-
+	
 }
