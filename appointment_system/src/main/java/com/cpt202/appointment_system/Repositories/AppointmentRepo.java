@@ -26,6 +26,8 @@ public interface AppointmentRepo extends JpaRepository<Appointment, Integer> {
     @Query(value = "SELECT * FROM appointment WHERE gid = ?1", nativeQuery = true)
     public List<Appointment> findByGroomer(Integer gid);
 
+    // public List<Appointment> findByUserContaining(String u);
+
     // @Transactional(timeout = 10)
     // @Query(value = "SELECT * FROM appointment WHERE name = :gname", nativeQuery = true)
     // public List<Appointment> findByGname(@Param("gname") String gname);
@@ -50,11 +52,14 @@ public interface AppointmentRepo extends JpaRepository<Appointment, Integer> {
     @Query(value = "SELECT * FROM appointment WHERE status = :status", nativeQuery = true)
     public List<Appointment> findByStatus(@Param("status") String status);
 
+    @Transactional(timeout = 10)
+    @Query(value = "SELECT * FROM appointment WHERE uid = ?1", nativeQuery = true)
+    public List<Appointment> findByUid(Integer uid);
 
     @Transactional
     @Modifying
-    @Query(value = "UPDATE appointment SET `status` = ?1 WHERE aid = ?2", nativeQuery = true)
-    public void updateStatusByAid(@Param("status") String status, @Param("aid") Integer aid);
+    @Query(value = "UPDATE appointment SET `status` = ?2 WHERE aid = ?1", nativeQuery = true)
+    public void updateStatusByAid(@Param("aid") Integer aid, @Param("status") String status);
 
     // // WJT
     // public List<Appointment> findByService_type(String servicetype);

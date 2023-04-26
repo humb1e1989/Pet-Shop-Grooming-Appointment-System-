@@ -18,7 +18,7 @@ public class ServiceType {
     private Integer sid;
 
     @Column(columnDefinition = "varchar(50)", nullable = true)
-    private String service_name;
+    private String serviceName;
     
     @Column(columnDefinition = "int(7)", nullable = true)
     private Integer service_time;

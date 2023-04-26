@@ -38,4 +38,8 @@ public class ServiceTypeService {
         serviceTypeRepo.deleteById(sid);
     }
 
+    public List<ServiceType> searchServiceTypeByName_M(String name) {
+        return serviceTypeRepo.findByServiceNameContaining(name);
+    }
+
 }

@@ -16,4 +16,7 @@ public interface ServiceTypeRepo extends JpaRepository<ServiceType, Integer>{
     public ServiceType save(ServiceType service);
 
     public void deleteById(Integer sid);
+
+    public List<ServiceType> findByServiceNameContaining(String name);
+
 }

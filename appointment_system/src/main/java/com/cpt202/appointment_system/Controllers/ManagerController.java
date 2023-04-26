@@ -29,7 +29,7 @@ import com.cpt202.appointment_system.Services.UserService;
 import com.cpt202.appointment_system.Services.ServiceTypeService;
 import com.cpt202.appointment_system.Services.AppointmentService;
 
-// @Controller
+// @RestController
 @Controller
 //@RequestMapping("manager")
 @RequestMapping("/maintain")
@@ -102,11 +102,11 @@ public class ManagerController {
         return "redirect:/maintain/maintainGroomer";
     }
 
-    @PostMapping("/addGroomer")
-    public String addGroomer(@ModelAttribute Groomer groomer) {
-        groomerService.updateGroomer(groomer);
-        return "redirect:/maintain/maintainGroomer";
-    }
+    // @PostMapping("/addGroomer")
+    // public String addGroomer(@ModelAttribute Groomer groomer) {
+    //     groomerService.updateGroomer(groomer);
+    //     return "redirect:/maintain/maintainGroomer";
+    // }
 
     @PostMapping("/updateGroomer")
     public String updateGroomer(@ModelAttribute Groomer groomer) {
@@ -120,19 +120,68 @@ public class ManagerController {
         model.addAttribute("groomers", groomers);
         return "MaintainGroomer";
     }
-    // @GetMapping("")
-    // public String showMaintainServiceTypePage(Model model) {
-    //     List<ServiceType> services = ServiceTypeService.getAllServiceTypes();
-    //     model.addAttribute("serviceTypes", services);
-    //     return "MaintainServiceType";
-    // }
 
-    // @GetMapping("")
-    // public String showMaintainAppointmentPage(Model model) {
-    //     List<Appointment> appointments = AppointmentService.getAllAppointments();
-    //     model.addAttribute("appointments", appointments);
-    //     return "MaintainAppointment";
+
+
+    @GetMapping("maintainServiceType")
+    public String showMaintainServiceTypePage(Model model) {
+        List<ServiceType> serviceTypes = ServiceTypeService.getAllServiceTypes();
+        model.addAttribute("serviceTypes", serviceTypes);
+        return "MaintainServiceType";
+    }
+
+    
+    @PostMapping("/deleteServiceType")
+    public String deleteServiceType(@ModelAttribute ServiceType serviceType) {
+        Integer sid = serviceType.getSid();
+        ServiceTypeService.deleteServiceTypeById(sid);
+        return "redirect:/maintain/maintainServiceType";
+    }
+
+    @PostMapping("/updateServiceType")
+    public String updateServiceType(@ModelAttribute ServiceType serviceType) {
+        ServiceTypeService.updateServiceType(serviceType);
+        return "redirect:/maintain/maintainServiceType";
+    }
+
+    @PostMapping("/searchServiceType")
+    public String searchServiceType(Model model, @RequestParam("keyword") String keyword) {
+        List<ServiceType> serviceTypes =  ServiceTypeService.searchServiceTypeByName_M(keyword);
+        model.addAttribute("serviceTypes", serviceTypes);
+        return "MaintainServiceType";
+    }
+
+
+    
+    @GetMapping("maintainAppointment")
+    public String showMaintainAppointmentPage(Model model) {
+        List<Appointment> appointments = AppointmentService.getAllAppointments();
+        model.addAttribute("appointments", appointments);
+        return "MaintainAppointment";
+    }
+
+    @PostMapping("/updateAppointment")
+    public String updateAppointment(@ModelAttribute Appointment appointment) {
+        // AppointmentRepo.updateStatusByAid(appointment.getStatus(), appointment.getAid());
+        System.out.println(appointment.getStatus());
+        AppointmentService.updateAppointment(appointment);
+       
+        return "redirect:/maintain/maintainAppointment";
+    }
+
+    @PostMapping("/searchAppointment")
+    public String searchAppointment(Model model, @RequestParam("keyword") String keyword) {
+        List<Appointment> Appointments =  AppointmentService.appointmentSearch_M(keyword);
+        model.addAttribute("appointments", Appointments);
+        return "MaintainAppointment";
+    }
+
+    // @PostMapping("/addServiceType")
+    // public String addServiceType(@ModelAttribute ServiceType service) {
+    //     ServiceTypeService.updateServiceType(service);
+    //     return "redirect:/maintain/maintainServiceType";
     // }
+    
 
     // @GetMapping("/delete")
     // public Result<?> deleteUser1(@RequestParam("uid") Integer uid) {
@@ -167,30 +216,8 @@ public class ManagerController {
 
     
 
-    @PostMapping("/deleteServiceType")
-    public String deleteServiceType(@ModelAttribute ServiceType service) {
-        Integer sid = service.getSid();
-        ServiceTypeService.deleteServiceTypeById(sid);
-        return "redirect:/manager";
-    }
-
-    @PostMapping("/updateServiceType")
-    public String updateServiceType(@ModelAttribute ServiceType service) {
-        ServiceTypeService.updateServiceType(service);
-        return "redirect:/manager";
-    }
-
-    @PostMapping("/addServiceType")
-    public String addServiceType(@ModelAttribute ServiceType service) {
-        ServiceTypeService.updateServiceType(service);
-        return "redirect:/manager";
-    }
    
-    @PostMapping("/updateAppointment")
-    public String updateAppointment(@ModelAttribute("appointments") Appointment appointment) {
-        AppointmentRepo.updateStatusByAid(appointment.getStatus(), appointment.getAid());
-        return "redirect:/manager";
-    }
+    
 
 
 // @PostMapping("/searchUser")

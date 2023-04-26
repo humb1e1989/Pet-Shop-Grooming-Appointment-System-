@@ -109,7 +109,7 @@
                             </path>
                         </svg>
                         <span class="flex-1 ml-3 whitespace-nowrap">Groomer</span>
-                        
+
                     </a>
                 </li>
                 <li>
@@ -126,7 +126,7 @@
                             </path>
                         </svg>
                         <span class="flex-1 ml-3 whitespace-nowrap">Service</span>
-                    
+
                     </a>
                 </li>
                 <li>
@@ -200,11 +200,12 @@
                                 clip-rule="evenodd"></path>
                         </svg>
                     </div>
-                    <form th:action="@{/maintain/searchGroomer}" method="post">
+                    <form th:action="@{/maintain/searchServiceType}" method="post">
                         <input type="text" id="keyword" name="keyword"
                             class="p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            placeholder="Search by Groomer" />&nbsp;&nbsp;&nbsp;
-                        <button type="submit" class="inline-flex items-center justify-center px-3 ml-4 text-sm font-medium text-gray-800 bg-gray-200 rounded-full dark:bg-gray-700 dark:text-gray-300">Search</button>
+                            placeholder="Search by ServiceType" />&nbsp;&nbsp;&nbsp;
+                        <button type="submit"
+                            class="inline-flex items-center justify-center px-3 ml-4 text-sm font-medium text-gray-800 bg-gray-200 rounded-full dark:bg-gray-700 dark:text-gray-300">Search</button>
                     </form>
                 </div>
             </div>
@@ -223,22 +224,13 @@
                             ID
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Groomername
+                            Service
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Gender
+                            Service Time
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            imageURL
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Rank
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Phone Number
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Description
+                            BasicPrice
                         </th>
                         <th scope="col" class="px-6 py-3">
                             Edit
@@ -249,7 +241,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr th:each="groomer : ${groomers}"
+                    <tr th:each="serviceType : ${serviceTypes}"
                         class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                         <!-- <td class="w-4 p-4">
                                 <div class="flex items-center">
@@ -258,27 +250,23 @@
                                     <label for="checkbox-table-search-1" class="sr-only">checkbox</label>
                                 </div>
                             </td> -->
-                        <td class="px-6 py-4" th:text="${groomer.gid}"></td>
-                        <td class="px-6 py-4" th:text="${groomer.name}"></td>
-                        <td class="px-6 py-4" th:text="${groomer.gender}"></td>
-                        <td class="px-6 py-4" th:text="${groomer.image_url}"></td>
-                        <td class="px-6 py-4" th:text="${groomer.rank}"></td>
-                        <td class="px-6 py-4" th:text="${groomer.phoneNumber}"></td>
-                        <td class="px-6 py-4" th:text="${groomer.description}"></td>
+                        <td class="px-6 py-4" th:text="${serviceType.sid}"></td>
+                        <td class="px-6 py-4" th:text="${serviceType.serviceName}"></td>
+                        <td class="px-6 py-4" th:text="${serviceType.service_time}"></td>
+                        <td class="px-6 py-4" th:text="${serviceType.basic_price}"></td>
                         <td>
-                            <button th:attr="data-gid=${groomer.gid}, data-name=${groomer.name},
-                                data-gender=${groomer.gender},data-image_url=${groomer.image_url},data-rank=${groomer.rank}, 
-                                data-phone_number=${groomer.phoneNumber}, data-description=${groomer.description}"
-                                onclick="editGroomer(this)"
-                                class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
-                                Edit</button>
+                            <button th:attr="data-sid=${serviceType.sid}, data-serviceName=${serviceType.serviceName},
+                            data-service_time=${serviceType.service_time},data-basic_price=${serviceType.basic_price}"
+                                onclick="editServiceType(this)"
+                                class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</button>
                         </td>
                         <td>
-                            <form th:action="@{/maintain/deleteGroomer}" method="POST" object="${groomer}">
+                            <form th:action="@{/maintain/deleteServiceType}" method="POST" object="${serviceType}">
                                 <!-- <input type="text" th:value="${groomer.gid}" id="gid" name="gid" /> -->
-                                <input type="hidden" th:value="${groomer.gid}" name="gid" />
+                                <input type="hidden" th:value="${serviceType.sid}" name="sid" />
                                 <!-- id="gid1" -->
-                                <button type="submit" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Delete</button>
+                                <button type="submit"
+                                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Delete</button>
                             </form>
                         </td>
                     </tr>
@@ -286,56 +274,49 @@
             </table>
 
             <br />
-            <form id="editForm" th:action="@{/maintain/updateGroomer}" th:method="post" th:object="${groomer}">
-                <input type="hidden" id="gid" name="gid" class="p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-30 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"/>
-                <label for="name">Groomer name:</label>
-                <input type="text" id="name" name="name" class="p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-30  bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"/>
-                <label for="gender">Gender:</label>
-                <input type="text" id="gender" name="gender" class="p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-30  bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"/>
-                <label for="image_url">ImageURL:</label>
-                <input type="text" id="image_url" name="image_url" class="p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-30 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"/>
-                <br>
-                <label for="rank">Rank:</label>
-                <input type="text" id="rank" name="rank" class="p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-30  bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"/>
-                <label for="phoneNumber">Phone Number:</label>
-                <input type="text" id="phoneNumber" name="phoneNumber" class="p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-30  bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"/>
-                <label for="description">Description:</label>
-                <input type="text" id="description" name="description" class="p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-30  bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"/>
-                <button type="submit" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Update</button>
+            <form id="editForm" th:action="@{/maintain/updateServiceType}" th:method="post" th:object="${serviceType}">
+                <input type="hidden" id="sid" name="sid"
+                    class="p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-30 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+                <label for="serviceName">Service name: </label>
+                <input type="text" id="serviceName" name="serviceName" 
+                    class="p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-30 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+                <label for="service_time">Service Time:</label>
+                <input type="text" id="service_time" name="service_time"
+                    class="p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-30 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+                <label for="basic_price"> BasicPrice:</label>
+                <input type="text" id="basic_price" name="basic_price"
+                    class="p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-30 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+                <button type="submit"
+                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Update</button>
                 <!-- add a groomer -->
             </form>
             <br>
-            <form th:action="@{/maintain/updateGroomer}" method="POST" object="${groomer}">
+            <form th:action="@{/maintain/updateServiceType}" method="POST" object="${serviceType}">
                 <!-- <input type="text" th:value="${groomer.gid}" id="gid" name="gid" /> -->
-                <input type="hidden" name="gid" />
-                <label for="addName">Groomer name:</label>
-                <input type="text" id="addName" name="name" class="p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-30  bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"/>
-                <label for="addGender">Gender:</label>
-                <input type="text" id="addGender" name="gender" class="p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-30  bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"/>
-                <label for="addImage_url">ImageURL:</label>
-                <input type="text" id="addImage_url" name="image_url" class="p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-30  bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"/>
-                <br>
-                <label for="addRank">Rank:</label>
-                <input type="text" id="addRank" name="rank" class="p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-30  bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"/>
-                <label for="addPhoneNumber">Phone Number:</label>
-                <input type="text" id="addPhoneNumber" name="phoneNumber" class="p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-30  bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"/>
-                <label for="addDescription">Description:</label>
-                <input type="text" id="addDescription" name="description" class="p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-30  bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"/>
+                <input type="hidden" id="addSid" name="sid"
+                    class="p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-30 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+                <label for="addServiceName">Service Name:</label>
+                <input type="text" id="addServiceName" name="serviceName"
+                    class="p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-30  bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+                <label for="addService_time">Service Time:</label>
+                <input type="text" id="addService_time" name="service_time"
+                    class="p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-30  bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+                <label for="addBasic_price"> BasicPrice:</label>
+                <input type="text" id="addBasic_price" name="basic_price"
+                    class="p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-30 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
                 <button type="submit" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Add</button>
             </form>
 
 
             <script th:inline="javascript">
-                function editGroomer(button) {
-                    document.getElementById("gid").value = button.dataset.gid;
-                    document.getElementById("name").value = button.dataset.name;
-                    document.getElementById("gender").value = button.dataset.gender;
-                    document.getElementById("image_url").value = button.dataset.image_url;
-                    document.getElementById("rank").value = button.dataset.rank;
-                    document.getElementById("phoneNumber").value = button.dataset.phone_number;
-                    document.getElementById("description").value = button.dataset.description;
+                function editServiceType(button) {
+                    document.getElementById("sid").value = button.dataset.sid;
+                    document.getElementById("serviceName").value = button.dataset.serviceName;
+                    document.getElementById("service_time").value = button.dataset.service_time;
+                    document.getElementById("basic_price").value = button.dataset.basic_price;
                 }
             </script>
+            <!-- document.getElementById("serviceName").value = button.dataset.serviceName; -->
             <!-- console.log(button.dataset.image_url);
             console.log(document.getElementById("image_url").value); -->
 
@@ -504,11 +485,11 @@
             </div>
         </section> -->
 
-    </div>
+        </div>
     </div>
 
 
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
 
 </body>
 

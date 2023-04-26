@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +48,10 @@ public class AppointmentService {
 	 * This is a part to fullfill all the functions of managers.
 	 */
 
+	public List<Appointment> searchAppointmentByUsername(String name) {
+		return appointmentRepo.findByUserContaining(name);
+	}
+
 	// WJT Manger Part
 	// Fiter Fuction
 	public List<Appointment> getAppointmentBy_CName(@RequestParam String username) {
@@ -81,6 +87,50 @@ public class AppointmentService {
 	public static boolean isInteger(String str) {
 		Pattern pattern = Pattern.compile("^[-\\+]?[\\d]*$");
 		return pattern.matcher(str).matches();
+	}
+
+	public List<Appointment> appointmentSearch_M(@RequestParam String keyword) {
+		List<Appointment> resulList = new ArrayList<>();
+		if (isInteger(keyword)) {
+			Appointment resulList_aid = appointmentRepo.findByAid(Integer.valueOf(keyword).intValue());
+			List<Appointment> resultList_gid = appointmentRepo.findByGroomer(Integer.valueOf(keyword).intValue());
+			List<Appointment> resultList_sid = appointmentRepo.findBySid(Integer.valueOf(keyword).intValue());
+			List<Appointment> resultList_price = appointmentRepo.findByTotal_price(Double.valueOf(keyword));
+
+			if (resulList_aid != null)
+				resulList.add(resulList_aid);
+			if (resultList_gid != null)
+				resulList.addAll(resultList_gid);
+			if (resultList_sid != null)
+				resulList.addAll(resultList_sid);
+			if (resultList_price != null)
+				resulList.addAll(resultList_price);
+
+		}
+		// List<Appointment> resulList_gname = appointmentRepo.findByGname(keyword);
+		List<Appointment> resulList_servicetype = appointmentRepo.findByService_type(keyword);
+		List<Appointment> resulList_status = appointmentRepo.findByStatus(keyword);
+		Optional<User> user = userRepo.findByUsername(keyword);
+		try {
+			Integer uid = user.get().getUid();
+			List<Appointment> resultList_username = appointmentRepo.findByUid(uid);
+			if (resultList_username != null)
+				resulList.addAll(resultList_username);
+		} catch (NoSuchElementException nse) {
+			System.out.println(nse.getMessage());
+		}
+		// System.out.println(uid);
+
+		// if (resulList_gname != null)
+		// resulList.addAll(resulList_gname);
+		if (resulList_servicetype != null)
+			resulList.addAll(resulList_servicetype);
+		if (resulList_status != null)
+			resulList.addAll(resulList_status);
+
+		LinkedHashSet<Appointment> hashSet = new LinkedHashSet<>(resulList);
+		ArrayList<Appointment> resulList_Final = new ArrayList<>(hashSet);
+		return resulList_Final;
 	}
 
 	// YYY
@@ -271,31 +321,34 @@ public class AppointmentService {
 
 	// ZYH PBI NO.iii : Customer can modify appointment
 	// same problem as editProfile_C()
-	public void editAppointment(Appointment appointment) {
-		// Appointment appointment1 = appointmentRepo.findByAid(appointment.getAid());
-		// if (appointment1 != null) {
-		// 	appointment1.setServiceType(appointment.getServiceType());
-		// 	appointment1.setGroomer(appointment.getGroomer());
-		// 	// appointment1.setPetName(appointment.getPetName());
-		// 	appointment1.setPet(appointment.getPet());
-		// 	appointment1.setStartTime(appointment.getStartTime());
-		// 	appointment1.setTotalprice(appointment.getTotalprice());
-		// 	appointment1.setFinishTime(appointment.getFinishTime());
-		// 	appointment1.setCreateTime(appointment.getCreateTime());
-		// 	// TODO : New one or modified one?
-		// 	appointmentRepo.save(appointment1);
-		// 	return Result.success();
-		// }
-		// return Result.error("-1", "No Matching Appointment Found.");
-		appointmentRepo.save(appointment);
+	public void updateAppointment(Appointment appointment) {
+		String status = appointment.getStatus();
+		Integer aid = appointment.getAid();
+		System.out.println(status);
+		System.out.println(aid);
+		appointmentRepo.updateStatusByAid(appointment.getAid(), appointment.getStatus());
 	}
+	// Appointment appointment1 = appointmentRepo.findByAid(appointment.getAid());
+	// if (appointment1 != null) {
+	// appointment1.setServiceType(appointment.getServiceType());
+	// appointment1.setGroomer(appointment.getGroomer());
+	// // appointment1.setPetName(appointment.getPetName());
+	// appointment1.setPet(appointment.getPet());
+	// appointment1.setStartTime(appointment.getStartTime());
+	// appointment1.setTotalprice(appointment.getTotalprice());
+	// appointment1.setFinishTime(appointment.getFinishTime());
+	// appointment1.setCreateTime(appointment.getCreateTime());
+	// // TODO : New one or modified one?
+	// appointmentRepo.save(appointment1);
+	// return Result.success();
+	// }
+	// return Result.error("-1", "No Matching Appointment Found.");
 
-
-	//get all appointment list
-	    // get all services
-    public List<Appointment> getAllAppointments() {
-        return appointmentRepo.findAll();
-    }
+	// get all appointment list
+	// get all services
+	public List<Appointment> getAllAppointments() {
+		return appointmentRepo.findAll();
+	}
 
 	// TODO : Not necessary for now
 	// // ZYH PBI NO.ii : Customer can filter appointment by time
@@ -308,5 +361,4 @@ public class AppointmentService {
 	// return Result.error("-1", "No Matching Appointment Found.");
 	// }
 
-	
 }

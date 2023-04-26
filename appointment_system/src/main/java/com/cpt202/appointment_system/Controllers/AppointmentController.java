@@ -112,7 +112,7 @@ public class AppointmentController {
     // Customer can modify appointment
     @PostMapping("/customer/editAppointment")
     public void editAppointment_C(@RequestBody Appointment appointment) {
-        appointmentService.editAppointment(appointment);
+        appointmentService.updateAppointment(appointment);
     }
 
 

@@ -125,5 +125,10 @@ public class Appointment {
         this.aid = aid;
     }
 
+    public Appointment(String status, Integer aid) {
+        this.status = status;
+        this.aid = aid;
+    }
+
 
 }
