@@ -31,7 +31,8 @@ import com.cpt202.appointment_system.Services.AppointmentService;
 
 // @Controller
 @Controller
-@RequestMapping("/manager")
+//@RequestMapping("manager")
+@RequestMapping("/maintain")
 public class ManagerController {
 
     @Autowired
@@ -52,21 +53,86 @@ public class ManagerController {
     @Autowired
     private AppointmentRepo AppointmentRepo;
 
-    @GetMapping("")
-    public String showMaintainPage(Model model) {
+    // @GetMapping("")
+    // public String showMaintainPage(Model model) {
+    //     List<User> users = userService.listAllCustomers_M();
+    //     model.addAttribute("users", users);
+    //     List<Groomer> groomers = groomerService.listAllGroomers();
+    //     model.addAttribute("groomers", groomers);
+    //     List<ServiceType> services = ServiceTypeService.getAllServiceTypes();
+    //     model.addAttribute("serviceTypes", services);
+    //     List<Appointment> appointments = AppointmentService.getAllAppointments();
+    //     model.addAttribute("appointments", appointments);
+    //     // List<User> userList = userService.listAllCustomers_M();
+    //     // model.addAttribute("userList", userList);
+    //     // model.addAttribute("userSearchRst", new ArrayList<User>());
+    //     return "manager";
+    // }
+    @GetMapping("/maintainUser")
+    public String showMaintainUserPage(Model model) {
         List<User> users = userService.listAllCustomers_M();
         model.addAttribute("users", users);
+        return "MaintainUser";
+    }
+
+    // @GetMapping("/searchUser")
+    // public String searchUser(Model model) {
+    //     model.addAttribute("keyword", new String());
+    //     return "MaintainUser";
+    // }
+
+    @PostMapping("/searchUser")
+    public String searchUserByKey(Model model, @RequestParam("keyword") String keyword) {
+        List<User> userSearchRst =  userService.searchCustomerByName_M(keyword);
+        model.addAttribute("users", userSearchRst);
+        return "MaintainUser";
+    }
+
+    @GetMapping("/maintainGroomer")
+    public String showMaintainGroomerPage(Model model) {
         List<Groomer> groomers = groomerService.listAllGroomers();
         model.addAttribute("groomers", groomers);
-        List<ServiceType> services = ServiceTypeService.getAllServiceTypes();
-        model.addAttribute("serviceTypes", services);
-        List<Appointment> appointments = AppointmentService.getAllAppointments();
-        model.addAttribute("appointments", appointments);
-        // List<User> userList = userService.listAllCustomers_M();
-        // model.addAttribute("userList", userList);
-        // model.addAttribute("userSearchRst", new ArrayList<User>());
-        return "manager";
+        return "MaintainGroomer";
     }
+
+    @PostMapping("/deleteGroomer")
+    public String deleteGroomer(@ModelAttribute Groomer groomer) {
+        Integer gid = groomer.getGid();
+        groomerService.deleteGroomerById(gid);
+        return "redirect:/maintain/maintainGroomer";
+    }
+
+    @PostMapping("/addGroomer")
+    public String addGroomer(@ModelAttribute Groomer groomer) {
+        groomerService.updateGroomer(groomer);
+        return "redirect:/maintain/maintainGroomer";
+    }
+
+    @PostMapping("/updateGroomer")
+    public String updateGroomer(@ModelAttribute Groomer groomer) {
+        groomerService.editGroomer_M(groomer);
+        return "redirect:/maintain/maintainGroomer";
+    }
+
+    @PostMapping("/searchGroomer")
+    public String searchGroomer(Model model, @RequestParam("keyword") String keyword) {
+        List<Groomer> groomers =  groomerService.searchGroomerByName_M(keyword);
+        model.addAttribute("groomers", groomers);
+        return "MaintainGroomer";
+    }
+    // @GetMapping("")
+    // public String showMaintainServiceTypePage(Model model) {
+    //     List<ServiceType> services = ServiceTypeService.getAllServiceTypes();
+    //     model.addAttribute("serviceTypes", services);
+    //     return "MaintainServiceType";
+    // }
+
+    // @GetMapping("")
+    // public String showMaintainAppointmentPage(Model model) {
+    //     List<Appointment> appointments = AppointmentService.getAllAppointments();
+    //     model.addAttribute("appointments", appointments);
+    //     return "MaintainAppointment";
+    // }
 
     // @GetMapping("/delete")
     // public Result<?> deleteUser1(@RequestParam("uid") Integer uid) {
@@ -90,33 +156,16 @@ public class ManagerController {
     //     return "manager";
     // }
 
-    // for testing
-    @PostMapping("/deleteUser")
-    public String deleteUser(@ModelAttribute User user) {
-        Integer uid = user.getUid();
-        userService.deleteUserById(uid);
-        return "redirect:/manager";
-        // return Result.success();
-    }
+    // // for testing
+    // @PostMapping("/deleteUser")
+    // public String deleteUser(@ModelAttribute User user) {
+    //     Integer uid = user.getUid();
+    //     userService.deleteUserById(uid);
+    //     return "redirect:/manager";
+    //     // return Result.success();
+    // }
 
-    @PostMapping("/deleteGroomer")
-    public String deleteGroomer(@ModelAttribute Groomer groomer) {
-        Integer gid = groomer.getGid();
-        groomerService.deleteGroomerById(gid);
-        return "redirect:/manager";
-    }
-
-    @PostMapping("/addGroomer")
-    public String addGroomer(@ModelAttribute Groomer groomer) {
-        groomerService.updateGroomer(groomer);
-        return "redirect:/manager";
-    }
-
-    @PostMapping("/updateGroomer")
-    public String updateGroomer(@ModelAttribute Groomer groomer) {
-        groomerService.editGroomer_M(groomer);
-        return "redirect:/manager";
-    }
+    
 
     @PostMapping("/deleteServiceType")
     public String deleteServiceType(@ModelAttribute ServiceType service) {
@@ -143,18 +192,7 @@ public class ManagerController {
         return "redirect:/manager";
     }
 
-    @GetMapping("/searchUser")
-    public String searchUser(Model model) {
-        model.addAttribute("keyword", new String());
-        return "manager";
-    }
 
-    @PostMapping("/searchUser")
-    public String searchUserByKey(Model model, @RequestParam("keyword") String keyword) {
-        List<User> userSearchRst =  userService.searchCustomerByName_M(keyword);
-        model.addAttribute("users", userSearchRst);
-        return "manager";
-    }
 // @PostMapping("/searchUser")
 //     public String searchUserByKey(@ModelAttribute("searchedUser") User searchedUser, Model model) {
 //         String searchedName = searchedUser.getUsername();

@@ -79,15 +79,18 @@ public class GroomerService {
 
 
     // YYY PBI NO.4 - Get a groomer list by groomer name, rank and phone number, no matter manager or customer
-    public Result<?> searchGroomerByName(@RequestParam Groomer groomer) {
+    // public Result<?> searchGroomerByName(@RequestParam Groomer groomer) 
+    //     List<Groomer> groomerList = groomerRepo.findByNameIs(groomer.getName());
 
-        List<Groomer> groomerList = groomerRepo.findByNameIs(groomer.getName());
+	// 	if (!groomerList.isEmpty()) {
+	// 		return Result.success(groomerList, "Find Matching Appointments!");
+	// 	}
+	// 	return Result.error("-1", "No Matching Appointment Found.");
+    // }
 
-		if (!groomerList.isEmpty()) {
-			return Result.success(groomerList, "Find Matching Appointments!");
-		}
-		return Result.error("-1", "No Matching Appointment Found.");
-
+    // search groomer by name
+    public List<Groomer> searchGroomerByName_M(String name) {
+        return groomerRepo.findByNameContaining(name);
     }
 
     public Result<?> searchGroomerByRank(@RequestParam Groomer groomer) {
