@@ -1,0 +1,9 @@
+<!-- 找回密码表单 -->
+<form action="/forgotPassword" method="post">
+    <input type="text" name="username" placeholder="用户名" required>
+    <input type="text" name="verificationCode" placeholder="验证码" required>
+    <input type="password" name="newPassword" placeholder="新密码" required>
+    <input type="password" name="confirmNewPassword" placeholder="确认新密码" required>
+    <button type="button" id="sendForgotPasswordCode">发送验证码</button>
+    <button type="submit">重置密码</button>
+</form>
