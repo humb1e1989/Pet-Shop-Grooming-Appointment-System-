@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8">
+		<title>人员信息管理系统</title>
+        <style>
+            /* .div1 {
+                margin: 20px auto;
+                width: 2000px;
+                border-radius: 20px;
+
+            } */
+            .div2 {
+                width:1050px;
+                border-radius: 20px;
+            }
+            /* table {
+
+                width: 500px;
+                background-color: blueviolet;
+                text-align: center;
+                border-radius: 20px;
+                
+
+            } */
+            #div1{
+                width: 100%;
+                border-radius: 20px;
+
+                overflow: hidden;
+            }
+            #table1 {
+                background-color: yellowgreen;
+                width: 1050px;
+        
+                text-align: center;
+                border-spacing: 0;
+                border-radius: inherit;
+                border-collapse: separate;
+                border: solid 8px #dfdfdf;
+  
+            }
+            th {
+                width: 1050px;
+                
+                border: 0px #1E90FF; 
+				
+                /* height: 10px; */
+                text-align: center;
+                border-collapse: collapse;
+            }
+
+            #table1 td {
+                width: auto;
+                border-left:none;
+
+			
+				/* border-right: none;  */
+                /* border: 0px solid #1E90FF; */
+				border-bottom: 1px #1E90FF;
+                /* border-bottom-left-radius: 20px; */
+                /* height: 100%; */
+                text-align: center;
+                border-collapse: collapse;
+                
+            }
+
+
+
+            /* table, th, td {
+                border-right: 2px solid #1E90FF;
+            }
+            table, th:last-child, td:last-child {
+                border-right-color: transparent;
+            } */ 
+
+
+            /* th, td {
+                width: 1050px;
+                border: 0px solid #000000;
+                //border-top-left-radius: 20px; 
+                //border-left: 2px solid #1E90FF; 
+                border-collapse: separate;
+                 
+            } */
+            /* .box .cat:before {
+                width: 400px;
+                height: 400px;
+                border-radius: 200px;
+                content: "";
+                position: absolute;
+                right: 30px;
+                top: -200px;
+                z-index: 0;
+            } */
+
+			.box {
+
+				padding : 20px;
+				margin : 20px;
+				height : 40px;
+				background-color:  #fcffab;
+				border-radius: 20px;
+				align-content: center;
+			}
+            #org1{
+                background-color: #ffd24d;
+                border-radius: 20px;
+                padding:  30px;
+                margin-bottom: 30px;
+                position: relative;
+                overflow: hidden;
+                text-align: center;
+            }
+
+            
+        </style>
+		<script type="text/javascript">
+			
+			var index = 1;
+			var p1 = {
+				"id":index,
+				"name":"科比",
+				"sex":"男",
+				"old":41,
+				//"area":"美国洛杉矶",
+			};
+			index++;
+			var p2 = {
+				"id":index,
+				"name":"乔丹",
+				"sex":"男",
+				"old":56,
+				//"area":"美国纽约",
+			};
+			index++;
+			var p = new Array();//var p = [];
+			p.push(p1);
+			p.push(p2);
+			/**显示人员信息**/
+			// function showPerson(){
+			// 	//显示表格
+			// 	var table1 = document.getElementById("table1");
+			// 	// table1.style.borderRadius = "20px";
+            //     table1.style="";
+			// 	var str = "<tr> <th>ID</th><th>Name</th><th>Gender</th><th>Rank</th><th colspan='2'>Operatioin</th> </tr>"; //<th>籍贯</th>
+			// 	for(var i=0;i<p.length;i++){
+			// 		var a = p[i];
+			// 		str += "<tr > <td>"+a.id+"</td><td>"+a.name+"</td><td>"+a.sex+"</td><td>"+a.old+"</td> <td><button type='button' onclick='deletePerson("+a.id+")'>Delete</button></td><td><button type='button' onclick='showUpdatePerson("+a.id+")'>Update</button></td> </tr>"; //<td>"+a.area+"</td>
+			// 	}
+			// 	table1.innerHTML = str;
+			// }
+            function hidePerson(){
+                var table1 = document.getElementById("table1");
+				table1.style="display: none;";
+            }
+			/**显示新增人员信息**/
+			function showAddPerson(){
+				//隐藏更新人员界面
+				var div3 = document.getElementById("div3");
+				div3.style = "display: none;";
+				var div2 = document.getElementById("div2");
+				div2.style = "";	
+			}
+			/**新增人员信息**/
+			function addPerson(){
+				var field2 = document.getElementById("field2");
+				var a = {};//var a = new Array();
+				// var a = p[index-1];
+				a.id = index;
+				a.name = document.getElementById("name").value;
+				a.old = document.getElementById("old").value;
+				a.sex = document.getElementById("sex").value;
+				// a.area = document.getElementById("area").value;
+				// alert(a.id+" "+a.name+" "+a.old+" "+a.sex+" "+a.area +" ");
+				index++;
+				//数组添加表单的值
+				p.push(a);
+				//添加之后重新查询表单
+				showPerson();
+                showPerson1();
+				
+			}
+			/**取消按钮，隐藏表单**/
+			function cancel(){
+				//隐藏新增人员信息界面
+				//var div2 = document.getElementById("div2");
+				div2.style = "display: none;";
+				//隐藏更新人员信息界面
+				//var div3 = document.getElementById("div3");
+				div3.style = "display: none;";
+			}
+			/**根据id删除人员信息**/
+			function deletePerson(id){
+				var flag = confirm("确定删除？");
+				if(flag){
+					for(var i=0;i<p.length;i++){
+						var a = p[i];
+						if(a.id == id){
+							p.splice(i,1);//从第i个位置开始删除一个元素
+						}
+					}
+				}
+				//删除完毕重新加载表单
+				showPerson();
+				showPerson1();
+			}
+			/**根据id修改人员信息**/
+			function showUpdatePerson(id){
+				//隐藏添加人员界面
+				var div2 = document.getElementById("div2");
+				div2.style = "display: none;";
+				//显示更新人员界面
+				var div3 = document.getElementById("div3");
+				div3.style = "";
+				//根据id遍历数组得到要修改的值,然后用document对象进行修改
+				for(var i=0;i<p.length;i++){
+					var a = p[i];
+					if(a.id == id){
+						document.getElementById("uname").value = a.name;
+						document.getElementById("uold").value = a.old;
+						document.getElementById("usex").value = a.sex;
+						// document.getElementById("uarea").value = a.area;
+						document.getElementById("uid").value = a.id;
+					}
+				}
+			}
+			function updatePerson(){
+				var id = document.getElementById("uid").value;
+				//再根据id把表单中的value值存入对于的p[]i数组中
+				for(var i=0;i<p.length;i++){
+					var a = p[i];
+					if(a.id == id){
+						p[i].name = document.getElementById("uname").value;
+						p[i].old = document.getElementById("uold").value;
+						p[i].sex = document.getElementById("usex").value;
+						// p[i].area = document.getElementById("uarea").value;
+					}
+				}
+				//重新调用表单刷新
+				showPerson();
+                showPerson1();
+				//隐藏添加人员界面
+				var div3 = document.getElementById("div3");
+				div3.style = "display: none;";
+			}
+            function showPerson1(){
+				//显示表格
+	
+				var str = "<tr> <th>Num</th><th>Name</th><th>Size</th><th>Type</th><th colspan='2'>Operatioin</th> </tr>"; //<th>籍贯</th>
+				// for(var i=0;i<p.length;i++){
+				// 	var a = p[i];
+				// 	str += "<tr > <td>"+a.id+"</td><td>"+a.name+"</td><td>"+a.sex+"</td><td>"+a.old+"</td> <td><button type='button' onclick='deletePerson("+a.id+")'>Delete</button></td><td><button type='button' onclick='showUpdatePerson("+a.id+")'>Update</button></td> </tr>"; //<td>"+a.area+"</td>
+				// }
+
+				var btn2 = document.getElementById("org1");
+				btn2.innerHTML="";
+				for(var i=0;i<p.length;i++){
+					
+					var a = p[i];
+					str = "<tr > <td>"+a.id+"</td><td>"+a.name+"</td><td>"+a.sex+"</td><td>"+a.old+"</td> <td><button type='button' onclick='deletePerson("+a.id+")'>Delete</button></td><td><button type='button' onclick='showUpdatePerson("+a.id+")'>Update</button></td> </tr>"; //<td>"+a.area+"</td>
+					var box = document.createElement('div');
+					// table1.style.borderRadius = "20px";
+					box.style.padding = "20px";
+					box.style.margin = "20px";
+					box.style.height = "40px";
+					box.style.backgroundColor = '#fcffab';
+					box.style.borderRadius = "20px";
+					box.style.alignContent ="center";
+					box.innerHTML = str;
+					btn2 = document.getElementById("org1");
+                    btn2.insertBefore(box,null);
+				}
+                // var a = p[p.length-1];
+				// str = "<tr > <td>"+a.id+"</td><td>"+a.name+"</td><td>"+a.sex+"</td><td>"+a.old+"</td> <td><button type='button' onclick='deletePerson("+a.id+")'>Delete</button></td><td><button type='button' onclick='showUpdatePerson("+a.id+")'>Update</button></td> </tr>"; //<td>"+a.area+"</td>
+				//box.innerHTML = str;
+ 
+
+			}
+		</script>
+
+	</head>
+	<body>
+		<button type="button" onclick="showPerson()">Show Pet Record</button>
+        <button type="button" onclick="hidePerson()">Hide Pet Record</button>
+		<button type="button" onclick="showAddPerson()">Add New Pet</button>
+
+
+		<div>
+
+			<a th:href="@{/manager/groomerList/add}">Add Pet</a>
+
+		</div>
+
+		<hr >
+        		<!-- 新增人员信息 -->
+	
+	<!-- <form th:action="@{/manger/groomerList/add}" method="POST" th:object="${groomer}">
+		<div id="div2" style="display: none;"align=center>
+			<fieldset id="field2" style="width:600px;border-radius: 20px;"align=center>
+				<legend>Add New Pet</legend>
+				<label for="phoneNumber">ID</label>
+				ID：<input type="text" th:field="*{phoneNumber}" name="id" id="id" />&nbsp
+				<label for="name">Name</label>
+				Name：<input type="text" th:field="*{name}" name="name" id="name"  />&nbsp
+				<label for="gender">Gender Type</label>
+				Gender：<input type="text" th:field="*{gender}" name="gender" id="gender"/>&nbsp
+				<label for="rank">Ranks</label>
+				Rank：<input type="text"  th:field="*{rank}" name="rank" id="rank" />&nbsp
+				<br><br>
+				<button type="button">Submit</button>
+			</fieldset>
+		</div><br><br>
+	</form> -->
+
+		<!-- 更新人员信息 -->
+		<div id="div3" style="display: none;" name="div3"  align=center>
+			<fieldset id="field3" style="width:600px;border-radius: 20px;"align=center>
+				<legend>更新人员信息</legend><br>
+				Name：<input type="text" name="name" id="uname"/>&nbsp
+				Size：<input type="number" name="old" id="uold"/>&nbsp
+				Type：
+				<select id="usex" required="required">
+					<option value ="Dog">Dog</option>
+					<option value ="Cat" >Cat</option>
+					<option value ="Other">Other</option>
+				</select><br><br>
+				<!-- 籍贯：<input type="text" name="area" id="uarea" /><br> -->
+				<button type="button" onclick="updatePerson()">Submit</button>
+				<button type="button" onclick="cancel()">Cancel</button>
+			</fieldset>
+		</div>
+		<!-- 表格信息 -->
+		<div id="div1">
+			<table border="1" style=" display: block;" id="table1"cellspacing="0" cellpadding="6" align="center" frame="border" rules="all">
+			<!-- <tr> <th>编号</th><th>姓名</th><th>性别</th><th>年龄</th><th>籍贯</th><th colspan="2">操作</th> </tr>
+				<tr> <td>v.编号</td><td>v.姓名</td><td>v.性别</td><td>v.年龄</td><td>v.籍贯</td><td><button type="button" onclick="">删除</button></td><td><button type="button">更新</button></td> </tr>
+			 -->
+             <thead>
+                <tr> 
+                    <th>Num</th><th>Name</th><th>Size</th><th>Type</th><th colspan='1'>Operatioin</th>
+                </tr>
+             </thead>
+             <tbody>
+                <tr th:each="groomer: ${groomerList}">
+                    <td th:text="${groomer.gid}"></td><td th:text="${groomer.name}"></td><td th:text="${groomer.gender}"></td><td th:text="${groomer.rank}"></td>
+                </tr>
+             </tbody>
+            
+            </table>
+		</div>
+
+		<!-- <div id="org1">
+			<table>
+				<thead>
+					<tr> 
+						<th>Num</th><th>Name</th><th>Size</th><th>Type</th><th colspan='1'>Operatioin</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr >
+						<div class="box" th:each="groomer: ${groomerList}" >
+							<td th:text="${groomer.gid}"></td><td th:text="${groomer.name}"></td><td th:text="${groomer.gender}"></td><td th:text="${groomer.rank}"></td>
+						</div>
+					</tr>
+					<!-- <input type="button" onclick="showPerson1();" value="add" /><br> -->
+				</body>
+			</table>
+		</div> -->
+
+		<div id="org1"  >
+			<div class="box" th:each="groomer: ${groomerList}" >
+				<td th:text="${groomer.gid}"></td><td th:text="${groomer.name}"></td><td th:text="${groomer.gender}"></td><td th:text="${groomer.rank}"></td>
+				<!-- <span th:text="${groomer.gid}"></span><span th:text="${groomer.name}"></span><span th:text="${groomer.gender}"></span><span th:text="${groomer.rank}"></span> -->
+			</div>
+		</div>
+
+
+</html>
