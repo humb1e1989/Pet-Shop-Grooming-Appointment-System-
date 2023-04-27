@@ -203,7 +203,7 @@
                     <form th:action="@{/maintain/searchServiceType}" method="post">
                         <input type="text" id="keyword" name="keyword"
                             class="p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            placeholder="Search by ServiceType" />&nbsp;&nbsp;&nbsp;
+                            placeholder="Search By Service Name" />&nbsp;&nbsp;&nbsp;
                         <button type="submit"
                             class="inline-flex items-center justify-center px-3 ml-4 text-sm font-medium text-gray-800 bg-gray-200 rounded-full dark:bg-gray-700 dark:text-gray-300">Search</button>
                     </form>
@@ -224,7 +224,7 @@
                             ID
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Service
+                            Service Name
                         </th>
                         <th scope="col" class="px-6 py-3">
                             Service Time
@@ -251,11 +251,11 @@
                                 </div>
                             </td> -->
                         <td class="px-6 py-4" th:text="${serviceType.sid}"></td>
-                        <td class="px-6 py-4" th:text="${serviceType.serviceName}"></td>
+                        <td class="px-6 py-4" th:text="${serviceType.service_name}"></td>
                         <td class="px-6 py-4" th:text="${serviceType.service_time}"></td>
                         <td class="px-6 py-4" th:text="${serviceType.basic_price}"></td>
                         <td>
-                            <button th:attr="data-sid=${serviceType.sid}, data-serviceName=${serviceType.serviceName},
+                            <button th:attr="data-sid=${serviceType.sid}, data-service_name=${serviceType.service_name},
                             data-service_time=${serviceType.service_time},data-basic_price=${serviceType.basic_price}"
                                 onclick="editServiceType(this)"
                                 class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</button>
@@ -277,8 +277,8 @@
             <form id="editForm" th:action="@{/maintain/updateServiceType}" th:method="post" th:object="${serviceType}">
                 <input type="hidden" id="sid" name="sid"
                     class="p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-30 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
-                <label for="serviceName">Service name: </label>
-                <input type="text" id="serviceName" name="serviceName" 
+                <label for="service_name">Service name: </label>
+                <input type="text" id="service_name" name="service_name" 
                     class="p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-30 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
                 <label for="service_time">Service Time:</label>
                 <input type="text" id="service_time" name="service_time"
@@ -295,14 +295,14 @@
                 <!-- <input type="text" th:value="${groomer.gid}" id="gid" name="gid" /> -->
                 <input type="hidden" id="addSid" name="sid"
                     class="p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-30 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
-                <label for="addServiceName">Service Name:</label>
-                <input type="text" id="addServiceName" name="serviceName"
+                <label for="addservice_name">Service Name:</label>
+                <input type="text" id="addservice_name" name="addservice_name"
                     class="p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-30  bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
                 <label for="addService_time">Service Time:</label>
-                <input type="text" id="addService_time" name="service_time"
+                <input type="text" id="addService_time" name="addService_time"
                     class="p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-30  bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
                 <label for="addBasic_price"> BasicPrice:</label>
-                <input type="text" id="addBasic_price" name="basic_price"
+                <input type="text" id="addBasic_price" name="addBasic_price"
                     class="p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-30 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
                 <button type="submit" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Add</button>
             </form>
@@ -311,12 +311,12 @@
             <script th:inline="javascript">
                 function editServiceType(button) {
                     document.getElementById("sid").value = button.dataset.sid;
-                    document.getElementById("serviceName").value = button.dataset.serviceName;
+                    document.getElementById("service_name").value = button.dataset.service_name;
                     document.getElementById("service_time").value = button.dataset.service_time;
                     document.getElementById("basic_price").value = button.dataset.basic_price;
                 }
             </script>
-            <!-- document.getElementById("serviceName").value = button.dataset.serviceName; -->
+            <!-- document.getElementById("service_name").value = button.dataset.service_name; -->
             <!-- console.log(button.dataset.image_url);
             console.log(document.getElementById("image_url").value); -->
 
