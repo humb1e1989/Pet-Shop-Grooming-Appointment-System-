@@ -404,9 +404,9 @@ public class AppointmentService {
 				.map(e -> new Object[] { e.getKey(), e.getValue() })
 				.collect(Collectors.toList());
 
-		for (Object[] obj : list) {
-			System.out.println("Here are the obj: " + obj[0] + " and their price" + ": " + obj[1]);
-		}
+		// for (Object[] obj : list) {
+		// 	System.out.println("Here are the obj: " + obj[0] + " and their price" + ": " + obj[1]);
+		// }
 
 		return list;
 	}
@@ -480,9 +480,9 @@ public class AppointmentService {
 				.map(e -> new Object[] { e.getKey(), e.getValue() })
 				.collect(Collectors.toList());
 
-		for (Object[] obj : list) {
-			System.out.println("Here are the obj: " + obj[0] + " and their price" + ": " + obj[1]);
-		}
+		// for (Object[] obj : list) {
+		// 	System.out.println("Here are the obj: " + obj[0] + " and their price" + ": " + obj[1]);
+		// }
 
 		return list;
 	}
