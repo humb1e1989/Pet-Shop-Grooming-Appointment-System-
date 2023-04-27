@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="zxx">
+<html lang="zxx" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="utf-8">
@@ -37,7 +37,7 @@
             <div class="auto-container-fluid">
                 <div class="outer-box clearfix bg-white">
                     <div class="logo-box pull-left">
-                        <figure class="logo"><a href="Home.html"><img src="/assets/images/logo-1.png" alt=""></a></figure>
+                        <figure class="logo"><a href="Home.html"><img src="/assets/images/logo.png" alt=""></a></figure>
                     </div>
                     <div class="menu-area pull-right clearfix">
                         <!--Mobile Navigation Toggler-->
@@ -90,7 +90,7 @@
             <div class="auto-container">
                 <div class="outer-box clearfix">
                     <figure class="sticky-logo pull-left">
-                        <a href="Home.html"><img src="/assets/images/logo-3.png" alt=""></a>
+                        <a href="Home.html"><img src="/assets/images/logo.png" alt=""></a>
                     </figure>
                     <div class="menu-area pull-right clearfix">
                         <nav class="main-menu clearfix">
@@ -109,7 +109,7 @@
         <div class="close-btn"><i class="fas fa-times"></i></div>
 
         <nav class="menu-box">
-            <div class="nav-logo"><a href="Home.html"><img src="/assets/images/logo-2.png" alt="" title=""></a></div>
+            <div class="nav-logo"><a href="Home.html"><img src="/assets/images/logo.png" alt="" title=""></a></div>
             <div class="menu-outer"><!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header--></div>
             <div class="contact-info">
                 <h4>Contact Info</h4>
@@ -150,62 +150,11 @@
                                     <img src="/assets/images/gallery/project-2-4.jpg" alt="">
                                 </figure>
                                 <div class="lower-content">
-                                    <figure class="icon-box"><img src="assets/images/icons/icon-17.png" alt=""></figure>
-                                    <h3><a href="PetBathing.html">Pet Bathing</a></h3>
+                                    <figure class="icon-box"><img src="/assets/images/icons/icon-17.png" alt=""></figure>
+                                    <h3><a href="service-details.html">Dog Boarding</a></h3>
                                     <p>Lorem ipsum amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt labore et dolore magna aliqua.</p>
                                     <div class="btn-box">
-                                        <a href="PetBathing.html" class="theme-btn btn-eight">Read More</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-sm-12 project-block">
-                        <div class="project-block-three">
-                            <div class="inner-box">
-                                <figure class="image-box">
-                                    <img src="assets/images/gallery/project-2-5.jpg" alt="">
-                                </figure>
-                                <div class="lower-content">
-                                    <figure class="icon-box"><img src="assets/images/icons/icon-18.png" alt=""></figure>
-                                    <h3><a href="PetHaircut.html">PetHaircut</a></h3>
-                                    <p>Lorem ipsum amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt labore et dolore magna aliqua.</p>
-                                    <div class="btn-box">
-                                        <a href="PetHaircut.html" class="theme-btn btn-eight">Read More</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-sm-12 project-block">
-                        <div class="project-block-three">
-                            <div class="inner-box">
-                                <figure class="image-box">
-                                    <img src="assets/images/gallery/project-2-7.jpg" alt="">
-                                </figure>
-                                <div class="lower-content">
-                                    <figure class="icon-box"><img src="assets/images/icons/icon-19.png" alt=""></figure>
-                                    <h3><a href="Hairdrying.html">Hair Drying</a></h3>
-                                    <p>Lorem ipsum amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt labore et dolore magna aliqua.</p>
-                                    <div class="btn-box">
-                                        <a href="Hairdrying.html" class="theme-btn btn-eight">Read More</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-sm-12 project-block">
-                        <div class="project-block-three">
-                            <div class="inner-box">
-                                <figure class="image-box">
-                                    <img src="assets/images/gallery/project-2-9.jpg" alt="">
-                                </figure>
-                                <div class="lower-content">
-                                    <figure class="icon-box"><img src="assets/images/icons/icon-16.png" alt=""></figure>
-                                    <h3><a href="PetDyeHair.html">Pet Dye Hair</a></h3>
-                                    <p>Lorem ipsum amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt labore et dolore magna aliqua.</p>
-                                    <div class="btn-box">
-                                        <a href="PetDyeHair.html" class="theme-btn btn-eight">Read More</a>
+                                        <a href="service-details.html" class="theme-btn btn-eight">Read More</a>
                                     </div>
                                 </div>
                             </div>
@@ -218,11 +167,62 @@
                                     <img src="/assets/images/gallery/project-2-1.jpg" alt="">
                                 </figure>
                                 <div class="lower-content">
-                                    <figure class="icon-box"><img src="assets/images/icons/icon-18.png" alt=""></figure>
-                                    <h3><a href="PetTraining.html">PetTraining</a></h3>
+                                    <figure class="icon-box"><img src="/assets/images/icons/icon-18.png" alt=""></figure>
+                                    <h3><a href="service-details.html">Cat Boarding</a></h3>
                                     <p>Lorem ipsum amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt labore et dolore magna aliqua.</p>
                                     <div class="btn-box">
-                                        <a href="PetTraining.html" class="theme-btn btn-eight">Read More</a>
+                                        <a href="service-details.html" class="theme-btn btn-eight">Read More</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12 project-block">
+                        <div class="project-block-three">
+                            <div class="inner-box">
+                                <figure class="image-box">
+                                    <img src="/assets/images/gallery/project-2-5.jpg" alt="">
+                                </figure>
+                                <div class="lower-content">
+                                    <figure class="icon-box"><img src="/assets/images/icons/icon-19.png" alt=""></figure>
+                                    <h3><a href="service-details.html">Pet Grooming</a></h3>
+                                    <p>Lorem ipsum amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt labore et dolore magna aliqua.</p>
+                                    <div class="btn-box">
+                                        <a href="service-details.html" class="theme-btn btn-eight">Read More</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12 project-block">
+                        <div class="project-block-three">
+                            <div class="inner-box">
+                                <figure class="image-box">
+                                    <img src="/assets/images/gallery/project-2-2.jpg" alt="">
+                                </figure>
+                                <div class="lower-content">
+                                    <figure class="icon-box"><img src="/assets/images/icons/icon-16.png" alt=""></figure>
+                                    <h3><a href="service-details.html">Pet Taxi</a></h3>
+                                    <p>Lorem ipsum amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt labore et dolore magna aliqua.</p>
+                                    <div class="btn-box">
+                                        <a href="service-details.html" class="theme-btn btn-eight">Read More</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12 project-block">
+                        <div class="project-block-three">
+                            <div class="inner-box">
+                                <figure class="image-box">
+                                    <img src="/assets/images/gallery/project-2-7.jpg" alt="">
+                                </figure>
+                                <div class="lower-content">
+                                    <figure class="icon-box"><img src="/assets/images/icons/icon-18.png" alt=""></figure>
+                                    <h3><a href="service-details.html">Spa and Grooming</a></h3>
+                                    <p>Lorem ipsum amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt labore et dolore magna aliqua.</p>
+                                    <div class="btn-box">
+                                        <a href="service-details.html" class="theme-btn btn-eight">Read More</a>
                                     </div>
                                 </div>
                             </div>
@@ -235,18 +235,26 @@
                                     <img src="/assets/images/gallery/project-2-3.jpg" alt="">
                                 </figure>
                                 <div class="lower-content">
-                                    <figure class="icon-box"><img src="assets/images/icons/icon-19.png" alt=""></figure>
-                                    <h3><a href="VeterinaryCare.html">Veterinary Care</a></h3>
+                                    <figure class="icon-box"><img src="/assets/images/icons/icon-19.png" alt=""></figure>
+                                    <h3><a href="service-details.html">Veterinary Care</a></h3>
                                     <p>Lorem ipsum amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt labore et dolore magna aliqua.</p>
                                     <div class="btn-box">
-                                        <a href="VeterinaryCare.html" class="theme-btn btn-eight">Read More</a>
+                                        <a href="service-details.html" class="theme-btn btn-eight">Read More</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            
+                <div class="pagination-wrapper centred">
+                    <ul class="pagination clearfix">
+                        <li><a href="service-details.html"><i class="fas fa-angle-left"></i></a></li>
+                        <li><a href="service-details.html">1</a></li>
+                        <li><a href="service-details.html" class="current">2</a></li>
+                        <li><a href="service-details.html">3</a></li>
+                        <li><a href="service-details.html"><i class="fas fa-angle-right"></i></a></li>
+                    </ul>
+                </div>
             </div>
         </section>
         <!-- project-style-three end -->
@@ -261,7 +269,7 @@
                     <div class="col-lg-4 col-md-6 col-sm-12 footer-column">
                         <div class="footer-widget logo-widget">
 
-                            <figure class="footer-logo footer-logo-center"><a href="Home.html"><img src="/assets/images/logo-2.png" alt=""></a></figure>
+                            <figure class="footer-logo footer-logo-center"><a href="Home.html"><img src="/assets/images/logo.png" alt=""></a></figure>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-6 col-sm-12 footer-column">

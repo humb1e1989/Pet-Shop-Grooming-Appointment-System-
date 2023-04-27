@@ -26,37 +26,36 @@ public class LoginController {
     // @Autowired
     // private AuthenticationManager authenticationManager;
     
-    @GetMapping("")
-    public String showForm() {
-        return "signup";
-    }
-
-    // //登录登录登录
-    // @PostMapping("")
-    // public String loginUser(@RequestParam("uname") String username,
-    //                         @RequestParam("upwd") String password,
-    //                         Model model,
-    //                         HttpSession session,
-    //                         RedirectAttributes redirectAttributes) {
-    //     // if(loginService.loginUser(username, password)==0){
-    //     if(loginService.loginUser(username, password)){
-    //         // 添加用户信息到 session
-    //         session.setAttribute("user", username);
-
-    //         redirectAttributes.addFlashAttribute("message", "登录成功");
-    //         return "redirect:/appointment-system";
-    //     } else if(loginService.loginUser(username, password)){
-    //         session.setAttribute("user", username);
-
-    //         redirectAttributes.addFlashAttribute("message", "管理员登录成功");
-    //         return "redirect:/manager";
-    //     }
-        
-    //     else {
-    //         redirectAttributes.addFlashAttribute("error", "登录失败");
-    //         return "redirect:/appointment-system";
-    //     }
+    // @GetMapping("")
+    // public String showForm() {
+    //     return "signup";
     // }
+
+    //登录登录登录
+    @PostMapping("login")
+    public String loginUser(@RequestParam("username") String username,
+                            @RequestParam("password") String password,
+                            Model model,
+                            HttpSession session,
+                            RedirectAttributes redirectAttributes) {
+        if(loginService.loginUser(username, password)==0){
+            // 添加用户信息到 session
+            session.setAttribute("user", username);
+
+            redirectAttributes.addFlashAttribute("message", "登录成功");
+            return "redirect:/appointment-system";
+        } else if(loginService.loginUser(username, password)==1){
+            session.setAttribute("user", username);
+
+            redirectAttributes.addFlashAttribute("message", "管理员登录成功");
+            return "redirect:/appointment-system";
+        }
+        
+        else {
+            redirectAttributes.addFlashAttribute("error", "登录失败");
+            return "redirect:/appointment-system";
+        }
+    }
 
     // 注册注册注册
     @PostMapping("/reg")
@@ -70,11 +69,7 @@ public class LoginController {
                                HttpSession session) {
         // User user = new User(username, password,);
         User user=new User(null, username, password, 0, null, null, null, phone, email, 0);
-    if(password!=password2){
-        redirectAttributes.addFlashAttribute("error", "注册失败:两次密码输入不一样");
-        return "redirect:/appointment-system";
 
-    }
         if(loginService.registerUser(user)==1){
             redirectAttributes.addFlashAttribute("error", "注册失败:用户名已被注册或格式不符");
             return "redirect:/appointment-system";
@@ -105,10 +100,7 @@ public class LoginController {
         return "redirect:/appointment-system";
     }
 
-
-
 //前端检查用户名和email的api接口
-
 
     @GetMapping("/check-unique")
     public ResponseEntity<?> checkUnique(@RequestParam("value") String value) {
@@ -120,16 +112,16 @@ public class LoginController {
             return ResponseEntity.status(HttpStatus.CONFLICT).body("duplicate");
         }
     }
-    // @GetMapping("/check-uniqueem")
-    // public ResponseEntity<?> checkUniqueem(@RequestParam("value") String value) {
-    //     boolean isUnique = loginService.checkUniqueEmail(value);
+    @GetMapping("/check-uniqueem")
+    public ResponseEntity<?> checkUniqueem(@RequestParam("value") String value) {
+        boolean isUnique = loginService.checkUniqueEmail(value);
 
-    //     if (isUnique) {
-    //         return ResponseEntity.ok().body("unique");
-    //     } else {
-    //         return ResponseEntity.status(HttpStatus.CONFLICT).body("duplicate");
-    //     }
-    // }
+        if (isUnique) {
+            return ResponseEntity.ok().body("unique");
+        } else {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("duplicate");
+        }
+    }
 }
 
 

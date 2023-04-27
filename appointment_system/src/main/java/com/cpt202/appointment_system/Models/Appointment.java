@@ -19,19 +19,19 @@ import lombok.Data;
 public class Appointment {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(columnDefinition = "int(7)")
     private Integer aid;
 
     @Column(columnDefinition = "Timestamp DEFAULT CURRENT_TIMESTAMP", nullable = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd HH:mm:ss")//bowen li's modification
-    private Timestamp create_time;
+    private Timestamp createTime;
 
     @Column(columnDefinition = "Timestamp", nullable = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd HH:mm:ss")//bowen li's modification
-    private Timestamp start_time;
+    private Timestamp startTime;
 
     /* @Column(columnDefinition = "tinyint", nullable = false)
         ZYH's modification: change the type of status from tinyint to varchar(50)
@@ -53,7 +53,7 @@ public class Appointment {
     
     @ManyToOne
     @JoinColumn(name="sid",referencedColumnName = "sid",nullable = false)
-    private ServiceType service_type;
+    private ServiceType serviceType;
 
     @ManyToOne
     @JoinColumn(name = "gid", referencedColumnName = "gid", nullable = false)
@@ -70,40 +70,42 @@ public class Appointment {
     @Column(columnDefinition = "Timestamp", nullable = true)
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd HH:mm:ss")//bowen li's modification
-    private Timestamp finish_time;
+    private Timestamp finishTime;
     
     @Column(columnDefinition = "Timestamp", nullable = true)
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd HH:mm:ss")//bowen li's modification
-    private Timestamp cancel_time;
+    private Timestamp cancelTime;
 
     //bowen li's modification
     @Column(columnDefinition = "Double", nullable = true)
-    private Double total_price;
+    private Double totalprice;
     
     public Appointment(){
+        
     }
+
 
     public Appointment(Integer aid, Timestamp createTime, Timestamp startTime, String status, ServiceType serviceType,
             Groomer groomer, User user, Pet pet, Timestamp finishTime, Timestamp cancelTime, Double totalprice) {
         this.aid = aid;
-        this.create_time = createTime;
-        this.start_time = startTime;
+        this.createTime = createTime;
+        this.startTime = startTime;
         this.status = status;
-        this.service_type = serviceType;
+        this.serviceType = serviceType;
         this.groomer = groomer;
         this.user = user;
         this.pet = pet;
-        this.finish_time = finishTime;
-        this.cancel_time = cancelTime;
-        this.total_price = totalprice;
+        this.finishTime = finishTime;
+        this.cancelTime = cancelTime;
+        this.totalprice = totalprice;
     }
 
 
 
     public Appointment(Timestamp startTime, ServiceType serviceType, Groomer groomer, User user, Pet pet) {
-        this.start_time = startTime;
-        this.service_type = serviceType;
+        this.startTime = startTime;
+        this.serviceType = serviceType;
         this.groomer = groomer;
         this.user = user;
         this.pet = pet;
@@ -122,11 +124,6 @@ public class Appointment {
 
 
     public Appointment(Integer aid) {
-        this.aid = aid;
-    }
-
-    public Appointment(String status, Integer aid) {
-        this.status = status;
         this.aid = aid;
     }
 

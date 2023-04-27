@@ -34,8 +34,24 @@ public class UserService {
     private GroomerRepo groomerRepo;
 
     // CYZ
-    public List<User> listAllCustomers_M() {
+    public Result<?> listAllCustomers_M() {
+        Integer typeCustomer = 0;
+        List<User> userList = userRepo.findByType(typeCustomer);
+
+        if (!userList.isEmpty()) {
+            return Result.success(userList, "Successfully List All Customers!");
+        }
+
+        return Result.error("-1", "No Registered Customers.");
+
+    }
+
+    public List<User> getAllUsers() {
         return userRepo.findAll();
+    }
+
+    public void updateUser(User user) {
+        userRepo.save(user);
     }
 
     // CYZ
@@ -56,8 +72,14 @@ public class UserService {
     }
 
     // CYZ
-    public List<User> searchCustomerByName_M(String username) {
-        return userRepo.findByUsernameContaining(username);
+    public Result<?> searchCustomerByName_M(String username) {
+        List<User> userList = userRepo.findByUsernameContaining(username);
+
+        if (!userList.isEmpty()) {
+            return Result.success(userList, "Find Matching Customers!");
+        }
+
+        return Result.error("-1", "No Matching Customers Found.");
     }
 
     
@@ -111,13 +133,5 @@ public class UserService {
         return Result.error("-1", "No Matching User Found.");
     }
 
-    public void updateUser(User user) {
-        userRepo.save(user);
-    }
-
-    public void deleteUserById(Integer uid) {
-        userRepo.deleteByUid(uid);
-    }
-
-
+    
 }

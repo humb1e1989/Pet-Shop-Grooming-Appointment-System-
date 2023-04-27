@@ -17,6 +17,7 @@ public class Groomer {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(columnDefinition = "int(7)")
     private Integer gid;
     
     @Column(columnDefinition = "varchar(50)", nullable = false)
@@ -26,15 +27,12 @@ public class Groomer {
     private String gender;
 
     @Column(columnDefinition = "varchar(255) default '/assets/images/no-user.png'", name = "image_url", nullable = true)
-    private String image_url;
-
-    // @Column(columnDefinition = "varchar(255)", name = "imageURL", nullable = true)
-    // private String imageURL;
+    private String imageURL;
 
     // name it "ranking" in MySQL to avoid possible error 
     // since rank() is a buil-in function in MySQL 
     // need
-    @Column(name = "ranking", columnDefinition = "int", nullable = false)
+    @Column(name = "ranking", columnDefinition = "tinyint", nullable = false)
     private Integer rank;
 
     @Column(columnDefinition = "varchar(11)", nullable = true)
@@ -43,7 +41,7 @@ public class Groomer {
     @Column(columnDefinition = "varchar(255) default 'No Description'", nullable = true)
     private String description;
     
-    
+
     public Groomer() {
     }
 
@@ -54,11 +52,11 @@ public class Groomer {
 
 
     
-    public Groomer(Integer gid, String name, String gender, String image_url, Integer rank, String phoneNumber) {
+    public Groomer(int gid, String name, String gender, String imageURL, Integer rank, String phoneNumber) {
         this.gid = gid;
         this.name = name;
         this.gender = gender;
-        this.image_url = image_url;
+        this.imageURL = imageURL;
         this.rank = rank;
         this.phoneNumber = phoneNumber;
     }    

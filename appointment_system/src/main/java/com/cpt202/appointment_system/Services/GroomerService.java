@@ -18,7 +18,8 @@ public class GroomerService {
 
     // CYZ
     public List<Groomer> listAllGroomers() {
-        return groomerRepo.findAll();
+        List<Groomer> groomerList = groomerRepo.findAll();
+        return groomerList;
     }
 
     // CYZ
@@ -61,36 +62,60 @@ public class GroomerService {
 
     }
 
-    // CYZ modified by ZYH
+    // CYZ
     // it might have a more efficient way to implement dynamically update
     // save() will update every field of the specific record in the table, 
     // even if some fields are null, 
     // which means save() will simply override the all existing fields in the table 
-    public void editGroomer_M(Groomer g){
-        // } else {
-        //     if (groomerRepo.findByPhoneNumber(g.getPhoneNumber()) == null) {
-        //         groomerRepo.save(g);
-        //         return Result.success();
-        //     }
-        //     return Result.error("-2", "Phone Number Exists or Remains the Same.");
-        // }
+    public Result<?> editGroomer_M(Groomer g){
+        
+        Groomer groomer = groomerRepo.findByGid(g.getGid());
+
+        if (g.getName() == null) {
+            g.setName(groomer.getName());
+        }
+
+        if (g.getGender() == null) {
+            g.setGender(groomer.getGender());
+        }
+
+        if (g.getImageURL() == null) {
+            g.setImageURL(groomer.getImageURL());
+        }
+
+        if (g.getRank() == null) {
+            g.setRank(groomer.getRank());
+        }
+
+        if (g.getDescription() == null) {
+            g.setDescription(groomer.getDescription());
+        }
+
+        if (g.getPhoneNumber() == null) {
+            g.setPhoneNumber(groomer.getPhoneNumber());
+        } else {
+            if (groomerRepo.findByPhoneNumber(g.getPhoneNumber()) == null) {
+                groomerRepo.save(g);
+                return Result.success();
+            }
+            return Result.error("-2", "Phone Number Exists or Remains the Same.");
+        }
+
         groomerRepo.save(g);
+        return Result.success();
+
     }
 
-
     // YYY PBI NO.4 - Get a groomer list by groomer name, rank and phone number, no matter manager or customer
-    // public Result<?> searchGroomerByName(@RequestParam Groomer groomer) 
-    //     List<Groomer> groomerList = groomerRepo.findByNameIs(groomer.getName());
+    public Result<?> searchGroomerByName(@RequestParam Groomer groomer) {
 
-	// 	if (!groomerList.isEmpty()) {
-	// 		return Result.success(groomerList, "Find Matching Appointments!");
-	// 	}
-	// 	return Result.error("-1", "No Matching Appointment Found.");
-    // }
+        List<Groomer> groomerList = groomerRepo.findByNameIs(groomer.getName());
 
-    // search groomer by name
-    public List<Groomer> searchGroomerByName_M(String name) {
-        return groomerRepo.findByNameContaining(name);
+		if (!groomerList.isEmpty()) {
+			return Result.success(groomerList, "Find Matching Appointments!");
+		}
+		return Result.error("-1", "No Matching Appointment Found.");
+
     }
 
     public Result<?> searchGroomerByRank(@RequestParam Groomer groomer) {
@@ -115,19 +140,4 @@ public class GroomerService {
 
     }
 
-    //kx 
-    @Autowired
-    private GroomerRepo groomerRepository;
-
-    public List<Groomer> getAllGroomers() {
-        return groomerRepository.findAll();
-    }
-
-    public void updateGroomer(Groomer groomer) {
-        groomerRepository.save(groomer);
-    }
-
-    public void deleteGroomerById(Integer gid) {
-        groomerRepository.deleteByGid(gid);
-    }
 }

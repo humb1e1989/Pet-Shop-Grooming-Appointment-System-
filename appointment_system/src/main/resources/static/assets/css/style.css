@@ -14,7 +14,7 @@
 10. Contact Section
 11. Google Map
 
-¸ü¶àÏÂÔØ£ºhttp://www.bootstrapmb.com
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø£ï¿½http://www.bootstrapmb.com
 **********************************************/
 
 @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap');
@@ -51,7 +51,7 @@ body {
   color:#555555;
   line-height:30px;
   font-weight:400;
-  background:#ffffff;
+  background:#ebe3cc;
   font-family: 'Nunito', sans-serif;
   background-size:cover;
   background-repeat:no-repeat;
@@ -1582,7 +1582,7 @@ background-color: #fff;
   position: relative;
   display: block;
   margin-right: -306px;
-  min-height: 935px;
+  min-height: 800px;
   padding-left: 200px;
   padding-right: 175px;
   padding-top: 45px;
@@ -1592,6 +1592,8 @@ background-color: #fff;
   position: relative;
   width: 100%;
   z-index: 1;
+  width: 800px; 
+  height: 890px;
 }
 
 .banner-section .image-box .image-2{

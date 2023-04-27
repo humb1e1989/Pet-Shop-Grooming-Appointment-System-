@@ -26,8 +26,19 @@ public class LoginService {
     private UserRepo userRepository;
 
 
+    // public boolean loginUser(String username,String password) {
+    //     Optional<User> dbUser = userRepository.findByUsername(username);
+    //     // if (dbUser.isPresent()&&dbUser.get().getPassword().equals(new BCryptPasswordEncoder().encode(password))){
+    //         if (dbUser.isPresent()&&dbUser.get().getPassword().equals(password)){
+    //         return true;
+    //     } else {
+    //         return false;
+    //     }
+    // }
+
+
     public int loginUser(String username,String password) {
-        Optional<User> dbUser = userRepository.findByUsername(username);
+        Optional<User> dbUser = userRepository.findByUsernameOptional(username);
         // if (dbUser.isPresent()&&dbUser.get().getPassword().equals(new BCryptPasswordEncoder().encode(password))){
             if (dbUser.isPresent()&&dbUser.get().getPassword().equals(password)){
                 if(dbUser.get().getType().equals(0)){
@@ -69,7 +80,7 @@ public class LoginService {
 
 //前端检查
     public boolean checkUnique(String username) {
-        Optional<User> user = userRepository.findByUsername(username);
+        Optional<User> user = userRepository.findByUsernameOptional(username);
         return user.isEmpty();
     }
 

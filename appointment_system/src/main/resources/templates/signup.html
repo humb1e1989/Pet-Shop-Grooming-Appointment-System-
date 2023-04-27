@@ -68,8 +68,6 @@ function Appoint(){
 
 
 
-
-
 <p id="message" th:text="${message}" style="display:none;"></p>
 <p id="error" th:text="${error}" style="display:none;"></p>
     <script>
@@ -88,8 +86,8 @@ function Appoint(){
 
     <h1>欢迎，<span th:text="${session.user}"></span></h1>
 
-<div id="signform" class="modal" style="display: none">
-  <div class="container">
+<div id="signform" class="modal_sign" style="display: none">
+  <div class="container_sign">
     <div class="header">
       <span class="close">&times; </span>
       <h2>Log in</h2>
@@ -98,14 +96,14 @@ function Appoint(){
     <!--    Form-->
     <form class="form" action="/appointment-system" id="loginForm" method="post">
       <!-- <input type="hidden" name="action" value="login"> -->
-      <div class="form_control">
+      <div class="form_control_sign">
         <label for="uname">用户名</label>
         <input type="text" placeholder="请输入用户名" id="uname" name="uname">
         <i class="el-icon-success"></i>
         <i class="el-icon-warning"></i>
         <small>Error Message</small>
       </div>
-      <div class="form_control">
+      <div class="form_control_sign">
         <label for="upwd">密码</label>
         <input type="password" placeholder="请输入密码" id="upwd" name="upwd">
         <i class="el-icon-success"></i>
@@ -114,15 +112,14 @@ function Appoint(){
       </div>
       <button class="theme-btn btn-seven" id="loginBtn" >Log in</button>
       <p>还没有账号?赶快<a href="#" style="text-decoration: none;color: #43A047" onclick="signre()">Sign up</a>一个吧</p>
+      <p>忘记密码？点击<a href="/reset-password-form" style="text-decoration: none;color: #43A047" onclick="signre()">找回</a>一个吧</p>
     </form>
   </div>
 </div>
 
-
-
 <!--    sign up-->
-<div id="signupform" class="modal" style="display: none">
-  <div class="container">
+<div id="signupform" class="modal_sign" style="display: none">
+  <div class="container_sign">
     <div class="header">
       <span class="close">&times; </span>
       <h2>Register</h2>
@@ -131,7 +128,7 @@ function Appoint(){
     <!--    Form-->
     <form action="/appointment-system/reg" class="form" id="Registerform" method="post">
       <!-- <input type="hidden" name="action" value="login"> -->
-          <div class="form_control">
+          <div class="form_control_sign">
                 <label for="username">用户名</label>
                 <input type="text" placeholder="请输入用户名" id="username" name="rename"><br>
                 <i class="el-icon-success"></i>
@@ -139,7 +136,7 @@ function Appoint(){
                 <small>Error Message</small>
           </div>
 
-          <div class="form_control">
+          <div class="form_control_sign">
                 <label for="email">邮箱</label>
                 <input type="text" placeholder="请输入邮箱" id="email" name="reemail"><br>
                 <i class="el-icon-success"></i>
@@ -147,7 +144,7 @@ function Appoint(){
                 <small>Error Message</small>
           </div>
 
-          <div class="form_control">
+          <div class="form_control_sign">
             <label for="phone">手机</label>
             <input type="text" placeholder="输入手机号" id="phone" name="phone"><br>
             <i class="el-icon-success"></i>
@@ -155,7 +152,7 @@ function Appoint(){
             <small>Error Message</small>
       </div>
 
-          <div class="form_control">
+          <div class="form_control_sign">
                 <label for="password">密码</label>
                 <input type="password" placeholder="请输入密码" id="password" name="repass"><br>
                 <i class="el-icon-success"></i>
@@ -163,7 +160,7 @@ function Appoint(){
                 <small>Error Message</small>
           </div>
 
-          <div class="form_control">
+          <div class="form_control_sign">
                 <label for="password2">重复密码</label>
                 <input type="password" placeholder="请再次输入密码" id="password2" name="repass2"><br>
                 <i class="el-icon-success"></i>
@@ -219,6 +216,9 @@ function Appoint(){
     // sign up 的 constraints
     //获取页面实体（输入框、表单）---------------------------------------
     const form = document.getElementById("Registerform");
+    const formLog = document.getElementById("signform");
+    const uname = document.getElementById("uname");
+    const upwd = document.getElementById("upwd");
     const username = document.getElementById("username");
     const email = document.getElementById("email");
     const passowrd = document.getElementById("password");
@@ -228,7 +228,7 @@ function Appoint(){
 
     username.addEventListener("blur",checkUsername)
     email.addEventListener("blur",checkEmail)
-    password.addEventListener("blur",checkPassword)
+    passowrd.addEventListener("blur",checkPassword)
     password2.addEventListener("blur",checkPassword2)
     phone.addEventListener("blur",checkPhone)
 
@@ -326,6 +326,8 @@ function Appoint(){
       }
     }
   
+
+
     //form表单提交事件-----------------------------------
     form.addEventListener('submit', (e) => {
     // 如果 checkInputs 返回 false（即输入不符合要求），阻止表单提交
@@ -334,6 +336,39 @@ function Appoint(){
     e.preventDefault();
 }
     })
+
+    //Log form 表单提交事件
+    formLog.addEventListener('submit', (e) => {
+    // 如果 checkInputs 返回 false（即输入不符合要求），阻止表单提交
+    const checkvalue=checkInputslog();
+    if (checkvalue!=0) {
+    e.preventDefault();
+}
+    })
+
+    function checkInputslog(){
+      let test=0;
+
+      const usernameValue = uname.value.trim();
+      const passwordValue = upwd .value.trim();
+      if (usernameValue === "") {
+                setErrorFor(uname, "Username can not be empty");
+                test++;
+            } 
+       //密码验证
+       if(passwordValue===""){
+        setErrorFor(upwd,"Password can not be empty");
+        test++;
+
+    }
+    return test;
+  }
+
+
+
+
+
+
     
     //总验证方法-------------------------------------------
     function checkInputs() {
@@ -459,6 +494,7 @@ function Appoint(){
       formControl.classList.add('success');
     }
   
+    
     //邮箱验证特殊情况：邮箱格式不正确----------------------------
     function valiEmail(email){
       const regEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;

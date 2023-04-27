@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="zxx">
+<html lang="zxx" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="utf-8">
@@ -35,7 +35,7 @@
             <div class="auto-container-fluid">
                 <div class="outer-box clearfix bg-white">
                     <div class="logo-box pull-left">
-                        <figure class="logo"><a th:href="@{/home}"><img src="/assets/images/logo-1.png" alt=""></a></figure>
+                        <figure class="logo"><a th:href="@{/home}"><img src="/assets/images/logo.png" alt=""></a></figure>
                     </div>
                     <div class="menu-area pull-right clearfix">
                         <!--Mobile Navigation Toggler-->
@@ -65,19 +65,19 @@
                                         </ul>
                                     </li>
                                     <!--登陆后将join us按键改成个人信息菜单-->
-<!--                                    <li><a href="Personal.html">Mine</a></li>-->
-<!--                                    <ul>-->
-<!--                                        <li><a href="Appointment.html">Information</a></li>-->
-<!--                                        <li><a href="Appointment.html">Appointment</a></li>-->
-<!--                                    </ul>-->
+                                   <li><a href="Personal.html">Mine</a></li>
+                                   <ul>
+                                       <li><a href="Appointment.html">Information</a></li>
+                                       <li><a href="Appointment.html">Appointment</a></li>
+                                   </ul>
 
                                 </ul>
                             </div>
                         </nav>
                         <!--改为登录弹窗-->
-                        <div class="btn-box">
+                        <!-- <div class="btn-box">
                             <a href="xx.html" class="theme-btn btn-five">Join Us</a>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
@@ -88,7 +88,7 @@
             <div class="auto-container">
                 <div class="outer-box clearfix">
                     <figure class="sticky-logo pull-left">
-                        <a th:href="@{/home}"><img src="/assets/images/logo-3.png" alt=""></a>
+                        <a th:href="@{/home}"><img src="/assets/images/logo.png" alt=""></a>
                     </figure>
                     <div class="menu-area pull-right clearfix">
                         <nav class="main-menu clearfix">
@@ -107,7 +107,7 @@
         <div class="close-btn"><i class="fas fa-times"></i></div>
 
         <nav class="menu-box">
-            <div class="nav-logo"><a th:href="@{/home}"><img src="/assets/images/logo-2.png" alt="" title=""></a></div>
+            <div class="nav-logo"><a th:href="@{/home}"><img src="/assets/images/logo.png" alt="" title=""></a></div>
             <div class="menu-outer"><!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header--></div>
             <div class="contact-info">
                 <h4>Contact Info</h4>
@@ -137,7 +137,8 @@
         <!-- End Page Title -->
 
 
-        <section class="team-page-section" th:class="team-page-section">
+        <!-- team-page-section TEAM MEMBERS 需要连接groomers的数据库-->
+        <section class="team-page-section">
             <div class="auto-container">
                 <div class="sec-title style-two centred">
                     <h5>TEAM MEMBERS</h5>
@@ -145,29 +146,99 @@
                     <div class="divider" style="background-image: url(/assets/images/icons/divider-1.png);"></div>
                 </div>
                 <div class="row clearfix">
-                    <div class="col-lg-3 col-md-6 col-sm-12 team-block" th:each="groomer : ${gList}">
+                    <div class="col-lg-3 col-md-6 col-sm-12 team-block">
                         <div class="team-block-two wow fadeInUp animated animated" data-wow-delay="00ms" data-wow-duration="1500ms" style="visibility: visible; animation-duration: 1500ms; animation-delay: 0ms; animation-name: fadeInUp;">
                             <div class="inner-box">
                                 <div class="image-box">
-                                    <figure class="image"><img th:src="${groomer.getImageURL()}" alt=""></figure>
+                                    <figure class="image"><img src="/assets/images/team/team-5.png" alt=""></figure>
                                 </div>
                                 <div class="lower-content">
                                     <ul class="rating clearfix centred" style="color: #ffa800">
-                                        <li>=====
-                                            <script th:inline="javascript">
-                                                
-                                                // Please ignore this error (It can run as we want anyway)
-                                                var ranking = [[${groomer.getRank()}]];
-                                                for (var i=0; i < ranking; i++){
-                                                    document.write("<i class=\"fas fa-star\"></i>");
-                                                }
-                                            </script>
-                                        =====</li>
+                                        <li>=====<i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>=====</li>
                                     </ul>
-                                    <h3><p><b th:text="${groomer.getName()}"></b></p></h3>
+                                    
+                                    <h3><a href="Home.html">Hard Branots</a></h3>
                                     <div class="designation">
+                                        <p>Founder</p>
                                         <span class="bar"></span>
-                                        <p th:text="${groomer.getDescription()}"></p>
+                                        <p>Ut hendrerit nec neque nec porttitor. Ut semper, lacus posuere mollis ultricies, purus</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 col-sm-12 team-block">
+                        <div class="team-block-two wow fadeInUp animated animated" data-wow-delay="200ms" data-wow-duration="1500ms" style="visibility: visible; animation-duration: 1500ms; animation-delay: 200ms; animation-name: fadeInUp;">
+                            <div class="inner-box">
+                                <div class="image-box">
+                                    <figure class="image"><img src="/assets/images/team/team-6.png" alt=""></figure>
+                                </div>
+                                <div class="lower-content">
+                                    <ul class="rating clearfix centred" style="color: #ffa800">
+                                        <li>=====<i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>=====</li>
+                                    </ul>
+                                    <h3><a href="Home.html">Monica Bana</a></h3>
+                                    <div class="designation">
+                                        <p>Veterinarian</p>
+                                        <span class="bar"></span>
+                                        <p>Ut hendrerit nec neque nec porttitor. Ut semper, lacus posuere mollis ultricies, purus</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-12 team-block">
+                        <div class="team-block-two wow fadeInUp animated animated" data-wow-delay="400ms" data-wow-duration="1500ms" style="visibility: visible; animation-duration: 1500ms; animation-delay: 400ms; animation-name: fadeInUp;">
+                            <div class="inner-box">
+                                <div class="image-box">
+                                    <figure class="image"><img src="/assets/images/team/team-7.png" alt=""></figure>
+                                </div>
+                                <div class="lower-content">
+                                    <ul class="rating clearfix centred" style="color: #ffa800">
+                                        <li>=====<i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>=====</li>
+                                    </ul>
+                                    <h3><a href="Home.html">James Rio</a></h3>
+                                    <div class="designation">
+                                        <p>Pet Sitter</p>
+                                        <span class="bar"></span>
+                                        <p>Ut hendrerit nec neque nec porttitor. Ut semper, lacus posuere mollis ultricies, purus</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-12 team-block">
+                        <div class="team-block-two wow fadeInUp animated animated" data-wow-delay="600ms" data-wow-duration="1500ms" style="visibility: visible; animation-duration: 1500ms; animation-delay: 600ms; animation-name: fadeInUp;">
+                            <div class="inner-box">
+                                <div class="image-box">
+                                    <figure class="image"><img src="/assets/images/team/team-8.png" alt=""></figure>
+                                </div>
+                                <div class="lower-content">
+                                    <ul class="rating clearfix centred" style="color: #ffa800">
+                                        <li>=====<i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>=====</li>
+                                    </ul>
+                                    <h3><a href="Home.html">Neil Roberto</a></h3>
+                                    <div class="designation">
+                                        <p>Dog Trainer</p>
+                                        <span class="bar"></span>
+                                        <p>Ut hendrerit nec neque nec porttitor. Ut semper, lacus posuere mollis ultricies, purus</p>
                                     </div>
                                 </div>
                             </div>
@@ -176,7 +247,6 @@
                 </div>
             </div>
         </section>
-        
         <!-- team-page-section end -->
 
 
@@ -189,7 +259,7 @@
                         <div class="col-lg-4 col-md-6 col-sm-12 footer-column">
                             <div class="footer-widget logo-widget">
 
-                                <figure class="footer-logo footer-logo-center"><a th:href="@{/home}"><img src="/assets/images/logo-2.png" alt=""></a></figure>
+                                <figure class="footer-logo footer-logo-center"><a th:href="@{/home}"><img src="/assets/images/logo.png" alt=""></a></figure>
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-6 col-sm-12 footer-column">
@@ -240,7 +310,7 @@
         </button>
 
         
-</div>
+    </div>
 
 
     <!-- jequery plugins -->

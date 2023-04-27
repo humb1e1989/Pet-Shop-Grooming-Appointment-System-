@@ -2,7 +2,7 @@
     box-sizing: border-box;
 }
 
-body {
+/* body {
     background-color: #9659b6;
     font-family: "Helvetica Neue", sans-serif;
     display: flex;
@@ -10,8 +10,8 @@ body {
     justify-content: center;
     min-height: 100vh;
     margin: 0;
-}
-.modal {
+} */
+.modal_sign {
     position: fixed;
     z-index: 1;
     left: 0;
@@ -20,42 +20,49 @@ body {
     height: 100%;
     overflow: auto;
     background-color: rgba(0, 0, 0, 0.4);
+    z-index: 9998
 }
 
 
-.container {
+.container_sign {
+    position: relative;
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
     width: 400px;
     max-width: 100%;
-
+    z-index: 9999;
     margin: 8% auto;
 
 }
-#close{
-    position: relative;
-    left: 90%;
-}
-#close2{
-    position: relative;
-    left: 90%;
-}
 
 
-.close {
+
+.close-container {
+    position: absolute; /* 设置 close-container 为绝对定位 */
+    top: 0; /* 使其紧靠 header 顶部 */
+    right: 0; /* 使其紧靠 header 右侧 */
+    display: flex;
+    align-items: center;
+}
+
+.close_sign {
     color: #aaa;
-    float: right;
     font-size: 28px;
     font-weight: bold;
+    padding: 10px 15px; /* 增加内边距以增加点击区域 */
+    line-height: 1; /* 调整行高 */
+    margin: 0 5px; /* 添加外边距以添加周围空间 */
 }
 
-.close:hover,
-.close:focus {
+.close_sign:hover,
+.close_sign:focus {
     color: black;
     text-decoration: none;
     cursor: pointer;
 }
+
+
 
 
 .header {
@@ -74,17 +81,17 @@ body {
     padding: 30px 40px;
 }
 
-.form_control {
+.form_control_sign {
     margin-bottom: 10px;
     padding-bottom: 20px;
     position: relative;
 }
 
- .form_control label {
+ .form_control_sign label {
     display: inline-block;
     margin-bottom: 5px;
 }
-.form_control input {
+.form_control_sign input {
     border: 2px solid #f0f0f0;
     border-radius: 4px;
     display: block;
@@ -95,38 +102,38 @@ body {
 }
 
 
-.form_control input:focus {
+.form_control_sign input:focus {
     outline: 0;
 }
 
 输入框验证的样式
-.form_control.success input {
+.form_control_sign.success input {
     border-color: #2ecc71;
 }
 
-.form_control.error input {
+.form_control_sign.error input {
     border-color: #e74c3c;
 }
 
 /* 验证的图标的样式 */
-.form_control.success i.el-icon-success {
+.form_control_sign.success i.el-icon-success {
     visibility: visible;
     color: #2ecc71;
 }
 
-.form_control.error i.el-icon-warning {
+.form_control_sign.error i.el-icon-warning {
     visibility: visible;
     color: #e74c3c;
 }
 
-.form_control i {
+.form_control_sign i {
     position: absolute;
     top: 40px;
     right: 10px;
     visibility: hidden;
 }
 
-.form_control small {
+.form_control_sign small {
     visibility: hidden;
     position: absolute;
     font-weight: 600;
@@ -135,7 +142,7 @@ body {
 }
 
 /* 验证错误的提示信息样式 */
-.form_control.error small {
+.form_control_sign.error small {
     visibility: visible;
     color: #e74c3c;
 }

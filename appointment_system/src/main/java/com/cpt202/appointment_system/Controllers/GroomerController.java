@@ -19,20 +19,20 @@ import com.cpt202.appointment_system.Models.Groomer;
 import com.cpt202.appointment_system.Services.GroomerService;
 
 
-// @Controller
 @Controller
-@RequestMapping("/home")
+@RequestMapping("/appointment-system")
 public class GroomerController {
 
     @Autowired
     private GroomerService groomerService;
 
     
-    // Manager Part
-    @GetMapping("/manager/grommerList")  
-    public List<Groomer> getAllGroomers_M(){
-        return groomerService.listAllGroomers();
-    }
+    // // Manager Part
+    // @GetMapping("/manager/grommerList")  
+    // public Result<?> getAllGroomers_M(){
+    //     return groomerService.listAllGroomers();
+        
+    // }
 
     @GetMapping("/manager/groomerList/view")
     public Result<?> viewGroomer_M(@RequestParam Integer gid){
@@ -55,8 +55,7 @@ public class GroomerController {
     }
 
     
-    
-    // 4 random groomers for home page
+    // Customer part
     @GetMapping() 
     public String getRandomFourGroomers_C(Model model){
 
@@ -65,7 +64,7 @@ public class GroomerController {
         if (gList.size() < 4) {
 
             Groomer groomer = new Groomer();
-            groomer.setImage_url("/assets/images/no-user.png");
+            groomer.setImageURL("/assets/images/no-user.png");
             groomer.setName("No Groomer");
             groomer.setDescription("No Description");
             if (gList.size() == 0){
@@ -91,7 +90,8 @@ public class GroomerController {
             return "home";
         }
         
-        
+        // ensure the random num not duplicate
+
         Random r = new Random();
         List<Integer> intList = new ArrayList<>();
 
@@ -111,15 +111,8 @@ public class GroomerController {
 
 
     @GetMapping("/groomers") 
-    public String getAllGroomers(Model model){
-        List<Groomer> gList = groomerService.listAllGroomers();
-        model.addAttribute("gList", gList);
-
+    public String getAllGroomers(){
         return "Groomers";
     }
     
-
-
 }
-
-

@@ -15,32 +15,27 @@ import lombok.Data;
 public class ServiceType {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(columnDefinition = "int(7)")
     private Integer sid;
 
     @Column(columnDefinition = "varchar(50)", nullable = true)
-    private String service_name;
+    private String serviceName;
     
     @Column(columnDefinition = "int(7)", nullable = true)
-    private Integer service_time;
+    private Integer serviceTime;
 
     @Column(columnDefinition = "int(7)", nullable = true)
-    private Integer  basic_price;
+    private Integer basicPrice;
 
-    // public ServiceType(String service_name, int serviceTime, int basicPrice) {
-    //     service_name = service_name;
-    //     serviceTime = serviceTime;
-    //     basicPrice = basicPrice;
-    // }
-
-    public ServiceType(Integer sid) {
-        this.sid = sid;
-    }
-
-    public ServiceType(String servicce_name) {
-        this.service_name = servicce_name;
+    public ServiceType(String serviceName, int serviceTime, int basicPrice) {
+        serviceName = serviceName;
+        serviceTime = serviceTime;
+        basicPrice = basicPrice;
     }
 
     public ServiceType() {
     }
+
+    
 
 }

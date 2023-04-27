@@ -24,319 +24,381 @@
 
 
 <!-- page wrapper -->
+
 <body>
 
-<div class="boxed_wrapper">
+    <div class="boxed_wrapper">
 
-    <!-- main header -->
-    <header class="main-header header-style-two">
+        <!-- main header -->
+        <header class="main-header header-style-two">
 
-        <div class="header-lower">
-            <div class="auto-container-fluid">
-                <div class="outer-box clearfix bg-white">
-                    <div class="logo-box pull-left">
-                        <figure class="logo"><a th:href="@{/}"><img src="/assets/images/logo-1.png" alt=""></a></figure>
-                    </div>
-                    <div class="menu-area pull-right clearfix">
-                        <!--Mobile Navigation Toggler-->
-                        <div class="mobile-nav-toggler">
-                            <i class="icon-bar"></i>
-                            <i class="icon-bar"></i>
-                            <i class="icon-bar"></i>
+            <div class="header-lower">
+                <div class="auto-container-fluid">
+                    <div class="outer-box clearfix bg-white">
+                        <div class="logo-box pull-left">
+                            <figure class="logo"><a th:href="@{/}"><img src="/assets/images/logo.png" alt=""></a>
+                            </figure>
                         </div>
-                        <nav class="main-menu navbar-expand-md navbar-light">
-                            <div class="collapse navbar-collapse show clearfix" id="navbarSupportedContent">
-                                <ul class="navigation clearfix">
-
-                                    <li><a th:href="@{/}">Home</a></li>
-
-                                    <li><a href="/Pricing.html">Pricing Plans</a></li>
-
-                                    <li><a href="/Groomers.html">Groomers</a></li>
-
-                                    <li class="dropdown"><a href="/AllService.html">Services</a>
-                                        <ul>
-                                            <li><a href="/AllService.html">All Services</a></li>
-                                            <li><a href="/PetGrooming.html">Pet Grooming</a></li>
-                                            <li><a href="/PetTraining.html">Pet Training</a></li>
-                                            <li><a href="/PetBoarding.html">Pet Boarding</a></li>
-                                            <li><a href="/PetDyeHair.html">Pet Dye Hair</a></li>
-                                            <li><a href="/DayCare.html">Day Care</a></li>
-                                        </ul>
-                                    </li>
-                                    <!--登陆后将join us按键改成个人信息菜单-->
-                                    <!--                                    <li><a href="Personal.html">Mine</a></li>-->
-                                    <!--                                    <ul>-->
-                                    <!--                                        <li><a href="Appointment.html">Information</a></li>-->
-                                    <!--                                        <li><a href="Appointment.html">Appointment</a></li>-->
-                                    <!--                                    </ul>-->
-
-                                </ul>
+                        <div class="menu-area pull-right clearfix">
+                            <!--Mobile Navigation Toggler-->
+                            <div class="mobile-nav-toggler">
+                                <i class="icon-bar"></i>
+                                <i class="icon-bar"></i>
+                                <i class="icon-bar"></i>
                             </div>
-                        </nav>
-                        <!--改为登录弹窗-->
-                        <div class="btn-box">
-                            <a href="/xx.html" class="theme-btn btn-five">Join Us</a>
+                            <nav class="main-menu navbar-expand-md navbar-light">
+                                <div class="collapse navbar-collapse show clearfix" id="navbarSupportedContent">
+                                    <ul class="navigation clearfix">
+
+                                        <li><a th:href="@{/}">Home</a></li>
+
+                                        <li><a href="/Pricing.html">Pricing Plans</a></li>
+
+                                        <li><a href="/Groomers.html">Groomers</a></li>
+
+                                        <li class="dropdown"><a href="/AllService.html">Services</a>
+                                            <ul>
+                                                <li><a href="/AllService.html">All Services</a></li>
+                                                <li><a href="/PetGrooming.html">Pet Grooming</a></li>
+                                                <li><a href="/PetTraining.html">Pet Training</a></li>
+                                                <li><a href="/PetBoarding.html">Pet Boarding</a></li>
+                                                <li><a href="/PetDyeHair.html">Pet Dye Hair</a></li>
+                                                <li><a href="/DayCare.html">Day Care</a></li>
+                                            </ul>
+                                        </li>
+                                        <!--登陆后将join us按键改成个人信息菜单-->
+                                        <!--                                    <li><a href="Personal.html">Mine</a></li>-->
+                                        <!--                                    <ul>-->
+                                        <!--                                        <li><a href="Appointment.html">Information</a></li>-->
+                                        <!--                                        <li><a href="Appointment.html">Appointment</a></li>-->
+                                        <!--                                    </ul>-->
+
+                                    </ul>
+                                </div>
+                            </nav>
+                            <!--改为登录弹窗-->
+                            <div class="btn-box">
+                                <a href="/xx.html" class="theme-btn btn-five">Join Us</a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!--sticky Header-->
-        <div class="sticky-header">
+            <!--sticky Header-->
+            <div class="sticky-header">
+                <div class="auto-container">
+                    <div class="outer-box clearfix">
+                        <figure class="sticky-logo pull-left">
+                            <a href="/Home.html"><img src="/assets/images/logo.png" alt=""></a>
+                        </figure>
+                        <div class="menu-area pull-right clearfix">
+                            <nav class="main-menu clearfix">
+                                <!--Keep This Empty / Menu will come through Javascript-->
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- main-header end -->
+
+        <!-- Mobile Menu  -->
+        <div class="mobile-menu">
+            <div class="menu-backdrop"></div>
+            <div class="close-btn"><i class="fas fa-times"></i></div>
+
+            <nav class="menu-box">
+                <div class="nav-logo"><a href="/Home.html"><img src="/assets/images/logo.png" alt="" title=""></a>
+                </div>
+                <div class="menu-outer"><!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header-->
+                </div>
+                <div class="contact-info">
+                    <h4>Contact Info</h4>
+                    <ul>
+                        <li>111 Ren Ai Road Industrial park, Suchou, China</li>
+                        <li><a href="tel:+0991 433-8833">+0991 433-8833</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <!-- End Mobile Menu -->
+
+
+
+        <!-- Page Title -->
+        <section class="page-title centred">
+            <div class="pattern-layer" style="background-image: url(/assets/images/shape/shape-87.png);"></div>
             <div class="auto-container">
-                <div class="outer-box clearfix">
-                    <figure class="sticky-logo pull-left">
-                        <a href="/Home.html"><img src="/assets/images/logo-3.png" alt=""></a>
-                    </figure>
-                    <div class="menu-area pull-right clearfix">
-                        <nav class="main-menu clearfix">
-                            <!--Keep This Empty / Menu will come through Javascript-->
-                        </nav>
-                    </div>
+                <div class="content-box">
+                    <h1>Make Appointment</h1>
+                    <ul class="bread-crumb clearfix">
+                        <li><a th:href="@{/}">Home</a></li>
+                        <li>Make appointment</li>
+                    </ul>
                 </div>
             </div>
-        </div>
-    </header>
-    <!-- main-header end -->
+        </section>
+        <!-- End Page Title -->
 
-    <!-- Mobile Menu  -->
-    <div class="mobile-menu">
-        <div class="menu-backdrop"></div>
-        <div class="close-btn"><i class="fas fa-times"></i></div>
-
-        <nav class="menu-box">
-            <div class="nav-logo"><a href="/Home.html"><img src="/assets/images/logo-2.png" alt="" title=""></a></div>
-            <div class="menu-outer"><!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header--></div>
-            <div class="contact-info">
-                <h4>Contact Info</h4>
-                <ul>
-                    <li>111 Ren Ai Road Industrial park, Suchou, China</li>
-                    <li><a href="tel:+0991 433-8833">+0991 433-8833</a></li>
-                </ul>
-            </div>
-        </nav>
-    </div>
-    <!-- End Mobile Menu -->
-
-
-
-    <!-- Page Title -->
-    <section class="page-title centred">
-        <div class="pattern-layer" style="background-image: url(/assets/images/shape/shape-87.png);"></div>
-        <div class="auto-container">
-            <div class="content-box">
-                <h1>Make Appointment</h1>
-                <ul class="bread-crumb clearfix">
-                    <li><a th:href="@{/}">Home</a></li>
-                    <li>Make appointment</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-    <!-- End Page Title -->
-
-    <!-- contact-style-two -->
-    <section class="contact-style-two sec-pad">
-        <div class="pattern-layer" style="background-image: url(/assets/images/shape/shape-68.png);"></div>
-        <div class="auto-container">
-            <div class="row clearfix">
-                <div class="col-lg-5 col-md-12 col-sm-12 content-column">
-                    <div class="content_block_21">
-                        <div class="content-box sec-title">
-                            <h2>Contact information</h2>
-                            <div class="divider mb-30" style="background-image: url(/assets/images/icons/divider-1.png);"></div>
-                            <div class="single-item contact-block_border">
-                                <div class="icon-box"><i class="fas fa-headphones"></i></div>
-                                <h3>Make a Call</h3>
-                                <span>LET’S TALK WITH OUR EXPERTS</span>
-                                <p><a href="tel:+0991 433-8833">+0991 433-8833</a>, Mon - Fri: 09.00 to 18.00</p>
-                            </div>
-
-                            <div class="single-item contact-block_border">
-                                <div class="icon-box"><i class="far fa-paper-plane"></i></div>
-                                <h3>Location</h3>
-                                <span>VISIT TO EXPLORE THE WORLD</span>
-                                <p>111 Ren Ai Road Industrial park, Suchou, China</p>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-7 col-md-12 col-sm-12 inner-column">
-                    <div class="form-inner sec-title">
-                        <h2>Make appointment now!</h2>
-                        <div class="divider mb-30" style="background-image: url(/assets/images/icons/divider-1.png);"></div>
-
-                        <form method="post" th:action="@{/appointment-system/customer/makeappointment}" id="contact-form" class="default-form"  th:object="${appointment}">
-                            <div class="row clearfix">
-
-                                <!--用户（有登录后删除）-->
-                                <div class="col-lg-12 col-md-12 col-sm-12 form-group">
-                                    <label for="user"></label><i class="far fa-user"></i>
-                                    <input type="text" name="user" id="user" placeholder="UserName" required="">
-                                </div>
-
-
-                                <!--选择自己的宠物， 需要从该用户的宠物数据库调-->
-                                <div class="col-lg-12 col-md-12 col-sm-12 form-group">
-                                    <label for="Pet">Your Pet :</label><i class="fal fa-paw-alt"></i>&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <select name="Pet" id ="Pet">
-
-                                        <div th:each="pet: ${petList}">
-                                            <option th:value="${pet.getPid()}"><p th:text="${pet.getName()}"></p></option>
-                                        </div>
-                                    
-                                    </select>
-                                </div>
-                                
-                                <!--选择服务， 可多选-->
-                                <div class="col-lg-12 col-md-12 col-sm-12 form-group">
-
-                                    Service:  
-                                    <label>
-                                        <input type="checkbox" name="service" value="1" >
-                                    </label> Pet Bathing&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <label>
-                                        <input type="checkbox" name="service" value="2" >
-                                    </label> Pet Haircut&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    
-                                    <label>
-                                        <input type="checkbox" name="service" value="3" >
-                                    </label> Hair drying
-                                    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <label>
-                                        <input type="checkbox" name="service" value="4" >
-                                    </label> Pet DyeHair&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <label>
-                                        <input type="checkbox" name="service" value="5" >
-                                    </label> Pet Training&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <label>
-                                        <input type="checkbox" name="service" value="6" >
-                                    </label> VeterinaryCare
-
-                                </div>
-
-                                <!--选择服务时间，需要将已下单时间标灰-->
-                                <div class="col-lg-12 col-md-12 col-sm-12 form-group">
-                                    <label for="StartTime">Start Time :</label><i class="fal fa-calendar-alt"></i>&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <input type="datetime-local" id="StartTime"
-                                           name="StartTime" value="yyyy-MM-ddTHH:mm"
-                                           min="2023-05-01T00:00" max="2024-05-01T00:00">
-
-                                </div>
-
-
-                                <!--选择Groomer， 需要从Groomer数据库调-->
-                                <div class="col-lg-12 col-md-12 col-sm-12 form-group">
-                                    <label for="Groomer">Groomer :</label><i class="far fa-user"></i>&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <select name="Groomer" id="Groomer">
-                                        <div th:each="groomer : ${gList}">
-                                            <option th:value="${groomer.getGid}"><p th:text="${groomer.getName()}"></p></option>
-                                        </div>
-                                    </select>
-                                </div>
-                            
-
-                                <!--提交按钮-->
-                                <div class="col-lg-12 col-md-12 col-sm-12 form-group message-btn">
-                                    <button class="theme-btn btn-seven" type="submit" name="submit-form">Make Appointment</button>
-                                </div>
-
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- contact-style-two end -->
-
-    <!-- main-footer -->
-    <footer class="main-footer footer-style-five">
-        <div class="footer-top-two">
-            <div class="pattern-layer"></div>
+        <!-- contact-style-two -->
+        <section class="contact-style-two sec-pad">
+            <div class="pattern-layer" style="background-image: url(/assets/images/shape/shape-68.png);"></div>
             <div class="auto-container">
                 <div class="row clearfix">
-                    <div class="col-lg-4 col-md-6 col-sm-12 footer-column">
-                        <div class="footer-widget logo-widget">
+                    <div class="col-lg-5 col-md-12 col-sm-12 content-column">
+                        <div class="content_block_21">
+                            <div class="content-box sec-title">
+                                <h2>Contact information</h2>
+                                <div class="divider mb-30"
+                                    style="background-image: url(/assets/images/icons/divider-1.png);"></div>
+                                <div class="single-item contact-block_border">
+                                    <div class="icon-box"><i class="fas fa-headphones"></i></div>
+                                    <h3>Make a Call</h3>
+                                    <span>LET US TALK WITH OUR EXPERTS</span>
+                                    <p><a href="tel:+0991 433-8833">+0991 433-8833</a>, Mon - Fri: 09.00 to 18.00</p>
+                                </div>
 
-                            <figure class="footer-logo footer-logo-center"><a th:href="@{/}"><img src="/assets/images/logo-2.png" alt=""></a></figure>
+                                <div class="single-item contact-block_border">
+                                    <div class="icon-box"><i class="far fa-paper-plane"></i></div>
+                                    <h3>Location</h3>
+                                    <span>VISIT TO EXPLORE THE WORLD</span>
+                                    <p>111 Ren Ai Road Industrial park, Suchou, China</p>
+                                </div>
+
+                            </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-6 col-sm-12 footer-column">
-                        <div class="footer-widget links-widget ml-40">
-                            <div class="widget-title">
-                                <h3>Quick Link</h3>
-                            </div>
-                            <div class="widget-content">
-                                <ul class="links-list clearfix">
-                                    <li><a th:href="@{/}">Home</a></li>
-                                    <li><a href="/Groomers.html">Groomers</a></li>
-                                    <li><a href="/Pricing.html">Pricing plan</a></li>
-                                    <li><a href="/AllService.html">Our Services</a></li>
+                    <div class="col-lg-7 col-md-12 col-sm-12 inner-column">
+                        <div class="form-inner sec-title">
+                            <h2>Make appointment now!</h2>
+                            <div class="divider mb-30"
+                                style="background-image: url(/assets/images/icons/divider-1.png);"></div>
+                            <form class="form" action="/Appointment/appoint" id="loginForm" method="post"
+                                th:object="${appointmentForm}">
+                                <div class="row clearfix">
 
-                                </ul>
-                            </div>
+                                    <!--用户（有登录后删除）-->
+                                    <!-- <div class="col-lg-12 col-md-12 col-sm-12 form-group">
+                                    <label for="user"></label><i class="far fa-user"></i>
+                                    <h1><span th:text="${username}"></span></h1>
+                                </div> -->
+
+
+                                    <!--选择自己的宠物， 需要从该用户的宠物数据库调-->
+
+                                    <div class="col-lg-12 col-md-12 col-sm-12 form-group">
+                                        <i class="fal fa-paw-alt"></i>
+                                        <label for="Pet">Your Pet :</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <select name="Pet" id="Pet" onchange="calculateSum()">
+                                            <option value="" selected disabled>请选择一个宠物</option>
+                                            <div th:each="pet: ${petList}">
+                                              <option th:value="${pet.getPid()}" th:data-size="${pet.getSize()}" th:field="*{pet}">
+                                                <p th:text="${pet.getName()}"></p>
+                                              </option>
+                                            </div>
+                                          </select>
+                                          
+                                    </div>
+
+                                    <!--选择服务， 可多选-->
+                                    <div class="col-lg-12 col-md-12 col-sm-12 form-group">
+
+                                        <i class="fal fa-aws"></i>
+                                        <label for="serviceType">Service Type :</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <select name="serviceType" id="serviceType" onchange="calculateSum()">
+                                            <option value="" selected disabled>请选择一个服务</option>
+                                            <div th:each="serviceType: ${serviceType}">
+                                              <option th:value="${serviceType.getSid()}" th:data-price="${serviceType.getBasicPrice()}" th:field="*{serviceType}">
+                                                <p th:text="${serviceType.getServiceName()}"></p>&nbsp;<p th:text="${serviceType.getBasicPrice()}"></p> $
+                                              </option>
+                                            </div>
+                                          </select>
+                                        
+
+                                    </div>
+
+                                    <!--选择服务时间，需要将已下单时间标灰-->
+
+                                    <div class="col-lg-12 col-md-12 col-sm-12 form-group">
+                                        <i class="fal fa-calendar-alt"></i>
+                                        <label for="StartTime">Start Time :</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <input type="datetime-local" id="StartTime" name="StartTime"
+                                            value="yyyy-MM-ddTHH:mm" th:field="*{StartTime}" min="2023-05-01T00:00"
+                                            max="2024-05-01T00:00">
+
+                                    </div>
+
+
+                                    <!--选择Groomer， 需要从Groomer数据库调-->
+                                    <div class="col-lg-12 col-md-12 col-sm-12 form-group">
+                                        <i class="far fa-user"></i>
+                                        <label for="Groomer">Groomer :</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <select name="Groomer" id="Groomer" onchange="calculateSum()">
+                                            <option value="" selected disabled>请选择一个美容师</option>
+                                            <div th:each="groomer : ${gList}">
+                                              <option th:value="${groomer.getGid()}" th:data-rank="${groomer.getRank()}" th:field="*{groomer}">
+                                                <p th:text="${groomer.getName()}"></p>
+                                              </option>
+                                            </div>
+                                          </select>
+                                          
+                                    </div>
+
+                                    <!-- totalprice -->
+                                    <div class="col-lg-12 col-md-12 col-sm-12 form-group">
+                                        <i class="far fa-user"></i>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;
+                                        <p>Price：$<span id="serviceprice">0</span></p>
+
+                                    </div>
+                                    <!-- <script>
+                                        function calculateSum() {
+                                          var serviceType = document.getElementById("serviceType");
+                                          var selectedOption = serviceType.options[serviceType.selectedIndex];
+                                          var servicePrice = parseInt(selectedOption.getAttribute("data-price"));
+                                          var petSize = parseInt(selectedOption.getAttribute("data-size"));
+                                          var SIZE=0;
+                                          if(petSize.equal("small")){
+                                            SIZE=10;
+                                          }else if(petSize.equal("medium")){
+                                            SIZE=20;
+                                          }else{SIZE=30;}
+                                          var TotalPrice=servicePrice
+                                          document.getElementById("serviceprice").innerHTML = TotalPrice;
+                                        }
+                                      </script> -->
+                                      <script>
+                                        function calculateSum() {
+                                          var serviceType = document.getElementById("serviceType");
+                                          var selectedOption = serviceType.options[serviceType.selectedIndex];
+                                          var servicePrice = parseInt(selectedOption.getAttribute("data-price"));
+
+                                          var groomerSelect = document.getElementById("Groomer");
+                                          var selectedGroomerOption = groomerSelect.options[groomerSelect.selectedIndex];
+                                          var groomerRank = selectedGroomerOption.getAttribute("data-rank");
+                                      
+                                          var petSelect = document.getElementById("Pet");
+                                          var selectedPetOption = petSelect.options[petSelect.selectedIndex];
+                                          var petSize = selectedPetOption.getAttribute("data-size");
+                                      
+                                          var SIZE = 0;
+                                          if (petSize === "small") {
+                                            SIZE = 10;
+                                          } else if (petSize === "medium") {
+                                            SIZE = 20;
+                                          } else {
+                                            SIZE = 30;
+                                          }
+                                      
+                                          var TotalPrice = servicePrice + SIZE + groomerRank*10;
+                                          document.getElementById("serviceprice").innerHTML = TotalPrice;
+                                        }
+                                      </script>
+                                      
+
+
+
+                                    <!--提交按钮-->
+                                    <div class="col-lg-12 col-md-12 col-sm-12 form-group message-btn">
+                                        <button class="theme-btn btn-seven" type="submit" name="submit-form">Make
+                                            Appointment</button>
+                                    </div>
+
+                                </div>
+                            </form>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-6 col-sm-12 footer-column">
-                        <div class="footer-widget contact-widget ml-40">
-                            <div class="widget-title">
-                                <h3>Contact Us</h3>
-                            </div>
-                            <div class="widget-content">
-                                <ul class="info-list clearfix">
-                                    <li>
-                                        <i class="far fa-paper-plane"></i>
-                                        <p>111 Ren Ai Road Industrial park, Suchou, China</p>
-                                    </li>
-                                    <li>
-                                        <i class="fas fa-headphones"></i>
-                                        <p><a href="tel:+0991 433-8833">+0991 433-8833</a></p>
-                                    </li>
+                </div>
+            </div>
+        </section>
+        <!-- contact-style-two end -->
 
-                                </ul>
+        <!-- main-footer -->
+        <footer class="main-footer footer-style-five">
+            <div class="footer-top-two">
+                <div class="pattern-layer"></div>
+                <div class="auto-container">
+                    <div class="row clearfix">
+                        <div class="col-lg-4 col-md-6 col-sm-12 footer-column">
+                            <div class="footer-widget logo-widget">
+
+                                <figure class="footer-logo footer-logo-center"><a th:href="@{/}"><img
+                                            src="/assets/images/logo.png" alt=""></a></figure>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-12 footer-column">
+                            <div class="footer-widget links-widget ml-40">
+                                <div class="widget-title">
+                                    <h3>Quick Link</h3>
+                                </div>
+                                <div class="widget-content">
+                                    <ul class="links-list clearfix">
+                                        <li><a th:href="@{/}">Home</a></li>
+                                        <li><a href="/Groomers.html">Groomers</a></li>
+                                        <li><a href="/Pricing.html">Pricing plan</a></li>
+                                        <li><a href="/AllService.html">Our Services</a></li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-12 footer-column">
+                            <div class="footer-widget contact-widget ml-40">
+                                <div class="widget-title">
+                                    <h3>Contact Us</h3>
+                                </div>
+                                <div class="widget-content">
+                                    <ul class="info-list clearfix">
+                                        <li>
+                                            <i class="far fa-paper-plane"></i>
+                                            <p>111 Ren Ai Road Industrial park, Suchou, China</p>
+                                        </li>
+                                        <li>
+                                            <i class="fas fa-headphones"></i>
+                                            <p><a href="tel:+0991 433-8833">+0991 433-8833</a></p>
+                                        </li>
+
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </footer>
-    <!-- main-footer end -->
+        </footer>
+        <!-- main-footer end -->
 
-    <!-- scroll to top -->
-    <button class="scroll-top style-two scroll-to-target" data-target="html">
-        <i class="fas fa-angle-up"></i>
-    </button>
+        <!-- scroll to top -->
+        <button class="scroll-top style-two scroll-to-target" data-target="html">
+            <i class="fas fa-angle-up"></i>
+        </button>
 
-</div>
+    </div>
 
 
-<!-- jequery plugins -->
-<script src="/assets/js/jquery.js"></script>
-<script src="/assets/js/popper.min.js"></script>
-<script src="/assets/js/bootstrap.min.js"></script>
-<script src="/assets/js/owl.js"></script>
-<script src="/assets/js/wow.js"></script>
-<script src="/assets/js/validation.js"></script>
-<script src="/assets/js/contact-form-script.js"></script>
-<script src="/assets/js/jquery.fancybox.js"></script>
-<script src="/assets/js/appear.js"></script>
-<script src="/assets/js/scrollbar.js"></script>
-<script src="/assets/js/tilt.jquery.js"></script>
-<script src="/assets/js/isotope.js"></script>
-<script src="/assets/js/bxslider.js"></script>
+    <!-- jequery plugins -->
+    <script src="/assets/js/jquery.js"></script>
+    <script src="/assets/js/popper.min.js"></script>
+    <script src="/assets/js/bootstrap.min.js"></script>
+    <script src="/assets/js/owl.js"></script>
+    <script src="/assets/js/wow.js"></script>
+    <script src="/assets/js/validation.js"></script>
+    <script src="/assets/js/contact-form-script.js"></script>
+    <script src="/assets/js/jquery.fancybox.js"></script>
+    <script src="/assets/js/appear.js"></script>
+    <script src="/assets/js/scrollbar.js"></script>
+    <script src="/assets/js/tilt.jquery.js"></script>
+    <script src="/assets/js/isotope.js"></script>
+    <script src="/assets/js/bxslider.js"></script>
 
-<!-- map script -->
-<!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-CE0deH3Jhj6GN4YvdCFZS7DpbXexzGU"></script>-->
-<!--<script src="assets/js/gmaps.js"></script>-->
-<!--<script src="assets/js/map-helper.js"></script>-->
+    <!-- map script -->
+    <!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-CE0deH3Jhj6GN4YvdCFZS7DpbXexzGU"></script>-->
+    <!--<script src="assets/js/gmaps.js"></script>-->
+    <!--<script src="assets/js/map-helper.js"></script>-->
 
-<!-- main-js -->
-<script src="/assets/js/script.js"></script>
+    <!-- main-js -->
+    <script src="/assets/js/script.js"></script>
 
 </body><!-- End of .page_wrapper -->
 
