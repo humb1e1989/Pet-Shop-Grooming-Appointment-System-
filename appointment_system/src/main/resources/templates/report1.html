@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Pet Grooming Shop Statistical Report</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/5.2.3/css/bootstrap.min.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- <script src="/webjars/jquery/3.6.0/jquery.min.js"></script> -->
+    <!-- <script src="/webjars/bootstrap/5.2.3/js/bootstrap.min.js"></script> -->
+    <!-- <script src="/webjars/chartjs/3.6.0/dist/chart.min.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/echarts/5.2.2/echarts.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="text-center my-5">Pet Grooming Shop Statistical Report</h1>
+        <div class="row">
+            <div class="col-md-6">
+                <h3>Sales data</h3>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="appointment,iterStat : ${appointments}"
+                            th:if="${iterStat.index >= iterStat.size - 10}">
+                            <td th:text="${appointment.getFinish_time()}"></td>
+                            <td th:text="${appointment.getTotal_price()}"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-6">
+                <h3>Report - All</h3>
+                <canvas id="salesChart0" width="200" height="200"></canvas>
+                <script th:inline="javascript">
+                    /*<![CDATA[*/
+                    $(document).ready(function () {
+                        let appointmentsData = [[${ appointments }]];
+                        //console.log(appointmentsData);
+                        let dates = appointmentsData.map(appointment => appointment.finish_time);
+                        //console.log(dates);
+                        let amounts = appointmentsData.map(appointment => appointment.total_price);
+                        //console.log(amounts);
+
+                        let ctx = document.getElementById('salesChart0').getContext('2d');
+                        let chart = new Chart(ctx, {
+                            type: 'bar',
+                            data: {
+                                labels: dates,
+                                datasets:
+                                    [
+                                        {
+                                            label: 'Amount',
+                                            data: amounts,
+                                            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                                            borderWidth: 0.5,
+                                            borderColor: 'black'
+                                        }
+                                    ]
+                            },
+                            options: {
+                                scales: {
+                                    y: {
+                                        beginAtZero: true,
+                                        maintainAspectRatio: false,
+                                        responsive: false
+                                    }
+                                }
+                            }
+                        });
+                        //console.log(appointmentsData);
+                        //console.log(annualAppointments);
+                    });
+                    /*]]>*/
+                </script>
+            </div>
+
+            <div class="col-md-6">
+                <h3>Report - Annual</h3>
+                <br>
+                <canvas id="salesChart1" width="200" height="200"></canvas>
+                <script th:inline="javascript">
+                    /*<![CDATA[*/
+                    $(document).ready(function () {
+                        let appointmentsData = [[${ annualAppointments }]];
+                        //console.log(annualSales);
+                        let dates = appointmentsData.map(obj => obj[0]);
+                        //console.log(annualSales);
+                        let amounts = appointmentsData.map(obj => obj[1]);
+                        //console.log(annualSales);
+                        // let dates = Array.from(annualSales.keys());
+                        // let amounts = Array.from(annualSales.values());
+
+                        let ctx = document.getElementById('salesChart1').getContext('2d');
+                        let chart = new Chart(ctx, {
+                            type: 'bar',
+                            data: {
+                                labels: dates,
+                                datasets:
+                                    [
+                                        {
+                                            label: 'Amount',
+                                            data: amounts,
+                                            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                                            // borderColor: 'rgba(75, 192, 192, 1)',
+                                            borderWidth: 1,
+                                            borderColor: 'black'
+                                        }
+                                    ]
+                            },
+                            options: {
+                                scales: {
+                                    y: {
+                                        beginAtZero: true,
+                                        maintainAspectRatio: false,
+                                        responsive: false
+                                    }
+                                }
+                            }
+                        });
+                        //console.log(salesData);
+                    });
+                    /*]]>*/
+                </script>
+            </div>
+
+            <div class="col-md-6">
+                <h3>Report - Quarterly</h3>
+                <form id="year-form" th:action="@{/appointment-system/report}">
+                    <select id="year-select" name="year">
+                        <option value="2023" selected>2023</option>
+                        <option value="2022">2022</option>
+                        <option value="2021">2021</option>
+                    </select>
+                    <a id="confirm-link" href=" ">Confirm</ a>
+                        <script>
+                            let yearSelect = document.getElementById("year-select");
+                            let confirmLink = document.getElementById("confirm-link");
+
+                            function updateConfirmLinkHref() {
+                                let year = yearSelect.value;
+                                let newHref = "/appointment-system/report?year=" + year;
+                                confirmLink.href = newHref;
+                            }
+
+                            yearSelect.addEventListener("change", updateConfirmLinkHref);
+
+                            // Set the href attribute when the page loads
+                            updateConfirmLinkHref();
+                        </script>
+                </form>
+                <canvas id="salesChart2" width="200" height="200"></canvas>
+                <script th:inline="javascript">
+                    $(document).ready(function () {
+                        let appointmentsData = [[${ quarterlyAppointments }]];
+                        console.log(appointmentsData);
+                        let dates = appointmentsData.map(obj => obj[0]);
+                        //console.log(annualSales);
+                        let amounts = appointmentsData.map(obj => obj[1]);
+                        //console.log(annualSales);
+                        // let dates = Array.from(annualSales.keys());
+                        // let amounts = Array.from(annualSales.values());
+
+                        let ctx = document.getElementById('salesChart2').getContext('2d');
+                        let chart = new Chart(ctx, {
+                            type: 'bar',
+                            data: {
+                                labels: dates,
+                                datasets:
+                                    [
+                                        {
+                                            label: 'Amount',
+                                            data: amounts,
+                                            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                                            // borderColor: 'rgba(75, 192, 192, 1)',
+                                            borderWidth: 1,
+                                            borderColor: 'black'
+                                        }
+                                    ]
+                            },
+                            options: {
+                                scales: {
+                                    y: {
+                                        beginAtZero: true,
+                                        maintainAspectRatio: false,
+                                        responsive: false
+                                    }
+                                }
+                            }
+                        });
+                        //console.log(salesData);
+                    });
+
+                    // //获取用户选择的年份
+                    // var year = $("#year").val();
+                    // //将年份作为参数传递给后台
+                    // $.ajax({
+                    //     url: "/report",
+                    //     type: "POST",
+                    //     data: JSON.stringify({ year: year }),
+                    //     contentType: "application/json",
+                    //     success: function (data) {
+                    //         //处理查询结果
+                    //         //获取预约数据中的季度和数量
+                    //         var quarters = [];
+                    //         var counts = [];
+                    //         for (var i = 0; i < data.length; i++) {
+                    //             quarters.push(data[0]);
+                    //             counts.push(data[1]);
+                    //         }
+                    //         //更新网页中的指定区域
+                    //         //获取图表容器
+                    //         var chartContainer = document.getElementById("chart");
+                    //         //初始化图表实例
+                    //         var chart = echarts.init(chartContainer);
+                    //         //配置图表选项
+                    //         var option = {
+                    //             title: {
+                    //                 text: year + "年度预约季度统计"
+                    //             },
+                    //             xAxis: {
+                    //                 type: "category",
+                    //                 data: quarters
+                    //             },
+                    //             yAxis: {
+                    //                 type: "value"
+                    //             },
+                    //             series: [{
+                    //                 data: counts,
+                    //                 type: "bar"
+                    //             }]
+                    //         };
+                    //         //设置图表选项
+                    //         chart.setOption(option);
+                    //     }
+                    // });
+
+                    // //获取用户选择的年份
+                    // var year = $("#year").val();
+                    // //将年份作为参数传递给后台
+                    // $.ajax({
+                    //     url: "/report",
+                    //     type: "POST",
+                    //     data: JSON.stringify({ year: year }),
+                    //     contentType: "application/json",
+                    //     success: function (data) {
+                    //         //处理查询结果
+                    //         //更新网页中的指定区域
+                    //     }
+                    // });
+
+                    // /*<![CDATA[*/
+                    // $(document).ready(function () {
+                    //     let appointmentsData = [[${ quarterlyAppointments }]];
+                    //     console.log(quarterlyAppointments);
+                    //     let dates = appointmentsData.map(obj => obj[0]);
+                    //     //console.log(annualSales);
+                    //     let amounts = appointmentsData.map(obj => obj[1]);
+                    //     //console.log(annualSales);
+                    //     // let dates = Array.from(annualSales.keys());
+                    //     // let amounts = Array.from(annualSales.values());
+
+                    //     let ctx = document.getElementById('salesChart1').getContext('2d');
+                    //     let chart = new Chart(ctx, {
+                    //         type: 'bar',
+                    //         data: {
+                    //             labels: dates,
+                    //             datasets:
+                    //                 [
+                    //                     {
+                    //                         label: 'Amount',
+                    //                         data: amounts,
+                    //                         backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    //                         // borderColor: 'rgba(75, 192, 192, 1)',
+                    //                         borderWidth: 1,
+                    //                         borderColor: 'black'
+                    //                     }
+                    //                 ]
+                    //         },
+                    //         options: {
+                    //             scales: {
+                    //                 y: {
+                    //                     beginAtZero: true,
+                    //                     maintainAspectRatio: false,
+                    //                     responsive: false
+                    //                 }
+                    //             }
+                    //         }
+                    //     });
+                    //     //console.log(salesData);
+                    // });
+                    /*]]>*/
+                </script>
+            </div>
+
+        </div>
+    </div>
+</body>

@@ -271,6 +271,14 @@ public class ManagerController {
     // }
 
 
+    @GetMapping("/report")
+    public String showReport(Model model,
+            @RequestParam(value = "year", required = false, defaultValue = "2023") int year) {
+        model.addAttribute("appointments", AppointmentService.findAllSale());
+        model.addAttribute("annualAppointments", AppointmentService.getAnnualStaticalReport());
+        model.addAttribute("quarterlyAppointments", AppointmentService.getQuarterlyStaticalReport(year));
 
+        return "report";
+    }
 
 }

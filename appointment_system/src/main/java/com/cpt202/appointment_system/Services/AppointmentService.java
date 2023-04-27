@@ -3,13 +3,17 @@ package com.cpt202.appointment_system.Services;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,6 +28,7 @@ import com.cpt202.appointment_system.Repositories.AppointmentRepo;
 import com.cpt202.appointment_system.Repositories.GroomerRepo;
 import com.cpt202.appointment_system.Repositories.PetRepo;
 import com.cpt202.appointment_system.Repositories.UserRepo;
+import java.math.BigInteger;
 
 @Service
 public class AppointmentService {
@@ -335,7 +340,7 @@ public class AppointmentService {
 	// // appointment1.setPetName(appointment.getPetName());
 	// appointment1.setPet(appointment.getPet());
 	// appointment1.setStartTime(appointment.getStartTime());
-	// appointment1.setTotalprice(appointment.getTotalprice());
+	// appointment1.setTotalprice(appointment.getTotal_price());
 	// appointment1.setFinishTime(appointment.getFinishTime());
 	// appointment1.setCreateTime(appointment.getCreateTime());
 	// // TODO : New one or modified one?
@@ -361,4 +366,124 @@ public class AppointmentService {
 	// return Result.error("-1", "No Matching Appointment Found.");
 	// }
 
+	// report part
+	public List<Appointment> findAllSale() {
+		return appointmentRepo.findAll();
+	}
+
+	public List<Object[]> getAnnualStaticalReport() {
+		Map<Integer, Integer> yearMap = new HashMap<>();
+		Map<Integer, Double> yearPrice = new HashMap<>();
+
+		List<Object[]> objList = appointmentRepo.findYearAndCount();
+		for (Object[] obj : objList) {
+			int year = (int) obj[0]; // 年份
+			int count = ((BigInteger) obj[1]).intValue();
+
+			// yearPrice.put(year, );
+			yearMap.put(year, count);
+
+			// System.out.println("Here are the years: " + year + " and their counts" + ": "
+			// + count);
+		}
+
+		for (Integer key : yearMap.keySet()) {
+
+			List<Appointment> yearSales = appointmentRepo.findByYear(key);
+			double eachprice = 0.0;
+			for (Appointment appointment : yearSales) {
+				eachprice += appointment.getTotal_price();
+			}
+
+			yearPrice.put(key, eachprice);
+			// System.out.println("Here are the key: " + key + " and their eachprice" + ": "
+			// + eachprice);
+		}
+
+		List<Object[]> list = yearPrice.entrySet().stream()
+				.map(e -> new Object[] { e.getKey(), e.getValue() })
+				.collect(Collectors.toList());
+
+		for (Object[] obj : list) {
+			System.out.println("Here are the obj: " + obj[0] + " and their price" + ": " + obj[1]);
+		}
+
+		return list;
+	}
+
+	public List<Object[]> getQuarterlyStaticalReport(int year) {
+		//System.out.println("Here is the year: " + year);
+
+		// List<Appointment> aimYear = appointmentRepo.findByYear(year);
+
+		LocalDateTime FirstMonth = LocalDateTime.of(year, 1, 1, 0, 0, 0);
+		LocalDateTime First3Month = LocalDateTime.of(year, 3, 31, 23, 59, 59);
+		//System.out.println("Here is the FirstMonth: " + FirstMonth + " and the First3Month: " + First3Month);
+
+		LocalDateTime SecondMonth = LocalDateTime.of(year, 4, 1, 0, 0, 0);
+		LocalDateTime Second3Month = LocalDateTime.of(year, 6, 30, 23, 59, 59);
+
+		LocalDateTime ThirdMonth = LocalDateTime.of(year, 7, 1, 0, 0, 0);
+		LocalDateTime Third3Month = LocalDateTime.of(year, 9, 30, 23, 59, 59);
+
+		LocalDateTime ForthMonth = LocalDateTime.of(year, 10, 1, 0, 0, 0);
+		LocalDateTime Forth3Month = LocalDateTime.of(year, 12, 31, 23, 59, 59);
+
+		Timestamp start1 = Timestamp.valueOf(FirstMonth);
+		Timestamp end1 = Timestamp.valueOf(First3Month);
+		//System.out.println("Here is the start1: " + start1 + " and the end1: " + end1);
+
+		Timestamp start2 = Timestamp.valueOf(SecondMonth);
+		Timestamp end2 = Timestamp.valueOf(Second3Month);
+
+		Timestamp start3 = Timestamp.valueOf(ThirdMonth);
+		Timestamp end3 = Timestamp.valueOf(Third3Month);
+
+		Timestamp start4 = Timestamp.valueOf(ForthMonth);
+		Timestamp end4 = Timestamp.valueOf(Forth3Month);
+
+		List<Appointment> appointments1 = appointmentRepo.findAllByFinishTimeBetween(start1, end1);
+		List<Appointment> appointments2 = appointmentRepo.findAllByFinishTimeBetween(start2, end2);
+		List<Appointment> appointments3 = appointmentRepo.findAllByFinishTimeBetween(start3, end3);
+		List<Appointment> appointments4 = appointmentRepo.findAllByFinishTimeBetween(start4, end4);
+
+		// System.out.println("Here are the appointments1: " + appointments1);
+		// System.out.println("Here are the appointments2: " + appointments2);
+		// System.out.println("Here are the appointments3: " + appointments3);
+		// System.out.println("Here are the appointments4: " + appointments4);
+
+		Double price1 = 0.0;
+		Double price2 = 0.0;
+		Double price3 = 0.0;
+		Double price4 = 0.0;
+
+		for (Appointment appointment : appointments1) {
+			price1 += appointment.getTotal_price();
+		}
+		for (Appointment appointment : appointments2) {
+			price2 += appointment.getTotal_price();
+		}
+		for (Appointment appointment : appointments3) {
+			price3 += appointment.getTotal_price();
+		}
+		for (Appointment appointment : appointments4) {
+			price4 += appointment.getTotal_price();
+		}
+
+		Map<Integer, Double> yearMap = new HashMap<>();
+		yearMap.put(1, price1);
+		yearMap.put(2, price2);
+		yearMap.put(3, price3);
+		yearMap.put(4, price4);
+
+		List<Object[]> list = yearMap.entrySet().stream()
+				.map(e -> new Object[] { e.getKey(), e.getValue() })
+				.collect(Collectors.toList());
+
+		for (Object[] obj : list) {
+			System.out.println("Here are the obj: " + obj[0] + " and their price" + ": " + obj[1]);
+		}
+
+		return list;
+	}
 }

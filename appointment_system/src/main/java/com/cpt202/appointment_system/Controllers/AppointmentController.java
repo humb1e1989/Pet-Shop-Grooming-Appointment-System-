@@ -49,7 +49,7 @@ public class AppointmentController {
     // YYY PBI NO.1 - Manager can view all of appointments
     // @GetMapping("/manager/appointmentList")
     // public Result<?> getAllAppointment_M() {
-    //     return appointmentService.getAppointmentList_M();
+    // return appointmentService.getAppointmentList_M();
     // }
     @GetMapping("/manager/appointmentList")
     public String getAllAppointment_M(Model model) {
@@ -68,7 +68,8 @@ public class AppointmentController {
      * This is a part to fullfill all the functions of customer.
      */
 
-    //YYY PBI NO.3 - Customer can view all of history appointments (only hisappointment)
+    // YYY PBI NO.3 - Customer can view all of history appointments (only
+    // hisappointment)
     @GetMapping("/customer/appointmentList")
     public Result<?> getUserAppointment_C(@RequestParam User user) {
         return appointmentService.getAppointmentBy_Uid(user);
@@ -79,7 +80,7 @@ public class AppointmentController {
     // appointment detail)
     // @GetMapping("/customer/appointmentList/view")
     // public Result<?> viewAppointment_C(@RequestParam User user) {
-    //     return appointmentService.getAppointmentDetail_C(user);
+    // return appointmentService.getAppointmentDetail_C(user);
     // }
 
     // ZYH PBI NO.i Customer can search appointment by user name
@@ -87,8 +88,8 @@ public class AppointmentController {
     public Result<?> getAppointmentByName_C(@RequestParam String username) {
         return appointmentService.getAppointmentListByUserName_C(username);
     }
-    
-    //bowenli's pbi
+
+    // bowenli's pbi
     // Customer can make appointment
     @GetMapping("/customer/makeappointment")
     public String makeappointment(Model model) {// capable of convert a string into object
@@ -98,10 +99,9 @@ public class AppointmentController {
 
     @PostMapping("/customer/makeappointment")
     public String makeappointment_C(@ModelAttribute("appointment") Appointment appointment) {
-         appointmentService.makeAppointment_C(appointment);
-         return "home";
+        appointmentService.makeAppointment_C(appointment);
+        return "home";
     }
-    
 
     // Customer can cancel appointment
     @PostMapping("/customer/cancelAppointment")
@@ -115,7 +115,16 @@ public class AppointmentController {
         appointmentService.updateAppointment(appointment);
     }
 
+    // report part
 
+    // @GetMapping("/report")
+    // public String showReport(Model model,
+    //         @RequestParam(value = "year", required = false, defaultValue = "2023") int year) {
+    //     model.addAttribute("appointments", appointmentService.findAllSale());
+    //     model.addAttribute("annualAppointments", appointmentService.getAnnualStaticalReport());
+    //     model.addAttribute("quarterlyAppointments", appointmentService.getQuarterlyStaticalReport(year));
 
+    //     return "report";
+    // }
 
 }

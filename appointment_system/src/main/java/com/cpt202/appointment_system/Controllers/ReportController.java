@@ -42,26 +42,26 @@ package com.cpt202.appointment_system.Controllers;
 //     }
 
 // }
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+// import org.springframework.beans.factory.annotation.Autowired;
+// import org.springframework.stereotype.Controller;
+// import org.springframework.ui.Model;
+// import org.springframework.web.bind.annotation.GetMapping;
+// import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.cpt202.appointment_system.Services.ReportService;
+// import com.cpt202.appointment_system.Services.ReportService;
 
-@Controller
-@RequestMapping("/appointment-system")
-public class ReportController {
+// @Controller
+// @RequestMapping("/appointment-system")
+// public class ReportController {
 
-    @Autowired
-    private ReportService reportService;
+//     @Autowired
+//     private ReportService reportService;
 
-    @GetMapping("/report")
-    public String showReport(Model model) {
-        model.addAttribute("sales", reportService.findAllSale());
-        model.addAttribute("annualSales", reportService.getAnnualStaticalReport());
-        model.addAttribute("quarterlySales", reportService.getQuarterlyStaticalReport());
-        return "report";
-    }
-}
+//     @GetMapping("/report")
+//     public String showReport(Model model) {
+//         model.addAttribute("sales", reportService.findAllSale());
+//         model.addAttribute("annualSales", reportService.getAnnualStaticalReport());
+//         model.addAttribute("quarterlySales", reportService.getQuarterlyStaticalReport());
+//         return "report";
+//     }
+// }
