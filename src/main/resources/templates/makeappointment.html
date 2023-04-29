@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="zxx" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>IPet - Petcare HTML 5 Website Template</title>
+
+    <!-- Stylesheets -->
+    <link href="/assets/css/font-awesome-all.css" rel="stylesheet">
+    <link href="/assets/css/flaticon.css" rel="stylesheet">
+    <link href="/assets/css/owl.css" rel="stylesheet">
+    <link href="/assets/css/bootstrap.css" rel="stylesheet">
+    <link href="/assets/css/jquery.fancybox.min.css" rel="stylesheet">
+    <link href="/assets/css/animate.css" rel="stylesheet">
+    <link href="/assets/css/color.css" rel="stylesheet">
+    <link href="/assets/css/style.css" rel="stylesheet">
+    <link href="/assets/css/responsive.css" rel="stylesheet">
+    <link href="/assets/css/theme-template.css" rel="stylesheet">
+
+</head>
+
+
+<!-- page wrapper -->
+
+<body>
+
+    <div class="boxed_wrapper">
+
+        <!-- main header -->
+        <header class="main-header header-style-two">
+
+            <div class="header-lower">
+                <div class="auto-container-fluid">
+                    <div class="outer-box clearfix">
+                        <div class="logo-box pull-left">
+                            <figure class="logo"><a th:href="@{/appointment-system}"><img src="/assets/images/logo.png" alt=""></a>
+                            </figure>
+                        </div>
+                        <div class="menu-area pull-right clearfix">
+                            <!--Mobile Navigation Toggler-->
+                            <div class="mobile-nav-toggler">
+                                <i class="icon-bar"></i>
+                                <i class="icon-bar"></i>
+                                <i class="icon-bar"></i>
+                            </div>
+                            <nav class="main-menu navbar-expand-md navbar-light">
+                                <div class="collapse navbar-collapse show clearfix" id="navbarSupportedContent">
+                                    <ul class="navigation clearfix">
+
+                                        <li><a th:href="@{/appointment-system}">Home</a></li>
+
+                                        <li><a th:href="@{/appointment-system/pricing}">Pricing Plans</a></li>
+
+                                        <li><a th:href="@{/appointment-system/groomers}">Groomers</a></li>
+
+                                        <li class="dropdown"><a th:href="@{/appointment-system/allService}">Services</a>
+                                            <ul>
+                                                <li><a th:href="@{/appointment-system/allService}">All Services</a></li>
+                                                <li><a th:href="@{/appointment-system/petBathing}">Pet Bathing</a></li>
+                                                <li><a th:href="@{/appointment-system/petTraining}">Pet Training</a></li>
+                                                <li><a th:href="@{/appointment-system/hairDrying}">Hair Drying</a></li>
+                                                <li><a th:href="@{/appointment-system/petHaircut}">Pet Haircut</a></li>
+                                                <li><a th:href="@{/appointment-system/petDyeHair}">Pet Dye Hair</a></li>
+                                                <li><a th:href="@{/appointment-system/veterinaryCare}">VeterinaryCare</a></li>
+                                            </ul>
+                                        </li>
+
+                                        <!-- 无法使用 -->
+                                        <!-- <li class="dropdown"><a>Personal</a>
+                                            <ul>
+                                                <li><button id="Profile">My Pets</button></li>
+
+                                                <li><button>My Appointments</button></li>
+                                            </ul>
+                                        </li> -->
+
+                                    </ul>
+                                </div>
+                            </nav>
+                            <!--改为登录弹窗-->
+                            <div class="btn-box">
+                                <a th:href="@{/appointment-system}" class="theme-btn btn-five">Back</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--sticky Header-->
+            <div class="sticky-header">
+                <div class="auto-container">
+                    <div class="outer-box clearfix">
+                        <figure class="sticky-logo pull-left">
+                            <a th:href="@{/appointment-system}"><img src="/assets/images/logo.png" alt=""></a>
+                        </figure>
+                        <div class="menu-area pull-right clearfix">
+                            <nav class="main-menu clearfix">
+                                <!--Keep This Empty / Menu will come through Javascript-->
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- main-header end -->
+
+        <!-- Mobile Menu  -->
+        <div class="mobile-menu">
+            <div class="menu-backdrop"></div>
+            <div class="close-btn"><i class="fas fa-times"></i></div>
+
+            <nav class="menu-box">
+                <div class="nav-logo"><a th:href="@{/appointment-system}"><img src="/assets/images/logo.png" alt="" title=""></a>
+                </div>
+                <div class="menu-outer"><!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header-->
+                </div>
+                <div class="contact-info">
+                    <h4>Contact Info</h4>
+                    <ul>
+                        <li>111 Ren Ai Road Industrial park, Suchou, China</li>
+                        <li><a href="tel:+0991 433-8833">+0991 433-8833</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <!-- End Mobile Menu -->
+
+        <!-- Page Title -->
+        <section class="page-title centred">
+            <div class="pattern-layer" style="background-image: url(/assets/images/shape/shape-87.png);"></div>
+            <div class="auto-container">
+                <div class="content-box">
+                    <h1>Make Appointment</h1>
+                    <ul class="bread-crumb clearfix">
+                        <li><a th:href="@{/appointment-system}">Home</a></li>
+                        <li>Make appointment</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <!-- End Page Title -->
+
+        <!-- contact-style-two -->
+        <section class="contact-style-two sec-pad">
+            <div class="pattern-layer" style="background-image: url(/assets/images/shape/shape-68.png);"></div>
+            <div class="auto-container">
+                <div class="row clearfix">
+                    <div class="col-lg-5 col-md-12 col-sm-12 content-column">
+                        <div class="content_block_21">
+                            <div class="content-box sec-title">
+                                <h2>Contact information</h2>
+                                <div class="divider mb-30"
+                                    style="background-image: url(/assets/images/icons/divider-1.png);"></div>
+                                <div class="single-item contact-block_border">
+                                    <div class="icon-box"><i class="fas fa-headphones"></i></div>
+                                    <h3>Make a Call</h3>
+                                    <span>LET US TALK WITH OUR EXPERTS</span>
+                                    <p><a href="tel:+0991 433-8833">+0991 433-8833</a>, Mon - Fri: 09.00 to 18.00</p>
+                                </div>
+
+                                <div class="single-item contact-block_border">
+                                    <div class="icon-box"><i class="far fa-paper-plane"></i></div>
+                                    <h3>Location</h3>
+                                    <span>VISIT TO EXPLORE THE WORLD</span>
+                                    <p>111 Ren Ai Road Industrial park, Suchou, China</p>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-7 col-md-12 col-sm-12 inner-column">
+                        <div class="form-inner sec-title">
+                            <h2>Make appointment now!</h2>
+                            <div class="divider mb-30"
+                                style="background-image: url(/assets/images/icons/divider-1.png);"></div>
+                                <form class="form" action="/Appointment/appoint" method="post" th:object="${appointmentForm}" onsubmit="return validateForm()">
+                                <div class="row clearfix">
+
+                                    <!--用户（有登录后删除）-->
+                                    <!-- <div class="col-lg-12 col-md-12 col-sm-12 form-group">
+                                    <label for="user"></label><i class="far fa-user"></i>
+                                    <h1><span th:text="${username}"></span></h1>
+                                </div> -->
+
+
+                                    <!--选择自己的宠物， 需要从该用户的宠物数据库调-->
+                                    <div class="col-lg-12 col-md-12 col-sm-12 form-group">
+                                        <i class="fal fa-paw-alt"></i>
+                                        <label for="Pet">Your Pet :</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <select name="Pet" id="Pet" onchange="calculateSum()">
+                                            <option value="" selected disabled>请选择一个宠物</option>
+                                            <div th:each="pet: ${petList}">
+                                              <option th:value="${pet.getPid()}" th:data-size="${pet.getSize()}" th:field="*{pet}">
+                                                <p th:text="${pet.getName()}"></p>
+                                              </option>
+                                            </div>
+                                          </select>
+                                          
+                                    </div>
+
+                                    <!--选择服务， 可多选-->
+                                    <div class="col-lg-12 col-md-12 col-sm-12 form-group">
+
+                                        <i class="fal fa-aws"></i>
+                                        <label for="serviceType">Service Type :</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <select name="serviceType" id="serviceType" onchange="calculateSum()">
+                                            <option value="" selected disabled>请选择一个服务</option>
+                                            <div th:each="serviceType: ${serviceType}">
+                                              <option th:value="${serviceType.getSid()}" th:data-price="${serviceType.getBasicPrice()}" th:field="*{serviceType}">
+                                                <p th:text="${serviceType.getServiceName()}"></p>&nbsp;<p th:text="${serviceType.getBasicPrice()}"></p> $
+                                              </option>
+                                            </div>
+                                          </select>
+                                        
+
+                                    </div>
+
+                                    <!--选择服务时间，需要将已下单时间标灰-->
+
+                                    <div class="col-lg-12 col-md-12 col-sm-12 form-group">
+                                        <i class="fal fa-calendar-alt"></i>
+                                        <label for="StartTime">Start Time :</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <input type="datetime-local" id="StartTime" name="StartTime"
+                                            value="yyyy-MM-ddTHH:mm" th:field="*{StartTime}" min="2023-05-01T00:00"
+                                            max="2024-05-01T00:00">
+
+                                    </div>
+
+
+                                    <!--选择Groomer， 需要从Groomer数据库调-->
+                                    <div class="col-lg-12 col-md-12 col-sm-12 form-group">
+                                        <i class="far fa-user"></i>
+                                        <label for="Groomer">Groomer :</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <select name="Groomer" id="Groomer" onchange="calculateSum()">
+                                            <option value="" selected disabled>请选择一个美容师</option>
+                                            <div th:each="groomer : ${gList}">
+                                              <option th:value="${groomer.getGid()}" th:data-rank="${groomer.getRank()}" th:field="*{groomer}">
+                                                <p th:text="${groomer.getName()}"></p>
+                                              </option>
+                                            </div>
+                                          </select>
+                                          
+                                    </div>
+
+                                    <!-- totalprice -->
+                                    <div class="col-lg-12 col-md-12 col-sm-12 form-group">
+                                        <i class="far fa-user"></i>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;
+                                        <p>Total Price：$<span id="serviceprice">0</span></p>
+
+                                        <div id="error-message" class="alert alert-danger" style="display:none;">
+                                            请填写所有必选字段。
+                                        </div>
+                                        
+
+                                    </div>
+                                      <script>
+                                        function validateForm() {
+                                            const pet = document.getElementById("Pet");
+                                            const serviceType = document.getElementById("serviceType");
+                                            const startTime = document.getElementById("StartTime");
+                                            const groomer = document.getElementById("Groomer");
+                                            const errorMessage = document.getElementById("error-message");
+
+                                            // 检查所有必填字段是否已选或填写
+                                            if (pet.value === "" || serviceType.value === "" || startTime.value === "" || groomer.value === "") {
+                                                errorMessage.style.display = "block"; // 显示错误消息
+                                                return false; // 阻止表单提交
+                                            } else {
+                                                errorMessage.style.display = "none"; // 隐藏错误消息
+                                                return true; // 允许表单提交
+                                            }
+                                        }
+
+                                        function calculateSum() {
+                                          var serviceType = document.getElementById("serviceType");
+                                          var selectedOption = serviceType.options[serviceType.selectedIndex];
+                                          var servicePrice = parseInt(selectedOption.getAttribute("data-price"));
+
+                                          var groomerSelect = document.getElementById("Groomer");
+                                          var selectedGroomerOption = groomerSelect.options[groomerSelect.selectedIndex];
+                                          var groomerRank = selectedGroomerOption.getAttribute("data-rank");
+                                      
+                                          var petSelect = document.getElementById("Pet");
+                                          var selectedPetOption = petSelect.options[petSelect.selectedIndex];
+                                          var petSize = selectedPetOption.getAttribute("data-size");
+                                      
+                                          var SIZE = 0;
+                                          if (petSize === "Small") {
+                                            SIZE = 10;
+                                          } else if (petSize === "Medium") {
+                                            SIZE = 20;
+                                          } else {
+                                            SIZE = 30;
+                                          }
+                                      
+                                          var TotalPrice = servicePrice + SIZE + groomerRank*10;
+                                          document.getElementById("serviceprice").innerHTML = TotalPrice;
+                                        }
+                                      </script>
+                                      
+                                    <!--提交按钮-->
+                                    <div class="col-lg-12 col-md-12 col-sm-12 form-group message-btn">
+                                        <button class="theme-btn btn-seven" type="submit" name="submit-form">Make
+                                            Appointment</button>
+                                    </div>
+
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- contact-style-two end -->
+        <section class="team-page-section" th:class="team-page-section">
+            <div class="auto-container">
+                <div class="sec-title style-two centred">
+                    <h5>TEAM MEMBERS</h5>
+                    <h2>Our best team person</h2>
+                    <div class="divider" style="background-image: url(/assets/images/icons/divider-1.png);"></div>
+                </div>
+                <div class="row clearfix">
+                    <div class="col-lg-3 col-md-6 col-sm-12 team-block" th:each="groomer : ${gList}">
+                        <div class="team-block-two wow fadeInUp animated animated" data-wow-delay="00ms" data-wow-duration="1500ms" style="visibility: visible; animation-duration: 1500ms; animation-delay: 0ms; animation-name: fadeInUp;">
+                            <div class="inner-box">
+                                <div class="image-box">
+                                    <figure class="image"><img th:src="${groomer.getImageURL()}" alt=""></figure>
+                                </div>
+                                <div class="lower-content">
+                                    <ul class="rating clearfix centred" style="color: #ffa800">
+                                        <li>=====
+                                            <script th:inline="javascript">
+                                                
+                                                // Please ignore this error (It can run as we want anyway)
+                                                var ranking = [[${groomer.getRank()}]];
+                                                for (var i=0; i < ranking; i++){
+                                                    document.write("<i class=\"fas fa-star\"></i>");
+                                                }
+                                            </script>
+                                        =====</li>
+                                    </ul>
+                                    <h3><p><b th:text="${groomer.getName()}"></b></p></h3>
+                                    <div class="designation">
+                                        <span class="bar"></span>
+                                        <p th:text="${groomer.getDescription()}"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- team-page-section end -->
+
+
+        <!-- main-footer finished-->
+        <footer class="main-footer footer-style-five">
+            <div class="footer-top-two">
+                <div class="pattern-layer"></div>
+                <div class="auto-container">
+                    <div class="row clearfix">
+                        <div class="col-lg-4 col-md-6 col-sm-12 footer-column">
+                            <div class="footer-widget logo-widget">
+
+                                <figure class="footer-logo footer-logo-center"><a th:href="@{/appointment-system}"><img
+                                            src="/assets/images/logo.png" alt=""></a></figure>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-12 footer-column">
+                            <div class="footer-widget links-widget ml-40">
+                                <div class="widget-title">
+                                    <h3>Quick Link</h3>
+                                </div>
+                                <div class="widget-content">
+                                    <ul class="links-list clearfix">
+                                        <li><a th:href="@{/appointment-system}">Home</a></li>
+                                        <li><a th:href="@{/appointment-system/groomers}">Groomers</a></li>
+                                        <li><a th:href="@{/appointment-system/pricing}">Pricing plan</a></li>
+                                        <li><a th:href="@{/appointment-system/allService}">Our Services</a></li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-12 footer-column">
+                            <div class="footer-widget contact-widget ml-40">
+                                <div class="widget-title">
+                                    <h3>Contact Us</h3>
+                                </div>
+                                <div class="widget-content">
+                                    <ul class="info-list clearfix">
+                                        <li>
+                                            <i class="far fa-paper-plane"></i>
+                                            <p>111 Ren Ai Road Industrial park, Suchou, China</p>
+                                        </li>
+                                        <li>
+                                            <i class="fas fa-headphones"></i>
+                                            <p><a href="tel:+0991 433-8833">+0991 433-8833</a></p>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- main-footer end -->
+
+        <!-- scroll to top -->
+        <button class="scroll-top style-two scroll-to-target" data-target="html">
+            <i class="fas fa-angle-up"></i>
+        </button>
+
+    </div>
+
+
+    <!-- jequery plugins -->
+    <script src="/assets/js/jquery.js"></script>
+    <script src="/assets/js/popper.min.js"></script>
+    <script src="/assets/js/bootstrap.min.js"></script>
+    <script src="/assets/js/owl.js"></script>
+    <script src="/assets/js/wow.js"></script>
+    <script src="/assets/js/validation.js"></script>
+    <script src="/assets/js/contact-form-script.js"></script>
+    <script src="/assets/js/jquery.fancybox.js"></script>
+    <script src="/assets/js/appear.js"></script>
+    <script src="/assets/js/scrollbar.js"></script>
+    <script src="/assets/js/tilt.jquery.js"></script>
+    <script src="/assets/js/isotope.js"></script>
+    <script src="/assets/js/bxslider.js"></script>
+
+    <!-- map script -->
+    <!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-CE0deH3Jhj6GN4YvdCFZS7DpbXexzGU"></script>-->
+    <!--<script src="assets/js/gmaps.js"></script>-->
+    <!--<script src="assets/js/map-helper.js"></script>-->
+
+    <!-- main-js -->
+    <script src="/assets/js/script.js"></script>
+
+</body><!-- End of .page_wrapper -->
+
+</html>

@@ -1,0 +1,135 @@
+package com.cpt202.appointment_system.Controllers;
+
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.cpt202.appointment_system.Common.Result;
+import com.cpt202.appointment_system.Models.Pet;
+import com.cpt202.appointment_system.Models.User;
+import com.cpt202.appointment_system.Repositories.PetRepo;
+import com.cpt202.appointment_system.Repositories.UserRepo;
+import com.cpt202.appointment_system.Services.PetService;
+import com.cpt202.appointment_system.Services.UserService;
+
+@Controller
+@RequestMapping("/appointment-system")
+public class PetController {
+    @Autowired
+    private PetService petService;
+
+    @Autowired
+    private PetRepo petRepo;
+
+    @Autowired
+    private UserRepo userRepo;
+
+    @Autowired
+    private UserService userService;
+
+
+    //SQZ And WJT
+    // @PostMapping("/customer/petList/update")
+    // public Result<?> deletePet(@RequestBody Pet pet){
+    //     return petService.updatePet_C(pet);
+    // }
+
+    // User can choose from his own pet list
+    @GetMapping("/customer/makeAppointment")
+    public String getPetList(Model model, int uid){
+        User user = userRepo.findByUid(uid);
+        List<Pet> petList = petRepo.findByUser(user);
+        model.addAttribute("petList", petList);
+        return "makeAppointment";
+    }
+
+
+
+
+
+    
+    // below are all the things needed by personal page
+
+    // list, add, modify, delete on one page
+    // remember to optimize "return problem"
+    @GetMapping("/customer/profile/pet")
+    public String getMyPetPage(Model model, HttpSession session){
+        String username = (String) session.getAttribute("user");
+        User user = userRepo.findByUsername(username);
+        List<Pet> petList = petService.listAllPets(user);
+        model.addAttribute("petList", petList);
+        model.addAttribute("number", petList.size());
+        model.addAttribute("pet", new Pet());
+        // model.addAttribute("userID", uid);
+        return "MyPet8";
+    }
+
+
+
+    @PostMapping("/customer/profile/pet/add")
+    public String addPetPost(HttpSession session, @ModelAttribute("pet") Pet pet, Model model, MultipartFile file){
+        String username = (String) session.getAttribute("user");
+        User user = userRepo.findByUsername(username);
+        Integer uid=user.getUid();
+        pet.setUser(userRepo.findByUid(uid));
+        int code = petService.addPet(file, pet);
+        model.addAttribute("code", code);
+
+        // have to deal with it later
+        if (code == 2 || code == 3){
+            return "MyPet8";
+        }
+
+        // return getMyPetPage(uid, model);
+        return "redirect:/appointment-system/customer/profile";
+        
+    }
+
+
+    @PostMapping("/customer/profile/pet/edit")
+    public String editPetPost(HttpSession session, @ModelAttribute("pet") Pet pet, Model model, MultipartFile file){
+        String username = (String) session.getAttribute("user");
+        User user = userRepo.findByUsername(username);
+        Integer uid=user.getUid();
+        pet.setUser(userRepo.findByUid(uid));
+        int code = petService.editPet(file, pet);
+        model.addAttribute("code", code);
+
+        // have to deal with it later
+        if (code == 2 || code == 3){
+            return "MyPet8";
+        }
+
+        // return getMyPetPage(uid, model);
+        return "redirect:/appointment-system/customer/profile";
+    }
+
+
+    @PostMapping("/customer/profile/pet/delete")
+    public String removePet(HttpSession session, @ModelAttribute("pet") Pet pet, Model model){
+        String username = (String) session.getAttribute("user");
+        User user = userRepo.findByUsername(username);
+        Integer uid=user.getUid();
+        pet.setUser(userRepo.findByUid(uid));
+        petService.deletePet(pet.getPid());
+
+        // return getMyPetPage(uid, model);
+        return "redirect:/appointment-system/customer/profile";
+                
+    }
+
+
+
+}

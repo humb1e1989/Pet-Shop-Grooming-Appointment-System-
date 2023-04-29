@@ -1,0 +1,821 @@
+﻿<!DOCTYPE html>
+<html lang="zxx" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>IPet - Petcare HTML 5 Website Template</title>
+
+    <!-- Stylesheets -->
+    
+    
+    <link href="/assets/css/font-awesome-all.css" rel="stylesheet">
+    <link href="/assets/css/flaticon.css" rel="stylesheet">
+    <link href="/assets/css/owl.css" rel="stylesheet">
+    <link href="/assets/css/bootstrap.css" rel="stylesheet">
+    <link href="/assets/css/jquery.fancybox.min.css" rel="stylesheet">
+    <link href="/assets/css/animate.css" rel="stylesheet">
+    <link href="/assets/css/color.css" rel="stylesheet">
+    <link href="/assets/css/style.css" rel="stylesheet">
+    <link href="/assets/css/responsive.css" rel="stylesheet">
+    <link href="/assets/css/theme-template.css" rel="stylesheet">
+
+</head>
+
+
+<!-- page wrapper -->
+<body>
+
+    <!-- <button id="Login" onclick="start()">Log in</button>
+<button id="Logout" style="display: none;">Log out</button>
+<button id='Profile' >个人界面</button>
+<button id='Appointment' >订单界面</button> -->
+
+    <input id="user" th:value="${session.user}">
+    <p id="message" th:text="${message}" style="display:none;"></p>
+    <p id="error" th:text="${error}" style="display:none;"></p>
+    <script>
+        window.onload = function () {
+            const message = document.getElementById("message").innerText;
+            const error = document.getElementById("error").innerText;
+            if (message) {
+                alert(message);
+                window.location.href = "/appointment-system";
+            } else if (error) {
+                alert(error);
+                window.location.href = "/appointment-system";
+            }
+        }
+    </script>
+
+    <span th:text="${session.user}"></span>
+
+    <div id="signform" class="modal_sign" style="display: none">
+        <div class="container_sign">
+            <div class="header">
+                <div class="close-container">
+                    <span class="close_sign">&times; </span>
+                </div>
+                <h2>Log in</h2>
+            </div>
+
+            <!--    Form-->
+            <form class="form" action="/appointment-system/login" id="loginForm" method="post">
+                <!-- <input type="hidden" name="action" value="login"> -->
+                <div class="form_control_sign">
+                    <label for="uname">Username:</label>
+                    <input type="text" placeholder="Please enter your username" id="uname" name="username">
+                    <i class="el-icon-success"></i>
+                    <i class="el-icon-warning"></i>
+                    <small>Error Message</small>
+                </div>
+                <div class="form_control_sign">
+                    <label for="upwd">Password</label>
+                    <input type="password" placeholder="Please enter your password" id="upwd" name="password">
+                    <i class="el-icon-success"></i>
+                    <i class="el-icon-warning"></i>
+                    <small>Error Message</small>
+                </div>
+                <button class="theme-btn btn-seven" id="loginBtn">Log in</button>
+                <p>Do not have an account yet?<a href="#" style="text-decoration: none;color: #43A047" onclick="signre()">Sign up</a> for one now.
+                </p>
+                <p>Forget your password? Click&nbsp;<a href="/reset-password-form" style="text-decoration: none;color: #43A047"
+                        onclick="signre()">here</a> to retrieve one</p>
+            </form>
+        </div>
+    </div>
+
+    <!--    sign up-->
+    <div id="signupform" class="modal_sign" style="display: none">
+        <div class="container_sign">
+            <div class="header">
+                <div class="close-container">
+                    <span class="close_sign">&times; </span>
+                </div>
+                <h2>Register</h2>
+            </div>
+
+            <!--    Form-->
+            <form action="/appointment-system/reg" class="form" id="Registerform" method="post">
+                <!-- <input type="hidden" name="action" value="login"> -->
+                <div class="form_control_sign">
+                    <label for="username">Username</label>
+                    <input type="text" placeholder="Please enter your username" id="username" name="rename"><br>
+                    <i class="el-icon-success"></i>
+                    <i class="el-icon-warning"></i>
+                    <small>Error Message</small>
+                </div>
+
+                <div class="form_control_sign">
+                    <label for="email">Email</label>
+                    <input type="text" placeholder="Please enter your email" id="email" name="reemail"><br>
+                    <i class="el-icon-success"></i>
+                    <i class="el-icon-warning"></i>
+                    <small>Error Message</small>
+                </div>
+
+                <div class="form_control_sign">
+                    <label for="phone">Phone Number</label>
+                    <input type="text" placeholder="Please enter your Phone Number" id="phone" name="phone"><br>
+                    <i class="el-icon-success"></i>
+                    <i class="el-icon-warning"></i>
+                    <small>Error Message</small>
+                </div>
+
+                <div class="form_control_sign">
+                    <label for="password">Password</label>
+                    <input type="password" placeholder="Please enter your password" id="password" name="repass"><br>
+                    <i class="el-icon-success"></i>
+                    <i class="el-icon-warning"></i>
+                    <small>Error Message</small>
+                </div>
+
+                <div class="form_control_sign">
+                    <label for="password2">Repeat password</label>
+                    <input type="password" placeholder="Please repeat your password" id="password2" name="repass2"><br>
+                    <i class="el-icon-success"></i>
+                    <i class="el-icon-warning"></i>
+                    <small>Error Message</small>
+                </div>
+
+                <button class="theme-btn btn-seven" type="submit">Submit</button>
+                <p>Already have an account? Log in &nbsp;<a href="#" style="text-decoration: none;color: #43A047" onclick="resign()">here</a>.</p>
+            </form>
+            <p th:text="${message}"></p>
+        </div>
+    </div>
+
+    <script src="./jquery-3.6.0.min.js"></script>
+    <script>
+        var span = document.getElementsByClassName("close_sign")[0];
+        span.onclick = function () {
+            document.getElementById('signform').style.display = "none"
+            document.getElementById('signupform').style.display = "none"
+        }
+        var span1 = document.getElementsByClassName("close_sign")[1];
+        span1.onclick = function () {
+            document.getElementById('signform').style.display = "none"
+            document.getElementById('signupform').style.display = "none"
+        }
+        function start() {
+            document.getElementById('signform').style.display = ""
+        }
+
+        function loading() {
+            document.getElementById('registerloading').style.display = ""
+        }
+
+        function signre() {
+            if (document.getElementById('signform').style.display == "" && document.getElementById('signupform').style.display == "none") {
+                document.getElementById('signform').style.display = "none"
+                document.getElementById('signupform').style.display = ""
+            }
+        }
+
+        function resign() {
+            if (document.getElementById('signupform').style.display == "" && document.getElementById('signform').style.display == "none") {
+                document.getElementById('signform').style.display = ""
+                document.getElementById('signupform').style.display = "none"
+            }
+        }
+
+
+        // sign up 的 constraints
+        //获取页面实体（输入框、表单）---------------------------------------
+        const form = document.getElementById("Registerform");
+        const formLog = document.getElementById("signform");
+        const uname = document.getElementById("uname");
+        const upwd = document.getElementById("upwd");
+        const username = document.getElementById("username");
+        const email = document.getElementById("email");
+        const passowrd = document.getElementById("password");
+        const password2 = document.getElementById("password2");
+        const phone = document.getElementById("phone");
+
+
+        username.addEventListener("blur", checkUsername)
+        email.addEventListener("blur", checkEmail)
+        passowrd.addEventListener("blur", checkPassword)
+        password2.addEventListener("blur", checkPassword2)
+        phone.addEventListener("blur", checkPhone)
+
+        function checkPhone() {
+            const phoneValue = phone.value.trim();
+            const cPhone = /^1[3-9]\d{9}$/;
+            //手机验证
+            if (phoneValue === "") {
+                setErrorFor(phone, "Phone number can not be empty");
+            }
+            else if (!cPhone.test(phoneValue)) {
+                setErrorFor(phone, "Invalid mobile phone");
+            }
+            else {
+                setSuccessFor(phone);
+            }
+        }
+
+        function checkUsername() {
+            const usernameValue = username.value.trim();
+            // 用户名验证
+            if (usernameValue === "") {
+                setErrorFor(username, "Username can not be empty");
+            } else {
+                // 检查用户名是否唯一
+                fetch(`/appointment-system/check-unique?value=${usernameValue}`)
+                    .then(response => {
+                        if (response.status === 200) {
+                            setSuccessFor(username);
+                        } else if (response.status === 409) {
+                            setErrorFor(username, "Username already exists");
+                        } else {
+                            setErrorFor(username, "Error checking username");
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error fetching data:', error);
+                    });
+            }
+        }
+
+
+        function checkEmail() {
+            const emailValue = email.value.trim();
+
+            // 邮箱验证
+            if (emailValue === "") {
+                setErrorFor(email, "Email can not be empty");
+            } else if (!valiEmail(emailValue)) {
+                setErrorFor(email, "Email format is incorrect, please re-enter");
+            } else {
+                // 检查邮箱是否唯一
+                fetch(`/appointment-system/check-uniqueem?value=${emailValue}`)
+                    .then(response => {
+                        if (response.status === 200) {
+                            setSuccessFor(email);
+                        } else if (response.status === 409) {
+                            setErrorFor(email, "Email already exists");
+                        } else {
+                            setErrorFor(email, "Error checking email");
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error fetching data:', error);
+                    });
+            }
+        }
+
+
+        function checkPassword() {
+            const passwordValue = passowrd.value.trim();
+            const cPassword = /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,16}$/;
+            //密码验证
+            if (passwordValue === "") {
+                setErrorFor(password, "Password can not be empty");
+            }
+
+            else if (!cPassword.test(passwordValue)) {
+                setErrorFor(passowrd, "Password must contain letters and numbers, between 6-18 characters");
+            }
+            else {
+                setSuccessFor(passowrd)
+            }
+        }
+        function checkPassword2() {
+            const passwordValue = passowrd.value.trim();
+            const password2Value = password2.value.trim();
+            //重复密码验证
+            if (password2Value === "") {
+                setErrorFor(password2, "Password can not be empty");
+            } else if (passwordValue !== password2Value) {
+                setErrorFor(password2, "The passwords entered twice are inconsistent, please re-enter")
+            } else {
+                setSuccessFor(password2)
+            }
+        }
+
+
+
+        //form表单提交事件-----------------------------------
+        form.addEventListener('submit', (e) => {
+            // 如果 checkInputs 返回 false（即输入不符合要求），阻止表单提交
+            const checkvalue = checkInputs();
+            if (checkvalue != 0) {
+                e.preventDefault();
+            }
+        })
+
+        //Log form 表单提交事件
+        formLog.addEventListener('submit', (e) => {
+            // 如果 checkInputs 返回 false（即输入不符合要求），阻止表单提交
+            const checkvalue = checkInputslog();
+            if (checkvalue != 0) {
+                e.preventDefault();
+            }
+        })
+
+        function checkInputslog() {
+            let test = 0;
+
+            const usernameValue = uname.value.trim();
+            const passwordValue = upwd.value.trim();
+            if (usernameValue === "") {
+                setErrorFor(uname, "Username can not be empty");
+                test++;
+            }
+            //密码验证
+            if (passwordValue === "") {
+                setErrorFor(upwd, "Password can not be empty");
+                test++;
+
+            }
+            return test;
+        }
+
+        //总验证方法-------------------------------------------
+        function checkInputs() {
+            //获取输入框实体的输入值
+            let test = 0;
+            const usernameValue = username.value.trim();
+            const emailValue = email.value.trim();
+            const passwordValue = passowrd.value.trim();
+            const password2Value = password2.value.trim();
+            const phoneValue = phone.value.trim();
+            const cPassword = /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,16}$/;
+            const cPhone = /^1[3-9]\d{9}$/;
+            //用户名验证
+            if (usernameValue === "") {
+                setErrorFor(username, "Username can not be empty");
+                test++;
+            }
+            else {
+                // 检查用户名是否唯一
+                fetch(`/appointment-system/check-unique?value=${usernameValue}`)
+                    .then(response => {
+                        if (response.status === 200) {
+                            setSuccessFor(username);
+                        } else if (response.status === 409) {
+                            setErrorFor(username, "Username already exists");
+                            test++;
+                        } else {
+                            setErrorFor(username, "Error checking username");
+                            test++;
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error fetching data:', error);
+                        test++;
+                    });
+            }
+
+            if (emailValue === "") {
+                setErrorFor(email, "Email can not be empty");
+                test++;
+            } else if (!valiEmail(emailValue)) {
+                setErrorFor(email, "Email format is incorrect, please re-enter");
+                test++;
+            } else {
+                // 检查邮箱是否唯一
+                fetch(`/appointment-system/check-uniqueem?value=${emailValue}`)
+                    .then(response => {
+                        if (response.status === 200) {
+                            setSuccessFor(email);
+                        } else if (response.status === 409) {
+                            setErrorFor(email, "Email already exists");
+                            test++;
+                        } else {
+                            setErrorFor(email, "Error checking email");
+                            test++;
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error fetching data:', error);
+                        test++;
+                    });
+            }
+            //密码验证
+            if (passwordValue === "") {
+                setErrorFor(password, "Password can not be empty");
+                test++;
+            } else if (!cPassword.test(passwordValue)) {
+                setErrorFor(passowrd, "Password must contain letters and numbers, between 6-18 characters");
+                test++;
+
+            }
+            else {
+                setSuccessFor(passowrd)
+            }
+            //手机验证
+            if (phoneValue === "") {
+                setErrorFor(phone, "Phone number can not be empty");
+            }
+            else if (!cPhone.test(phoneValue)) {
+                setErrorFor(phone, "Phone number must be 11 digits");
+            }
+            else {
+                setSuccessFor(phone);
+            }
+
+            //重复密码验证
+            if (password2Value === "") {
+                setErrorFor(password2, "Password can not be empty");
+                test++;
+
+            }
+
+            else if (passwordValue !== password2Value) {
+                setErrorFor(password2, "The passwords entered twice are inconsistent, please re-enter")
+                test++;
+            } else {
+                setSuccessFor(password2)
+            }
+            return test;
+
+        }
+
+        //简单封装验证成功和失败的方法-------------------------------
+        //验证原理：输入框的父组件上添加成功或失败的样式，并且将验证错误信息动态添加到<small>标签中
+
+        //验证失败
+        function setErrorFor(input, message) {
+            //input即为组件名（在这里因只有输入框所以写成input），message是错误信息（在总验证方法中传回错误信息message）
+            const formControl = input.parentElement;//所验证实体（输入框）的父组件
+            const small = formControl.querySelector('small');
+            small.textContent = message;
+            //此处须注意细节，如果只添加错误样式，输入错误信息后再次输入正确的信息，两个样式相互重叠，造成偏差，
+            //所以之前应先去除已出现的样式，没明白的话，可以将添加success的代码注释掉，看看效果
+            formControl.classList.remove('success');
+            formControl.classList.add('error');
+        }
+        //验证成功
+        function setSuccessFor(input) {
+            const formControl = input.parentElement;
+            //同理
+            formControl.classList.remove('error');
+            formControl.classList.add('success');
+        }
+
+
+        //邮箱验证特殊情况：邮箱格式不正确----------------------------
+        function valiEmail(email) {
+            const regEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            //将传过来的email值与定义的邮箱范围相比较
+            return regEmail.test(email);//返回true或false
+        }</script>
+
+    <div class="boxed_wrapper">
+
+        <!-- main header -->
+        <header class="main-header header-style-two">
+
+            <div class="header-lower">
+                <div class="auto-container-fluid">
+                    <div class="outer-box clearfix ">
+                        <div class="logo-box pull-left">
+                            <figure class="logo"><a th:href="@{/appointment-system}"><img src="/assets/images/logo.png"
+                                        alt=""></a>
+                            </figure>
+                        </div>
+                        <div class="menu-area pull-right clearfix">
+                            <!--Mobile Navigation Toggler-->
+                            <div class="mobile-nav-toggler">
+                                <i class="icon-bar"></i>
+                                <i class="icon-bar"></i>
+                                <i class="icon-bar"></i>
+                            </div>
+
+                            <nav class="main-menu navbar-expand-md navbar-light">
+                                <div class="collapse navbar-collapse show clearfix" id="navbarSupportedContent">
+                                    <ul class="navigation clearfix">
+
+                                        <li><a th:href="@{/appointment-system}">Home</a></li>
+
+                                        <li><a th:href="@{/appointment-system/pricing}">Pricing Plans</a></li>
+
+                                        <li><a th:href="@{/appointment-system/groomers}">Groomers</a></li>
+
+                                        <li class="dropdown"><a th:href="@{/appointment-system/allService}">Services</a>
+                                            <ul>
+                                                <li><a th:href="@{/appointment-system/allService}">All Services</a></li>
+                                                <li><a th:href="@{/appointment-system/petBathing}">Pet Bathing</a></li>
+                                                <li><a th:href="@{/appointment-system/petTraining}">Pet Training</a></li>
+                                                <li><a th:href="@{/appointment-system/hairDrying}">Hair Drying</a></li>
+                                                <li><a th:href="@{/appointment-system/petHaircut}">Pet Haircut</a></li>
+                                                <li><a th:href="@{/appointment-system/petDyeHair}">Pet Dye Hair</a></li>
+                                                <li><a th:href="@{/appointment-system/veterinaryCare}">VeterinaryCare</a></li>
+                                            </ul>
+                                        </li>
+
+                                        <li><button id="Profile">Mine</button></li>
+
+                                    </ul>
+                                </div>
+                            </nav>
+
+
+
+                            <!--改为登录弹窗-->
+                            <div class="btn-box">
+                                <button id="Login" onclick="start()" class="theme-btn btn-five">Log in</button>
+                                <button id="Logout" style="display: none;" class="theme-btn btn-five">Log out</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <script>
+                //给log out函数连接方法
+                const logoutButton = document.getElementById("Logout");
+                logoutButton.onclick = function () {
+                    window.location.href = "/appointment-system/logout";
+                };
+
+                const user = document.getElementById('user').value;
+                var buttonprofile = document.getElementById("Profile");
+                var buttonappoint = document.getElementById("Appointment");
+                if (user == "") {
+                    document.getElementById("Login").style.display = "block";
+                    document.getElementById("Logout").style.display = "none";
+                    buttonprofile.onclick = start;
+                    buttonappoint.onclick = start;
+
+                }
+                else {
+                    document.getElementById("Login").style.display = "none";
+                    document.getElementById("Logout").style.display = "block";
+                    buttonprofile.onclick = Profile;
+                    buttonappoint.onclick = Appoint;
+                }
+
+                function start() {
+                    document.getElementById('signform').style.display = ""
+                }
+
+                function Profile() {
+                    window.location.href = "/appointment-system/customer/profile";
+                }
+
+                function Appoint() {
+                    window.location.href = "/Appointment/appoint";
+                }
+            </script>
+
+            <!--sticky Header-->
+            <div class="sticky-header">
+                <div class="auto-container">
+                    <div class="outer-box clearfix">
+                        <figure class="sticky-logo pull-left">
+                            <a th:href="@{/appointment-system}"><img src="/assets/images/logo.png" alt=""></a>
+                        </figure>
+                        <div class="menu-area pull-right clearfix">
+                            <nav class="main-menu clearfix">
+                                <!--Keep This Empty / Menu will come through Javascript-->
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- main-header end -->
+
+        <!-- Mobile Menu  -->
+        <div class="mobile-menu">
+            <div class="menu-backdrop"></div>
+            <div class="close-btn"><i class="fas fa-times"></i></div>
+
+            <nav class="menu-box">
+                <div class="nav-logo"><a th:href="@{/appointment-system}"><img src="/assets/images/logo.png" alt=""
+                            title=""></a>
+                </div>
+                <div class="menu-outer"><!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header-->
+                </div>
+                <div class="contact-info">
+                    <h4>Contact Info</h4>
+                    <ul>
+                        <li>111 Ren Ai Road Industrial park, Suchou, China</li>
+                        <li><a href="tel:+0991 433-8833">+0991 433-8833</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <!-- End Mobile Menu -->
+
+
+        <!-- Page Title -->
+        <section class="page-title centred">
+            <div class="pattern-layer" style="background-image: url(/assets/images/shape/shape-87.png);"></div>
+            <div class="auto-container">
+                <div class="content-box">
+                    <h1>Our Services</h1>
+                    <ul class="bread-crumb clearfix">
+                        <li><a th:href="@{/appointment-system}">Home</a></li>
+                        <li>Services</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <!-- End Page Title -->
+
+
+        <!-- project-style-three -->
+        <section class="project-style-three project-page-2 centred">
+            <div class="auto-container">
+                <div class="row clearfix">
+                    <div class="col-lg-4 col-md-6 col-sm-12 project-block">
+                        <div class="project-block-three">
+                            <div class="inner-box">
+                                <figure class="image-box">
+                                    <img src="/assets/images/gallery/project-2-4.jpg" alt="">
+                                </figure>
+                                <div class="lower-content">
+                                    <figure class="icon-box"><img src="/assets/images/icons/icon-17.png" alt=""></figure>
+                                    <h3><a th:href="@{/appointment-system/petBathing}">Pet Bathing</a></h3>
+                                    <div class="btn-box">
+                                        <a th:href="@{/appointment-system/petBathing}" class="theme-btn btn-eight">Read More</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12 project-block">
+                        <div class="project-block-three">
+                            <div class="inner-box">
+                                <figure class="image-box">
+                                    <img src="/assets/images/gallery/project-2-9.jpg" alt="">
+                                </figure>
+                                <div class="lower-content">
+                                    <figure class="icon-box"><img src="/assets/images/icons/icon-18.png" alt=""></figure>
+                                    <h3><a th:href="@{/appointment-system/petDyeHair}">Pet Dye Hair</a></h3>
+                                    <div class="btn-box">
+                                        <a th:href="@{/appointment-system/petDyeHair}" class="theme-btn btn-eight">Read More</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12 project-block">
+                        <div class="project-block-three">
+                            <div class="inner-box">
+                                <figure class="image-box">
+                                    <img src="/assets/images/gallery/project-2-5.jpg" alt="">
+                                </figure>
+                                <div class="lower-content">
+                                    <figure class="icon-box"><img src="/assets/images/icons/icon-19.png" alt=""></figure>
+                                    <h3><a th:href="@{/appointment-system/petHaircut}">Pet Haircut</a></h3>
+                                    <div class="btn-box">
+                                        <a th:href="@{/appointment-system/petHaircut}" class="theme-btn btn-eight">Read More</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12 project-block">
+                        <div class="project-block-three">
+                            <div class="inner-box">
+                                <figure class="image-box">
+                                    <img src="/assets/images/gallery/project-2-8.jpg" alt="">
+                                </figure>
+                                <div class="lower-content">
+                                    <figure class="icon-box"><img src="/assets/images/icons/icon-16.png" alt=""></figure>
+                                    <h3><a th:href="@{/appointment-system/petTraining}">Pet Training</a></h3>
+
+                                    <div class="btn-box">
+                                        <a th:href="@{/appointment-system/petTraining}" class="theme-btn btn-eight">Read More</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12 project-block">
+                        <div class="project-block-three">
+                            <div class="inner-box">
+                                <figure class="image-box">
+                                    <img src="/assets/images/gallery/project-2-7.jpg" alt="">
+                                </figure>
+                                <div class="lower-content">
+                                    <figure class="icon-box"><img src="/assets/images/icons/icon-18.png" alt=""></figure>
+                                    <h3><a th:href="@{/appointment-system/hairDrying}">Hair Drying</a></h3>
+
+                                    <div class="btn-box">
+                                        <a th:href="@{/appointment-system/hairDrying}" class="theme-btn btn-eight">Read More</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12 project-block">
+                        <div class="project-block-three">
+                            <div class="inner-box">
+                                <figure class="image-box">
+                                    <img src="/assets/images/gallery/project-2-3.jpg" alt="">
+                                </figure>
+                                <div class="lower-content">
+                                    <figure class="icon-box"><img src="/assets/images/icons/icon-19.png" alt=""></figure>
+                                    <h3><a th:href="@{/appointment-system/veterinaryCare}">VeterinaryCare</a></h3>
+
+                                    <div class="btn-box">
+                                        <a th:href="@{/appointment-system/veterinaryCare}" class="theme-btn btn-eight">Read More</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- project-style-three end -->
+
+
+    <!-- main-footer finished-->
+    <footer class="main-footer footer-style-five">
+        <div class="footer-top-two">
+            <div class="pattern-layer"></div>
+            <div class="auto-container">
+                <div class="row clearfix">
+                    <div class="col-lg-4 col-md-6 col-sm-12 footer-column">
+                        <div class="footer-widget logo-widget">
+
+                            <figure class="footer-logo footer-logo-center"><a th:href="@{/appointment-system}"><img
+                                        src="/assets/images/logo.png" alt=""></a></figure>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12 footer-column">
+                        <div class="footer-widget links-widget ml-40">
+                            <div class="widget-title">
+                                <h3>Quick Link</h3>
+                            </div>
+                            <div class="widget-content">
+                                <ul class="links-list clearfix">
+                                    <li><a th:href="@{/appointment-system}">Home</a></li>
+                                    <li><a th:href="@{/appointment-system/groomers}">Groomers</a></li>
+                                    <li><a th:href="@{/appointment-system/pricing}">Pricing plan</a></li>
+                                    <li><a th:href="@{/appointment-system/allService}">Our Services</a></li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12 footer-column">
+                        <div class="footer-widget contact-widget ml-40">
+                            <div class="widget-title">
+                                <h3>Contact Us</h3>
+                            </div>
+                            <div class="widget-content">
+                                <ul class="info-list clearfix">
+                                    <li>
+                                        <i class="far fa-paper-plane"></i>
+                                        <p>111 Ren Ai Road Industrial park, Suchou, China</p>
+                                    </li>
+                                    <li>
+                                        <i class="fas fa-headphones"></i>
+                                        <p><a href="tel:+0991 433-8833">+0991 433-8833</a></p>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- main-footer end -->
+        
+                <!-- scroll to top -->
+        <button class="scroll-top style-two scroll-to-target" data-target="html">
+            <i class="fas fa-angle-up"></i>
+        </button>
+
+        
+    </div>
+
+
+    <!-- jequery plugins -->
+    <script src="/assets/js/jquery.js"></script>
+    <script src="/assets/js/popper.min.js"></script>
+    <script src="/assets/js/bootstrap.min.js"></script>
+    <script src="/assets/js/owl.js"></script>
+    <script src="/assets/js/wow.js"></script>
+    <script src="/assets/js/validation.js"></script>
+    <script src="/assets/js/jquery.fancybox.js"></script>
+    <script src="/assets/js/appear.js"></script>
+    <script src="/assets/js/scrollbar.js"></script>
+    <script src="/assets/js/tilt.jquery.js"></script>
+    <script src="/assets/js/isotope.js"></script>
+    <script src="/assets/js/bxslider.js"></script>
+    <script src="/assets/js/jquery.circleType.js"></script>
+
+    <!-- map script -->
+    <!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-CE0deH3Jhj6GN4YvdCFZS7DpbXexzGU"></script>-->
+    <!--<script src="/assets/js/gmaps.js"></script>-->
+    <!--<script src="/assets/js/map-helper.js"></script>-->
+
+    <!-- main-js -->
+    <script src="/assets/js/script.js"></script>
+
+</body><!-- End of .page_wrapper -->
+
+
+</html>
