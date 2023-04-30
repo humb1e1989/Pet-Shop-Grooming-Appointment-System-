@@ -36,6 +36,10 @@ public class ServiceType {
     public ServiceType() {
     }
 
+    public ServiceType(Integer sid) {
+        this.sid = sid;
+    }
+
     
 
 }
