@@ -77,16 +77,14 @@ public class PetService {
         if (imagePath.equals("-3")){
             return 3;
         }
-        
+
         pet.setImageURL(imagePath);
         petRepo.save(pet);
         return 0;
 
     }
-
     //ZYH PBI NO.i Customer can delete a pet from petlist
     public void deletePet(Integer pid) {
         petRepo.deleteById(pid);
     }
-    
 }
