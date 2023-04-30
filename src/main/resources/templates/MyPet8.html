@@ -3,10 +3,23 @@
 	<head>
 		<meta charset="utf-8">
         <title>Personal Page</title>
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.css"  rel="stylesheet" />
+        <link href="/assets/css/flowbite.min.css"  rel="stylesheet" />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.4.0/dist/themes/light.css" />
         <script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.4.0/dist/shoelace-autoloader.js"></script>
+        <style type="text/css">
+
+            body{
+                /* background-image: url(../static/assets/images/Background2.svg);
+                background-repeat: non-repeat;
+                /* background-attachment: fixed; */
+                /* background-size: 100% 100%;
+                background-position: -20%, 20%; */
+            }
+    
+    
+        </style>
     </head>
+    <!-- style="background-color: #FFF3DC;" -->
     <body>
         
             <button data-drawer-target="logo-sidebar" data-drawer-toggle="logo-sidebar" aria-controls="logo-sidebar" type="button" class="inline-flex items-center p-2 mt-2 ml-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
@@ -17,27 +30,68 @@
             </button>
 
             <aside id="logo-sidebar" class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
-                <div class="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
+
+    
+
+
+
+                <div class="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800" style="background-color:black;" >
                 <a th:href="@{/appointment-system}" class="flex items-center pl-2.5 mb-5">
                     <!-- <img src="https://flowbite.com/docs/images/logo.svg" class="h-6 mr-3 sm:h-7" alt="Flowbite Logo" /> -->
-                    <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">IPet</span>
+                    <img src="/assets/images/IPet.svg" width="100%" height="100%"/>
+                    <!-- 这里是本来的返回homepage的链接 -->
+                    <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white"></span>
                 </a>
                 <ul class="space-y-2 font-medium">
+                    <br>
                     <li>
                         <a th:href="@{/customer/profile}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-                            <svg aria-hidden="true" class="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path><path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path></svg>
-                            <span class="ml-3">Appointment</span>
+                            <!-- <svg aria-hidden="true" class="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path><path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path></svg>
+                            <span class="ml-3">Appointment</span> -->
+                            <img src="/assets/images/AppointmentTitle.svg" />
                         </a>
                     </li>
                     <li>
                         <a th:href="@{/customer/profile/pet}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-                            <svg aria-hidden="true" class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
-                            <span class="flex-1 ml-3 whitespace-nowrap">My Pet</span>
+                            <!-- <svg aria-hidden="true" class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
+                            <span class="flex-1 ml-3 whitespace-nowrap">My Pet</span> -->
+                            <img style="margin-left: 5%;" src="/assets/images/MyPetTitle.svg" />
                         </a>
                     </li>
+                    <li>
+                        <a th:href="@{/customer/profile/account}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                            <!-- <svg aria-hidden="true" class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
+                            <span class="flex-1 ml-3 whitespace-nowrap">My Pet</span> -->
+                            <img src="/assets/images/AccountTitle2.svg" />
+                        </a>
+                    </li>
+                    
                 </ul>
+
+                <!-- <img src="../static/assets/images/HappyDog.svg" width="70%" height="70%"/> -->
+
+
+                <img src="/assets/images/AsideDog.svg" style="margin-top:73%;"/>
+                
+
+                <!-- <img src="../static/assets/images/Aisde-B.svg" /> -->
+
+                
+                
                 </div>
+
+
+
+
+                
+
+                
+
             </aside>
+
+
+
+           
 
 
 
@@ -46,18 +100,64 @@
  
 
             
-            
+            <!-- style="background-color: #FFF3DC;" -->
             <div class="p-4 sm:ml-64">
                 <!-- <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700"> -->
                      
-                    <section class="bg-white dark:bg-gray-900">
-                        <div class="flex items-center" style="margin-left: 94%; ">
-                            <sl-button-group style="position: absolute; margin-left: -71%; margin-top: 0%;">
+                    <section class="bg-white dark:bg-gray-900" >
+                        <div class="flex items-center" style="margin-left: 94%">
 
-                                <sl-button class="drawerTest" pill>
-                                    Add
-                                </sl-button>
+                            <!-- margin-top: 0.2%; -->
+                            
+                            
+
+                        </div>
+
+                        <table class="headstyle" >
+                            <!-- <tr>
+                                <div class="flex items-center ml-3" style="margin-left: 94%;">
+                                
+                
+                                    <div >
+                                        <button type="button" class="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" aria-expanded="false" data-dropdown-toggle="dropdown-user">
+                                        <span class="sr-only">Open user menu</span>
+                                        <img class="w-8 h-8 rounded-full" src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt="user photo" >
+                                        </button>
+                                    </div>
     
+                                    
+                    
+                                    <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600" id="dropdown-user">
+                                        <div class="px-4 py-3" role="none">
+                                        <p class="text-sm text-gray-900 dark:text-white" role="none">
+                                            Neil Sims
+                                        </p>
+                                        <p class="text-sm font-medium text-gray-900 truncate dark:text-gray-300" role="none">
+                                            neil.sims@flowbite.com
+                                        </p>
+                                        </div>
+                                        <ul class="py-1" role="none">
+                                        <li>
+                                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">Dashboard</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">Settings</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">Earnings</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">Sign out</a>
+                                        </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </tr> -->
+                            <tr >
+                                <img style="width: 80%; height: 80%;" src="/assets/images/TopPet1.svg" />
+
+                            </tr>
+                            <td><img style="width: 50%; height: 50%; margin-left: 20%;" onclick="" src="/assets/images/Add11.svg" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-900 dark:hover:bg-gray-700" />
                                 <sl-drawer label="New Pet" class="drawer-custom-size" style="--size: 36vw;">
                                 
 
@@ -68,7 +168,7 @@
                                             <!-- Pet Type -->
                                             <div>
                                                 <label for="Type" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Type</label>
-                                                <sl-select id="type" name="type" pill>
+                                                <sl-select required="required" id="type" name="type" pill>
                                                     <sl-option th:value="Dog" th:field="*{type}" value="option-1">Dog</sl-option>
                                                     <sl-option th:value="Cat" th:field="*{type}" value="option-2">Cat</sl-option>
                                                     <sl-option th:value="Other" th:field="*{type}" value="option-3" >Other</sl-option>
@@ -78,7 +178,7 @@
                                             <!-- Pet Size -->
                                             <div>
                                                 <label for="Size" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Size</label>
-                                                <sl-select id="size" name="size" pill>
+                                                <sl-select required="required" id="size" name="size" pill>
                                                     <sl-option th:value="Small" th:field="*{size}" value="option-1">Small</sl-option>
                                                     <sl-option th:value="Medium" th:field="*{size}" value="option-2">Medium</sl-option>
                                                     <sl-option th:value="Large" th:field="*{size}" value="option-3">Large</sl-option>
@@ -89,82 +189,13 @@
                                         <!-- Pet Name -->
                                         <div class="relative z-0">
                     
-                                            <input type="text" th:field="*{name}" name="name" id="name" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                                            <input required="required" type="text" th:field="*{name}" name="name" id="name" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
                                             <label for="name" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Name</label>
                                         </div> 
 
                                         <br>
 
-                                        <!-- Pet Breed -->
-                                        <!-- <div class="relative z-0">
-                    
-                                            <input type="text" id="floating_standard" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
-                                            <label for="floating_standard" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Breed</label>
-                                        </div> -->
 
-
-
-
-                                            <!-- <div>
-                                                <label for="Name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
-                                                <input type="text" id="first_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="John" required>
-                                            </div>
-        
-                                            <div>
-                                                
-                                                <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" >Type</label>
-                                                <select id="countries" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                                    <option selected>Dog</option>
-                                                    <option value="CA">Cat</option>
-                                                    <option value="FR">Other</option>
-                                                </select>
-                                            
-                                            </div>   -->
-
-
-                                          <!--     
-                                            <div>
-                                                <label for="Breed" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Breed</label>
-                                                <input type="text" id="last_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Golden Retriever" required>
-                                            </div> -->
-        
-                                            <!-- <div>
-                                                <label for="visitors" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Size</label>
-                                                <select id="countries" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                                    <option selected>Small</option>
-                                                    <option value="Me">Medium</option>
-                                                    <option value="La">Large</option>
-                                                </select>
-                                            </div> -->
-        
-                                            <!-- <div class="relative z-0">
-
-                                                <label for="floating_standard" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Size</label>
-                                                <select id="floating_standard" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placehoder="">
-                                                    <option value="kk">Small</option>
-                                                    <option value="Me">Medium</option>
-                                                    <option value="La">Large</option>
-                                                </select>
-                                            </div>  -->
-        
-                                            <!-- <div>
-                                                <label for="phone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Phone number</label>
-                                                <input type="tel" id="phone" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="123-45-678" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" required>
-                                            </div>
-                                            <div>
-                                                <label for="website" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Website URL</label>
-                                                <input type="url" id="website" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="flowbite.com" required>
-                                            </div> -->
-        
-                                        
-                                        <!-- <div class="mb-6">
-                                            <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email address</label>
-                                            <input type="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="john.doe@company.com" required>
-                                        </div> 
-                                        <div class="mb-6">
-                                            <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
-                                            <input type="password" id="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="•••••••••" required>
-                                        </div>  -->
                                         <br>
 
                                         
@@ -179,13 +210,6 @@
                                             </label>
                                         </div> 
                                         <br>
-                                        <!-- <div class="flex items-start mb-6">
-                                            <div class="flex items-center h-5">
-                                            <input id="remember" type="checkbox" value="" class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800" required>
-                                            </div>
-                                            <label for="remember" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">I agree with the <a href="#" class="text-blue-600 hover:underline dark:text-blue-500">terms and conditions</a>.</label>
-                                        </div> -->
-                                        <!-- <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button> -->
                                         <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
                                     </form>
         
@@ -194,75 +218,75 @@
                                 </sl-drawer>
 
 
-                                <sl-button size="medium" pill>Modify</sl-button>
-                                    <sl-drawer label="Modify this Pet" class="drawer-custom-size1" style="--size: 36vw;">
+                            </td>
+                            <td><img style="width: 50%; height: 50%; margin-left: 20%;" onclick="" src="/assets/images/Modify11.svg" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-900 dark:hover:bg-gray-700" />
+                                <sl-drawer label="Modify this Pet" class="drawer-custom-size1" style="--size: 36vw;">
 
-                                        <form th:action="@{/customer/profile/pet/edit}" method="POST" th:object="${pet}" enctype="multipart/form-data">
-                                            
-                                            <label for="pid" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Which Pet?</label>
-                                            <sl-select id="pid" name="pid" pill>
-                                                <div th:each="mypet: ${petList}">
-                                                    <sl-option th:value="${mypet.getPid()}" th:field="*{pid}"><p th:text="${mypet.getName()}"></p></sl-option>
-                                                </div>     
-                                            </sl-select>
-
-                                            <br>
-                                            <div class="grid gap-6 mb-6 md:grid-cols-2">
-                                                <!-- Pet Type -->
-                                                <div>
-                                                    <label for="Type" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Type</label>
-                                                    <sl-select id="Type" name="type" pill>
-                                                        <sl-option th:value="Dog" th:field="*{type}" value="option-1">Dog</sl-option>
-                                                        <sl-option th:value="Cat" th:field="*{type}" value="option-2">Cat</sl-option>
-                                                        <sl-option th:value="Other" th:field="*{type}" value="option-3">Other</sl-option>
-                                                    </sl-select>
-                                                </div>
-        
-                                                <!-- Pet Size -->
-                                                <div>
-                                                    <label for="Size" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Size</label>
-                                                    <sl-select id="Size" name="size" pill>
-                                                        <sl-option th:value="Small" th:field="*{size}" value="option-1">Small</sl-option>
-                                                        <sl-option th:value="Medium" th:field="*{size}" value="option-2">Medium</sl-option>
-                                                        <sl-option th:value="Large" th:field="*{size}" value="option-3">Large</sl-option>
-                                                      </sl-select>
-                                                </div>
+                                    <form th:action="@{/customer/profile/pet/edit}" method="POST" th:object="${pet}" enctype="multipart/form-data">
+                                        
+                                        <label for="pid" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Which Pet?</label>
+                                        <sl-select  required="required" id="pid" name="pid" pill>
+                                            <div th:each="mypet: ${petList}">
+                                                <sl-option th:value="${mypet.getPid()}" th:field="*{pid}"><p th:text="${mypet.getName()}"></p></sl-option>
                                             </div>
-        
-                                            <!-- Pet Name -->
-                                            <div class="relative z-0">
-                                                <input type="text" th:field="*{name}" name="name" id="name1" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
-                                                <label for="name1" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">New Name</label>
-                                            </div> 
-        
-                                            <br>        
-                                            
-                                            <div class="flex items-center justify-center w-full">
-                                                <label for="dropzone-file" class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600" >
-                                                    <div class="flex flex-col items-center justify-center pt-5 pb-6">
-                                                        <svg aria-hidden="true" class="w-10 h-10 mb-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
-                                                        <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Click to upload</span> or drag and drop</p>
-                                                        <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
-                                                    </div>
-                                                    <!-- this "hidden" is for hide the file upload button -->
-                                                    <!-- class="hidden" -->
-                                                    <input id="dropzone-file" type="file" name="file"/>
-                                                </label>
-                                            </div> 
-                                            <br>
-                                            <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
-                                        </form>
-        
-                                    </sl-drawer>
+                                        </sl-select>
 
-
-                                    
+                                        <br>
+                                        <div class="grid gap-6 mb-6 md:grid-cols-2">
+                                            <!-- Pet Type -->
+                                            <div>
+                                                <label for="Type" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Type</label>
+                                                <sl-select id="Type" name="type" pill>
+                                                    <sl-option th:value="Dog" th:field="*{type}" value="option-1">Dog</sl-option>
+                                                    <sl-option th:value="Cat" th:field="*{type}" value="option-2">Cat</sl-option>
+                                                    <sl-option th:value="Other" th:field="*{type}" value="option-3">Other</sl-option>
+                                                </sl-select>
+                                            </div>
+    
+                                            <!-- Pet Size -->
+                                            <div>
+                                                <label for="Size" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Size</label>
+                                                <sl-select id="Size" name="size" pill>
+                                                    <sl-option th:value="Small" th:field="*{size}" value="option-1">Small</sl-option>
+                                                    <sl-option th:value="Medium" th:field="*{size}" value="option-2">Medium</sl-option>
+                                                    <sl-option th:value="Large" th:field="*{size}" value="option-3">Large</sl-option>
+                                                  </sl-select>
+                                            </div>
+                                        </div>
+    
+                                        <!-- Pet Name -->
+                                        <div class="relative z-0">
+                                            <input type="text" th:field="*{name}" name="name" id="name1" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                                            <label for="name1" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">New Name</label>
+                                        </div> 
+    
+                                        <br>        
+                                        
+                                        <div class="flex items-center justify-center w-full">
+                                            <label for="dropzone-file" class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600" >
+                                                <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                                                    <svg aria-hidden="true" class="w-10 h-10 mb-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
+                                                    <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Click to upload</span> or drag and drop</p>
+                                                    <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
+                                                </div>
+                                                <!-- this "hidden" is for hide the file upload button -->
+                                                <!-- class="hidden" -->
+                                                <input id="dropzone-file" type="file" name="file"/>
+                                            </label>
+                                        </div> 
+                                        <br>
+                                        <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+                                    </form>
+    
+                                </sl-drawer>
+                            </td>
+                            <td>
                                 <sl-dialog label="Attention!!" class="dialog-deny-close">
 
                                     <form th:action="@{/customer/profile/pet/delete}" method="POST" th:object="${pet}">
 
                                         <label for="pid1" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Which Pet?</label>
-                                        <sl-select id="pid1" name="pid" pill>
+                                        <sl-select required="required" id="pid1" name="pid" pill>
                                             <div th:each="delpet: ${petList}">
                                                 <sl-option th:value="${delpet.getPid()}" th:field="*{pid}"><p th:text="${delpet.getName()}"></p></sl-option>
                                             </div>     
@@ -276,63 +300,31 @@
                 
                                     </form>
 
-                                    
-                                    
-                                    
                                 </sl-dialog>
 
-                                <sl-button size="medium" pill>Delete</sl-button>
+                                <!-- <sl-button class="Delete"size="medium" pill>Delete</sl-button> -->
+                                <!-- hover:bg-gray-100 -->
+                                <img style="width: 50%; height: 50%; margin-left: 30%; " onclick="" src="/assets/images/Delete11.svg" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-900  dark:hover:bg-gray-700 " />
 
+                            </td>
+                            
+                        </table>
+                        
 
-                            </sl-button-group>
-
-
-
-                            <div class="flex items-center ml-3">
-            
-                            <div>
-                                <button type="button" class="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" aria-expanded="false" data-dropdown-toggle="dropdown-user">
-                                <span class="sr-only">Open user menu</span>
-                                <img class="w-8 h-8 rounded-full" src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt="user photo">
-                                </button>
-                            </div>
-            
-                            <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600" id="dropdown-user">
-                                <div class="px-4 py-3" role="none">
-                                <p class="text-sm text-gray-900 dark:text-white" role="none">
-                                    Neil Sims
-                                </p>
-                                <p class="text-sm font-medium text-gray-900 truncate dark:text-gray-300" role="none">
-                                    neil.sims@flowbite.com
-                                </p>
-                                </div>
-                                <ul class="py-1" role="none">
-                                <li>
-                                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">Dashboard</a>
-                                </li>
-                                <li>
-                                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">Settings</a>
-                                </li>
-                                <li>
-                                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">Earnings</a>
-                                </li>
-                                <li>
-                                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">Sign out</a>
-                                </li>
-                                </ul>
-                            </div>
-                            </div>
-                        </div>
+                        
             
 
                     <!-- <section> -->
                         
                     </section>
 
-                    <div id="org1" >
-                    </div>
+                    <hr class="my-6 border-gray-200 h-10 sm:mx-auto dark:border-gray-700 lg:my-8" />
 
-                    <section class="bg-white dark:bg-gray-900">
+                    
+
+
+
+                    <section class="bg-white dark:bg-gray-900" >
                         <script th:inline="javascript">
                                              
                            // Please ignore this error (It can run as we want anyway)
@@ -475,15 +467,62 @@
             background-color: #f3e9c6;
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cg fill='%23f5760b' fill-opacity='0.4'%3E%3Cpolygon fill-rule='evenodd' points='8 4 12 6 8 8 6 12 4 8 0 6 4 4 6 0 8 4'/%3E%3C/g%3E%3C/svg%3E");
         }
-    </style> -->
+    </styl> -->
+    
     <style>
         .badge-pulse sl-badge:not(:last-of-type) {
             margin-right: 1rem;
         }
 
+        sl-button.drawerTest::part(base) {
+            background-color: #FDBD4E;
+            /* background: linear-gradient(#775547, #FFC368); */
+            color: #7E5A4C;
+            border-width: 2px;
+            border-top-color: #7E5A4C;
+            border-left-color: #7E5A4C;
+            border-bottom-color: #7E5A4C;
+            border-right-color: #7E5A4C;
+            font-weight: bold;
+        }
+
+        sl-button.Modify::part(base) {
+            background-color: #FDBD4E;
+            /* background: linear-gradient(#775547, #FFC368); */
+            color: #7E5A4C;
+            border-width: 2px;
+            border-top-color: #7E5A4C;
+            border-left-color: #7E5A4C;
+            border-bottom-color: #7E5A4C;
+            border-right-color: #7E5A4C;
+            font-weight: bold;
+        }
+
+        sl-button.Delete::part(base) {
+            background-color: #FDBD4E;
+            /* background: linear-gradient(#775547, #FFC368); */
+            color: #7E5A4C;
+            border-width: 2px;
+            border-top-color: #7E5A4C;
+            border-left-color: #7E5A4C;
+            border-bottom-color: #7E5A4C;
+            border-right-color: #7E5A4C;
+            font-weight: bold;
+        }
+
+
 
        
     </style>
+    <!-- <style type="text/css">
+        table {
+            background-image: url(../static/assets/images/AsideBackground.svg);
+            /* background-size: 10% 10%; */
+            background-repeat: no-repeat;
+            background-attachment:fixed;
+            background-size: cover;
+        }
+    </style> -->
 
 </html>
 

@@ -15,13 +15,13 @@ import com.cpt202.appointment_system.Models.Pet;
 public class FileUploadUtil {
 
     
-    private static final String USERPATH = "C:\\Users\\Administrator\\User_images\\";
-    private static final String GROOMERPATH = "C:\\Users\\Administrator\\Groomer_images\\";
+    // private static final String USERPATH = "C:\\Users\\Administrator\\User_images\\";
+    // private static final String GROOMERPATH = "C:\\Users\\Administrator\\Groomer_images\\";
+    private static final String USERPATH = "C:\\Users\\86138\\Desktop\\User_images\\";
+    private static final String GROOMERPATH = "C:\\Users\\86138\\Desktop\\Groomer_images\\";
     private static final String PETPATH = "\\Pet_images\\";
 
-    // private static final String GROOMERPATH_URL_STRING = "http://localhost:8080/g-images/";
     private static final String GROOMERPATH_URL_STRING = "/g-images/";
-    // private static final String USERPATH_URL_STRING = "http://localhost:8080/u-images/";
     private static final String USERPATH_URL_STRING = "/u-images/";
 
     private static final String TYPE_JPEG = "jpeg";
