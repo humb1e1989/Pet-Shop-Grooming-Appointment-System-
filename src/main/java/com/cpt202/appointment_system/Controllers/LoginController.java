@@ -16,6 +16,7 @@ import javax.websocket.Session;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import com.cpt202.appointment_system.Repositories.UserRepo;;
 
 @Controller
 @RequestMapping("/appointment-system")
@@ -23,6 +24,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class LoginController {
     @Autowired
     private LoginService loginService;
+    @Autowired
+    private UserRepo userreposity;
     // @Autowired
     // private AuthenticationManager authenticationManager;
     
@@ -40,15 +43,20 @@ public class LoginController {
                             RedirectAttributes redirectAttributes) {
         if(loginService.loginUser(username, password)==0){
             // 添加用户信息到 session
+            User user= userreposity.findByUsername(username);
+            Integer Role=user.getType();
             session.setAttribute("user", username);
+            session.setAttribute("role", 0);
 
             redirectAttributes.addFlashAttribute("message", "Login Success");
             return "redirect:/appointment-system";
         } else if(loginService.loginUser(username, password)==1){
             session.setAttribute("user", username);
+            session.setAttribute("role", 1);
 
             redirectAttributes.addFlashAttribute("message", "Administrator Login Success");
-            return "redirect:/maintain/maintainUser";
+            // return "redirect:/maintain/maintainUser";
+            return "redirect:/appointment-system";
         }
         
         else {

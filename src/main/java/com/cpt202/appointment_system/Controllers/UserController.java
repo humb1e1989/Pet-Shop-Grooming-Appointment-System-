@@ -28,7 +28,7 @@ import com.cpt202.appointment_system.Services.UserService;
 
 // @Controller
 @Controller
-@RequestMapping("/appointment-system")
+@RequestMapping("/customer")
 public class UserController {
 
     @Autowired
@@ -103,14 +103,14 @@ public class UserController {
 
     // TODO : Number
     // ZYH PBI NO.i Customer can search a groomer by name
-    @GetMapping("/customer/groomerList/search")
+    @GetMapping("/groomerList/search")
     public Result<?> getGroomerByName(@RequestParam String username) {
         return userService.searchGroomerByName_C(username);
     }
 
 
     // ZYH PBI NO.iii Customer can edit his/her profile
-    @PostMapping("/customer/profile/edit")
+    @PostMapping("/profile/edit")
     public Result<?> editProfile(@RequestBody User user) {
         return userService.editProfile_C(user);
     }
@@ -120,7 +120,7 @@ public class UserController {
 
 
     
-    @GetMapping("/customer/profile")
+    @GetMapping("/profile")
     public String viewProfileGet(Model model, HttpSession session){
         String username = (String) session.getAttribute("user");
         User user = userRepo.findByUsername(username);
@@ -132,7 +132,7 @@ public class UserController {
     }
 
 
-    @PostMapping("/customer/profile")
+    @PostMapping("/profile")
     public String appointmentSearchByPetname(Model model, @RequestParam("SearchKey") String keyword, HttpSession session) {
         String username = (String) session.getAttribute("user");
         User user = userRepo.findByUsername(username);
