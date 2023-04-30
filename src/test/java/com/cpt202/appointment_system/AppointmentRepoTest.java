@@ -1,18 +1,40 @@
 package com.cpt202.appointment_system;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.spy;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+
 import java.sql.Timestamp;
 
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.context.WebApplicationContext;
+
 import com.cpt202.appointment_system.Common.Result;
+import com.cpt202.appointment_system.Controllers.AppointmentController;
 import com.cpt202.appointment_system.Models.Appointment;
+import com.cpt202.appointment_system.Models.AppointmentForm;
 import com.cpt202.appointment_system.Models.Groomer;
 import com.cpt202.appointment_system.Models.Pet;
 import com.cpt202.appointment_system.Models.ServiceType;
@@ -24,51 +46,45 @@ import com.cpt202.appointment_system.Repositories.ServiceTypeRepo;
 import com.cpt202.appointment_system.Repositories.UserRepo;
 import com.cpt202.appointment_system.Services.AppointmentService;
 
-
-
-
+//@SpringBootTest
 @SpringBootTest
+@ExtendWith(MockitoExtension.class)
 public class AppointmentRepoTest {
+    @Mock
+    private AppointmentRepo mockAppointmentRepo;
 
     @Autowired
-    AppointmentService appointmentService;
+    @InjectMocks
+    private AppointmentService mockAppointmentService;
 
-    @Autowired
-    AppointmentRepo appointmentRepo;
+    private Appointment appointment;
 
-    @Test
-    public void makeAppointment_Test() {
-        // given
-        GroomerRepo mockGroomerRepo = mock(GroomerRepo.class);
-        PetRepo mockPetRepo = mock(PetRepo.class);
-        UserRepo mockUserRepo = mock(UserRepo.class);
-        ServiceTypeRepo mockServiceTypeRepo = mock(ServiceTypeRepo.class);
-        AppointmentRepo mockAppointmentRepo = mock(AppointmentRepo.class);
-
-        AppointmentService mockAppointmentService = mock(AppointmentService.class);
-
-        when(mockGroomerRepo.findByGid(anyInt())).thenReturn(new Groomer(2));
-        when(mockPetRepo.findByPid(anyInt())).thenReturn(new Pet(1));
-        when(mockUserRepo.findByUid(anyInt())).thenReturn(new User(1));
-        when(mockServiceTypeRepo.findBySid(anyInt())).thenReturn(new ServiceType(2));
-
-        // when
-        Groomer groomer = mockGroomerRepo.findByGid(1);
-        Pet pet = mockPetRepo.findByPid(1);
-        User user = mockUserRepo.findByUid(1);
-        ServiceType serviceType = mockServiceTypeRepo.findBySid(1);
+    @BeforeEach
+    void setUp() {
+        Groomer groomer = new Groomer(1);
+        //Groomer groomer = new Groomer(1);
+        Pet pet = new Pet(1);
+        User user = new User(1);
+        ServiceType serviceType = new ServiceType(1);
         Timestamp startTime = new Timestamp(System.currentTimeMillis());
 
-        Appointment appointment = new Appointment(startTime, serviceType, groomer, user, pet);
-        //when(mockAppointmentService.makeAppointment_C(appointment)).thenReturn(Result.success());
+        appointment = new Appointment(startTime, serviceType, groomer,
+        user, pet);
+
+        //doNothing().when(mockAppointmentRepo).save(any(Appointment.class));
+    }
+
+    @Test
+    public void ItShouldMakeAppointment_Successful() {
+        //when(mockAppointmentService.makeAppointment_C(appointment)).thenAnswer(invocation -> Result.success("0", "Success!"));
 
         Result<?> result = mockAppointmentService.makeAppointment_C(appointment);
 
-        System.out.println(result.getCode() + "" + result.getMsg());
+        System.out.println("Here is the result: " + result);
 
         // then
         assertEquals("0", result.getCode());
-        verify(mockAppointmentRepo).save(appointment);
+        verify(mockAppointmentRepo).save(any(Appointment.class));
     }
 
 }

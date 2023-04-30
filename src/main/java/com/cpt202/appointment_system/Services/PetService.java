@@ -96,7 +96,7 @@ public class PetService {
         if (imagePath.equals("-3")){
             return 3;
         }
-        
+
         pet.setImageURL(imagePath);
         petRepo.save(pet);
         return 0;
@@ -115,5 +115,5 @@ public class PetService {
         pet.setUser(user);
         petRepo.save(pet); 
     }
-
+    
 }
