@@ -106,8 +106,7 @@ public class PetService {
 
     public void pseudoDeletePet(Pet pet, User user) {
 
-        // FileUploadUtil.deletePetPic(pet);     
-           
+        // FileUploadUtil.deleteUserOrPetPic(pet);   
         pet.setImageURL(null);
 
         pet.setName(pet.getName() + " (Deleted)");

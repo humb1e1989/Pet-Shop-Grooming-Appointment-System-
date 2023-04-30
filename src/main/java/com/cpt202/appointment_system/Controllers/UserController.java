@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -121,22 +122,24 @@ public class UserController {
 
     
     @GetMapping("/profile")
-    public String viewProfileGet(Model model, HttpSession session){
+    public String getProfilePage(Model model, HttpSession session){
         String username = (String) session.getAttribute("user");
         User user = userRepo.findByUsername(username);
         
         List<Appointment> appointmentList = appointmentRepo.findByUser(user);
-        // model.addAttribute("userID", uid);
+
         model.addAttribute("appList", appointmentList);
         return "PersonalPage";
     }
+
+    
 
 
     @PostMapping("/profile")
     public String appointmentSearchByPetname(Model model, @RequestParam("SearchKey") String keyword, HttpSession session) {
         String username = (String) session.getAttribute("user");
         User user = userRepo.findByUsername(username);
-        Integer uid=user.getUid();
+        Integer uid = user.getUid();
         List<Appointment> appointmentList = appointmentRepo.findByUid(uid);
         List<Appointment> resultList = new ArrayList<>();
         for (Appointment appointment : appointmentList){
@@ -147,5 +150,21 @@ public class UserController {
         model.addAttribute("appList", resultList);
         return "PersonalPage";
     }
+
+
+    @PostMapping("/profile/cancel")
+    public String cancelAppointment(@ModelAttribute Appointment appointment) {
+
+        Appointment appRecord = appointmentRepo.findByAid(appointment.getAid());
+        appRecord.setStatus("cancelled");
+        appointmentRepo.save(appRecord);
+        
+        return "redirect:/customer/profile";
+    }
+
+
+
+
+
 
 }
