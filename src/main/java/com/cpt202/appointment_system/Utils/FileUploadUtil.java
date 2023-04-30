@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.cpt202.appointment_system.Models.Groomer;
 import com.cpt202.appointment_system.Models.Pet;
+import com.cpt202.appointment_system.Models.User;
 
 
 public class FileUploadUtil {
@@ -24,8 +25,8 @@ public class FileUploadUtil {
 
     private static final String GROOMERPATH_URL_STRING = "/g-images/";
     private static final String USERPATH_URL_STRING = "/u-images/";
-    private static final int GROOMER_PARTIAL_STRING = GROOMERPATH_URL_STRING.length() + 1; 
-    private static final int USER_PARTIAL_STRING = GROOMERPATH_URL_STRING.length() + 1;
+    private static final int GROOMER_PARTIAL_STRING = GROOMERPATH_URL_STRING.length(); 
+    private static final int USER_PARTIAL_STRING = GROOMERPATH_URL_STRING.length();
 
     private static final String TYPE_JPEG = "jpeg";
     private static final String TYPE_JPG = "jpg";
@@ -193,7 +194,7 @@ public class FileUploadUtil {
     }
 
 
-    public static void deleteUserOrPetPic(Pet pet){
+    public static void deletePetPic(Pet pet){
 
         String imageURL = pet.getImageURL();
 
@@ -210,9 +211,27 @@ public class FileUploadUtil {
 
     }
 
-    public static void deleteGroomerPic(Pet pet){
 
-        String imageURL = pet.getImageURL();
+    public static void deleteUserPic(User user){
+
+        String imageURL = user.getImageURL();
+
+        if (imageURL != null){
+           
+            String partialPath = imageURL.substring(USER_PARTIAL_STRING).replace("/", "\\");
+            String absolutePath = USERPATH + partialPath;
+
+            File file = new File(absolutePath);
+            if (file.exists()) {
+                file.delete();
+            } 
+        }
+
+    }
+
+    public static void deleteGroomerPic(Groomer groomer){
+
+        String imageURL = groomer.getImageURL();
 
         if (imageURL != null){
            
