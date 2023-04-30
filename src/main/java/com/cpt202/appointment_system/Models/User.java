@@ -38,7 +38,7 @@ public class User {
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Timestamp registrationTime;
 
-    @Column(name = "image_url", nullable = true)
+    @Column(name = "image_url", columnDefinition = "varchar(255) default '/assets/images/default-user.png'", nullable = true)
     private String imageURL;
 
     @Column(columnDefinition = "varchar(20) COMMENT 'may not only be male or female'", nullable = true)
