@@ -9,6 +9,8 @@ import java.util.UUID;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import com.cpt202.appointment_system.Models.Pet;
+
 
 public class FileUploadUtil {
 
@@ -186,6 +188,38 @@ public class FileUploadUtil {
 
         return false;
     }
+
+
+    // public static int deletePetPic(Pet pet){
+
+    //     String imageURL = pet.getImageURL();
+
+    //     if (imageURL != null || !imageURL.equals("")){
+           
+    //         String partialPath = imageURL.substring(10).replace("/", "\\");
+    //         String absolutePath = USERPATH + partialPath;
+
+    //         File file = new File(absolutePath);
+    //         if (file.exists()) {
+
+    //             if (file.delete()) {
+    //                 return 0;
+    //             } 
+
+    //             else {
+    //                 return -1;
+    //             }
+    //         } 
+
+    //         else {
+    //             return -2;
+    //         }
+
+    //     }
+
+    //     return 0;
+
+    // }
 
 
 
