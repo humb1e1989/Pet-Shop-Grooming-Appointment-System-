@@ -168,7 +168,7 @@
                                             <!-- Pet Type -->
                                             <div>
                                                 <label for="Type" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Type</label>
-                                                <sl-select id="type" name="type" pill>
+                                                <sl-select required="required" id="type" name="type" pill>
                                                     <sl-option th:value="Dog" th:field="*{type}" value="option-1">Dog</sl-option>
                                                     <sl-option th:value="Cat" th:field="*{type}" value="option-2">Cat</sl-option>
                                                     <sl-option th:value="Other" th:field="*{type}" value="option-3" >Other</sl-option>
@@ -178,7 +178,7 @@
                                             <!-- Pet Size -->
                                             <div>
                                                 <label for="Size" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Size</label>
-                                                <sl-select id="size" name="size" pill>
+                                                <sl-select required="required" id="size" name="size" pill>
                                                     <sl-option th:value="Small" th:field="*{size}" value="option-1">Small</sl-option>
                                                     <sl-option th:value="Medium" th:field="*{size}" value="option-2">Medium</sl-option>
                                                     <sl-option th:value="Large" th:field="*{size}" value="option-3">Large</sl-option>
@@ -189,18 +189,11 @@
                                         <!-- Pet Name -->
                                         <div class="relative z-0">
                     
-                                            <input type="text" th:field="*{name}" name="name" id="name" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                                            <input required="required" type="text" th:field="*{name}" name="name" id="name" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
                                             <label for="name" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Name</label>
                                         </div> 
 
                                         <br>
-
-                                        <!-- Pet Breed -->
-                                        <div class="relative z-0">
-                    
-                                            <input type="text" id="floating_standard" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
-                                            <label for="floating_standard" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Breed</label>
-                                        </div>
 
 
                                         <br>
@@ -232,10 +225,10 @@
                                     <form th:action="@{/customer/profile/pet/edit}" method="POST" th:object="${pet}" enctype="multipart/form-data">
                                         
                                         <label for="pid" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Which Pet?</label>
-                                        <sl-select id="pid" name="pid" pill>
+                                        <sl-select  required="required" id="pid" name="pid" pill>
                                             <div th:each="mypet: ${petList}">
                                                 <sl-option th:value="${mypet.getPid()}" th:field="*{pid}"><p th:text="${mypet.getName()}"></p></sl-option>
-                                            </div>     
+                                            </div>
                                         </sl-select>
 
                                         <br>
@@ -293,7 +286,7 @@
                                     <form th:action="@{/customer/profile/pet/delete}" method="POST" th:object="${pet}">
 
                                         <label for="pid1" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Which Pet?</label>
-                                        <sl-select id="pid1" name="pid" pill>
+                                        <sl-select required="required" id="pid1" name="pid" pill>
                                             <div th:each="delpet: ${petList}">
                                                 <sl-option th:value="${delpet.getPid()}" th:field="*{pid}"><p th:text="${delpet.getName()}"></p></sl-option>
                                             </div>     

@@ -53,7 +53,28 @@ public class PetService {
         
     }
 
+
     public int editPet(MultipartFile file, Pet pet){
+
+        int pid = pet.getPid();
+        Pet originPet = petRepo.findByPid(pid);
+        String originType = originPet.getType();
+        String originSize = originPet.getSize();
+        String originName = originPet.getName();
+        String originImage = originPet.getImageURL();
+
+        if (pet.getType().equals("")){
+            pet.setType(originType);
+        }
+
+        if (pet.getSize().equals("")){
+            pet.setSize(originSize);
+        }
+
+        if (pet.getName().trim().equals("")){
+            pet.setName(originName);
+        }
+
         
         Integer uid = pet.getUser().getUid();
         String uidString = Integer.toString(uid);
@@ -61,9 +82,7 @@ public class PetService {
 
         // no image or empty image
         if (imagePath.equals("0") || imagePath.equals("-1")){
-            Pet p = petRepo.findByPid(pet.getPid());
-            String imageURL = p.getImageURL();
-            pet.setImageURL(imageURL);
+            pet.setImageURL(originImage);
             petRepo.save(pet);
             return 0;
         }
@@ -84,9 +103,18 @@ public class PetService {
 
     }
 
-    //ZYH PBI NO.i Customer can delete a pet from petlist
-    public void deletePet(Integer pid) {
-        petRepo.deleteById(pid);
+
+    public void pseudoDeletePet(Pet pet, User user) {
+
+        // FileUploadUtil.deletePetPic(pet);     
+           
+        pet.setImageURL(null);
+
+        pet.setName(pet.getName() + " (Deleted)");
+        pet.setSize("");
+        pet.setType("");
+        pet.setUser(user);
+        petRepo.save(pet); 
     }
-    
+
 }
