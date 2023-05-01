@@ -238,8 +238,8 @@ public class AppointmentController {
 
         session.setAttribute("price", price);
 
-        appointmentService.makeAppointment_C(appointment);
-        if(appointmentService.makeAppointment_C(appointment).isSuccess()){
+        Result result=appointmentService.makeAppointment_C(appointment);
+        if(result.isSuccess()){
             
         try{
         //发邮件
