@@ -54,9 +54,9 @@ public class LoginThenMakeAppointmentTest {
 
     @BeforeEach
     public void setUp() {
-        Timestamp registrationTime = new Timestamp(2023, 4, 28, 17, 38, 49, 0);
+        // Timestamp registrationTime = new Timestamp(2023, 4, 28, 17, 38, 49, 0);
         User user1 = new User();
-        new User(1, "yyy", "yyy123", 0, registrationTime, "", "male", "13345678901", "email@gmail.com", 0);
+        // new User(1, "yyy", "yyy123", 0, registrationTime, "", "male", "13345678901", "email@gmail.com", 0);
         Groomer groomer = new Groomer(1);
         // Groomer groomer = new Groomer(1);
         Pet pet = new Pet(1);

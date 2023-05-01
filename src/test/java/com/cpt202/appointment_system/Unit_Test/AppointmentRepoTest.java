@@ -63,34 +63,59 @@ public class AppointmentRepoTest {
     private AppointmentService mockAppointmentService;
 
     private Appointment appointment_success;
+    private Appointment appointment_success1;
     private Appointment appointment_wrongUser;
+    private Appointment appointment_wrongUser1;
     private Appointment appointment_wrongGroomer;
+    private Appointment appointment_wrongGroomer1;
     private Appointment appointment_wrongPet;
+    private Appointment appointment_wrongPet1;
     private Appointment appointment_wrongServiceType;
+    private Appointment appointment_wrongServiceType1;
     private Appointment appointment_empty;
+    private Appointment appointment_empty1;
 
     @BeforeEach
     void setUp() {
         Groomer groomer = new Groomer(1);
-        //Groomer groomer = new Groomer(1);
+        // Groomer groomer = new Groomer(1);
         Pet pet = new Pet(1);
         User user = new User(1);
         ServiceType serviceType = new ServiceType(1);
         Timestamp startTime = new Timestamp(System.currentTimeMillis());
 
+        Groomer groomer1 = new Groomer(2);
+        Pet pet1 = new Pet(1);
+        User user1 = new User(1);
+        ServiceType serviceType1 = new ServiceType(2);
+        Timestamp startTime1 = new Timestamp(System.currentTimeMillis());
+
         appointment_success = new Appointment(startTime, serviceType, groomer, user, pet);
+        appointment_success1 = new Appointment(startTime1, serviceType1, groomer1, user1, pet1);
         appointment_wrongUser = new Appointment(startTime, serviceType, groomer, new User(), pet);
+        appointment_wrongUser1 = new Appointment(startTime1, serviceType1, groomer1, new User(), pet1);
         appointment_wrongGroomer = new Appointment(startTime, serviceType, new Groomer(), user, pet);
+        appointment_wrongGroomer1 = new Appointment(startTime1, serviceType1, new Groomer(), user1, pet1);
         appointment_wrongPet = new Appointment(startTime, serviceType, groomer, user, new Pet());
+        appointment_wrongPet1 = new Appointment(startTime1, serviceType1, groomer1, user1, new Pet());
         appointment_wrongServiceType = new Appointment(startTime, new ServiceType(), groomer, user, pet);
+        appointment_wrongServiceType1 = new Appointment(startTime1, new ServiceType(), groomer1, user1, pet1);
         appointment_empty = new Appointment(1);
 
-        //doNothing().when(mockAppointmentRepo).save(any(Appointment.class));
+        // doNothing().when(mockAppointmentRepo).save(any(Appointment.class));
     }
 
     @Test
     public void ItShouldMakeAppointment_Success() {
         Result<?> result = mockAppointmentService.makeAppointment_C(appointment_success);
+
+        assertEquals("0", result.getCode());
+        verify(mockAppointmentRepo).save(any(Appointment.class));
+    }
+
+    @Test
+    public void ItShouldMakeAppointment_Success1() {
+        Result<?> result = mockAppointmentService.makeAppointment_C(appointment_success1);
 
         assertEquals("0", result.getCode());
         verify(mockAppointmentRepo).save(any(Appointment.class));
@@ -104,6 +129,13 @@ public class AppointmentRepoTest {
     }
 
     @Test
+    public void ItShouldMakeAppointment_WrongUser1() {
+        Result<?> result = mockAppointmentService.makeAppointment_C(appointment_wrongUser1);
+
+        assertEquals("User is invalid", result.getMsg());
+    }
+
+    @Test
     public void ItShouldMakeAppointment_WrongGroomer() {
         Result<?> result = mockAppointmentService.makeAppointment_C(appointment_wrongGroomer);
 
@@ -111,15 +143,36 @@ public class AppointmentRepoTest {
     }
 
     @Test
+    public void ItShouldMakeAppointment_WrongGroomer1() {
+        Result<?> result = mockAppointmentService.makeAppointment_C(appointment_wrongGroomer1);
+
+        assertEquals("No such groomer", result.getMsg());
+    }
+
+    @Test
     public void ItShouldMakeAppointment_WrongPet() {
         Result<?> result = mockAppointmentService.makeAppointment_C(appointment_wrongPet);
-        
+
+        assertEquals("No such pet", result.getMsg());
+    }
+
+    @Test
+    public void ItShouldMakeAppointment_WrongPet1() {
+        Result<?> result = mockAppointmentService.makeAppointment_C(appointment_wrongPet1);
+
         assertEquals("No such pet", result.getMsg());
     }
 
     @Test
     public void ItShouldMakeAppointment_WrongServiceType() {
         Result<?> result = mockAppointmentService.makeAppointment_C(appointment_wrongServiceType);
+
+        assertEquals("No such service", result.getMsg());
+    }
+
+    @Test
+    public void ItShouldMakeAppointment_WrongServiceType1() {
+        Result<?> result = mockAppointmentService.makeAppointment_C(appointment_wrongServiceType1);
 
         assertEquals("No such service", result.getMsg());
     }
@@ -134,9 +187,45 @@ public class AppointmentRepoTest {
     }
 
     @Test
+    public void ItShouldCannelAppointment_Success1() {
+        when(mockAppointmentRepo.findByAid(anyInt())).thenReturn(appointment_wrongGroomer);
+        Result<?> result = mockAppointmentService.cancelAppointment_C(1);
+
+        assertEquals("Appointment Cancelled!", result.getMsg());
+        verify(mockAppointmentRepo).findByAid(anyInt());
+    }
+
+    @Test
+    public void ItShouldCannelAppointment_Success2() {
+        when(mockAppointmentRepo.findByAid(anyInt())).thenReturn(appointment_wrongPet);
+        Result<?> result = mockAppointmentService.cancelAppointment_C(1);
+
+        assertEquals("Appointment Cancelled!", result.getMsg());
+        verify(mockAppointmentRepo).findByAid(anyInt());
+    }
+
+    @Test
+    public void ItShouldCannelAppointment_Success3() {
+        when(mockAppointmentRepo.findByAid(anyInt())).thenReturn(appointment_wrongServiceType);
+        Result<?> result = mockAppointmentService.cancelAppointment_C(1);
+
+        assertEquals("Appointment Cancelled!", result.getMsg());
+        verify(mockAppointmentRepo).findByAid(anyInt());
+    }
+
+    @Test
     public void ItShouldNotCannelAppointment_NoSuchAppointment() {
         when(mockAppointmentRepo.findByAid(anyInt())).thenReturn(null);
         Result<?> result = mockAppointmentService.cancelAppointment_C(1);
+
+        assertEquals("No Matching Appointment Found.", result.getMsg());
+        verify(mockAppointmentRepo).findByAid(anyInt());
+    }
+
+    @Test
+    public void ItShouldNotCannelAppointment_NoSuchAppointment1() {
+        when(mockAppointmentRepo.findByAid(anyInt())).thenReturn(null);
+        Result<?> result = mockAppointmentService.cancelAppointment_C(10);
 
         assertEquals("No Matching Appointment Found.", result.getMsg());
         verify(mockAppointmentRepo).findByAid(anyInt());
