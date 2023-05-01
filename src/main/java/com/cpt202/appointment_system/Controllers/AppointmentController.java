@@ -1,10 +1,12 @@
 package com.cpt202.appointment_system.Controllers;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
-// import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -165,7 +167,7 @@ public class AppointmentController {
     }
     
     //bowenli's pbi
-
+    
     @GetMapping("/appoint")
     public String makeappointment(HttpSession session, Model model) {
         // 检查用户是否已登录
@@ -174,13 +176,35 @@ public class AppointmentController {
             // 如果用户未登录，重定向到登录页面
             return "redirect:/appointment-system";
         }
-
+       //save groomer list to the model
         model.addAttribute("appointmentForm", new AppointmentForm());
         List<Groomer> gList = groomerService.listAllGroomers();
-       model.addAttribute( "gList", gList);
+        List<Groomer> sortedRankgroomers = new ArrayList<>(gList);
+        Collections.sort(sortedRankgroomers, new Comparator<Groomer>() {
+        @Override
+        public int compare(Groomer g1, Groomer g2) {
+            return g2.getRank() - g1.getRank();
+        }
+        });
+        
+        model.addAttribute( "gList", gList);
+        model.addAttribute("sortedRankgroomers", sortedRankgroomers);
+        
         User user=userRepo.findByUsername(username);
+
+        //save pet to the model
         List<Pet> petList=petService.listAllPets(user);
-        model.addAttribute("petList", petList);
+        List<Pet> petShown = new ArrayList<Pet>();
+        for (Pet pet: petList){
+       if (pet.getSize().equals("") && pet.getType().equals("")){
+        }
+       else {
+         petShown.add(pet);
+       }
+             }
+             
+        model.addAttribute("petList", petShown);
+        //save service list to the model
         List<ServiceType> serviceType=servicetypeRepo.findAll();
         model.addAttribute( "serviceType", serviceType);
         return "makeappointment";
@@ -188,14 +212,15 @@ public class AppointmentController {
     }
 
     @PostMapping("/appoint")
-    public String makeappointment_C(@ModelAttribute("appointmentForm") AppointmentForm appointmentForm,HttpSession session) {
+    public String makeappointment_C(@ModelAttribute("appointmentForm") AppointmentForm appointmentForm,HttpSession session,
+    RedirectAttributes redirectAttributes) {
         Appointment appointment = appointmentForm.toAppointment(Appointment.class);
         String username = (String) session.getAttribute("user");
         Groomer OrderedGroomer = groomerRepo.findByGid(appointmentForm.getGroomer().getGid());
 		Pet pet = petRepo.findByPid(appointmentForm.getPet().getPid());
 		User user=userRepo.findByUsername(username);
         ServiceType serviceType=servicetypeRepo.findBySid(appointmentForm.getServiceType().getSid());
-
+        
         appointment.setServiceType(serviceType);
         appointment.setPet(pet);
          appointment.setGroomer(OrderedGroomer);
@@ -214,27 +239,34 @@ public class AppointmentController {
         session.setAttribute("price", price);
 
         appointmentService.makeAppointment_C(appointment);
-
-
+        if(appointmentService.makeAppointment_C(appointment).isSuccess()){
+            
         try{
         //发邮件
 
         String petname = pet.getName();
 
-        // String email = user.getEmail();
+        String email = user.getEmail();
 
-        // Timestamp time = appointment.getStartTime();
+        Timestamp time = appointment.getStartTime();
 
-        // SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); // 定义日期格式
-        // String str = sdf.format(time);
-        // String subject = "Appoint Successfully!";
-        // String text = "You have successfully appoint the service for your pet " + petname +" at "+ time;
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); // 定义日期格式
+        String str = sdf.format(time);
+        String subject = "Appoint Successfully!";
+        String text = "You have successfully appoint the service for your pet " + petname +" at "+ time;
 
-        // emailService.sendSimpleMessage(email, subject, text);
+        emailService.sendSimpleMessage(email, subject, text);
         return "redirect:/Appointment/payment";
         }
 
         catch(Exception e){return "redirect:/Appointment/payment";}
+    }
+
+    else{
+        redirectAttributes.addFlashAttribute("error", "The groomer has been appointed");
+        return "redirect:/Appointment/appoint";
+    }
+
     }
 
     @GetMapping("/makeAppointment")
