@@ -1,4 +1,4 @@
-package com.cpt202.appointment_system;
+package com.cpt202.appointment_system.Unit_Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
