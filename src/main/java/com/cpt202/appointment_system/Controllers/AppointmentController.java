@@ -210,6 +210,7 @@ public class AppointmentController {
         return "makeappointment";
         
     }
+    
 
     @PostMapping("/appoint")
     public String makeappointment_C(@ModelAttribute("appointmentForm") AppointmentForm appointmentForm,HttpSession session,
@@ -238,8 +239,8 @@ public class AppointmentController {
 
         session.setAttribute("price", price);
 
-        appointmentService.makeAppointment_C(appointment);
-        if(appointmentService.makeAppointment_C(appointment).isSuccess()){
+        Result result=appointmentService.makeAppointment_C(appointment);
+        if(result.isSuccess()){
             
         try{
         //发邮件
@@ -260,12 +261,12 @@ public class AppointmentController {
         }
 
         catch(Exception e){return "redirect:/Appointment/payment";}
-    }
+      }
 
-    else{
+      else{
         redirectAttributes.addFlashAttribute("error", "The groomer has been appointed");
         return "redirect:/Appointment/appoint";
-    }
+       }
 
     }
 
