@@ -49,7 +49,7 @@ import com.cpt202.appointment_system.Services.AppointmentService;
 //@SpringBootTest
 @SpringBootTest
 @ExtendWith(MockitoExtension.class)
-public class AppointmentRepoTest {
+public class MakeAppointmentRepoTest {
     @Mock
     private AppointmentRepo mockAppointmentRepo;
 
@@ -57,7 +57,11 @@ public class AppointmentRepoTest {
     @InjectMocks
     private AppointmentService mockAppointmentService;
 
-    private Appointment appointment;
+    private Appointment appointment_success;
+    private Appointment appointment_wrongUser;
+    private Appointment appointment_wrongGroomer;
+    private Appointment appointment_wrongPet;
+    private Appointment appointment_wrongServiceType;
 
     @BeforeEach
     void setUp() {
@@ -68,8 +72,11 @@ public class AppointmentRepoTest {
         ServiceType serviceType = new ServiceType(1);
         Timestamp startTime = new Timestamp(System.currentTimeMillis());
 
-        appointment = new Appointment(startTime, serviceType, groomer,
-        user, pet);
+        appointment_success = new Appointment(startTime, serviceType, groomer, user, pet);
+        appointment_wrongUser = new Appointment(startTime, serviceType, groomer, new User(), pet);
+        appointment_wrongGroomer = new Appointment(startTime, serviceType, new Groomer(), user, pet);
+        appointment_wrongPet = new Appointment(startTime, serviceType, groomer, user, new Pet());
+        appointment_wrongServiceType = new Appointment(startTime, new ServiceType(), groomer, user, pet);
 
         //doNothing().when(mockAppointmentRepo).save(any(Appointment.class));
     }
@@ -78,13 +85,65 @@ public class AppointmentRepoTest {
     public void ItShouldMakeAppointment_Successful() {
         //when(mockAppointmentService.makeAppointment_C(appointment)).thenAnswer(invocation -> Result.success("0", "Success!"));
 
-        Result<?> result = mockAppointmentService.makeAppointment_C(appointment);
+        Result<?> result = mockAppointmentService.makeAppointment_C(appointment_success);
 
-        System.out.println("Here is the result: " + result);
+        //System.out.println("Here is the result: " + result);
 
         // then
         assertEquals("0", result.getCode());
         verify(mockAppointmentRepo).save(any(Appointment.class));
+    }
+
+    @Test
+    public void ItShouldMakeAppointment_WrongUser() {
+        //when(mockAppointmentService.makeAppointment_C(appointment)).thenAnswer(invocation -> Result.success("0", "Success!"));
+
+        Result<?> result = mockAppointmentService.makeAppointment_C(appointment_wrongUser);
+
+        //System.out.println("Here is the result: " + result);
+
+        // then
+        assertEquals("User is invalid", result.getMsg());
+        //verify(mockAppointmentRepo).save(any(Appointment.class));
+    }
+
+    @Test
+    public void ItShouldMakeAppointment_WrongGroomer() {
+        //when(mockAppointmentService.makeAppointment_C(appointment)).thenAnswer(invocation -> Result.success("0", "Success!"));
+
+        Result<?> result = mockAppointmentService.makeAppointment_C(appointment_wrongGroomer);
+
+        //System.out.println("Here is the result: " + result);
+
+        // then
+        assertEquals("No such groomer", result.getMsg());
+        //verify(mockAppointmentRepo).save(any(Appointment.class));
+    }
+
+    @Test
+    public void ItShouldMakeAppointment_WrongPet() {
+        //when(mockAppointmentService.makeAppointment_C(appointment)).thenAnswer(invocation -> Result.success("0", "Success!"));
+
+        Result<?> result = mockAppointmentService.makeAppointment_C(appointment_wrongPet);
+
+        //System.out.println("Here is the result: " + result);
+
+        // then
+        assertEquals("No such pet", result.getMsg());
+        //verify(mockAppointmentRepo).save(any(Appointment.class));
+    }
+
+    @Test
+    public void ItShouldMakeAppointment_WrongServiceType() {
+        //when(mockAppointmentService.makeAppointment_C(appointment)).thenAnswer(invocation -> Result.success("0", "Success!"));
+
+        Result<?> result = mockAppointmentService.makeAppointment_C(appointment_wrongServiceType);
+
+        //System.out.println("Here is the result: " + result);
+
+        // then
+        assertEquals("No such service", result.getMsg());
+        //verify(mockAppointmentRepo).save(any(Appointment.class));
     }
 
 }
