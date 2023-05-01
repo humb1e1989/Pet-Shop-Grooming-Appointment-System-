@@ -53,7 +53,8 @@ import com.cpt202.appointment_system.Repositories.UserRepo;
 import com.cpt202.appointment_system.Services.AppointmentService;
 import com.cpt202.appointment_system.Services.LoginService;
 
-
+@SpringBootTest
+@ExtendWith(MockitoExtension.class)
 public class LoginThenMakeAppointmentTest {
     @Mock
     private UserRepo mockUserRepository;
@@ -74,28 +75,34 @@ public class LoginThenMakeAppointmentTest {
         MockitoAnnotations.openMocks(this);
     }
 
-    private Appointment appointment_success;
+    // @BeforeEach
+    // void setUp() {
+    //     Groomer groomer = new Groomer(1);
+    //     Pet pet = new Pet(1);
+    //     User user = new User(1);
+    //     ServiceType serviceType = new ServiceType(1);
+    //     Timestamp startTime = new Timestamp(System.currentTimeMillis());
 
-    @BeforeEach
-    void setUp() {
+    //     appointment_success = new Appointment(startTime, serviceType, groomer, user, pet);
+    //     //doNothing().when(mockAppointmentRepo).save(any(Appointment.class));
+    // }
+
+    @Test
+    public void testLoginThenMakeAppointment_Success() {
         Groomer groomer = new Groomer(1);
-        //Groomer groomer = new Groomer(1);
         Pet pet = new Pet(1);
         User user = new User(1);
         ServiceType serviceType = new ServiceType(1);
         Timestamp startTime = new Timestamp(System.currentTimeMillis());
 
-        //doNothing().when(mockAppointmentRepo).save(any(Appointment.class));
-    }
-
-    @Test
-    public void testLoginThenMakeAppointment_Success() {
         String username = "yyy";
         String password = "yyy123";
         user.setUsername(username);
         user.setPassword(password);
         user.setType(0);
         Optional<User> dbUser = Optional.of(user);
+
+        Appointment appointment_success = new Appointment(startTime, serviceType, groomer, user, pet);
 
         when(mockUserRepository.findByUsernameOptional(username)).thenReturn(dbUser);
 
@@ -105,20 +112,9 @@ public class LoginThenMakeAppointmentTest {
         // Assert
         assertEquals(0, flag);
 
-
-        Groomer groomer = new Groomer(1);
-        Pet pet = new Pet(1);
-        ServiceType serviceType = new ServiceType(1);
-        Timestamp startTime = new Timestamp(System.currentTimeMillis());
-
-
-        Appointment appointment_success;
-
-        appointment_success = new Appointment(startTime, serviceType, groomer, user, pet);
-
         Result<?> result = mockAppointmentService.makeAppointment_C(appointment_success);
 
-        assertEquals("0", result.getCode());
+        assertEquals("0", result.getMsg());
         verify(mockAppointmentRepo).save(any(Appointment.class));
     }
 }
