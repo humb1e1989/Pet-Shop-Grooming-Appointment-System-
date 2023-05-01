@@ -125,8 +125,8 @@ public class UserController {
     @GetMapping("/profile")
     public String getProfilePage(Model model, HttpSession session){
         String username = (String) session.getAttribute("user");
-        
         User user = userRepo.findByUsername(username);
+        
         List<Appointment> appointmentList = appointmentRepo.findByUser(user);
 
         model.addAttribute("appList", appointmentList);
@@ -149,6 +149,7 @@ public class UserController {
         }
 
         model.addAttribute("appList", resultList);
+        model.addAttribute("appointment", new Appointment());
         return "PersonalPage";
     }
 
@@ -156,9 +157,8 @@ public class UserController {
     @PostMapping("/profile/cancel")
     public String cancelAppointment(@RequestParam("aid") Integer aid) {
 
-        // Appointment appRecord = appointmentRepo.findByAid(appointment.getAid());
         Appointment appRecord = appointmentRepo.findByAid(aid);
-        appRecord.setStatus("cancelled");
+        appRecord.setStatus("Cancelled");
         appointmentRepo.save(appRecord);
         
         return "redirect:/customer/profile";
@@ -194,8 +194,6 @@ public class UserController {
 
         model.addAttribute("user", u);
         model.addAttribute("newUser", new User());
- 
-       
         return "MyAccount";
         // return "redirect:/customer/profile/account";
     }
