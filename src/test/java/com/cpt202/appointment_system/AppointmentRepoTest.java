@@ -65,6 +65,7 @@ public class AppointmentRepoTest {
     private Appointment appointment_wrongGroomer;
     private Appointment appointment_wrongPet;
     private Appointment appointment_wrongServiceType;
+    private Appointment appointment_empty;
 
     @BeforeEach
     void setUp() {
@@ -80,12 +81,13 @@ public class AppointmentRepoTest {
         appointment_wrongGroomer = new Appointment(startTime, serviceType, new Groomer(), user, pet);
         appointment_wrongPet = new Appointment(startTime, serviceType, groomer, user, new Pet());
         appointment_wrongServiceType = new Appointment(startTime, new ServiceType(), groomer, user, pet);
+        appointment_empty = new Appointment(1);
 
         //doNothing().when(mockAppointmentRepo).save(any(Appointment.class));
     }
 
     @Test
-    public void ItShouldMakeAppointment_Successful() {
+    public void ItShouldMakeAppointment_Success() {
         Result<?> result = mockAppointmentService.makeAppointment_C(appointment_success);
 
         assertEquals("0", result.getCode());
@@ -158,6 +160,23 @@ public class AppointmentRepoTest {
         assertTrue(mockAppointmentService.isOverlap(start1, end1, start2, end2));
     }
 
-    
+    @Test
+    public void ItShouldModifyAppointment_Success() {
+        when(mockAppointmentRepo.findByAid(1)).thenReturn(new Appointment(1));
+        Result<?> result = mockAppointmentService.modifyAppointment_C(mockAppointmentRepo.findByAid(1));
+
+        assertEquals("Success!", result.getMsg());
+        verify(mockAppointmentRepo).save(any(Appointment.class));
+    }
+
+    @Test
+    public void ItShouldModifyAppointment_NoSuchAppointment() {
+        Appointment appointment_target = new Appointment(1);
+        when(mockAppointmentRepo.findByAid(anyInt())).thenReturn(null);
+        Result<?> result = mockAppointmentService.modifyAppointment_C(appointment_target);
+
+        assertEquals("No Matching Appointment Found.", result.getMsg());
+        verify(mockAppointmentRepo).findByAid(anyInt());
+    }
 
 }
