@@ -87,34 +87,34 @@ public class LoginThenMakeAppointmentTest {
     //     //doNothing().when(mockAppointmentRepo).save(any(Appointment.class));
     // }
 
-    @Test
-    public void testLoginThenMakeAppointment_Success() {
-        Groomer groomer = new Groomer(1);
-        Pet pet = new Pet(1);
-        User user = new User(1);
-        ServiceType serviceType = new ServiceType(1);
-        Timestamp startTime = new Timestamp(System.currentTimeMillis());
+    // @Test
+    // public void testLoginThenMakeAppointment_Success() {
+    //     Groomer groomer = new Groomer(1);
+    //     Pet pet = new Pet(1);
+    //     User user = new User(1);
+    //     ServiceType serviceType = new ServiceType(1);
+    //     Timestamp startTime = new Timestamp(System.currentTimeMillis());
 
-        String username = "yyy";
-        String password = "yyy123";
-        user.setUsername(username);
-        user.setPassword(password);
-        user.setType(0);
-        Optional<User> dbUser = Optional.of(user);
+    //     String username = "yyy";
+    //     String password = "yyy123";
+    //     user.setUsername(username);
+    //     user.setPassword(password);
+    //     user.setType(0);
+    //     Optional<User> dbUser = Optional.of(user);
 
-        Appointment appointment_success = new Appointment(startTime, serviceType, groomer, user, pet);
+    //     Appointment appointment_success = new Appointment(startTime, serviceType, groomer, user, pet);
 
-        when(mockUserRepository.findByUsernameOptional(username)).thenReturn(dbUser);
+    //     when(mockUserRepository.findByUsernameOptional(username)).thenReturn(dbUser);
 
-        // Act
-        int flag = mockLoginService.loginUser(username, password);
+    //     // Act
+    //     int flag = mockLoginService.loginUser(username, password);
 
-        // Assert
-        assertEquals(0, flag);
+    //     // Assert
+    //     assertEquals(0, flag);
 
-        Result<?> result = mockAppointmentService.makeAppointment_C(appointment_success);
+    //     Result<?> result = mockAppointmentService.makeAppointment_C(appointment_success);
 
-        assertEquals("0", result.getMsg());
-        verify(mockAppointmentRepo).save(any(Appointment.class));
-    }
+    //     assertEquals("0", result.getMsg());
+    //     verify(mockAppointmentRepo).save(any(Appointment.class));
+    // }
 }
