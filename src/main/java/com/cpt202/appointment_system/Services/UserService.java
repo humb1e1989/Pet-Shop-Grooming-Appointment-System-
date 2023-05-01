@@ -124,7 +124,7 @@ public class UserService {
 
 
 
-    public User editAccount_C(MultipartFile file, User user) {
+    public Integer editAccount_C(MultipartFile file, User user) {
 
         Integer uid = user.getUid();
         User originUser = userRepo.findByUid(uid);
@@ -144,19 +144,19 @@ public class UserService {
         user.setGender(gender);
         user.setFailedLoginAttempts(failedLoginAttempts);
 
-        if (user.getUsername().equals("")){
+        if (user.getUsername().trim().equals("")){
             user.setUsername(username);
         }
 
-        if (user.getEmail().equals("")){
+        if (user.getEmail().trim().equals("")){
             user.setEmail(email);
         }
 
-        if (user.getPassword().equals("")){
+        if (user.getPassword().trim().equals("")){
             user.setPassword(password);
         }
 
-        if (user.getPhoneNumber().equals("")){
+        if (user.getPhoneNumber().trim().equals("")){
             user.setPhoneNumber(phoneNumber);
         }
 
@@ -165,25 +165,25 @@ public class UserService {
         String imagePath = FileUploadUtil.userPicture(file, uidString);
 
         
-        // if (imagePath.equals("0") || imagePath.equals("-1")){
-        //     user.setImageURL(imageURL);
-        //     userRepo.save(user);
-        //     return 0;
-        // }
+        if (imagePath.equals("0") || imagePath.equals("-1")){
+            user.setImageURL(imageURL);
+            userRepo.save(user);
+            return 0;
+        }
 
         
-        // if (imagePath.equals("-2")){
-        //     return 2;
-        // }
+        if (imagePath.equals("-2")){
+            return 2;
+        }
        
        
-        // if (imagePath.equals("-3")){
-        //     return 3;
-        // }
+        if (imagePath.equals("-3")){
+            return 3;
+        }
         
         user.setImageURL(imagePath);
         userRepo.save(user);
-        return user;
+        return 0;
 
     }
 
