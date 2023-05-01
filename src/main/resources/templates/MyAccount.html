@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+        <title>My Account Page</title>
+        <link href="/assets/css/flowbite.min.css"  rel="stylesheet" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.4.0/dist/themes/light.css" />
+        <script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.4.0/dist/shoelace-autoloader.js"></script>
+        <style type="text/css">
+
+            body{
+                /* background-image: url(../static/assets/images/Background2.svg);
+                background-repeat: non-repeat;
+                /* background-attachment: fixed; */
+                /* background-size: 100% 100%;
+                background-position: -20%, 20%; */
+            }
+    
+    
+        </style>
+    </head>
+    <!-- style="background-color: #FFF3DC;" -->
+    <body>
+        
+            <button data-drawer-target="logo-sidebar" data-drawer-toggle="logo-sidebar" aria-controls="logo-sidebar" type="button" class="inline-flex items-center p-2 mt-2 ml-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
+                <span class="sr-only">Open sidebar</span>
+                <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                <path clip-rule="evenodd" fill-rule="evenodd" d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"></path>
+                </svg>
+            </button>
+
+            <aside id="logo-sidebar" class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
+
+    
+
+
+
+                <div class="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800" style="background-color:black;" >
+                <a th:href="@{/appointment-system}" class="flex items-center pl-2.5 mb-5">
+                    <!-- <img src="https://flowbite.com/docs/images/logo.svg" class="h-6 mr-3 sm:h-7" alt="Flowbite Logo" /> -->
+                    <img src="/assets/images/IPet.svg" width="100%" height="100%"/>
+                    <!-- 这里是本来的返回homepage的链接 -->
+                    <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white"></span>
+                </a>
+                <ul class="space-y-2 font-medium">
+                    <br>
+                    <li>
+                        <a th:href="@{/customer/profile}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                            <!-- <svg aria-hidden="true" class="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path><path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path></svg>
+                            <span class="ml-3">Appointment</span> -->
+                            <img src="/assets/images/AppointmentTitle.svg" />
+                        </a>
+                    </li>
+                    <li>
+                        <a th:href="@{/customer/profile/pet}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                            <!-- <svg aria-hidden="true" class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
+                            <span class="flex-1 ml-3 whitespace-nowrap">My Pet</span> -->
+                            <img style="margin-left: 5%;" src="/assets/images/MyPetTitle.svg" />
+                        </a>
+                    </li>
+                    <li>
+                        <a th:href="@{/customer/profile/account}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                            <!-- <svg aria-hidden="true" class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
+                            <span class="flex-1 ml-3 whitespace-nowrap">My Pet</span> -->
+                            <img src="/assets/images/AccountTitle2.svg" />
+                        </a>
+                    </li>
+                    
+                </ul>
+
+                <!-- <img src="../static/assets/images/HappyDog.svg" width="70%" height="70%"/> -->
+
+
+                <img src="/assets/images/AccountAside.svg" style="margin-top:24%;"/>
+                
+
+                <!-- <img src="../static/assets/images/Aisde-B.svg" /> -->
+
+                
+                
+                </div>
+
+
+
+
+                
+
+                
+
+            </aside>
+
+
+
+           
+
+
+
+            
+
+ 
+
+            
+           
+            <div class="p-4 sm:ml-64">
+                
+                     
+             
+                 <!-- <table>
+                    <td> -->
+                        <img src="/assets/images/AccountUp1.svg" style="width: 103%; height: 60%; margin-left: 1.7%; margin-top: -2.5%;"/>
+                    <!-- </td>
+
+                 </table>        -->
+                
+                        
+
+                    <!-- <hr class="my-6 border-gray-200 h-10 sm:mx-auto dark:border-gray-700 lg:my-8" /> -->
+
+                                        
+
+
+                    
+                    
+                    <!-- <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700" style="margin-left: 29%;">
+                        <a href="#">
+                            <img class="rounded-t-lg" src="../static/assets/images/MyPhoto.png" alt="" />
+                        </a>
+                        <div class="p-5">
+                          
+                            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
+                            
+                            <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
+
+                            <sl-dialog label="Dialog" class="dialog-focus">
+                                <sl-input autofocus placeholder="I will have focus when the dialog is opened"></sl-input>
+                                <sl-button slot="footer" variant="primary">Close</sl-button>
+                              </sl-dialog>
+                              
+                              <sl-button>Open Dialog</sl-button>
+                              
+
+                        </div>
+                    </div> -->
+
+                    <!-- <div> -->
+                        
+                        <div class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700" style="margin-left:12%; margin-top: -3.5%;">
+
+                            <script th:inline="javascript">
+                                             
+                                var user2 = [[${user}]];
+                                var image = user2.imageURL;
+                                document.write("<img class='object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-l-lg' src=" + image + " style='width: 40%; height: 40%;' alt=''>");
+                                
+                                
+                            </script>
+                            <!-- <img class="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-l-lg" th:src="@{user.imageURL}" style="width: 40%; height: 40%;" alt=""> -->
+                            <div class="flex flex-col justify-between p-4 leading-normal">
+                                <script th:inline="javascript">
+                                             
+                                    var user1 = [[${user}]];
+                                    var name = user1.username;
+                                    var email = user1.email;
+                                    var phone = user1.phoneNumber
+                                    document.write("<h5 class='mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white'> Hi, " + name + "!</h5>");
+                                    document.write("<p class='mb-3 font-normal text-gray-700 dark:text-gray-400'>Email: " + email + "</p>");
+                                    document.write("<p class='mb-3 font-normal text-gray-700 dark:text-gray-400'>Telephone: " + phone + "</p>");
+                                    
+                                </script>
+                                <!-- <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white" th:text="${user.username}"></h5>
+                                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400" th:text="${user.email}"></p> -->
+
+                                <sl-dialog label="Modify" class="dialog-focus">
+                                    
+                                    
+                                    <form th:action="@{/customer/profile/account/edit}" method="POST" th:object="${newUser}" enctype="multipart/form-data">
+                                        <!-- <div class="grid md:grid-cols-2 md:gap-6"> text-sm-->
+                                            <div class="relative z-0 w-full mb-6 group">
+                                                <input type="text" th:field="*{username}" name="username" id="username" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                                                <label for="floating_name" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Name</label>
+                                            </div>
+                                            <!-- <div class="relative z-0 w-full mb-6 group">
+                                                <input type="text" name="floating_last_name" id="floating_last_name" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                                                <label for="floating_last_name" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Last name</label>
+                                            </div> -->
+                                        <!-- </div> -->
+                                        <div class="grid md:grid-cols-2 md:gap-6">
+                                            <div class="relative z-0 w-full mb-6 group">
+                                                <input type="email" th:field="*{email}" name="email" id="email" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                                                <label for="email" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Email address</label>
+                                            </div>
+                                            <div class="relative z-0 w-full mb-6 group">
+                                                <input type="tel" pattern="[0-9]{3}-[0-9]{3}" th:field="*{phoneNumber}" name="phoneNumber" id="phoneNumber" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                                                <label for="phoneNumber" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Phone number (123-456)</label>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="relative z-0 w-full mb-6 group">
+                                            <input type="password" name="floating_password" id="floating_password" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                                            <label for="floating_password" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Password</label>
+                                        </div>
+                                        <div class="relative z-0 w-full mb-6 group">
+                                            <input type="password" onkeyup="validate()" th:field="*{password}" name="password" id="password" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                                            <label for="passowrd" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Confirm password</label>
+                                            <span id="tishi"></span>
+                                        </div>
+
+                                        <div class="flex items-center justify-center w-full">
+                                            <label for="dropzone-file1" class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600" >
+                                                <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                                                    <svg aria-hidden="true" class="w-10 h-10 mb-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
+                                                    <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Click to upload</span> or drag and drop</p>
+                                                    <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
+                                                </div>
+                                                <input id="dropzone-file1" type="file" name="file"/>
+                                            </label>
+                                        </div> 
+
+                                        <br>
+                                        
+                                        <button id="submit"  slot="footer" variant="primary" type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" style="border-radius: 30px;" >Submit</button>
+                                    </form>
+  
+                                    
+                                    
+                                    <!-- <sl-button slot="footer" variant="primary">class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"Close</sl-button> -->
+                                  </sl-dialog>
+                                  
+                                  <sl-button pill>Modify My Information</sl-button>
+
+
+
+                            </div>
+                            <img src="/assets/images/Account1.svg" style="width: 60%; height: 60%; margin-top: 5%; margin-left: 5%;"/>
+                           
+
+                        </div>
+                        
+
+                    <!-- </div> -->
+
+
+
+                    
+
+
+
+ 
+            </div>
+ 
+          
+        
+            
+              
+             <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js">
+             </script>
+
+            <script>
+                const dialog = document.querySelector('.dialog-focus');
+                const input = dialog.querySelector('sl-input');
+                const openButton = dialog.nextElementSibling;
+                // const closeButton = dialog.querySelector('button[slot="footer"]');
+            
+                openButton.addEventListener('click', () => dialog.show());
+                // closeButton.addEventListener('click', () => dialog.hide());
+            </script>
+            
+
+
+            <!-- <script>
+                var floating_password = document.getElementById("floating_password").value;
+                var floating_repeat_password = document.getElementById("floating_repeat_password").value;
+            </script> -->
+
+            <script>
+                function validate() {
+                    var floating_password = document.getElementById("floating_password").value;
+                    var floating_repeat_password = document.getElementById("password").value;
+                if(floating_password == floating_repeat_password) {
+                document.getElementById("tishi").innerHTML="<font color='green'>Same</font>";
+                document.getElementById("submit").disabled = false;
+                }
+                else {
+                document.getElementById("tishi").innerHTML="<font color='red'>Please enter the same password</font>";
+                document.getElementById("submit").disabled = true;
+                }
+                }
+            </script>
+
+
+    
+    </body>
+
+    
+    <style>
+        .badge-pulse sl-badge:not(:last-of-type) {
+            margin-right: 1rem;
+        }
+
+        sl-button.drawerTest::part(base) {
+            background-color: #FDBD4E;
+            /* background: linear-gradient(#775547, #FFC368); */
+            color: #7E5A4C;
+            border-width: 2px;
+            border-top-color: #7E5A4C;
+            border-left-color: #7E5A4C;
+            border-bottom-color: #7E5A4C;
+            border-right-color: #7E5A4C;
+            font-weight: bold;
+        }
+
+        sl-button.Modify::part(base) {
+            background-color: #FDBD4E;
+            /* background: linear-gradient(#775547, #FFC368); */
+            color: #7E5A4C;
+            border-width: 2px;
+            border-top-color: #7E5A4C;
+            border-left-color: #7E5A4C;
+            border-bottom-color: #7E5A4C;
+            border-right-color: #7E5A4C;
+            font-weight: bold;
+        }
+
+        sl-button.Delete::part(base) {
+            background-color: #FDBD4E;
+            /* background: linear-gradient(#775547, #FFC368); */
+            color: #7E5A4C;
+            border-width: 2px;
+            border-top-color: #7E5A4C;
+            border-left-color: #7E5A4C;
+            border-bottom-color: #7E5A4C;
+            border-right-color: #7E5A4C;
+            font-weight: bold;
+        }
+
+
+
+       
+    </style>
+     <!-- <style type="text/css">
+        .table {
+            background-image: url(../static/assets/images/AccountTop8.png);
+            background-repeat: no-repeat;
+            background-attachment:fixed;
+            /* background-size: cover; */
+        }
+    </style> -->
+
+</html>
+
+
