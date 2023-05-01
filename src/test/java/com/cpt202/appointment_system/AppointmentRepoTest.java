@@ -17,6 +17,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -177,6 +179,39 @@ public class AppointmentRepoTest {
 
         assertEquals("No Matching Appointment Found.", result.getMsg());
         verify(mockAppointmentRepo).findByAid(anyInt());
+    }
+
+    @Test
+    public void ItShouldListAllSuitableAppointment_Success() {
+        Appointment appointment1 = new Appointment(1);
+        Appointment appointment2 = new Appointment(2);
+        Appointment appointment3 = new Appointment(3);
+        Appointment appointment4 = new Appointment(4);
+
+        List<Appointment> appointmentList_excepted = new ArrayList<>();
+        appointmentList_excepted.add(appointment1);
+        appointmentList_excepted.add(appointment2);
+        appointmentList_excepted.add(appointment3);
+        appointmentList_excepted.add(appointment4);
+
+        List<Appointment> appointmentList_excepted1 = new ArrayList<>();
+        appointmentList_excepted1.add(appointment2);
+
+        List<Appointment> appointmentList_excepted2 = new ArrayList<>();
+        appointmentList_excepted2.add(appointment3);
+
+        List<Appointment> appointmentList_excepted3 = new ArrayList<>();
+        appointmentList_excepted3.add(appointment4);
+
+        when(mockAppointmentRepo.findByAid(1)).thenReturn(appointment1);
+        when(mockAppointmentRepo.findByGroomer(1)).thenReturn(appointmentList_excepted1);
+        when(mockAppointmentRepo.findBySid(1)).thenReturn(appointmentList_excepted2);
+        when(mockAppointmentRepo.findBytotalPrice(1.0)).thenReturn(appointmentList_excepted3);
+
+        List<Appointment> appointmentList_result = mockAppointmentService.appointmentSearch("1");
+
+        assertEquals(appointmentList_result, appointmentList_result);
+
     }
 
 }
