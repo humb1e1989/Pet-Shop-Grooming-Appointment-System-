@@ -1,7 +1,10 @@
 package com.cpt202.appointment_system;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.spy;
@@ -83,67 +86,78 @@ public class AppointmentRepoTest {
 
     @Test
     public void ItShouldMakeAppointment_Successful() {
-        //when(mockAppointmentService.makeAppointment_C(appointment)).thenAnswer(invocation -> Result.success("0", "Success!"));
-
         Result<?> result = mockAppointmentService.makeAppointment_C(appointment_success);
 
-        //System.out.println("Here is the result: " + result);
-
-        // then
         assertEquals("0", result.getCode());
         verify(mockAppointmentRepo).save(any(Appointment.class));
     }
 
     @Test
     public void ItShouldMakeAppointment_WrongUser() {
-        //when(mockAppointmentService.makeAppointment_C(appointment)).thenAnswer(invocation -> Result.success("0", "Success!"));
-
         Result<?> result = mockAppointmentService.makeAppointment_C(appointment_wrongUser);
 
-        //System.out.println("Here is the result: " + result);
-
-        // then
         assertEquals("User is invalid", result.getMsg());
-        //verify(mockAppointmentRepo).save(any(Appointment.class));
     }
 
     @Test
     public void ItShouldMakeAppointment_WrongGroomer() {
-        //when(mockAppointmentService.makeAppointment_C(appointment)).thenAnswer(invocation -> Result.success("0", "Success!"));
-
         Result<?> result = mockAppointmentService.makeAppointment_C(appointment_wrongGroomer);
 
-        //System.out.println("Here is the result: " + result);
-
-        // then
         assertEquals("No such groomer", result.getMsg());
-        //verify(mockAppointmentRepo).save(any(Appointment.class));
     }
 
     @Test
     public void ItShouldMakeAppointment_WrongPet() {
-        //when(mockAppointmentService.makeAppointment_C(appointment)).thenAnswer(invocation -> Result.success("0", "Success!"));
-
         Result<?> result = mockAppointmentService.makeAppointment_C(appointment_wrongPet);
-
-        //System.out.println("Here is the result: " + result);
-
-        // then
+        
         assertEquals("No such pet", result.getMsg());
-        //verify(mockAppointmentRepo).save(any(Appointment.class));
     }
 
     @Test
     public void ItShouldMakeAppointment_WrongServiceType() {
-        //when(mockAppointmentService.makeAppointment_C(appointment)).thenAnswer(invocation -> Result.success("0", "Success!"));
-
         Result<?> result = mockAppointmentService.makeAppointment_C(appointment_wrongServiceType);
 
-        //System.out.println("Here is the result: " + result);
-
-        // then
         assertEquals("No such service", result.getMsg());
-        //verify(mockAppointmentRepo).save(any(Appointment.class));
     }
+
+    @Test
+    public void ItShouldCannelAppointment_Success() {
+        when(mockAppointmentRepo.findByAid(anyInt())).thenReturn(appointment_success);
+        Result<?> result = mockAppointmentService.cancelAppointment_C(1);
+
+        assertEquals("Appointment Cancelled!", result.getMsg());
+        verify(mockAppointmentRepo).findByAid(anyInt());
+    }
+
+    @Test
+    public void ItShouldNotCannelAppointment_NoSuchAppointment() {
+        when(mockAppointmentRepo.findByAid(anyInt())).thenReturn(null);
+        Result<?> result = mockAppointmentService.cancelAppointment_C(1);
+
+        assertEquals("No Matching Appointment Found.", result.getMsg());
+        verify(mockAppointmentRepo).findByAid(anyInt());
+    }
+
+    @Test
+    public void ItShouldNotBeOverlap() {
+        Timestamp start1 = new Timestamp(2023, 5, 1, 13, 0, 0, 0);
+        Timestamp end1 = new Timestamp(2023, 5, 1, 14, 0, 0, 0);
+        Timestamp start2 = new Timestamp(2023, 5, 1, 15, 0, 0, 0);
+        Timestamp end2 = new Timestamp(2023, 5, 1, 16, 0, 0, 0);
+
+        assertFalse(mockAppointmentService.isOverlap(start1, end1, start2, end2));
+    }
+
+    @Test
+    public void ItShouldBeOverlap() {
+        Timestamp start1 = new Timestamp(2023, 5, 1, 13, 0, 0, 0);
+        Timestamp end1 = new Timestamp(2023, 5, 1, 15, 0, 0, 0);
+        Timestamp start2 = new Timestamp(2023, 5, 1, 14, 0, 0, 0);
+        Timestamp end2 = new Timestamp(2023, 5, 1, 16, 0, 0, 0);
+
+        assertTrue(mockAppointmentService.isOverlap(start1, end1, start2, end2));
+    }
+
+    
 
 }
