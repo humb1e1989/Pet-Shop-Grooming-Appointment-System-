@@ -58,4 +58,14 @@ public class Result<T> {
         return result;
     }
     
+
+    public Result(String code, String msg) {
+        this.code = code;
+        this.msg = msg;
+    }
+
+       public boolean isSuccess() {
+        return this.code.equals("0");
+    }
+
 }

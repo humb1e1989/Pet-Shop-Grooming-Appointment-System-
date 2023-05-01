@@ -64,6 +64,12 @@ public class User {
     public User() {
     }
 
+    public User(String username, String password, Integer type) {
+        this.username = username;
+        this.password = password;
+        this.type = type;
+    }
+
 
     public User(Integer uid, String username, String password, Integer type, Timestamp registrationTime,
             String imageURL, String gender, String phoneNumber, String email, Integer failedLoginAttempts) {
