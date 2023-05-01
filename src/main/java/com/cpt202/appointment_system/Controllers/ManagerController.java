@@ -143,16 +143,7 @@ public class ManagerController {
 
     @PostMapping("/searchServiceType")
     public String searchServiceType(Model model, @RequestParam("keyword") String keyword) {
-        // List<ServiceType> serviceTypes =
-        // ServiceTypeService.searchServiceTypeByName_M(keyword);
         List<ServiceType> serviceTypes = ServiceTypeService.searchServiceTypeByName_M(keyword);
-        // List<String> serviceNames =
-        // ServiceTypeService.searchServiceTypeByName_M(keyword);
-        // List<ServiceType> serviceTypes = new ArrayList<ServiceType>();
-        // for (String serviceName : serviceNames) {
-        // serviceTypes.add(new ServiceType(serviceName));
-        // }
-        // System.out.println(serviceNames);
         model.addAttribute("serviceTypes", serviceTypes);
         return "MaintainServiceType";
     }
