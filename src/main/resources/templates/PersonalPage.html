@@ -156,7 +156,7 @@
                                             // Please ignore this error (It can run as we want anyway)
                                         var app = [[${appointment}]];
                                         var appStatus = app.status;
-                                               if(appStatus=="cancelled"){
+                                               if(appStatus=="Cancelled"){
                                                  document.write("<div class='h-2.5 w-2.5 rounded-full bg-gray-500 mr-2'></div>");
                                                }else{
                                                  document.write("<div class='h-2.5 w-2.5 rounded-full bg-green-500 mr-2'></div>");
@@ -178,8 +178,11 @@
                                     onclick="viewAppointment(this)" 
                                     data-modal-target="editUserModal" data-modal-show="editUserModal" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Details</button>
 
-                                    <button th:attr="data-aid1=${appointment.aid}" style="margin-left: 10%; color: red;" onclick="cancelAppointment(this)"
-                                    data-modal-target="editUserModal1" data-modal-show="editUserModal1" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Cancel</button>
+                                    <span th:switch="${appointment.getStatus()}">
+                                        <button th:case="Pending" th:attr="data-aid1=${appointment.aid}" style="margin-left: 10%; color: red;" onclick="cancelAppointment(this)"
+                                         data-modal-target="editUserModal1" data-modal-show="editUserModal1" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Cancel</button>
+                                    </span>
+
                                 </td>
                                 <!-- <td class="px-6 py-4">
                                     
