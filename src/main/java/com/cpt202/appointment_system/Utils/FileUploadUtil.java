@@ -9,18 +9,24 @@ import java.util.UUID;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import com.cpt202.appointment_system.Models.Groomer;
+import com.cpt202.appointment_system.Models.Pet;
+import com.cpt202.appointment_system.Models.User;
+
 
 public class FileUploadUtil {
 
     
-    private static final String USERPATH = "C:\\Users\\Administrator\\User_images\\";
-    private static final String GROOMERPATH = "C:\\Users\\Administrator\\Groomer_images\\";
+    // private static final String USERPATH = "C:\\Users\\Administrator\\User_images\\";
+    // private static final String GROOMERPATH = "C:\\Users\\Administrator\\Groomer_images\\";
+    private static final String USERPATH = "C:\\Users\\86138\\Desktop\\User_images\\";
+    private static final String GROOMERPATH = "C:\\Users\\86138\\Desktop\\Groomer_images\\";
     private static final String PETPATH = "\\Pet_images\\";
 
-    // private static final String GROOMERPATH_URL_STRING = "http://localhost:8080/g-images/";
     private static final String GROOMERPATH_URL_STRING = "/g-images/";
-    // private static final String USERPATH_URL_STRING = "http://localhost:8080/u-images/";
     private static final String USERPATH_URL_STRING = "/u-images/";
+    private static final int GROOMER_PARTIAL_STRING = GROOMERPATH_URL_STRING.length(); 
+    private static final int USER_PARTIAL_STRING = GROOMERPATH_URL_STRING.length();
 
     private static final String TYPE_JPEG = "jpeg";
     private static final String TYPE_JPG = "jpg";
@@ -185,6 +191,59 @@ public class FileUploadUtil {
         }
 
         return false;
+    }
+
+
+    public static void deletePetPic(Pet pet){
+
+        String imageURL = pet.getImageURL();
+
+        if (imageURL != null){
+           
+            String partialPath = imageURL.substring(USER_PARTIAL_STRING).replace("/", "\\");
+            String absolutePath = USERPATH + partialPath;
+
+            File file = new File(absolutePath);
+            if (file.exists()) {
+                file.delete();
+            } 
+        }
+
+    }
+
+
+    public static void deleteUserPic(User user){
+
+        String imageURL = user.getImageURL();
+
+        if (imageURL != null){
+           
+            String partialPath = imageURL.substring(USER_PARTIAL_STRING).replace("/", "\\");
+            String absolutePath = USERPATH + partialPath;
+
+            File file = new File(absolutePath);
+            if (file.exists()) {
+                file.delete();
+            } 
+        }
+
+    }
+
+    public static void deleteGroomerPic(Groomer groomer){
+
+        String imageURL = groomer.getImageURL();
+
+        if (imageURL != null){
+           
+            String partialPath = imageURL.substring(GROOMER_PARTIAL_STRING).replace("/", "\\");
+            String absolutePath = GROOMERPATH + partialPath;
+
+            File file = new File(absolutePath);
+            if (file.exists()) {
+                file.delete();
+            } 
+        }
+
     }
 
 

@@ -14,9 +14,13 @@ public class UrlConfig implements WebMvcConfigurer {
  		//addResourceHandler: the virtual path (url) you want to config
         //addResourceLocations: real path of a file on your server
 
-        registry.addResourceHandler("/g-images/**").addResourceLocations("file:C:\\Users\\Administrator\\Groomer_images\\");
+        // registry.addResourceHandler("/g-images/**").addResourceLocations("file:C:\\Users\\Administrator\\Groomer_images\\");
         
-        registry.addResourceHandler("/u-images/**").addResourceLocations("file:C:\\Users\\Administrator\\User_images\\");
+        // registry.addResourceHandler("/u-images/**").addResourceLocations("file:C:\\Users\\Administrator\\User_images\\");
+
+        registry.addResourceHandler("/g-images/**").addResourceLocations("file:C:\\Users\\86138\\Desktop\\Groomer_images\\");
+        
+        registry.addResourceHandler("/u-images/**").addResourceLocations("file:C:\\Users\\86138\\Desktop\\User_images\\");
 
     }
 }

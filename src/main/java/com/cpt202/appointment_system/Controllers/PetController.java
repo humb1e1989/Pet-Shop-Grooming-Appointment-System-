@@ -1,5 +1,6 @@
 package com.cpt202.appointment_system.Controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -68,11 +69,20 @@ public class PetController {
     public String getMyPetPage(Model model, HttpSession session){
         String username = (String) session.getAttribute("user");
         User user = userRepo.findByUsername(username);
+
         List<Pet> petList = petService.listAllPets(user);
-        model.addAttribute("petList", petList);
+        List<Pet> petShown = new ArrayList<>();
+        for (Pet pet: petList){
+            if (pet.getSize().equals("") && pet.getType().equals("")){
+            }
+            else {
+                petShown.add(pet);
+            }
+        }
+
+        model.addAttribute("petList", petShown);
         model.addAttribute("number", petList.size());
         model.addAttribute("pet", new Pet());
-        // model.addAttribute("userID", uid);
         return "MyPet8";
     }
 
@@ -92,7 +102,6 @@ public class PetController {
             return "MyPet8";
         }
 
-        // return getMyPetPage(uid, model);
         return "redirect:/customer/profile";
         
     }
@@ -100,10 +109,12 @@ public class PetController {
 
     @PostMapping("/profile/pet/edit")
     public String editPetPost(HttpSession session, @ModelAttribute("pet") Pet pet, Model model, MultipartFile file){
+
         String username = (String) session.getAttribute("user");
         User user = userRepo.findByUsername(username);
         Integer uid=user.getUid();
         pet.setUser(userRepo.findByUid(uid));
+
         int code = petService.editPet(file, pet);
         model.addAttribute("code", code);
 
@@ -112,20 +123,18 @@ public class PetController {
             return "MyPet8";
         }
 
-        // return getMyPetPage(uid, model);
         return "redirect:/customer/profile";
     }
 
 
     @PostMapping("/profile/pet/delete")
-    public String removePet(HttpSession session, @ModelAttribute("pet") Pet pet, Model model){
+    public String removePet(HttpSession session, @ModelAttribute("pet") Pet p, Model model){
         String username = (String) session.getAttribute("user");
         User user = userRepo.findByUsername(username);
-        Integer uid=user.getUid();
-        pet.setUser(userRepo.findByUid(uid));
-        petService.deletePet(pet.getPid());
 
-        // return getMyPetPage(uid, model);
+        Pet pet = petRepo.findByPid(p.getPid());
+        petService.pseudoDeletePet(pet, user);
+
         return "redirect:/customer/profile";
                 
     }
