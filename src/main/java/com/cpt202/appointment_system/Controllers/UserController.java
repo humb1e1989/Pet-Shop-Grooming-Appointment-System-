@@ -9,11 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.cpt202.appointment_system.Common.Result;
 import com.cpt202.appointment_system.Models.Appointment;
@@ -121,22 +123,23 @@ public class UserController {
 
     
     @GetMapping("/profile")
-    public String viewProfileGet(Model model, HttpSession session){
+    public String getProfilePage(Model model, HttpSession session){
         String username = (String) session.getAttribute("user");
-        User user = userRepo.findByUsername(username);
         
+        User user = userRepo.findByUsername(username);
         List<Appointment> appointmentList = appointmentRepo.findByUser(user);
-        // model.addAttribute("userID", uid);
+
         model.addAttribute("appList", appointmentList);
+        model.addAttribute("appointment", new Appointment());
         return "PersonalPage";
     }
 
-
-    @PostMapping("/profile")
+    
+    @PostMapping("/profile/search")
     public String appointmentSearchByPetname(Model model, @RequestParam("SearchKey") String keyword, HttpSession session) {
         String username = (String) session.getAttribute("user");
         User user = userRepo.findByUsername(username);
-        Integer uid=user.getUid();
+        Integer uid = user.getUid();
         List<Appointment> appointmentList = appointmentRepo.findByUid(uid);
         List<Appointment> resultList = new ArrayList<>();
         for (Appointment appointment : appointmentList){
@@ -144,8 +147,60 @@ public class UserController {
                 resultList.add(appointment);
             }
         }
+
         model.addAttribute("appList", resultList);
         return "PersonalPage";
     }
+
+
+    @PostMapping("/profile/cancel")
+    public String cancelAppointment(@RequestParam("aid") Integer aid) {
+
+        // Appointment appRecord = appointmentRepo.findByAid(appointment.getAid());
+        Appointment appRecord = appointmentRepo.findByAid(aid);
+        appRecord.setStatus("cancelled");
+        appointmentRepo.save(appRecord);
+        
+        return "redirect:/customer/profile";
+    }
+
+
+    @GetMapping("/profile/account")
+    public String getAccountPage(Model model, HttpSession session){
+        String username = (String) session.getAttribute("user");
+        User user = userRepo.findByUsername(username);
+
+        model.addAttribute("user", user);
+        model.addAttribute("newUser", new User());
+        return "MyAccount";
+    }
+
+
+    @PostMapping("/profile/account/edit")
+    public String modifyAccount(HttpSession session, @ModelAttribute("newUser") User user, Model model, MultipartFile file){
+
+        String oldName = (String) session.getAttribute("user");
+        Integer uid = userRepo.findByUsername(oldName).getUid();
+
+        String username = user.getUsername();
+        session.removeAttribute("user");
+        session.setAttribute("user", username);
+
+        // User usertemp = userRepo.findByUsername(username);
+        
+        user.setUid(uid);
+
+        User u= userService.editAccount_C(file, user);
+
+        model.addAttribute("user", u);
+        model.addAttribute("newUser", new User());
+ 
+       
+        return "MyAccount";
+        // return "redirect:/customer/profile/account";
+    }
+
+    
+
 
 }

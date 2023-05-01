@@ -1,5 +1,6 @@
 package com.cpt202.appointment_system.Services;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -122,33 +123,67 @@ public class UserService {
     }
 
 
-    public int editProfile_C(MultipartFile file, User user) {
+
+    public User editAccount_C(MultipartFile file, User user) {
 
         Integer uid = user.getUid();
+        User originUser = userRepo.findByUid(uid);
+
+        String username = originUser.getUsername();
+        String password = originUser.getPassword();
+        Integer type = originUser.getType();
+        Timestamp registrationTime = originUser.getRegistrationTime();
+        String gender = originUser.getGender();
+        String phoneNumber = originUser.getPhoneNumber();
+        String email = originUser.getEmail();
+        Integer failedLoginAttempts = originUser.getFailedLoginAttempts();
+        String imageURL = originUser.getImageURL();
+
+        user.setType(type);
+        user.setRegistrationTime(registrationTime);
+        user.setGender(gender);
+        user.setFailedLoginAttempts(failedLoginAttempts);
+
+        if (user.getUsername().equals("")){
+            user.setUsername(username);
+        }
+
+        if (user.getEmail().equals("")){
+            user.setEmail(email);
+        }
+
+        if (user.getPassword().equals("")){
+            user.setPassword(password);
+        }
+
+        if (user.getPhoneNumber().equals("")){
+            user.setPhoneNumber(phoneNumber);
+        }
+
+
         String uidString= Integer.toString(uid);
         String imagePath = FileUploadUtil.userPicture(file, uidString);
 
-        // no image or empty image
-        if (imagePath.equals("0") || imagePath.equals("-1")){
-            User u = userRepo.findByUid(uid);
-            user.setImageURL(u.getImageURL());
-            userRepo.save(user);
-            return 0;
-        }
+        
+        // if (imagePath.equals("0") || imagePath.equals("-1")){
+        //     user.setImageURL(imageURL);
+        //     userRepo.save(user);
+        //     return 0;
+        // }
 
-        // unsupported image format 
-        if (imagePath.equals("-2")){
-            return 2;
-        }
+        
+        // if (imagePath.equals("-2")){
+        //     return 2;
+        // }
        
-        // image storage error
-        if (imagePath.equals("-3")){
-            return 3;
-        }
+       
+        // if (imagePath.equals("-3")){
+        //     return 3;
+        // }
         
         user.setImageURL(imagePath);
         userRepo.save(user);
-        return 0;
+        return user;
 
     }
 

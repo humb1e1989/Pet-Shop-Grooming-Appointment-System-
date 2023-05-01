@@ -1,4 +1,4 @@
-package com.cpt202.appointment_system;
+package com.cpt202.appointment_system.Unit_Test;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;

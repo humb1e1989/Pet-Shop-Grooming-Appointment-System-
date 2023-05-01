@@ -96,7 +96,8 @@ public class PetService {
         if (imagePath.equals("-3")){
             return 3;
         }
-
+        
+        FileUploadUtil.deletePetPic(originPet);
         pet.setImageURL(imagePath);
         petRepo.save(pet);
         return 0;
@@ -106,8 +107,7 @@ public class PetService {
 
     public void pseudoDeletePet(Pet pet, User user) {
 
-        // FileUploadUtil.deletePetPic(pet);     
-           
+        FileUploadUtil.deletePetPic(pet);   
         pet.setImageURL(null);
 
         pet.setName(pet.getName() + " (Deleted)");
