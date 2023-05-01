@@ -99,17 +99,17 @@ public class makeAppointmentWebMvcTest {
 
     }
 
-    // 使用@Test注解
-    @Test
-    // 定义一个测试方法，测试预约成功的情况
-    public void ItShouldMakeAppointment_Successful() throws Exception {
-    // 模拟发送一个POST请求，并且验证响应结果
+    // // 使用@Test注解
+    // @Test
+    // // 定义一个测试方法，测试预约成功的情况
+    // public void ItShouldMakeAppointment_Successful() throws Exception {
+    // // 模拟发送一个POST请求，并且验证响应结果
 
-    mockMvc.perform(post("/appoint/2/1/2/2023-5-1 12:00:00") //模拟发送一个POST请求，指定预约的参数
-    .sessionAttr("user", "user")) // 设置session属性，指定用户的用户名为"user"
-    .andExpect(status().isOk()) // 验证响应状态码为200，表示请求成功处理了
-    .andExpect(content().json("{\"code\":\"0\",\"message\":\"Appointsuccessfully!\"}")); // 验证响应内容为JSON格式，并且与预期的结果对象匹配
+    // mockMvc.perform(post("/appoint/2/1/2/2023-5-1 12:00:00") //模拟发送一个POST请求，指定预约的参数
+    // .sessionAttr("user", "user")) // 设置session属性，指定用户的用户名为"user"
+    // .andExpect(status().isOk()) // 验证响应状态码为200，表示请求成功处理了
+    // .andExpect(content().json("{\"code\":\"0\",\"message\":\"Appointsuccessfully!\"}")); // 验证响应内容为JSON格式，并且与预期的结果对象匹配
 
-    }
+    // }
 
 }

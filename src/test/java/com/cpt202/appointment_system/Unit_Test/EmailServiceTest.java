@@ -1,3 +1,4 @@
+// package com.cpt202.appointment_system.Unit_Test;
 package com.cpt202.appointment_system.Unit_Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -21,7 +22,7 @@ import com.cpt202.appointment_system.Repositories.ServiceTypeRepo;
 import com.cpt202.appointment_system.Services.ServiceTypeService;
 
 @ExtendWith(MockitoExtension.class)
-public class ServiceTypeServiceTest {
+public class EmailServiceTest {
 
     @Mock
     private ServiceTypeRepo serviceTypeRepo;

@@ -26,9 +26,25 @@
 <!-- page wrapper -->
 
 <body>
+      <!-- <input id="user" th:value="${session.user}"> -->
+    <p id="message" th:text="${message}" style="display:none;"></p>
+    <p id="error" th:text="${error}" style="display:none;"></p>
+    <script>
+        window.onload = function () {
+            const message = document.getElementById("message").innerText;
+            const error = document.getElementById("error").innerText;
+            if (message) {
+                alert(message);
+                window.location.href = "/Appointment/appoint";
+            } else if (error) {
+                alert(error);
+                window.location.href = "/Appointment/appoint";
+            }
+        }
+    </script>
 
+    
     <div class="boxed_wrapper">
-
         <!-- main header -->
         <header class="main-header header-style-two">
 
@@ -194,7 +210,9 @@
                                             <option value="" selected disabled>请选择一个宠物</option>
                                             <div th:each="pet: ${petList}">
                                               <option th:value="${pet.getPid()}" th:data-size="${pet.getSize()}" th:field="*{pet}">
-                                                <p th:text="${pet.getName()}"></p>
+                                                <p th:text="${pet.getName()}"></p>&nbsp;&nbsp;Size:&nbsp;<p
+                                                th:text="${pet.getSize()}"></p>
+
                                               </option>
                                             </div>
                                           </select>
@@ -238,7 +256,8 @@
                                             <option value="" selected disabled>请选择一个美容师</option>
                                             <div th:each="groomer : ${gList}">
                                               <option th:value="${groomer.getGid()}" th:data-rank="${groomer.getRank()}" th:field="*{groomer}">
-                                                <p th:text="${groomer.getName()}"></p>
+                                                <p th:text="${groomer.getName()}"></p>&nbsp;&nbsp;Rank:&nbsp;<p
+                                                th:text="${groomer.getRank()}"></p> *
                                               </option>
                                             </div>
                                           </select>
@@ -247,9 +266,7 @@
 
                                     <!-- totalprice -->
                                     <div class="col-lg-12 col-md-12 col-sm-12 form-group">
-                                        <i class="far fa-user"></i>
-                                        &nbsp;&nbsp;&nbsp;&nbsp;
-                                        <p>Total Price：$<span id="serviceprice">0</span></p>
+                                        <p>$&nbsp;&nbsp;Total Price : <span id="serviceprice">0</span>$</p>
 
                                         <div id="error-message" class="alert alert-danger" style="display:none;">
                                             请填写所有必选字段。
@@ -315,17 +332,72 @@
                 </div>
             </div>
         </section>
+
+        
+        <!-- pricing-style-two -->
+        <section class="pricing-style-two centred">
+            <div class="pattern-layer" style="background-image: url(/assets/images/shape/shape-52.png);"></div>
+            <div class="auto-container">
+                <div class="sec-title style-two">
+                    <h5>PRICING PLAN</h5>
+                    <h2>Services you often appointed</h2>
+                    <div class="divider" style="background-image: url(/assets/images/icons/divider-1.png);"></div>
+                </div>
+                <div class="pricing-pribel-plas17">
+                    <div class="row">
+
+
+        <!--modify-->
+                <div class="col-lg-3 col-md-6" th:each="serviceType : ${serviceType}">
+                    <div class="item item--01">
+                        <div class="item__heading">
+                            <h3 class="text-uppercase" th:text="${serviceType.serviceName}"></h3>
+                        </div>
+                        <div class="item__media">
+                            <img src="/assets/images/pricing-1.png" alt="Image">
+                        </div>
+                        <div class="item__content">
+                            <ul>
+                                <a >Groomer:&nbsp;&nbsp;<strong th:text="${serviceType.serviceTime}">&nbsp;</strong></a> 
+                                <a >Service Time:&nbsp;&nbsp;<strong th:text="${serviceType.serviceTime}">&nbsp;</strong>min</a> 
+                            </ul>
+                            <div class="item__pricing">
+                                <a>Price:</a>&nbsp;<a th:text="${serviceType.basicPrice}"></a><a>$</a>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+        <!--modify-->
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- contact-style-two end -->
         <section class="team-page-section" th:class="team-page-section">
             <div class="auto-container">
                 <div class="sec-title style-two centred">
                     <h5>TEAM MEMBERS</h5>
-                    <h2>Our best team person</h2>
+                    <h2>Recommended Groomers</h2>
+                    <div class="sort-by">
+                        <label for="sort-by-select">Recommended By:&nbsp;&nbsp;</label>
+
+                        <select id="sort-by-select">
+                            <option value="All">All</option>
+                            <option value="Rank">Rank (high to low)</option>
+                            <option value="Popularity">Popularity(Order by volume of transactions)</option>
+                            <option value="Favourite">Your Favourite(Order by the amount of your appointment)</option>
+                        </select>
+                    </div>
                     <div class="divider" style="background-image: url(/assets/images/icons/divider-1.png);"></div>
                 </div>
                 <div class="row clearfix">
-                    <div class="col-lg-3 col-md-6 col-sm-12 team-block" th:each="groomer : ${gList}">
-                        <div class="team-block-two wow fadeInUp animated animated" data-wow-delay="00ms" data-wow-duration="1500ms" style="visibility: visible; animation-duration: 1500ms; animation-delay: 0ms; animation-name: fadeInUp;">
+                    <div class="col-lg-3 col-md-6 col-sm-12 team-block" th:each="groomer : ${gList}" >
+                        <div class="team-block-two wow fadeInUp animated animated" data-wow-delay="00ms" 
+                        data-wow-duration="1500ms" style="visibility: visible; animation-duration: 1500ms; 
+                        animation-delay: 0ms; animation-name: fadeInUp;">
                             <div class="inner-box">
                                 <div class="image-box">
                                     <figure class="image"><img th:src="${groomer.getImageURL()}" alt=""></figure>
@@ -355,8 +427,7 @@
                 </div>
             </div>
         </section>
-        
-        <!-- team-page-section end -->
+
 
 
         <!-- main-footer finished-->

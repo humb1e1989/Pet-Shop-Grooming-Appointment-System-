@@ -63,4 +63,9 @@ public class Result<T> {
         this.code = code;
         this.msg = msg;
     }
+
+       public boolean isSuccess() {
+        return this.code.equals("0");
+    }
+
 }
