@@ -12,10 +12,9 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addInterceptor(new AuthenticationInterceptor())
                 .addPathPatterns("/**") // 拦截所有请求
                 .excludePathPatterns("/appointment-system**") // 排除登录页面
-                // .excludePathPatterns("/appointment-system/login") // 排除登录处理路径
+                .excludePathPatterns("/appointment-system/login") // 排除登录处理路径
                 .excludePathPatterns("/assets/css/**") // 排除 CSS 静态资源
                 .excludePathPatterns("/assets/js/**") // 排除 JavaScript 静态资源
-                .excludePathPatterns("/assets/images/**") ;// 排除图片静态资源
-                // .excludePathPatterns("/assets/fonts/**") ;
+                .excludePathPatterns("/assets/images/**"); // 排除图片静态资源
     }
 }

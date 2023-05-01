@@ -20,6 +20,9 @@
     <link href="/assets/css/responsive.css" rel="stylesheet">
     <link href="/assets/css/theme-template.css" rel="stylesheet">
 
+    <link rel="stylesheet" href="/assets/css/Log.css">
+    <link rel="stylesheet" href="/assets/css/signup.css">
+
 </head>
 
 
@@ -637,7 +640,7 @@
                         <div class="team-block-two wow fadeInUp animated animated" data-wow-delay="00ms" data-wow-duration="1500ms" style="visibility: visible; animation-duration: 1500ms; animation-delay: 0ms; animation-name: fadeInUp;">
                             <div class="inner-box">
                                 <div class="image-box">
-                                    <figure class="image"><img th:src="${groomer.getImageURL()}" alt=""></figure>
+                                    <figure class="image clickable-figure"><img th:src="${groomer.getImageURL()}" alt=""></figure>
                                 </div>
                                 <div class="lower-content">
                                     <ul class="rating clearfix centred" style="color: #ffa800">
@@ -651,7 +654,7 @@
                                             </script>
                                         =====</li>
                                     </ul>
-                                    <h3><a th:href="@{/customer/makeappointment}"><p><b th:text="${groomer.getName()}"></b></p></a></h3>
+                                    <h3><a class="toappointment"><p><b th:text="${groomer.getName()}"></b></p></a></h3>
                                     <div class="designation">
                                         <span class="bar"></span>
                                         <p th:text="${groomer.getDescription()}"></p>
@@ -663,6 +666,37 @@
                 </div>
             </div>
         </section>
+        <script>
+
+            var buttongroomer = document.getElementsByClassName("toappointment");
+            var figures = document.getElementsByClassName("image clickable-figure");
+            for (var i = 0; i < figures.length; i++) {
+            if (user === "") {
+                figures[i].addEventListener('click', start);
+            } else {
+                figures[i].addEventListener('click', Appoint);
+            }
+        }
+
+
+            for (var i = 0; i < buttongroomer.length; i++) {
+            if (user === "") {
+                buttongroomer[i].addEventListener('click', start);
+            } else {
+                buttongroomer[i].addEventListener('click', Appoint);
+            }
+        }
+
+            function start() {
+                document.getElementById('signform').style.display = ""
+            }
+
+            function Appoint() {
+                window.location.href = "/Appointment/appoint";
+            }
+        </script>
+
+
         
         <!-- team-page-section end -->
 
