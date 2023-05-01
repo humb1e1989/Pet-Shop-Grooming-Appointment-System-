@@ -210,6 +210,7 @@ public class AppointmentController {
         return "makeappointment";
         
     }
+    
 
     @PostMapping("/appoint")
     public String makeappointment_C(@ModelAttribute("appointmentForm") AppointmentForm appointmentForm,HttpSession session,
@@ -260,12 +261,12 @@ public class AppointmentController {
         }
 
         catch(Exception e){return "redirect:/Appointment/payment";}
-    }
+      }
 
-    else{
+      else{
         redirectAttributes.addFlashAttribute("error", "The groomer has been appointed");
         return "redirect:/Appointment/appoint";
-    }
+       }
 
     }
 
