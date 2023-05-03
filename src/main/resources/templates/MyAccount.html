@@ -173,7 +173,7 @@
                                 <sl-dialog label="Modify" class="dialog-focus">
                                     
                                     
-                                    <form th:action="@{/customer/profile/account/edit}" method="POST" th:object="${newUser}" enctype="multipart/form-data">
+                                    <form th:action="@{/customer/profile/account/edit}" method="POST" th:object="${newUser}" enctype="multipart/form-data" onsubmit="return validateForm()">
                                         <!-- <div class="grid md:grid-cols-2 md:gap-6"> text-sm-->
                                             <div class="relative z-0 w-full mb-6 group">
                                                 <input type="text" th:field="*{username}" name="username" id="username" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" "/>
@@ -221,6 +221,58 @@
                                         
                                         <button id="submit"  slot="footer" variant="primary" type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" style="border-radius: 30px;" >Submit</button>
                                     </form>
+
+                                    <div id="error-message" class="alert alert-danger" style="display:none;">
+                                        Please fill in all required fields！
+                                    </div>
+                                    <div id="error-message2" class="alert alert-danger" style="display:none;">
+                                        Please fill in all required fields！
+                                    </div>
+                                    <script>
+                                        function validateForm() {
+                                            const username = document.getElementById("username");
+                                            const usernameValue = username.value.trim();
+                                            const email = document.getElementById("email");
+                                            const phoneNumber = document.getElementById("phoneNumber");
+                                            const password = document.getElementById("password");
+                                            const errorMessage = document.getElementById("error-message");
+                                            const errorMessage2= document.getElementById("error-message2");
+                                    
+                                            // 检查所有必填字段是否已填写
+                                            if (username.value === "" || email.value === "" || phoneNumber.value === "" || password.value === "") {
+                                                errorMessage.style.display = "block"; // 显示错误消息
+                                                return false; // 阻止表单提交
+                                            } 
+
+                                            else {
+                                                {
+                // 检查用户名是否唯一
+                fetch(`/appointment-system/check-unique?value=${usernameValue}`)
+                    .then(response => {
+                        if (response.status === 200) {
+                            errorMessage2.style.display = "none"; // 隐藏错误消息
+                                                return true; // 允许表单提交
+                        } else if (response.status === 409) {
+                            setErrorFor(username, "Username already exists");
+                            errorMessage2.style.display = "block"; // 隐藏错误消息
+                                                return false; // 允许表单提交
+                            
+                        } else {
+                            setErrorFor(username, "Error checking username");
+                            return false;
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error fetching data:', error);
+                        
+                    });
+            }
+                                            }
+                                        }
+                                    </script>
+                                    
+
+                        
   
                                     
                                     
