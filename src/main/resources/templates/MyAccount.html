@@ -173,7 +173,7 @@
                                 <sl-dialog label="Modify" class="dialog-focus">
                                     
                                     
-                                    <form th:action="@{/customer/profile/account/edit}" method="POST" th:object="${newUser}" enctype="multipart/form-data" onsubmit="return validateForm()">
+                                    <form th:action="@{/customer/profile/account/edit}" method="POST" th:object="${newUser}" enctype="multipart/form-data" onsubmit="handleFormSubmit(event);">
                                         <!-- <div class="grid md:grid-cols-2 md:gap-6"> text-sm-->
                                             <div class="relative z-0 w-full mb-6 group">
                                                 <input type="text" th:field="*{username}" name="username" id="username" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" "/>
@@ -226,50 +226,56 @@
                                         Please fill in all required fields！
                                     </div>
                                     <div id="error-message2" class="alert alert-danger" style="display:none;">
-                                        Please fill in all required fields！
+                                        The username already exists！
                                     </div>
+                                    
                                     <script>
-                                        function validateForm() {
+                                        async function handleFormSubmit(event) {
+                                            event.preventDefault(); // 阻止表单默认提交事件
+                                            const isValid = await validateForm(); // 等待异步验证过程完成
+                                            if (isValid) {
+                                                event.target.submit(); // 如果验证成功，则手动提交表单
+                                            }
+                                        }
+                                    
+                                        async function validateForm() {
                                             const username = document.getElementById("username");
                                             const usernameValue = username.value.trim();
                                             const email = document.getElementById("email");
                                             const phoneNumber = document.getElementById("phoneNumber");
                                             const password = document.getElementById("password");
                                             const errorMessage = document.getElementById("error-message");
-                                            const errorMessage2= document.getElementById("error-message2");
+                                            const errorMessage2 = document.getElementById("error-message2");
                                     
                                             // 检查所有必填字段是否已填写
                                             if (username.value === "" || email.value === "" || phoneNumber.value === "" || password.value === "") {
                                                 errorMessage.style.display = "block"; // 显示错误消息
-                                                return false; // 阻止表单提交
-                                            } 
-
-                                            else {
-                                                {
-                // 检查用户名是否唯一
-                fetch(`/appointment-system/check-unique?value=${usernameValue}`)
-                    .then(response => {
-                        if (response.status === 200) {
-                            errorMessage2.style.display = "none"; // 隐藏错误消息
-                                                return true; // 允许表单提交
-                        } else if (response.status === 409) {
-                            setErrorFor(username, "Username already exists");
-                            errorMessage2.style.display = "block"; // 隐藏错误消息
-                                                return false; // 允许表单提交
-                            
-                        } else {
-                            setErrorFor(username, "Error checking username");
-                            return false;
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Error fetching data:', error);
-                        
-                    });
-            }
+                                                errorMessage2.style.display = "none"; // 隐藏错误消息
+                                                return false;
+                                            } else {
+                                                try {
+                                                    // 检查用户名是否唯一
+                                                    const response = await fetch(`/appointment-system/check-unique?value=${usernameValue}`);
+                                                    if (response.status === 200) {
+                                                        errorMessage.style.display = "none"; // 隐藏错误消息
+                                                        errorMessage2.style.display = "none"; // 隐藏错误消息
+                                                        return true;
+                                                    } else if (response.status === 409) {
+                                                        errorMessage.style.display = "none"; // 隐藏错误消息
+                                                        errorMessage2.style.display = "block"; // 显示错误消息
+                                                        return false;
+                                                    } else {
+                                                        setErrorFor(username, "Error checking username");
+                                                        return false;
+                                                    }
+                                                } catch (error) {
+                                                    console.error('Error fetching data:', error);
+                                                    return false;
+                                                }
                                             }
                                         }
                                     </script>
+                                    
                                     
 
                         
