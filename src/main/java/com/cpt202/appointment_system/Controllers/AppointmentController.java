@@ -44,6 +44,11 @@ import com.cpt202.appointment_system.Services.EmailService;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 
+import org.springframework.web.multipart.MultipartFile;
+
+
+import com.cpt202.appointment_system.Services.UserService;
+
 // @RestController
 
 @Controller
@@ -170,8 +175,24 @@ public class AppointmentController {
     
     @GetMapping("/appoint")
     public String makeappointment(HttpSession session, Model model) {
-        // 检查用户是否已登录
+
         String username = (String) session.getAttribute("user");
+        User user = userRepo.findByUsername(username);
+
+        List<Pet> petList = petService.listAllPets(user);
+        List<Pet> petShown = new ArrayList<>();
+        for (Pet pet: petList){
+            if (pet.getSize().equals("") && pet.getType().equals("")){
+            }
+            else {
+                petShown.add(pet);
+            }
+        }
+
+        model.addAttribute("petList", petShown);
+        model.addAttribute("number", petList.size());
+        model.addAttribute("pet", new Pet());
+        // 检查用户是否已登录
         if (username == null) {
             // 如果用户未登录，重定向到登录页面
             return "redirect:/appointment-system";
@@ -190,11 +211,9 @@ public class AppointmentController {
         model.addAttribute( "gList", gList);
         model.addAttribute("sortedRankgroomers", sortedRankgroomers);
         
-        User user=userRepo.findByUsername(username);
+
 
         //save pet to the model
-        List<Pet> petList=petService.listAllPets(user);
-        List<Pet> petShown = new ArrayList<Pet>();
         for (Pet pet: petList){
        if (pet.getSize().equals("") && pet.getType().equals("")){
         }
