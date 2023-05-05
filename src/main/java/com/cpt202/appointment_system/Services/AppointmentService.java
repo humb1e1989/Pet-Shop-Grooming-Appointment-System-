@@ -165,7 +165,7 @@ public class AppointmentService {
 		Calendar calendar = Calendar.getInstance();
 		Timestamp currentTime = new Timestamp(System.currentTimeMillis());
 		appointment.setCreateTime(currentTime);
-		appointment.setStatus("pending");
+		appointment.setStatus("Pending");
 		Timestamp temp = new Timestamp(appointment.getStartTime().getTime());
 		calendar.setTime(temp);
 		Groomer OrderedGroomer = groomerRepo.findByGid(appointment.getGroomer().getGid());

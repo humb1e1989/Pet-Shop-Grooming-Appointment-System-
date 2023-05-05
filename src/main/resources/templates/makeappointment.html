@@ -43,8 +43,9 @@
         }
     </script>
 
-    
+
     <div class="boxed_wrapper">
+
         <!-- main header -->
         <header class="main-header header-style-two">
 
@@ -207,7 +208,7 @@
                                         <i class="fal fa-paw-alt"></i>
                                         <label for="Pet">Your Pet :</label>&nbsp;&nbsp;&nbsp;&nbsp;
                                         <select name="Pet" id="Pet" onchange="calculateSum()">
-                                            <option value="" selected disabled>请选择一个宠物</option>
+                                            <option value="" selected disabled>Please select a pet</option>
                                             <div th:each="pet: ${petList}">
                                               <option th:value="${pet.getPid()}" th:data-size="${pet.getSize()}" th:field="*{pet}">
                                                 <p th:text="${pet.getName()}"></p>&nbsp;&nbsp;Size:&nbsp;<p
@@ -225,7 +226,7 @@
                                         <i class="fal fa-aws"></i>
                                         <label for="serviceType">Service Type :</label>&nbsp;&nbsp;&nbsp;&nbsp;
                                         <select name="serviceType" id="serviceType" onchange="calculateSum()">
-                                            <option value="" selected disabled>请选择一个服务</option>
+                                            <option value="" selected disabled>Please select a service</option>
                                             <div th:each="serviceType: ${serviceType}">
                                               <option th:value="${serviceType.getSid()}" th:data-price="${serviceType.getBasicPrice()}" th:field="*{serviceType}">
                                                 <p th:text="${serviceType.getServiceName()}"></p>&nbsp;<p th:text="${serviceType.getBasicPrice()}"></p> $
@@ -253,10 +254,10 @@
                                         <i class="far fa-user"></i>
                                         <label for="Groomer">Groomer :</label>&nbsp;&nbsp;&nbsp;&nbsp;
                                         <select name="Groomer" id="Groomer" onchange="calculateSum()">
-                                            <option value="" selected disabled>请选择一个美容师</option>
+                                            <option value="" selected disabled>Please select a groomer</option>
                                             <div th:each="groomer : ${gList}">
                                               <option th:value="${groomer.getGid()}" th:data-rank="${groomer.getRank()}" th:field="*{groomer}">
-                                                <p th:text="${groomer.getName()}"></p>&nbsp;&nbsp;Rank:&nbsp;<p
+                                                 <p th:text="${groomer.getName()}"></p>&nbsp;&nbsp;Rank:&nbsp;<p
                                                 th:text="${groomer.getRank()}"></p> *
                                               </option>
                                             </div>
@@ -269,7 +270,7 @@
                                         <p>$&nbsp;&nbsp;Total Price : <span id="serviceprice">0</span>$</p>
 
                                         <div id="error-message" class="alert alert-danger" style="display:none;">
-                                            请填写所有必选字段。
+                                            Please fill in all required fields！
                                         </div>
                                         
 
@@ -427,7 +428,8 @@
                 </div>
             </div>
         </section>
-
+        
+        <!-- team-page-section end -->
 
 
         <!-- main-footer finished-->
