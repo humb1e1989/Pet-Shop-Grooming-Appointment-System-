@@ -80,7 +80,7 @@ public interface AppointmentRepo extends JpaRepository<Appointment, Integer> {
     public List<Appointment> findAllByFinishTimeBetween(Timestamp start, Timestamp end);
     
     @Query(value = "SELECT YEAR(finish_time), COUNT(*) FROM appointment GROUP BY YEAR(finish_time)", nativeQuery = true)
-    public List<Object[]> findYearAndCount();
+    public List<Integer[]> findYearAndCount();
 
     // 使用@Query注解来指定自定义的JPQL语句，根据年份来查询sale
     @Query(value = "select * from appointment where YEAR(finish_time) = :year", nativeQuery = true)
