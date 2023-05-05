@@ -106,6 +106,24 @@ public class PetController {
         
     }
 
+    @PostMapping("/profile/pet/add2")
+    public String addPetPost2(HttpSession session, @ModelAttribute("pet") Pet pet, Model model, MultipartFile file){
+        String username = (String) session.getAttribute("user");
+        User user = userRepo.findByUsername(username);
+        Integer uid=user.getUid();
+        pet.setUser(userRepo.findByUid(uid));
+        int code = petService.addPet(file, pet);
+        model.addAttribute("code", code);
+
+        // have to deal with it later
+        if (code == 2 || code == 3){
+            return "MyPet8";
+        }
+
+        return "redirect:/Appointment/appoint";
+        
+    }
+
 
     @PostMapping("/profile/pet/edit")
     public String editPetPost(HttpSession session, @ModelAttribute("pet") Pet pet, Model model, MultipartFile file){
