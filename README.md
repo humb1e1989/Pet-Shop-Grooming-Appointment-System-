@@ -14,3 +14,13 @@
 > Development Platform
   +  Visual Studio code 
   
+## Details of this product
+> if you want to find the overall details about what us have done, you can [click this]()<br>
+> if you want to find the source code of this product, you can [click this]() <br>
+> Here is the demo video of this project: <br>
+<video>
+  <video width="854" height="480" controls>
+  <source src="your_video_path.mp4" type="video/mp4">
+  Your Explorer does not support HTML5 Video Tags.
+</video>
+
