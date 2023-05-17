@@ -24,3 +24,6 @@
   Your Explorer does not support HTML5 Video Tags.
 </video>
 
+## Administrator account
+username: manager
+password: group10
