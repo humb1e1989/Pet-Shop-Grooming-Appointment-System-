@@ -117,7 +117,7 @@ public class AppointmentRepoTest {
         Result<?> result = mockAppointmentService.makeAppointment_C(appointment_success1);
 
         assertEquals("0", result.getCode());
-        verify(mockAppointmentRepo).save(any(Appointment.class));
+        verify(mockAppointmentRepo, times(1)).save(any(Appointment.class));
     }
 
     @Test

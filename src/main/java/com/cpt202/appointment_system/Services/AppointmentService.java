@@ -107,16 +107,6 @@ public class AppointmentService {
 			if (resulList_price != null)
 				resulList.addAll(resulList_price);
 		}
-		// List<Appointment> resulList_gname = appointmentRepo.findByGname(keyword);
-		// List<Appointment> resulList_servicetype = appointmentRepo.findByService_type(keyword);
-		// List<Appointment> resulList_status = appointmentRepo.findByStatus(keyword);
-		// if (resulList_gname != null)
-		// resulList.addAll(resulList_gname);
-		// if (resulList_servicetype != null)
-		// 	resulList.addAll(resulList_servicetype);
-		// if (resulList_status != null)
-		// 	resulList.addAll(resulList_status);
-
 		LinkedHashSet<Appointment> hashSet = new LinkedHashSet<>(resulList);
 		ArrayList<Appointment> resulList_Final = new ArrayList<>(hashSet);
 		return resulList_Final;
@@ -292,25 +282,23 @@ public class AppointmentService {
 
 	public List<Appointment> appointmentSearch_M(@RequestParam String keyword) {
 		List<Appointment> resulList = new ArrayList<>();
-		if (isInteger(keyword)) {
-			Appointment resulList_aid = appointmentRepo.findByAid(Integer.valueOf(keyword).intValue());
-			List<Appointment> resultList_gid = appointmentRepo.findByGroomer(Integer.valueOf(keyword).intValue());
-			List<Appointment> resultList_sid = appointmentRepo.findBySid(Integer.valueOf(keyword).intValue());
-			List<Appointment> resultList_price = appointmentRepo.findBytotalPrice(Double.valueOf(keyword));
+		// if (isInteger(keyword)) {
+		// 	Appointment resulList_aid = appointmentRepo.findByAid(Integer.valueOf(keyword).intValue());
+		// 	List<Appointment> resultList_gid = appointmentRepo.findByGroomer(Integer.valueOf(keyword).intValue());
+		// 	List<Appointment> resultList_sid = appointmentRepo.findBySid(Integer.valueOf(keyword).intValue());
+		// 	List<Appointment> resultList_price = appointmentRepo.findBytotalPrice(Double.valueOf(keyword));
 
-			if (resulList_aid != null)
-				resulList.add(resulList_aid);
-			if (resultList_gid != null)
-				resulList.addAll(resultList_gid);
-			if (resultList_sid != null)
-				resulList.addAll(resultList_sid);
-			if (resultList_price != null)
-				resulList.addAll(resultList_price);
+		// 	if (resulList_aid != null)
+		// 		resulList.add(resulList_aid);
+		// 	if (resultList_gid != null)
+		// 		resulList.addAll(resultList_gid);
+		// 	if (resultList_sid != null)
+		// 		resulList.addAll(resultList_sid);
+		// 	if (resultList_price != null)
+		// 		resulList.addAll(resultList_price);
 
-		}
-		// List<Appointment> resulList_gname = appointmentRepo.findByGname(keyword);
-		// List<Appointment> resulList_servicetype = appointmentRepo.findByService_type(keyword);
-		List<Appointment> resulList_status = appointmentRepo.findByStatus(keyword);
+		// }
+		// List<Appointment> resulList_status = appointmentRepo.findByStatus(keyword);
 		Optional<User> user = userRepo.findByUsernameOptional(keyword);
 		try {
 			Integer uid = user.get().getUid();
@@ -320,14 +308,8 @@ public class AppointmentService {
 		} catch (NoSuchElementException nse) {
 			System.out.println(nse.getMessage());
 		}
-		// System.out.println(uid);
-
-		// if (resulList_gname != null)
-		// resulList.addAll(resulList_gname);
-		// if (resulList_servicetype != null)
-		// 	resulList.addAll(resulList_servicetype);
-		if (resulList_status != null)
-			resulList.addAll(resulList_status);
+		// if (resulList_status != null)
+		// 	resulList.addAll(resulList_status);
 
 		LinkedHashSet<Appointment> hashSet = new LinkedHashSet<>(resulList);
 		ArrayList<Appointment> resulList_Final = new ArrayList<>(hashSet);
