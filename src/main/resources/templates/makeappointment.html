@@ -19,6 +19,9 @@
     <link href="/assets/css/style.css" rel="stylesheet">
     <link href="/assets/css/responsive.css" rel="stylesheet">
     <link href="/assets/css/theme-template.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/signup.css">
+    <link rel="stylesheet" href="/assets/css/Log.css">
+
 
 </head>
 
@@ -26,6 +29,121 @@
 <!-- page wrapper -->
 
 <body>
+
+    <style>
+        .form-container {
+            font-family: Arial, sans-serif;
+        }
+    
+        .form-label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+    
+        .form-input {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+    
+        .form-submit {
+            display: inline-block;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+        }
+    
+        .form-submit:hover {
+            background-color: #45a049;
+        }
+    </style>
+    
+    <div id="signform" class="modal_sign" style="display: none">
+        <div class="container_sign form-container">
+            <div class="header">
+                <div class="close-container">
+                    <span class="close_sign">&times; </span>
+                </div>
+                <h2>Add pet</h2>
+            </div>
+    
+            <form th:action="@{/customer/profile/pet/add2}" method="POST" th:object="${pet}" enctype="multipart/form-data">
+                <div>
+                    <label for="type" class="form-label">Type</label>
+                    <select required="required" id="type" name="type" class="form-input">
+                        <option th:value="Dog" th:field="*{type}">Dog</option>
+                        <option th:value="Cat" th:field="*{type}">Cat</option>
+                        <option th:value="Other" th:field="*{type}">Other</option>
+                    </select>
+                </div>
+    
+                <div>
+                    <label for="size" class="form-label">Size</label>
+                    <select required="required" id="size" name="size" class="form-input">
+                        <option th:value="Small" th:field="*{size}">Small</option>
+                        <option th:value="Medium" th:field="*{size}">Medium</option>
+                        <option th:value="Large" th:field="*{size}">Large</option>
+                    </select>
+                </div>
+    
+                <div class="relative z-0">
+                    <label for="name" class="form-label">Name</label>
+                    <input required="required" type="text" th:field="*{name}" name="name" id="name" class="form-input" placeholder="Pet name" />
+                </div>
+    
+                <button type="submit" class="form-submit">Submit</button>
+            </form>
+        </div>
+    </div>
+    
+    
+
+    <script>
+        var span = document.getElementsByClassName("close_sign")[0];
+        span.onclick = function () {
+            document.getElementById('signform').style.display = "none"
+            document.getElementById('signupform').style.display = "none"
+        }
+
+        var span1 = document.getElementsByClassName("close_sign")[1];
+        span1.onclick = function () {
+            document.getElementById('signform').style.display = "none"
+            document.getElementById('signupform').style.display = "none"
+        }
+
+        function start() {
+            document.getElementById('signform').style.display = ""
+        }
+
+        function loading() {
+            document.getElementById('registerloading').style.display = ""
+        }
+
+        function signre() {
+            if (document.getElementById('signform').style.display == "" && document.getElementById('signupform').style.display == "none") {
+                document.getElementById('signform').style.display = "none"
+                document.getElementById('signupform').style.display = ""
+            }
+        }
+
+        function resign() {
+            if (document.getElementById('signupform').style.display == "" && document.getElementById('signform').style.display == "none") {
+                document.getElementById('signform').style.display = ""
+                document.getElementById('signupform').style.display = "none"
+            }
+        }
+        </script>
+
       <!-- <input id="user" th:value="${session.user}"> -->
     <p id="message" th:text="${message}" style="display:none;"></p>
     <p id="error" th:text="${error}" style="display:none;"></p>
@@ -43,8 +161,9 @@
         }
     </script>
 
-    
+
     <div class="boxed_wrapper">
+
         <!-- main header -->
         <header class="main-header header-style-two">
 
@@ -207,7 +326,7 @@
                                         <i class="fal fa-paw-alt"></i>
                                         <label for="Pet">Your Pet :</label>&nbsp;&nbsp;&nbsp;&nbsp;
                                         <select name="Pet" id="Pet" onchange="calculateSum()">
-                                            <option value="" selected disabled>请选择一个宠物</option>
+                                            <option value="" selected disabled>Please select a pet</option>
                                             <div th:each="pet: ${petList}">
                                               <option th:value="${pet.getPid()}" th:data-size="${pet.getSize()}" th:field="*{pet}">
                                                 <p th:text="${pet.getName()}"></p>&nbsp;&nbsp;Size:&nbsp;<p
@@ -216,6 +335,8 @@
                                               </option>
                                             </div>
                                           </select>
+
+                                          <button onclick="start()" class="theme-btn btn-five">Add a Pet now</button>
                                           
                                     </div>
 
@@ -225,7 +346,7 @@
                                         <i class="fal fa-aws"></i>
                                         <label for="serviceType">Service Type :</label>&nbsp;&nbsp;&nbsp;&nbsp;
                                         <select name="serviceType" id="serviceType" onchange="calculateSum()">
-                                            <option value="" selected disabled>请选择一个服务</option>
+                                            <option value="" selected disabled>Please select a service</option>
                                             <div th:each="serviceType: ${serviceType}">
                                               <option th:value="${serviceType.getSid()}" th:data-price="${serviceType.getBasicPrice()}" th:field="*{serviceType}">
                                                 <p th:text="${serviceType.getServiceName()}"></p>&nbsp;<p th:text="${serviceType.getBasicPrice()}"></p> $
@@ -253,10 +374,10 @@
                                         <i class="far fa-user"></i>
                                         <label for="Groomer">Groomer :</label>&nbsp;&nbsp;&nbsp;&nbsp;
                                         <select name="Groomer" id="Groomer" onchange="calculateSum()">
-                                            <option value="" selected disabled>请选择一个美容师</option>
+                                            <option value="" selected disabled>Please select a groomer</option>
                                             <div th:each="groomer : ${gList}">
                                               <option th:value="${groomer.getGid()}" th:data-rank="${groomer.getRank()}" th:field="*{groomer}">
-                                                <p th:text="${groomer.getName()}"></p>&nbsp;&nbsp;Rank:&nbsp;<p
+                                                 <p th:text="${groomer.getName()}"></p>&nbsp;&nbsp;Rank:&nbsp;<p
                                                 th:text="${groomer.getRank()}"></p> *
                                               </option>
                                             </div>
@@ -269,7 +390,7 @@
                                         <p>$&nbsp;&nbsp;Total Price : <span id="serviceprice">0</span>$</p>
 
                                         <div id="error-message" class="alert alert-danger" style="display:none;">
-                                            请填写所有必选字段。
+                                            Please fill in all required fields！
                                         </div>
                                         
 
@@ -427,7 +548,8 @@
                 </div>
             </div>
         </section>
-
+        
+        <!-- team-page-section end -->
 
 
         <!-- main-footer finished-->
@@ -507,6 +629,8 @@
     <script src="/assets/js/tilt.jquery.js"></script>
     <script src="/assets/js/isotope.js"></script>
     <script src="/assets/js/bxslider.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js">
+    </script>
 
     <!-- map script -->
     <!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-CE0deH3Jhj6GN4YvdCFZS7DpbXexzGU"></script>-->

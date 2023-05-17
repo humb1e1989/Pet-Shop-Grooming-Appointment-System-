@@ -37,6 +37,7 @@
 <button id='Appointment' >订单界面</button> -->
 
     <input id="user" th:value="${session.user}">
+    <input id="Role" th:value="${session.role}">
     <p id="message" th:text="${message}" style="display:none;"></p>
     <p id="error" th:text="${error}" style="display:none;"></p>
     <script>
@@ -510,7 +511,10 @@
                                             </ul>
                                         </li>
 
-                                        <li><button id="Profile">Mine</button></li>
+                                        <li><button id="Profile">Mine</button>
+                                            <button id="Main" style="display: none;">Maintain Page</button>
+                                        
+                                        </li>
 
                                         <!-- <li class="dropdown"><a>Personal</a>
                                             <ul>
@@ -544,6 +548,7 @@
                 };
 
                 const user = document.getElementById('user').value;
+                const ROLE = document.getElementById("Role").value
                 var buttonprofile = document.getElementById("Profile");
                 var buttonappoint = document.getElementById("Appointment");
                 if (user == "") {
@@ -553,9 +558,19 @@
                     buttonappoint.onclick = start;
 
                 }
-                else {
+                else if(ROLE==1&user!="") {
                     document.getElementById("Login").style.display = "none";
                     document.getElementById("Logout").style.display = "block";
+                    document.getElementById("Profile").style.display = "none";
+                    document.getElementById("Main").style.display = "block";
+                    document.getElementById("Main").onclick = Main;
+                    buttonprofile.onclick = Profile;
+                    buttonappoint.onclick = Appoint;
+                }else{
+                    document.getElementById("Login").style.display = "none";
+                    document.getElementById("Logout").style.display = "block";
+                    document.getElementById("Profile").style.display = "blcok";
+                    document.getElementById("Main").style.display = "none";
                     buttonprofile.onclick = Profile;
                     buttonappoint.onclick = Appoint;
                 }
@@ -570,6 +585,9 @@
 
                 function Appoint() {
                     window.location.href = "/Appointment/appoint";
+                }
+                function Main() {
+                    window.location.href = "/maintain/maintainUser";
                 }
             </script>
 

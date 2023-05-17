@@ -126,3 +126,4 @@ signupForm.addEventListener('submit', (event) => {
     showError('Please enter a valid email address');
   } else {
     // make API call
+// End of the story  

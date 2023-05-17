@@ -1,5 +1,6 @@
 package com.cpt202.appointment_system.Controllers;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -157,7 +158,9 @@ public class UserController {
     @PostMapping("/profile/cancel")
     public String cancelAppointment(@RequestParam("aid") Integer aid) {
 
+        Timestamp currentTime = new Timestamp(System.currentTimeMillis());
         Appointment appRecord = appointmentRepo.findByAid(aid);
+        appRecord.setCancelTime(currentTime);
         appRecord.setStatus("Cancelled");
         appointmentRepo.save(appRecord);
         
@@ -179,23 +182,21 @@ public class UserController {
     @PostMapping("/profile/account/edit")
     public String modifyAccount(HttpSession session, @ModelAttribute("newUser") User user, Model model, MultipartFile file){
 
-        String oldName = (String) session.getAttribute("user");
-        Integer uid = userRepo.findByUsername(oldName).getUid();
-
-        String username = user.getUsername();
-        session.removeAttribute("user");
-        session.setAttribute("user", username);
-
-        // User usertemp = userRepo.findByUsername(username);
-        
+        String oldUsername = (String) session.getAttribute("user");
+        Integer uid = userRepo.findByUsername(oldUsername).getUid();
         user.setUid(uid);
 
-        User u= userService.editAccount_C(file, user);
+        if ( !user.getUsername().trim().equals("") ) {
+            String newUsername = user.getUsername();
+            session.removeAttribute("user");
+            session.setAttribute("user", newUsername);
+        }
+        
 
-        model.addAttribute("user", u);
-        model.addAttribute("newUser", new User());
-        return "MyAccount";
-        // return "redirect:/customer/profile/account";
+        Integer code = userService.editAccount_C(file, user);
+
+        return "redirect:/customer/profile/account";
+
     }
 
     

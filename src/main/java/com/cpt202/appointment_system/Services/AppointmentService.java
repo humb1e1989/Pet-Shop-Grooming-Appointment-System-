@@ -155,7 +155,7 @@ public class AppointmentService {
 		Calendar calendar = Calendar.getInstance();
 		Timestamp currentTime = new Timestamp(System.currentTimeMillis());
 		appointment.setCreateTime(currentTime);
-		appointment.setStatus("pending");
+		appointment.setStatus("Pending");
 		Timestamp temp = new Timestamp(appointment.getStartTime().getTime());
 		calendar.setTime(temp);
 		Groomer OrderedGroomer = groomerRepo.findByGid(appointment.getGroomer().getGid());
@@ -337,10 +337,10 @@ public class AppointmentService {
 		Map<Integer, Integer> yearMap = new HashMap<>();
 		Map<Integer, Double> yearPrice = new HashMap<>();
 
-		List<Object[]> objList = appointmentRepo.findYearAndCount();
-		for (Object[] obj : objList) {
-			int year = (int) obj[0]; // 年份
-			int count = ((BigInteger) obj[1]).intValue();
+		List<Integer[]> objList = appointmentRepo.findYearAndCount();
+		for (Integer[] obj : objList) {
+			int year = obj[0]; // 年份
+			int count = obj[1];
 
 			// yearPrice.put(year, );
 			yearMap.put(year, count);

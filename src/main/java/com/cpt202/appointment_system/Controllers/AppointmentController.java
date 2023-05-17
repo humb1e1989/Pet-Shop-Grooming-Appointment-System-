@@ -44,6 +44,11 @@ import com.cpt202.appointment_system.Services.EmailService;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 
+import org.springframework.web.multipart.MultipartFile;
+
+
+import com.cpt202.appointment_system.Services.UserService;
+
 // @RestController
 
 @Controller
@@ -178,8 +183,24 @@ public class AppointmentController {
 
     @GetMapping("/appoint")
     public String makeappointment(HttpSession session, Model model) {
-        // 检查用户是否已登录
+
         String username = (String) session.getAttribute("user");
+        User user = userRepo.findByUsername(username);
+
+        List<Pet> petList = petService.listAllPets(user);
+        List<Pet> petShown = new ArrayList<>();
+        for (Pet pet: petList){
+            if (pet.getSize().equals("") && pet.getType().equals("")){
+            }
+            else {
+                petShown.add(pet);
+            }
+        }
+
+        model.addAttribute("petList", petShown);
+        model.addAttribute("number", petList.size());
+        model.addAttribute("pet", new Pet());
+        // 检查用户是否已登录
         if (username == null) {
             // 如果用户未登录，重定向到登录页面
             return "redirect:/appointment-system";
@@ -197,19 +218,20 @@ public class AppointmentController {
 
         model.addAttribute("gList", gList);
         model.addAttribute("sortedRankgroomers", sortedRankgroomers);
+        
+        User user=userRepo.findByUsername(username);
 
-        User user = userRepo.findByUsername(username);
-
-        // save pet to the model
-        List<Pet> petList = petService.listAllPets(user);
+        //save pet to the model
+        List<Pet> petList=petService.listAllPets(user);
         List<Pet> petShown = new ArrayList<Pet>();
-        for (Pet pet : petList) {
-            if (pet.getSize().equals("") && pet.getType().equals("")) {
-            } else {
-                petShown.add(pet);
-            }
+        for (Pet pet: petList){
+       if (pet.getSize().equals("") && pet.getType().equals("")){
         }
-
+       else {
+         petShown.add(pet);
+       }
+             }
+             
         model.addAttribute("petList", petShown);
         // save service list to the model
         List<ServiceType> serviceType = servicetypeRepo.findAll();
@@ -217,6 +239,7 @@ public class AppointmentController {
         return "makeappointment";
 
     }
+    
 
     @PostMapping("/appoint")
     public String makeappointment_C(@ModelAttribute("appointmentForm") AppointmentForm appointmentForm,
@@ -247,11 +270,12 @@ public class AppointmentController {
         session.setAttribute("price", price);
 
         appointmentService.makeAppointment_C(appointment);
-        if (appointmentService.makeAppointment_C(appointment).isSuccess()) {
-            try {
-                // send email
+        if(appointmentService.makeAppointment_C(appointment).isSuccess()){
+            
+        try{
+        //发邮件
 
-                String petname = pet.getName();
+        String petname = pet.getName();
 
                 String email = user.getEmail();
 
@@ -266,15 +290,13 @@ public class AppointmentController {
                 return "redirect:/Appointment/payment";
             }
 
-            catch (Exception e) {
-                return "redirect:/Appointment/payment";
-            }
-        }
+        catch(Exception e){return "redirect:/Appointment/payment";}
+    }
 
-        else {
-            redirectAttributes.addFlashAttribute("error", "The groomer has been appointed");
-            return "redirect:/Appointment/appoint";
-        }
+    else{
+        redirectAttributes.addFlashAttribute("error", "The groomer has been appointed");
+        return "redirect:/Appointment/appoint";
+    }
 
     }
 
