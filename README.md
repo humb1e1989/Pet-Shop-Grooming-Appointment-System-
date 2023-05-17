@@ -15,8 +15,8 @@
   +  Visual Studio code 
 
 ## Administrator account
-> username: manager
-> password: group10
++ username: manager
++ password: group10
   
 ## Details of this product
 > if you want to find the overall details about what us have done, you can [click this]()<br>
