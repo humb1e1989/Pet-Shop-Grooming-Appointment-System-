@@ -1,7 +1,7 @@
 # Pet-Shop-Grooming-Appointment-System
 > Our team is employed by a pet shop to develop a web-based grooming appointment system where customers can make appointment with the pet shop before sending the pet for grooming.
 
-## Team Environment: 
+## Deployed Environment: 
 > Server Configuration:
   + Server: Aliyun Server 
   + Operating System: Windows Server 2022 Datacenter 21H2 (64-bit operating system) 
