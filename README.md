@@ -1,5 +1,5 @@
 # Pet-Shop-Grooming-Appointment-System
-> Our team is employed by a pet shop to develop a web-based grooming appointment system where customers can make appointment with the pet shop before sending the pet for grooming.
+> The iPet project is geared towards providing a web-based platform facilitating secure user access, seamless appointment scheduling, and management alongside real-time status tracking and history review for customers. It enhances user experience with personalized account management, visual store content display, and pricing transparency. For shop managers, it enables master file maintenance, data visualization, and critical system data modification, alongside business analytics, reporting, and adaptive selling strategy adjustments to align with market changes and customer needs.
 
 ## Technical overview: 
 > Server Configuration:
